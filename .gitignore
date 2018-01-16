@@ -2,6 +2,9 @@
 
 # dependencies
 /node_modules
+/signalRConnection/bin
+/signalRConnection/obj/Debug
+/signalRConnection/obj/Release
 
 # testing
 /coverage
