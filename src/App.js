@@ -1,21 +1,17 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import UserRecords from './components/UserRecords';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
-}
+const users = [
+  {id: 1, username: "admin", timeout: 10},
+  {id: 2, username: "admin", timeout: 10},
+  {id: 3, username: "hwinarto", timeout: 10}
+];
+
+const App = () => (
+  <MuiThemeProvider>
+    <UserRecords users={users} />
+  </MuiThemeProvider>
+);
 
 export default App;
