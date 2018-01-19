@@ -1,0 +1,7 @@
+const actionTypes = {
+    OPEN_ADD_USER_DIALOG: 'OPEN_ADD_USER_DIALOG',
+    OPEN_EDIT_USER_DIALOG: 'OPEN_EDIT_USER_DIALOG',
+    CLOSE_EDIT_USER_DIALOG: 'CLOSE_EDIT_USER_DIALOG'
+};
+
+export default actionTypes;
