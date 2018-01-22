@@ -1,12 +1,12 @@
 import { combineReducers } from "redux";
 import users from './users';
 import selectedRecord from './selectedRecord';
-import dialogs from './dialogs';
+import userDialogs from './userDialogs';
 
 const salesInventoryApp = combineReducers({
     users,
     selectedRecord,
-    dialogs
+    userDialogs
 });
 
 export default salesInventoryApp;

@@ -3,6 +3,22 @@ const styles = {
         paddingLeft: '1%',
         paddingRight: '1%'
     },
+    dialog: {
+        medium: {
+            width: '50%'
+        }
+    },
+    flatButton: {
+        add: {
+            color: 'blue'
+        },
+        edit: {
+            color: 'orange'
+        },
+        delete: {
+            color: 'red'
+        }
+    },
     floatingButton: {
         left: {
             top: 'auto',

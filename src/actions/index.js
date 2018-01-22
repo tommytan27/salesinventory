@@ -6,6 +6,12 @@ export const openAddUserDialog = () => {
     }
 }
 
+export const closeAddUserDialog = () => {
+    return {
+        type: actionTypes.CLOSE_ADD_USER_DIALOG
+    }
+}
+
 export const openEditUserDialog = (userID) => {
     return {
         type: actionTypes.OPEN_EDIT_USER_DIALOG,

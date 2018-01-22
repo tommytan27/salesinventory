@@ -9,6 +9,13 @@ describe('SalesInventoryActions', () => {
         expect(salesInventoryActions.openAddUserDialog()).toEqual(expectedAction);
     });
 
+    it('should create an action to close add user dialog', () => {
+        const expectedAction = {
+            type: actionTypes.CLOSE_ADD_USER_DIALOG
+        }
+        expect(salesInventoryActions.closeAddUserDialog()).toEqual(expectedAction);
+    });
+
     it('should create an action to open edit user dialog', () => {
         const dummyUserID = 123;
         const expectedAction = {

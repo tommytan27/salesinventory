@@ -1,19 +1,22 @@
 import { connect } from 'react-redux';
 import UserRecordTable from './../components/UserRecordTable';
-import { openEditUserDialog, closeEditUserDialog } from '../actions/index';
+import { openEditUserDialog, closeEditUserDialog, openAddUserDialog, closeAddUserDialog } from '../actions/index';
 
 const mapStateToProps = (state) => {
     return {
         users: state.users,
         selectedUser: state.selectedRecord.user,
-        editDialogState: state.dialogs.editUser.open,
+        addDialogState: state.userDialogs.addUser.open,
+        editDialogState: state.userDialogs.editUser.open,
     };
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onEditDialogClose: () => { dispatch(closeEditUserDialog()) },
-        onUserRecordClick: (userID) => { dispatch(openEditUserDialog(userID)) }
+        onAddUserClick: () => { dispatch(openAddUserDialog()) },
+        onUserRecordClick: (userID) => { dispatch(openEditUserDialog(userID)) },
+        onAddDialogClose: () => { dispatch(closeAddUserDialog()) },
+        onEditDialogClose: () => { dispatch(closeEditUserDialog()) }
     };
 }
 
