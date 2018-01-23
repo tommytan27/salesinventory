@@ -4,9 +4,7 @@ const styles = {
         paddingRight: '1%'
     },
     dialog: {
-        medium: {
-            width: '50%'
-        }
+        width: 'auto'
     },
     flatButton: {
         add: {
