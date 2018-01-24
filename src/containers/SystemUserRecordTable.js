@@ -8,7 +8,7 @@ import { openEditUserDialog, closeEditUserDialog, openAddUserDialog,
 const mapStateToProps = (state) => {
     return {
         users: state.users,
-        selectedUser: state.userDialogs.selectedUser,
+        userInDialog: state.userDialogs.userInDialog,
         addDialogState: state.userDialogs.addUser.open,
         editDialogState: state.userDialogs.editUser
     };

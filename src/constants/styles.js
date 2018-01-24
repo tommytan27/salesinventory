@@ -15,6 +15,9 @@ const styles = {
         },
         delete: {
             color: 'red'
+        },
+        save: {
+            color: 'green'
         }
     },
     floatingButton: {

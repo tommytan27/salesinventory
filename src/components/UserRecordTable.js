@@ -6,27 +6,39 @@ import UserRecord from './UserRecord';
 import styles from './../constants/styles';
 
 class UserRecordTable extends React.Component {
-    renderEditUserDialog = (selectedUser) => {
+    renderEditUserDialog = (user) => {
         if (this.props.editDialogState.open) {
             const actions = [
-                <Button flat iconChildren="clear" onClick={this.props.onEditDialogClose} id="editUserCancel">CANCEL</Button>,
-                <Button flat iconChildren="mode_edit" onClick={this.props.onEditButtonClick} style={styles.flatButton.edit}>EDIT</Button>,
+                <Button flat iconChildren="clear" onClick={this.props.onEditDialogClose} id="editUserCancel">CANCEL</Button>
+            ];
+            if (!this.props.editDialogState.editMode) {
+                actions.push(
+                    <Button flat iconChildren="mode_edit" onClick={this.props.onEditButtonClick} style={styles.flatButton.edit}>EDIT</Button>
+                );
+            }
+            else {
+                actions.push(
+                    <Button flat iconChildren="save" onClick={this.props.onEditButtonClick} style={styles.flatButton.save}>SAVE</Button>
+                );
+            }
+            actions.push(
                 <Button flat iconChildren="delete" style={styles.flatButton.delete}>DELETE</Button>
-            ]
+            );
+
             return (
                 <DialogContainer id="editUser" title="Edit User" visible={this.props.editDialogState.open} dialogStyle={styles.dialog}
                 actions={actions} modal={false} onHide={this.props.onEditDialogClose} initialFocus="#editUserCancel">
-                    <FormGroup validationState="success">
+                    <FormGroup validationState={user.username.state}>
                         <ControlLabel>Username:</ControlLabel>
                         <FormControl type="text" placeholder="Username" 
-                            value={selectedUser.username} disabled={!this.props.editDialogState.editMode}
+                            value={user.username.value} disabled={!this.props.editDialogState.editMode}
                             onChange={ (e) => {this.props.onUsernameFieldChange(e.target.value)} } />
                         <FormControl.Feedback />
                     </FormGroup>
-                    <FormGroup validationState="success">     
+                    <FormGroup validationState={user.timeout.state}>     
                         <ControlLabel>Timeout (minutes):</ControlLabel>
                         <FormControl type="text" placeholder="0" 
-                            value={selectedUser.timeout} disabled={!this.props.editDialogState.editMode}
+                            value={user.timeout.value ? user.timeout.value : ""} disabled={!this.props.editDialogState.editMode}
                             onChange={ (e) => {this.props.onTimeoutFieldChange(e.target.value)} } />
                         <FormControl.Feedback />
                     </FormGroup>
@@ -36,9 +48,8 @@ class UserRecordTable extends React.Component {
         return;
     }
 
-    renderAddUserDialog = () => {
+    renderAddUserDialog = (user) => {
         if (this.props.addDialogState) {
-            let user = this.props.selectedUser;
             const actions = [
                 <Button flat iconChildren="clear" onClick={this.props.onAddDialogClose} id="addUserCancel">CANCEL</Button>,
                 <Button flat iconChildren="add" style={styles.flatButton.add}>ADD</Button>
@@ -46,31 +57,31 @@ class UserRecordTable extends React.Component {
             return (
                 <DialogContainer id="addUser" title="Add User" visible={true} dialogStyle={styles.dialog}
                 actions={actions} modal={false} onHide={this.props.onAddDialogClose} initialFocus="#addUserCancel">
-                    <FormGroup validationState={null}>
+                    <FormGroup validationState={user.username.state}>
                         <ControlLabel>Username:</ControlLabel>
                         <FormControl type="text" placeholder="Username"
-                            value={user.username ? user.username : ""}
+                            value={user.username.value ? user.username.value : ""}
                             onChange={ (e) => {this.props.onUsernameFieldChange(e.target.value)} } />
                         <FormControl.Feedback />
                     </FormGroup>
-                    <FormGroup validationState={null}>     
+                    <FormGroup validationState={user.password.state}>     
                         <ControlLabel>Password:</ControlLabel>
                         <FormControl type="password" placeholder="Password"
-                            value={user.password ? user.password : ""}
+                            value={user.password.value ? user.password.value : ""}
                             onChange={ (e) => {this.props.onPasswordFieldChange(e.target.value)} } />
                         <FormControl.Feedback />
                     </FormGroup>
-                    <FormGroup validationState={null}>     
+                    <FormGroup validationState={user.confirmPassword.state}>     
                         <ControlLabel>Confirm Password:</ControlLabel>
                         <FormControl type="password" placeholder="Confirm Password"
-                            value={user.confirmPassword ? user.confirmPassword : ""}
+                            value={user.confirmPassword.value ? user.confirmPassword.value : ""}
                             onChange={ (e) => {this.props.onConfirmPasswordFieldChange(e.target.value)} } />
                         <FormControl.Feedback />
                     </FormGroup>
-                    <FormGroup validationState={null}>     
+                    <FormGroup validationState={user.timeout.state}>     
                         <ControlLabel>Timeout (minutes):</ControlLabel>
                         <FormControl type="text" placeholder="0"
-                            value={user.timeout ? user.timeout : ""}
+                            value={user.timeout.value ? user.timeout.value : ""}
                             onChange={ (e) => {this.props.onTimeoutFieldChange(e.target.value)} } />
                         <FormControl.Feedback />
                     </FormGroup>
@@ -105,8 +116,8 @@ class UserRecordTable extends React.Component {
                     person_add
                 </Button>
                 
-                {this.renderEditUserDialog(this.props.selectedUser)}
-                {this.renderAddUserDialog()}
+                {this.renderEditUserDialog(this.props.userInDialog)}
+                {this.renderAddUserDialog(this.props.userInDialog)}
             </div>
         );
     }
@@ -120,12 +131,24 @@ UserRecordTable.propTypes = {
             timeout: PropTypes.number.isRequired
         }).isRequired
     ).isRequired,
-    selectedUser: PropTypes.shape({
+    userInDialog: PropTypes.shape({
         id: PropTypes.number,
-        username: PropTypes.string,
-        timeout: PropTypes.number,
-        password: PropTypes.string,
-        confirmPassword: PropTypes.string
+        username: PropTypes.shape({
+            value: PropTypes.string,
+            state: PropTypes.string
+        }),
+        timeout: PropTypes.shape({
+            value: PropTypes.number,
+            state: PropTypes.string
+        }),
+        password: PropTypes.shape({
+            value: PropTypes.string,
+            state: PropTypes.string
+        }),
+        confirmPassword: PropTypes.shape({
+            value: PropTypes.string,
+            state: PropTypes.string
+        })
     }).isRequired,
     addDialogState: PropTypes.bool.isRequired,
     editDialogState: PropTypes.shape({
