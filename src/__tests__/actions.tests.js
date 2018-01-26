@@ -45,11 +45,17 @@ describe('SalesInventoryActions', () => {
 
     it('should create an action to update the username field', () => {
         const dummyUsername = "dummy";
+        const dummyUsers = [
+            {id: 1, username: "admin", timeout: 10},
+            {id: 2, username: "ttanzil", timeout: 10},
+            {id: 3, username: "hwinarto", timeout: 10}
+        ];
         const expectedAction = {
             type: actionTypes.UPDATE_USERNAME_FIELD,
-            username: dummyUsername
+            username: dummyUsername,
+            allUsers: dummyUsers
         }
-        expect(salesInventoryActions.updateUsernameField(dummyUsername)).toEqual(expectedAction);
+        expect(salesInventoryActions.updateUsernameField(dummyUsername, dummyUsers)).toEqual(expectedAction);
     });
     
     it('should create an action to update the timeout field', () => {

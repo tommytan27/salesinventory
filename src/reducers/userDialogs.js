@@ -1,4 +1,5 @@
 import actionTypes from './../constants/actionTypes';
+import { validateUsername, validatePassword, validateConfirmPassword } from '../utils/validators';
 
 const initialState = {
     addUser: {
@@ -66,8 +67,10 @@ const userDialogs = (state = initialState, action) => {
             return {...state, userInDialog: {
                 ...state.userInDialog, username: {
                     value: action.username,
-                    //NEED TO VALIDATE USERNAME
-                    state: action.username ? "success" : null
+                    state: action.username ? 
+                        validateUsername(action.username, action.allUsers) ? 
+                            "success" : "error"
+                        : null
                 }
             }};
         case actionTypes.UPDATE_TIMEOUT_FIELD:
@@ -81,8 +84,13 @@ const userDialogs = (state = initialState, action) => {
             return {...state, userInDialog: {
                 ...state.userInDialog, password: {
                     value: action.password,
-                    //NEED TO CHECK THE STRENGTH OF THE PASSWORD AND UPDATE CONFIRM PASSWORD STATE TOO
-                    state: action.password ? "success" : null
+                    state: action.password ? validatePassword(action.password) : null
+                },
+                confirmPassword: {
+                    ...state.userInDialog.confirmPassword,
+                    state: state.userInDialog.confirmPassword ? 
+                        validateConfirmPassword(action.password, state.userInDialog.confirmPassword.value)
+                        : null
                 }
             }};
         case actionTypes.UPDATE_CONFIRM_PASSWORD_FIELD:
@@ -90,7 +98,7 @@ const userDialogs = (state = initialState, action) => {
                 ...state.userInDialog, confirmPassword: {
                     value: action.confirmPassword,
                     state: action.confirmPassword ? 
-                        action.confirmPassword === state.userInDialog.password.value ? "success" : "error"
+                        validateConfirmPassword(state.userInDialog.password.value, action.confirmPassword)
                         : null
                 }
             }};

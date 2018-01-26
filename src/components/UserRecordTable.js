@@ -1,11 +1,37 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { DataTable, TableHeader, TableBody, TableColumn, TableRow, Button, DialogContainer } from 'react-md';
-import { FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
+import { FormGroup, ControlLabel, FormControl, HelpBlock } from 'react-bootstrap';
 import UserRecord from './UserRecord';
 import styles from './../constants/styles';
 
 class UserRecordTable extends React.Component {
+    renderConfirmPasswordHelpBlock = (state) => {
+        if (state === "error") {
+            return (<HelpBlock>Password did not match</HelpBlock>);
+        }
+        return;
+    }
+
+    renderPasswordHelpBlock = (state) => {
+        switch (state) {
+            case "error":
+                return (<HelpBlock>Bad password.</HelpBlock>);
+            case "warning":
+                return (<HelpBlock>Weak password.</HelpBlock>);
+            case "success":
+                return (<HelpBlock>Strong password.</HelpBlock>);
+        }
+        return;
+    }
+
+    renderUsernameHelpBlock = (state) => {
+        if (state === "error") {
+            return (<HelpBlock>Username is invalid. Try other username.</HelpBlock>);
+        }
+        return;
+    }
+
     renderEditUserDialog = (user) => {
         if (this.props.editDialogState.open) {
             const actions = [
@@ -31,8 +57,8 @@ class UserRecordTable extends React.Component {
                     <FormGroup validationState={user.username.state}>
                         <ControlLabel>Username:</ControlLabel>
                         <FormControl type="text" placeholder="Username" 
-                            value={user.username.value} disabled={!this.props.editDialogState.editMode}
-                            onChange={ (e) => {this.props.onUsernameFieldChange(e.target.value)} } />
+                            value={user.username.value} disabled={true}
+                            onChange={ (e) => {this.props.onUsernameFieldChange(e.target.value, this.props.users)} } />
                         <FormControl.Feedback />
                     </FormGroup>
                     <FormGroup validationState={user.timeout.state}>     
@@ -61,8 +87,9 @@ class UserRecordTable extends React.Component {
                         <ControlLabel>Username:</ControlLabel>
                         <FormControl type="text" placeholder="Username"
                             value={user.username.value ? user.username.value : ""}
-                            onChange={ (e) => {this.props.onUsernameFieldChange(e.target.value)} } />
+                            onChange={ (e) => {this.props.onUsernameFieldChange(e.target.value, this.props.users)} } />
                         <FormControl.Feedback />
+                        {this.renderUsernameHelpBlock(user.username.state)}
                     </FormGroup>
                     <FormGroup validationState={user.password.state}>     
                         <ControlLabel>Password:</ControlLabel>
@@ -70,6 +97,7 @@ class UserRecordTable extends React.Component {
                             value={user.password.value ? user.password.value : ""}
                             onChange={ (e) => {this.props.onPasswordFieldChange(e.target.value)} } />
                         <FormControl.Feedback />
+                        {this.renderPasswordHelpBlock(user.password.state)}
                     </FormGroup>
                     <FormGroup validationState={user.confirmPassword.state}>     
                         <ControlLabel>Confirm Password:</ControlLabel>
@@ -77,6 +105,7 @@ class UserRecordTable extends React.Component {
                             value={user.confirmPassword.value ? user.confirmPassword.value : ""}
                             onChange={ (e) => {this.props.onConfirmPasswordFieldChange(e.target.value)} } />
                         <FormControl.Feedback />
+                        {this.renderConfirmPasswordHelpBlock(user.confirmPassword.state)}
                     </FormGroup>
                     <FormGroup validationState={user.timeout.state}>     
                         <ControlLabel>Timeout (minutes):</ControlLabel>

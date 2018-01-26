@@ -26,14 +26,14 @@ const styles = {
             right: 'auto',
             left: '1.5%',
             bottom: '2%',
-            position: 'absolute'
+            position: 'fixed'
         },
         right: {
             top: 'auto',
             left: 'auto',
             right: '1.5%',
             bottom: '2%',
-            position: 'absolute'
+            position: 'fixed'
         }
     }
 };

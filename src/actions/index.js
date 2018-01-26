@@ -31,10 +31,11 @@ export const enableEditMode = () => {
     };
 }
 
-export const updateUsernameField = (username) => {
+export const updateUsernameField = (username, allUsers) => {
     return {
         type: actionTypes.UPDATE_USERNAME_FIELD,
-        username: username
+        username: username,
+        allUsers: allUsers
     };
 }
 

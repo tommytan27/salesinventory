@@ -21,7 +21,7 @@ const mapDispatchToProps = (dispatch) => {
         onAddDialogClose: () => { dispatch(closeAddUserDialog()) },
         onEditDialogClose: () => { dispatch(closeEditUserDialog()) },
         onEditButtonClick: () => { dispatch(enableEditMode()) },
-        onUsernameFieldChange: (username) => { dispatch(updateUsernameField(username)) },
+        onUsernameFieldChange: (username, allUsers) => { dispatch(updateUsernameField(username, allUsers)) },
         onTimeoutFieldChange: (timeout) => { dispatch(updateTimeoutField(timeout)) },
         onPasswordFieldChange: (password) => { dispatch(updatePasswordField(password)) },
         onConfirmPasswordFieldChange: (confirmPassword) => { dispatch(updateConfirmPasswordField(confirmPassword)) }

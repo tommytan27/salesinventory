@@ -32,13 +32,19 @@ const assertInitialState = (state, action) => {
 
 const dummyUsername = "dummy";
 const dummyTimeout = 50;
-const dummyPassword = "password";
+const dummyPassword = "Password123!!!";
 
 const dummyUser = {
     id: 0,
     username: dummyUsername,
     timeout: dummyPassword
 };
+
+const dummyUsers = [
+    {id: 1, username: "admin", timeout: 10},
+    {id: 2, username: "ttanzil", timeout: 10},
+    {id: 3, username: "hwinarto", timeout: 10}
+];
 
 describe('UserDialogs', () => {
     it('should return initial state of all dialogs closed', () => {
@@ -162,7 +168,8 @@ describe('UserDialogs', () => {
     it('should return the modified username field with success state when receiving UPDATE_USERNAME_FIELD action', () => {
         const returnValue = userDialogs(undefined, {
             type: actionTypes.UPDATE_USERNAME_FIELD,
-            username: dummyUsername
+            username: dummyUsername,
+            allUsers: dummyUsers
         });
         expect(returnValue.userInDialog
             .username.value).toEqual(dummyUsername);
@@ -172,12 +179,46 @@ describe('UserDialogs', () => {
     it('should return the empty username field with null state when receiving UPDATE_USERNAME_FIELD action with empty username', () => {
         const returnValue = userDialogs(undefined, {
             type: actionTypes.UPDATE_USERNAME_FIELD,
-            username: ""
+            username: "",
+            allUsers: dummyUsers
         });
         expect(returnValue.userInDialog
             .username.value).toEqual("");
         expect(returnValue.userInDialog
             .username.state).toBeNull();
+    });
+    it('should return the empty username field with null state when receiving UPDATE_USERNAME_FIELD action with empty username', () => {
+        const returnValue = userDialogs(undefined, {
+            type: actionTypes.UPDATE_USERNAME_FIELD,
+            username: "",
+            allUsers: dummyUsers
+        });
+        expect(returnValue.userInDialog
+            .username.value).toEqual("");
+        expect(returnValue.userInDialog
+            .username.state).toBeNull();
+    });
+    it('should return the username field with error state when receiving UPDATE_USERNAME_FIELD action with existing username', () => {
+        const returnValue = userDialogs(undefined, {
+            type: actionTypes.UPDATE_USERNAME_FIELD,
+            username: "admin",
+            allUsers: dummyUsers
+        });
+        expect(returnValue.userInDialog
+            .username.value).toEqual("admin");
+        expect(returnValue.userInDialog
+            .username.state).toBe("error");
+    });
+    it('should return the username field with error state when receiving UPDATE_USERNAME_FIELD action with uppercase existing username', () => {
+        const returnValue = userDialogs(undefined, {
+            type: actionTypes.UPDATE_USERNAME_FIELD,
+            username: "Admin",
+            allUsers: dummyUsers
+        });
+        expect(returnValue.userInDialog
+            .username.value).toEqual("Admin");
+        expect(returnValue.userInDialog
+            .username.state).toBe("error");
     });
     it('should return the modified timeout field with success state when receiving UPDATE_TIMEOUT_FIELD action', () => {
         const returnValue = userDialogs(undefined, {
@@ -234,6 +275,52 @@ describe('UserDialogs', () => {
         expect(returnValue.userInDialog.password.value).toEqual("");
         expect(returnValue.userInDialog.password.state).toBeNull();
     });
+    it('should return the password field with error state when receiving UPDATE_PASSWORD_FIELD action with bad password', () => {
+        const returnValue = userDialogs(undefined, {
+            type: actionTypes.UPDATE_PASSWORD_FIELD,
+            password: "pass"
+        });
+        expect(returnValue.userInDialog.password.value).toEqual("pass");
+        expect(returnValue.userInDialog.password.state).toBe("error");
+    });
+    it('should return the password field with warning state when receiving UPDATE_PASSWORD_FIELD action with weak password', () => {
+        const returnValue = userDialogs(undefined, {
+            type: actionTypes.UPDATE_PASSWORD_FIELD,
+            password: "admin123"
+        });
+        expect(returnValue.userInDialog.password.value).toEqual("admin123");
+        expect(returnValue.userInDialog.password.state).toBe("warning");
+    });
+    it('should return the success state of confirm password field when receiving UPDATE_PASSWORD_FIELD action with macthing password', () => {
+        const returnValue = userDialogs({
+            userInDialog: {
+                confirmPassword: {
+                    value: dummyPassword,
+                    state: "error"
+                }
+            }
+        }, {
+            type: actionTypes.UPDATE_PASSWORD_FIELD,
+            password: dummyPassword
+        });
+        expect(returnValue.userInDialog.password.value).toEqual(dummyPassword);
+        expect(returnValue.userInDialog.confirmPassword.state).toBe("success");
+    });
+    it('should return the null state of confirm password field when receiving UPDATE_PASSWORD_FIELD action with empty confirm password', () => {
+        const returnValue = userDialogs({
+            userInDialog: {
+                confirmPassword: {
+                    value: null,
+                    state: null
+                }
+            }
+        }, {
+            type: actionTypes.UPDATE_PASSWORD_FIELD,
+            password: dummyPassword
+        });
+        expect(returnValue.userInDialog.password.value).toEqual(dummyPassword);
+        expect(returnValue.userInDialog.confirmPassword.state).toBeNull();
+    });
     it('should return the modified confirm password field with success state when receiving UPDATE_CONFIRM_PASSWORD_FIELD action', () => {
         const returnValue = userDialogs({
             userInDialog: {
@@ -256,8 +343,14 @@ describe('UserDialogs', () => {
         expect(returnValue.userInDialog.confirmPassword.value).toEqual("");
         expect(returnValue.userInDialog.confirmPassword.state).toBeNull();
     });
-    it('should return the error state when receiving UPDATE_CONFIRM_PASSWORD_FIELD action with differnt confirmPassword to password', () => {
-        const returnValue = userDialogs(undefined, {
+    it('should return the error state when receiving UPDATE_CONFIRM_PASSWORD_FIELD action with different confirmPassword to password', () => {
+        const returnValue = userDialogs({
+            userInDialog: {
+                password: {
+                    value: "dummyPassword"
+                }
+            }
+        }, {
             type: actionTypes.UPDATE_CONFIRM_PASSWORD_FIELD,
             confirmPassword: dummyPassword
         });
