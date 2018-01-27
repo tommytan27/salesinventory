@@ -9,13 +9,6 @@ describe('SalesInventoryActions', () => {
         expect(salesInventoryActions.openAddUserDialog()).toEqual(expectedAction);
     });
 
-    it('should create an action to close add user dialog', () => {
-        const expectedAction = {
-            type: actionTypes.CLOSE_ADD_USER_DIALOG
-        }
-        expect(salesInventoryActions.closeAddUserDialog()).toEqual(expectedAction);
-    });
-
     it('should create an action to open edit user dialog', () => {
         const dummyUser = {
             id: 123,
@@ -29,18 +22,18 @@ describe('SalesInventoryActions', () => {
         expect(salesInventoryActions.openEditUserDialog(dummyUser)).toEqual(expectedAction);
     });
 
-    it('should create an action to close edit user dialog', () => {
+    it('should create an action to close user dialog', () => {
         const expectedAction = {
-            type: actionTypes.CLOSE_EDIT_USER_DIALOG
+            type: actionTypes.CLOSE_USER_DIALOG
         }
-        expect(salesInventoryActions.closeEditUserDialog()).toEqual(expectedAction);
+        expect(salesInventoryActions.closeUserDialog()).toEqual(expectedAction);
     });
 
-    it('should create an action to enable edit mode', () => {
+    it('should create an action to enable editable', () => {
         const expectedAction = {
-            type: actionTypes.ENABLE_EDIT_MODE
+            type: actionTypes.ENABLE_EDITABLE
         }
-        expect(salesInventoryActions.enableEditMode()).toEqual(expectedAction);
+        expect(salesInventoryActions.enableEditable()).toEqual(expectedAction);
     });
 
     it('should create an action to update the username field', () => {

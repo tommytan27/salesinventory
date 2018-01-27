@@ -1,13 +1,14 @@
-import actionTypes from './../constants/actionTypes';
 import { validateUsername, validatePassword, validateConfirmPassword } from '../utils/validators';
+import actionTypes from './../constants/actionTypes';
+import dialogTitles from '../constants/dialogTitles';
+import dialogModes from '../constants/dialogModes';
 
 const initialState = {
-    addUser: {
-        open: false
-    },
-    editUser: {
+    dialogState: {
         open: false,
-        editMode: false
+        title: "",
+        mode: null,
+        editable: false
     },
     userInDialog: {
         id: null,
@@ -33,14 +34,19 @@ const initialState = {
 const userDialogs = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.OPEN_ADD_USER_DIALOG:
-            return {...state, addUser: {
-                open: true
+            return {...state, dialogState: {
+                open: true,
+                title: dialogTitles.ADD_USER,
+                mode: dialogModes.ADD_MODE,
+                editable: true
             }};
         case actionTypes.OPEN_EDIT_USER_DIALOG:
             return {...state, 
-                editUser: {
+                dialogState: {
                     open: true,
-                    editMode: false
+                    title: dialogTitles.EDIT_USER,
+                    mode: dialogModes.EDIT_MODE,
+                    editable: false
                 },
                 userInDialog: {
                     ...state.userInDialog,
@@ -55,14 +61,12 @@ const userDialogs = (state = initialState, action) => {
                     }
                 }
             };
-        case actionTypes.CLOSE_ADD_USER_DIALOG:
+        case actionTypes.CLOSE_USER_DIALOG:
             return initialState;
-        case actionTypes.CLOSE_EDIT_USER_DIALOG:
-            return initialState;
-        case actionTypes.ENABLE_EDIT_MODE:
-            return {...state, editUser: {
-                ...state.editUser, editMode: true
-            }}
+        case actionTypes.ENABLE_EDITABLE:
+            return {...state, dialogState: {
+                ...state.dialogState, editable: true
+            }};
         case actionTypes.UPDATE_USERNAME_FIELD:
             return {...state, userInDialog: {
                 ...state.userInDialog, username: {

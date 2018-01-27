@@ -1,11 +1,14 @@
 
 import userDialogs from './../reducers/userDialogs';
 import actionTypes from './../constants/actionTypes';
+import dialogModes from './../constants/dialogModes';
+import dialogTitles from './../constants/dialogTitles';
 
 const assertInitialDialogState = (state, action) => {
-    expect(userDialogs(state, action).addUser.open).toBeFalsy();
-    expect(userDialogs(state, action).editUser.open).toBeFalsy();
-    expect(userDialogs(state, action).editUser.editMode).toBeFalsy();
+    expect(userDialogs(state, action).dialogState.open).toBeFalsy();
+    expect(userDialogs(state, action).dialogState.title).toEqual("");
+    expect(userDialogs(state, action).dialogState.mode).toBeNull();
+    expect(userDialogs(state, action).dialogState.editable).toEqual(false);
 }
 
 const assertInitialState = (state, action) => {    
@@ -30,6 +33,20 @@ const assertInitialState = (state, action) => {
     .confirmPassword.state).toBeNull();
 }
 
+const assertOpenAddUserDialog = (state) => {
+    expect(state.dialogState.open).toBeTruthy();
+    expect(state.dialogState.title).toEqual(dialogTitles.ADD_USER);
+    expect(state.dialogState.mode).toEqual(dialogModes.ADD_MODE);
+    expect(state.dialogState.editable).toBeTruthy();
+}
+
+const assertOpenEditUserDialog = (state) => {
+    expect(state.dialogState.open).toBeTruthy();
+    expect(state.dialogState.title).toEqual(dialogTitles.EDIT_USER);
+    expect(state.dialogState.mode).toEqual(dialogModes.EDIT_MODE);
+    expect(state.dialogState.editable).toEqual(false);
+}
+
 const dummyUsername = "dummy";
 const dummyTimeout = 50;
 const dummyPassword = "Password123!!!";
@@ -50,53 +67,52 @@ describe('UserDialogs', () => {
     it('should return initial state of all dialogs closed', () => {
         assertInitialDialogState(undefined, {});
     });
-    it('should return add user dialog opened when receiving OPEN_ADD_USER_DIALOG action', () => {
-        expect(userDialogs(undefined, {
+    it('should return user dialog opened when receiving OPEN_ADD_USER_DIALOG action', () => {
+        const returnValue = userDialogs(undefined, {
             type: actionTypes.OPEN_ADD_USER_DIALOG
-        }).addUser.open).toBeTruthy();
+        });
+        assertOpenAddUserDialog(returnValue);
     });
-    it('should return edit user dialog opened but not in edit mode when receiving OPEN_EDIT_USER_DIALOG action', () => {
+    it('should return user dialog opened but not in edit mode when receiving OPEN_EDIT_USER_DIALOG action', () => {
         const returnValue = userDialogs(undefined, {
             type: actionTypes.OPEN_EDIT_USER_DIALOG,
             user: dummyUser
         });
-        expect(returnValue.editUser.open).toBeTruthy();
-        expect(returnValue.editUser.editMode).toBe(false);
+        assertOpenEditUserDialog(returnValue);
     });
-    it('should return add user dialog opened after closed when receiving OPEN_ADD_USER_DIALOG action', () => {
-        expect(userDialogs({
-            addUser: {
+    it('should return user dialog opened after closed when receiving OPEN_ADD_USER_DIALOG action', () => {
+        const returnValue = userDialogs({
+            dialogState: {
                 open: false
             }
         }, {
             type: actionTypes.OPEN_ADD_USER_DIALOG
-        }).addUser.open).toBeTruthy();
+        });
+        assertOpenAddUserDialog(returnValue);
     });
-    it('should return edit user dialog opened after closed when receiving OPEN_EDIT_USER_DIALOG action', () => {
+    it('should return user dialog opened after closed when receiving OPEN_EDIT_USER_DIALOG action', () => {
         const returnValue = userDialogs({
-            editUser: {
+            dialogModes: {
                 open: false,
-                editMode: false
+                editable: false
             }
         }, {
             type: actionTypes.OPEN_EDIT_USER_DIALOG,
             user: dummyUser
         });
-        expect(returnValue.editUser.open).toBeTruthy();
-        expect(returnValue.editUser.editMode).toBe(false);
+        assertOpenEditUserDialog(returnValue);
     });
     it('should return selected user record when receiving OPEN_EDIT_USER_DIALOG action', () => {        
         const returnValue = userDialogs({
-            editUser: {
+            dialogState: {
                 open: false,
-                editMode: false
+                editable: false
             },
         }, {
             type: actionTypes.OPEN_EDIT_USER_DIALOG,
             user: dummyUser
         });
-        expect(returnValue.editUser.open).toBeTruthy();
-        expect(returnValue.editUser.editMode).toBe(false);
+        assertOpenEditUserDialog(returnValue);
         expect(returnValue.userInDialog
             .id).toEqual(dummyUser.id);
         expect(returnValue.userInDialog
@@ -106,9 +122,9 @@ describe('UserDialogs', () => {
     });
     it('should return all fields state success when receiving OPEN_EDIT_USER_DIALOG action', () => {        
         const returnValue = userDialogs({
-            editUser: {
+            dialogState: {
                 open: false,
-                editMode: false
+                editable: false
             },
         }, {
             type: actionTypes.OPEN_EDIT_USER_DIALOG,
@@ -117,50 +133,30 @@ describe('UserDialogs', () => {
         expect(returnValue.userInDialog.username.state).toBe("success");
         expect(returnValue.userInDialog.timeout.state).toBe("success");
     });
-    it('should return add user dialog closed and initial state of all fields when receiving CLOSE_ADD_USER_DIALOG action', () => {
+    it('should return user dialog closed and initial state of all fields when receiving CLOSE_USER_DIALOG action', () => {
         let state = undefined;
         let action = {
-            type: actionTypes.CLOSE_ADD_USER_DIALOG
+            type: actionTypes.CLOSE_USER_DIALOG
         }
         assertInitialDialogState(state, action);
         assertInitialState(state, action);
     });
-    it('should return edit user dialog closed and initial state of all fields when receiving CLOSE_EDIT_USER_DIALOG action', () => {
-        let state = undefined;
-        let action = {
-            type: actionTypes.CLOSE_EDIT_USER_DIALOG
-        }
-        assertInitialDialogState(state, action);
-        assertInitialState(state, action);
-    });
-    it('should return add user dialog closed and initial state of all fields after opened when receiving CLOSE_ADD_USER_DIALOG action', () => {
+    it('should return user dialog closed and initial state of all fields after opened when receiving CLOSE_USER_DIALOG action', () => {
         let state = {
-            addUser: {
+            dialogState: {
                 open: true
             }
         };
         let action = {
-            type: actionTypes.CLOSE_ADD_USER_DIALOG
+            type: actionTypes.CLOSE_USER_DIALOG
         }
-        assertInitialDialogState(state, action);
-        assertInitialState(state, action);
-    });
-    it('should return edit user dialog closed and initial state of all fields after opened when receiving CLOSE_EDIT_USER_DIALOG action', () => {
-        let state = {
-            editUser: {
-                open: true
-            }
-        };
-        let action = {
-            type: actionTypes.CLOSE_EDIT_USER_DIALOG
-        };
         assertInitialDialogState(state, action);
         assertInitialState(state, action);
     });
     it('should return edit mode true when receiving ENABLE_EDIT_MODE', () => {
         expect(userDialogs(undefined, {
-            type: actionTypes.ENABLE_EDIT_MODE
-        }).editUser.editMode).toBeTruthy();
+            type: actionTypes.ENABLE_EDITABLE
+        }).dialogState.editable).toBeTruthy();
     });
     it('should return initial state of all fields', () => {
         assertInitialState(undefined, {});

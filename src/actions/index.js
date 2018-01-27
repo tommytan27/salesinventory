@@ -6,12 +6,6 @@ export const openAddUserDialog = () => {
     };
 }
 
-export const closeAddUserDialog = () => {
-    return {
-        type: actionTypes.CLOSE_ADD_USER_DIALOG
-    };
-}
-
 export const openEditUserDialog = (user) => {
     return {
         type: actionTypes.OPEN_EDIT_USER_DIALOG,
@@ -19,15 +13,15 @@ export const openEditUserDialog = (user) => {
     };
 }
 
-export const closeEditUserDialog = () => {
+export const closeUserDialog = () => {
     return {
-        type: actionTypes.CLOSE_EDIT_USER_DIALOG
+        type: actionTypes.CLOSE_USER_DIALOG
     };
 }
 
-export const enableEditMode = () => {
+export const enableEditable = () => {
     return {
-        type: actionTypes.ENABLE_EDIT_MODE
+        type: actionTypes.ENABLE_EDITABLE
     };
 }
 
