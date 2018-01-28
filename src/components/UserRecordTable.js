@@ -4,7 +4,6 @@ import { DataTable, TableHeader, TableBody, TableColumn, TableRow, Button, Dialo
 import { FormGroup, ControlLabel, FormControl, HelpBlock } from 'react-bootstrap';
 import UserRecord from './UserRecord';
 import SystemUserDialog from '../containers/SystemUserDialog';
-import dialogModes from './../constants/dialogModes';
 import styles from './../constants/styles';
 
 class UserRecordTable extends React.Component {
@@ -32,9 +31,7 @@ class UserRecordTable extends React.Component {
                 <Button floating primary style={styles.floatingButton.right} onClick={this.props.onAddUserClick}>
                     person_add
                 </Button>
-                
-                {/* <SystemUserDialog mode={dialogModes.ADD_MODE} />
-                <SystemUserDialog mode={dialogModes.EDIT_MODE} /> */}
+
                 <SystemUserDialog />
             </div>
         );
