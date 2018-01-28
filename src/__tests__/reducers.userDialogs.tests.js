@@ -1,4 +1,3 @@
-
 import userDialogs from './../reducers/userDialogs';
 import actionTypes from './../constants/actionTypes';
 import dialogModes from './../constants/dialogModes';
