@@ -4,35 +4,9 @@ import { FormGroup, ControlLabel, FormControl, HelpBlock } from 'react-bootstrap
 import dialogModes from '../constants/dialogModes';
 import styles from './../constants/styles';
 import { PropTypes } from 'prop-types';
+import Dialog from './Dialog';
 
-class CustomerDialog extends React.Component {
-    getDialogActions = () => {
-        let actions = [
-            <Button flat iconChildren="clear" onClick={this.props.onDialogClose} id="cancelButton">CANCEL</Button>,
-        ];
-        if (this.props.dialogState.mode === dialogModes.ADD_MODE) {
-            actions.push(
-                <Button flat iconChildren="add" style={styles.flatButton.add}>ADD</Button>
-            );
-        }        
-        else if (this.props.dialogState.mode === dialogModes.EDIT_MODE) {    
-            if (!this.props.dialogState.editable) {
-                actions.push(
-                    <Button flat iconChildren="mode_edit" onClick={this.props.onEditButtonClick} style={styles.flatButton.edit}>EDIT</Button>
-                );
-            }
-            else {
-                actions.push(
-                    <Button flat iconChildren="save" onClick={this.props.onEditButtonClick} style={styles.flatButton.save}>SAVE</Button>
-                );
-            }
-            actions.push(
-                <Button flat iconChildren="delete" style={styles.flatButton.delete}>DELETE</Button>
-            );  
-        }
-        return actions;
-    }
-
+class CustomerDialog extends Dialog {
     renderCreditField = (customer) => {
         if (this.props.dialogState.mode === dialogModes.EDIT_MODE) {
             return (
