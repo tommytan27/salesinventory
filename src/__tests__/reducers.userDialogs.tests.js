@@ -1,4 +1,3 @@
-
 import userDialogs from './../reducers/userDialogs';
 import actionTypes from './../constants/actionTypes';
 import dialogModes from './../constants/dialogModes';
@@ -171,17 +170,6 @@ describe('UserDialogs', () => {
             .username.value).toEqual(dummyUsername);
         expect(returnValue.userInDialog
             .username.state).toEqual("success");
-    });
-    it('should return the empty username field with null state when receiving UPDATE_USERNAME_FIELD action with empty username', () => {
-        const returnValue = userDialogs(undefined, {
-            type: actionTypes.UPDATE_USERNAME_FIELD,
-            username: "",
-            allUsers: dummyUsers
-        });
-        expect(returnValue.userInDialog
-            .username.value).toEqual("");
-        expect(returnValue.userInDialog
-            .username.state).toBeNull();
     });
     it('should return the empty username field with null state when receiving UPDATE_USERNAME_FIELD action with empty username', () => {
         const returnValue = userDialogs(undefined, {

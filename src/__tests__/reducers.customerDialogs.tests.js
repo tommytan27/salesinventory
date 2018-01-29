@@ -135,4 +135,89 @@ describe('CustomerDialogs', () => {
         expect(returnValue.customerInDialog.lastName.state).toBe("success");
         expect(returnValue.customerInDialog.contact.state).toBe("success");
     });
+    it('should return user dialog closed and initial state of all fields when receiving CLOSE_CUSTOMER_DIALOG action', () => {
+        let state = undefined;
+        let action = {
+            type: actionTypes.CLOSE_CUSTOMER_DIALOG
+        }
+        assertInitialDialogState(state, action);
+        assertInitialState(state, action);
+    });
+    it('should return user dialog closed and initial state of all fields after opened when receiving CLOSE_CUSTOMER_DIALOG action', () => {
+        let state = {
+            dialogState: {
+                open: true
+            }
+        };
+        let action = {
+            type: actionTypes.CLOSE_CUSTOMER_DIALOG
+        }
+        assertInitialDialogState(state, action);
+        assertInitialState(state, action);
+    });
+    it('should return edit mode true when receiving ENABLE_EDIT_MODE', () => {
+        expect(customerDialogs(undefined, {
+            type: actionTypes.ENABLE_EDITABLE
+        }).dialogState.editable).toBeTruthy();
+    });
+    it('should return the modified firstName field with success state when receiving UPDATE_FIRSTNAME_FIELD action', () => {
+        const returnValue = customerDialogs(undefined, {
+            type: actionTypes.UPDATE_FIRSTNAME_FIELD,
+            firstName: dummyFirstName
+        });
+        expect(returnValue.customerInDialog
+            .firstName.value).toEqual(dummyFirstName);
+        expect(returnValue.customerInDialog
+            .firstName.state).toEqual("success");
+    });
+    it('should return the empty firstName field with null state when receiving UPDATE_FIRSTNAME_FIELD action with empty firstName', () => {
+        const returnValue = customerDialogs(undefined, {
+            type: actionTypes.UPDATE_FIRSTNAME_FIELD,
+            firstName: ""
+        });
+        expect(returnValue.customerInDialog
+            .firstName.value).toEqual("");
+        expect(returnValue.customerInDialog
+            .firstName.state).toBeNull();
+    });
+    it('should return the modified lastName field with success state when receiving UPDATE_LASTNAME_FIELD action', () => {
+        const returnValue = customerDialogs(undefined, {
+            type: actionTypes.UPDATE_LASTNAME_FIELD,
+            lastName: dummyLastName
+        });
+        expect(returnValue.customerInDialog
+            .lastName.value).toEqual(dummyLastName);
+        expect(returnValue.customerInDialog
+            .lastName.state).toEqual("success");
+    });
+    it('should return the empty lastName field with null state when receiving UPDATE_LASTNAME_FIELD action with empty lastName', () => {
+        const returnValue = customerDialogs(undefined, {
+            type: actionTypes.UPDATE_LASTNAME_FIELD,
+            lastName: ""
+        });
+        expect(returnValue.customerInDialog
+            .lastName.value).toEqual("");
+        expect(returnValue.customerInDialog
+            .lastName.state).toBeNull();
+    });
+    it('should return the modified contact field with success state when receiving UPDATE_CONTACT_FIELD action', () => {
+        const returnValue = customerDialogs(undefined, {
+            type: actionTypes.UPDATE_CONTACT_FIELD,
+            contact: dummyContact
+        });
+        expect(returnValue.customerInDialog
+            .contact.value).toEqual(dummyContact);
+        expect(returnValue.customerInDialog
+            .contact.state).toEqual("success");
+    });
+    it('should return the empty contact field with null state when receiving UPDATE_CONTACT_FIELD action with empty contact', () => {
+        const returnValue = customerDialogs(undefined, {
+            type: actionTypes.UPDATE_CONTACT_FIELD,
+            contact: ""
+        });
+        expect(returnValue.customerInDialog
+            .contact.value).toEqual("");
+        expect(returnValue.customerInDialog
+            .contact.state).toBeNull();
+    });
 });

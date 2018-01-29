@@ -62,6 +62,33 @@ const customerDialogs = (state = initialState, action) => {
                     credit: action.customer.credit
                 }
             };
+        case actionTypes.CLOSE_CUSTOMER_DIALOG:
+            return initialState;
+        case actionTypes.ENABLE_EDITABLE:
+            return {...state, dialogState: {
+                ...state.dialogState, editable: true
+            }};
+        case actionTypes.UPDATE_FIRSTNAME_FIELD:
+            return {...state, customerInDialog: {
+                ...state.customerInDialog, firstName: {
+                    value: action.firstName,
+                    state: action.firstName ? "success" : null
+                }
+            }}
+        case actionTypes.UPDATE_LASTNAME_FIELD:
+            return {...state, customerInDialog: {
+                ...state.customerInDialog, lastName: {
+                    value: action.lastName,
+                    state: action.lastName ? "success" : null
+                }
+            }}
+        case actionTypes.UPDATE_CONTACT_FIELD:
+            return {...state, customerInDialog: {
+                ...state.customerInDialog, contact: {
+                    value: action.contact,
+                    state: action.contact ? "success" : null
+                }
+            }}
         default:
             return state;
     }

@@ -127,7 +127,7 @@ UserDialog.propTypes = {
     dialogState: PropTypes.shape({
         open: PropTypes.bool.isRequired,
         title: PropTypes.string.isRequired,
-        mode: PropTypes.string.isRequired,
+        mode: PropTypes.string,
         editable: PropTypes.bool.isRequired
     }).isRequired,
     userInDialog: PropTypes.shape({

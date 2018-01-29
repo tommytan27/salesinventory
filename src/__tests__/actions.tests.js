@@ -99,4 +99,38 @@ describe('Actions', () => {
         }
         expect(actions.openEditCustomerDialog(dummyCustomer)).toEqual(expectedAction);
     });
+    
+    it('should create an action to close customer dialog', () => {
+        const expectedAction = {
+            type: actionTypes.CLOSE_CUSTOMER_DIALOG
+        }
+        expect(actions.closeCustomerDialog()).toEqual(expectedAction);
+    });
+
+    it('should create an action to update the firstName field', () => {
+        const dummyFirstName = "first";
+        const expectedAction = {
+            type: actionTypes.UPDATE_FIRSTNAME_FIELD,
+            firstName: dummyFirstName
+        }
+        expect(actions.updateFirstNameField(dummyFirstName)).toEqual(expectedAction);
+    });
+
+    it('should create an action to update the lastName field', () => {
+        const dummyLastName = "last";
+        const expectedAction = {
+            type: actionTypes.UPDATE_LASTNAME_FIELD,
+            lastName: dummyLastName
+        }
+        expect(actions.updateLastNameField(dummyLastName)).toEqual(expectedAction);
+    });
+
+    it('should create an action to update the contact field', () => {
+        const dummyContact = "04259656325";
+        const expectedAction = {
+            type: actionTypes.UPDATE_CONTACT_FIELD,
+            contact: dummyContact
+        }
+        expect(actions.updateContactField(dummyContact)).toEqual(expectedAction);
+    });
 });

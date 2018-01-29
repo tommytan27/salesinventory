@@ -40,15 +40,17 @@ class CustomerRecordTable extends React.Component {
 }
 
 CustomerRecordTable.propTypes = {
-//     users: PropTypes.arrayOf(
-//         PropTypes.shape({
-//             id: PropTypes.number.isRequired,
-//             username: PropTypes.string.isRequired,
-//             timeout: PropTypes.number.isRequired
-//         }).isRequired
-//     ).isRequired,
-    // onAddCustomerClick: PropTypes.func.isRequired,
-//     onUserRecordClick: PropTypes.func.isRequired
+    customers: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.number.isRequired,
+            firstName: PropTypes.string.isRequired,
+            lastName: PropTypes.string.isRequired,
+            contact: PropTypes.string.isRequired,
+            credit: PropTypes.number.isRequired
+        }).isRequired
+    ).isRequired,
+    onAddCustomerClick: PropTypes.func.isRequired,
+    onCustomerRecordClick: PropTypes.func.isRequired
 };
 
 export default CustomerRecordTable;
