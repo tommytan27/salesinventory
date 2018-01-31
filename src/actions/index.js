@@ -44,14 +44,26 @@ export const updatePasswordField = (password) => {
     return {
         type: actionTypes.UPDATE_PASSWORD_FIELD,
         password: password
-    }
+    };
 }
 
 export const updateConfirmPasswordField = (confirmPassword) => {
     return {
         type: actionTypes.UPDATE_CONFIRM_PASSWORD_FIELD,
         confirmPassword: confirmPassword
-    }
+    };
+}
+
+export const addUser = () => {
+    return {
+        type: actionTypes.ADD_USER
+    };
+}
+
+export const saveUser = () => {
+    return {
+        type: actionTypes.SAVE_USER
+    };
 }
 
 export const openAddCustomerDialog = () => {
@@ -91,5 +103,17 @@ export const updateContactField = (contact) => {
     return {
         type: actionTypes.UPDATE_CONTACT_FIELD,
         contact: contact
+    };
+}
+
+export const addCustomer = () => {
+    return {
+        type: actionTypes.ADD_CUSTOMER
+    };
+}
+
+export const saveCustomer = () => {
+    return {
+        type: actionTypes.SAVE_CUSTOMER
     };
 }
