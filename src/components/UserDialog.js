@@ -4,8 +4,9 @@ import { FormGroup, ControlLabel, FormControl, HelpBlock } from 'react-bootstrap
 import dialogModes from '../constants/dialogModes';
 import styles from './../constants/styles';
 import { PropTypes } from 'prop-types';
+import Dialog from './Dialog';
 
-class UserDialog extends React.Component {    
+class UserDialog extends Dialog {    
     renderConfirmPasswordHelpBlock = (state) => {
         if (state === "error") {
             return (<HelpBlock>Password did not match</HelpBlock>);
@@ -58,33 +59,6 @@ class UserDialog extends React.Component {
         return;
     }
 
-    getDialogActions = () => {
-        let actions = [
-            <Button flat iconChildren="clear" onClick={this.props.onDialogClose} id="cancelButton">CANCEL</Button>,
-        ];
-        if (this.props.dialogState.mode === dialogModes.ADD_MODE) {
-            actions.push(
-                <Button flat iconChildren="add" style={styles.flatButton.add}>ADD</Button>
-            );
-        }        
-        else if (this.props.dialogState.mode === dialogModes.EDIT_MODE) {    
-            if (!this.props.dialogState.editable) {
-                actions.push(
-                    <Button flat iconChildren="mode_edit" onClick={this.props.onEditButtonClick} style={styles.flatButton.edit}>EDIT</Button>
-                );
-            }
-            else {
-                actions.push(
-                    <Button flat iconChildren="save" onClick={this.props.onEditButtonClick} style={styles.flatButton.save}>SAVE</Button>
-                );
-            }
-            actions.push(
-                <Button flat iconChildren="delete" style={styles.flatButton.delete}>DELETE</Button>
-            );  
-        }
-        return actions;
-    }
-
     render() { 
         const user = this.props.userInDialog;
         const usernameFieldDisabled = this.props.dialogState.mode === dialogModes.ADD_MODE ? false : true;
@@ -127,7 +101,7 @@ UserDialog.propTypes = {
     dialogState: PropTypes.shape({
         open: PropTypes.bool.isRequired,
         title: PropTypes.string.isRequired,
-        mode: PropTypes.string.isRequired,
+        mode: PropTypes.string,
         editable: PropTypes.bool.isRequired
     }).isRequired,
     userInDialog: PropTypes.shape({

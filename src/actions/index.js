@@ -53,3 +53,43 @@ export const updateConfirmPasswordField = (confirmPassword) => {
         confirmPassword: confirmPassword
     }
 }
+
+export const openAddCustomerDialog = () => {
+    return {
+        type: actionTypes.OPEN_ADD_CUSTOMER_DIALOG
+    };
+}
+
+export const openEditCustomerDialog = (customer) => {
+    return {
+        type: actionTypes.OPEN_EDIT_CUSTOMER_DIALOG,
+        customer: customer
+    };
+}
+
+export const closeCustomerDialog = () => {
+    return {
+        type: actionTypes.CLOSE_CUSTOMER_DIALOG
+    };
+}
+
+export const updateFirstNameField = (firstName) => {
+    return {
+        type: actionTypes.UPDATE_FIRSTNAME_FIELD,
+        firstName: firstName
+    };
+}
+
+export const updateLastNameField = (lastName) => {
+    return {
+        type: actionTypes.UPDATE_LASTNAME_FIELD,
+        lastName: lastName
+    };
+}
+
+export const updateContactField = (contact) => {
+    return {
+        type: actionTypes.UPDATE_CONTACT_FIELD,
+        contact: contact
+    };
+}

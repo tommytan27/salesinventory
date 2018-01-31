@@ -182,17 +182,6 @@ describe('UserDialogs', () => {
         expect(returnValue.userInDialog
             .username.state).toBeNull();
     });
-    it('should return the empty username field with null state when receiving UPDATE_USERNAME_FIELD action with empty username', () => {
-        const returnValue = userDialogs(undefined, {
-            type: actionTypes.UPDATE_USERNAME_FIELD,
-            username: "",
-            allUsers: dummyUsers
-        });
-        expect(returnValue.userInDialog
-            .username.value).toEqual("");
-        expect(returnValue.userInDialog
-            .username.state).toBeNull();
-    });
     it('should return the username field with error state when receiving UPDATE_USERNAME_FIELD action with existing username', () => {
         const returnValue = userDialogs(undefined, {
             type: actionTypes.UPDATE_USERNAME_FIELD,
