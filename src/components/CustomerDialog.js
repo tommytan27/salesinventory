@@ -27,6 +27,7 @@ class CustomerDialog extends Dialog {
                 visible={this.props.dialogState.open} dialogStyle={styles.dialog}
                 actions={this.getDialogActions()} modal={false} initialFocus="#cancelButton"
                 onHide={this.props.onDialogClose}>
+                {this.renderDialogError(this.props.dialogState.error)}
                 <FormGroup validationState={customer.firstName.state}>
                     <ControlLabel>Fist Name:</ControlLabel>
                     <FormControl type="text" placeholder="First Name"
@@ -62,6 +63,7 @@ CustomerDialog.propTypes = {
         open: PropTypes.bool.isRequired,
         title: PropTypes.string.isRequired,
         mode: PropTypes.string,
+        error: PropTypes.bool.isRequired,
         editable: PropTypes.bool.isRequired
     }).isRequired,
     customerInDialog: PropTypes.shape({
@@ -84,7 +86,9 @@ CustomerDialog.propTypes = {
     onEditButtonClick: PropTypes.func.isRequired,
     onFirstNameFieldChange: PropTypes.func.isRequired,
     onLastNameFieldChange: PropTypes.func.isRequired,
-    onContactFieldChange: PropTypes.func.isRequired
+    onContactFieldChange: PropTypes.func.isRequired,
+    onAddButtonClick: PropTypes.func.isRequired,
+    onSaveButtonClick: PropTypes.func.isRequired
 }
 
 export default CustomerDialog;

@@ -66,7 +66,8 @@ class UserDialog extends Dialog {
             <DialogContainer id="UserDialog" title={this.props.dialogState.title}
                 visible={this.props.dialogState.open} dialogStyle={styles.dialog}
                 actions={this.getDialogActions()} modal={false} initialFocus="#cancelButton"
-                onHide={this.props.onDialogClose}>
+                onHide={this.props.onDialogClose}>                
+                {this.renderDialogError(this.props.dialogState.error)}
                 <FormGroup validationState={user.username.state}>
                     <ControlLabel>Username:</ControlLabel>
                     <FormControl type="text" placeholder="Username"
@@ -102,6 +103,7 @@ UserDialog.propTypes = {
         open: PropTypes.bool.isRequired,
         title: PropTypes.string.isRequired,
         mode: PropTypes.string,
+        error: PropTypes.bool.isRequired,
         editable: PropTypes.bool.isRequired
     }).isRequired,
     userInDialog: PropTypes.shape({
@@ -128,7 +130,9 @@ UserDialog.propTypes = {
     onUsernameFieldChange: PropTypes.func.isRequired,
     onTimeoutFieldChange: PropTypes.func.isRequired,
     onPasswordFieldChange: PropTypes.func.isRequired,
-    onConfirmPasswordFieldChange: PropTypes.func.isRequired
+    onConfirmPasswordFieldChange: PropTypes.func.isRequired,
+    onAddButtonClick: PropTypes.func.isRequired,
+    onSaveButtonClick: PropTypes.func.isRequired
 }
 
 export default UserDialog;

@@ -7,6 +7,7 @@ const assertInitialDialogState = (state, action) => {
     expect(customerDialogs(state, action).dialogState.open).toBeFalsy();
     expect(customerDialogs(state, action).dialogState.title).toEqual("");
     expect(customerDialogs(state, action).dialogState.mode).toBeNull();
+    expect(customerDialogs(state, action).dialogState.error).toBeFalsy();
     expect(customerDialogs(state, action).dialogState.editable).toEqual(false);
 }
 
@@ -43,6 +44,14 @@ const dummyCustomer = {
     credit: dummyCredit
 };
 
+const dummyCustomer2 = {
+    id: 0,
+    firstName: dummyFirstName,
+    lastName: dummyLastName,
+    contact: "",
+    credit: dummyCredit
+};
+
 const assertOpenAddCustomerDialog = (state) => {
     expect(state.dialogState.open).toBeTruthy();
     expect(state.dialogState.title).toEqual(dialogTitles.ADD_CUSTOMER);
@@ -55,6 +64,12 @@ const assertOpenEditCustomerDialog = (state) => {
     expect(state.dialogState.title).toEqual(dialogTitles.EDIT_CUSTOMER);
     expect(state.dialogState.mode).toEqual(dialogModes.EDIT_MODE);
     expect(state.dialogState.editable).toEqual(false);
+}
+
+const assertAddAndSaveCustomer = (returnValue) => {
+    expect(returnValue.customerInDialog.firstName.state).toBe("error");
+    expect(returnValue.customerInDialog.lastName.state).toBe("error");
+    expect(returnValue.dialogState.error).toBe(true);
 }
 
 describe('CustomerDialogs', () => {
@@ -134,6 +149,20 @@ describe('CustomerDialogs', () => {
         expect(returnValue.customerInDialog.firstName.state).toBe("success");
         expect(returnValue.customerInDialog.lastName.state).toBe("success");
         expect(returnValue.customerInDialog.contact.state).toBe("success");
+    });
+    it('should return all fields state success except contact if empty when receiving OPEN_EDIT_CUSTOMER_DIALOG action', () => {        
+        const returnValue = customerDialogs({
+            dialogState: {
+                open: false,
+                editable: false
+            },
+        }, {
+            type: actionTypes.OPEN_EDIT_CUSTOMER_DIALOG,
+            customer: dummyCustomer2
+        });
+        expect(returnValue.customerInDialog.firstName.state).toBe("success");
+        expect(returnValue.customerInDialog.lastName.state).toBe("success");
+        expect(returnValue.customerInDialog.contact.state).toBeNull();
     });
     it('should return user dialog closed and initial state of all fields when receiving CLOSE_CUSTOMER_DIALOG action', () => {
         let state = undefined;
@@ -219,5 +248,221 @@ describe('CustomerDialogs', () => {
             .contact.value).toEqual("");
         expect(returnValue.customerInDialog
             .contact.state).toBeNull();
+    });
+    it('should return all null required fields with error state and dialogState of error when receiving ADD_CUSTOMER action', () => {
+        const returnValue = customerDialogs({
+            dialogState: {
+                open: false,
+                title: "",
+                mode: dialogModes.ADD_MODE,
+                error: false,
+                editable: false
+            },
+            customerInDialog: {
+                id: null,
+                firstName: {
+                    value: null,
+                    state: null
+                },
+                lastName: {
+                    value: null,
+                    state: null
+                },
+                contact: {
+                    value: null,
+                    state: null
+                },
+                credit: null
+            }
+        }, {
+            type: actionTypes.ADD_CUSTOMER
+        });
+        assertAddAndSaveCustomer(returnValue);
+    });
+    it('should return all empty required fields with error state and dialogState of error when receiving ADD_CUSTOMER action', () => {
+        const returnValue = customerDialogs({
+            dialogState: {
+                open: false,
+                title: "",
+                mode: dialogModes.ADD_MODE,
+                error: false,
+                editable: false
+            },
+            customerInDialog: {
+                id: null,
+                firstName: {
+                    value: null,
+                    state: null
+                },
+                lastName: {
+                    value: null,
+                    state: null
+                },
+                contact: {
+                    value: null,
+                    state: null
+                },
+                credit: null
+            }
+        }, {
+            type: actionTypes.ADD_CUSTOMER
+        });
+        assertAddAndSaveCustomer(returnValue);
+    });
+    it('should return all null required fields with error state and dialogState of error when receiving SAVE_CUSTOMER action', () => {
+        const returnValue = customerDialogs({
+            dialogState: {
+                open: false,
+                title: "",
+                mode: dialogModes.EDIT_MODE,
+                error: false,
+                editable: false
+            },
+            customerInDialog: {
+                id: null,
+                firstName: {
+                    value: null,
+                    state: null
+                },
+                lastName: {
+                    value: null,
+                    state: null
+                },
+                contact: {
+                    value: null,
+                    state: null
+                },
+                credit: null
+            }
+        }, {
+            type: actionTypes.SAVE_CUSTOMER
+        });
+        assertAddAndSaveCustomer(returnValue);
+    });
+    it('should return all empty required fields with error state and dialogState of error when receiving SAVE_CUSTOMER action', () => {
+        const returnValue = customerDialogs({
+            dialogState: {
+                open: false,
+                title: "",
+                mode: dialogModes.EDIT_MODE,
+                error: false,
+                editable: false
+            },
+            customerInDialog: {
+                id: null,
+                firstName: {
+                    value: null,
+                    state: null
+                },
+                lastName: {
+                    value: null,
+                    state: null
+                },
+                contact: {
+                    value: null,
+                    state: null
+                },
+                credit: null
+            }
+        }, {
+            type: actionTypes.SAVE_CUSTOMER
+        });
+        assertAddAndSaveCustomer(returnValue);
+    });
+    it('should return the state of all fields that are success and dialogState of error when receiving SAVE_CUSTOMER action with an empty firstName', () => {
+        const returnValue = customerDialogs({
+            dialogState: {
+                open: false,
+                title: dialogTitles.ADD_CUSTOMER,
+                mode: dialogModes.ADD_MODE,
+                error: false,
+                editable: false
+            },
+            customerInDialog: {
+                id: null,
+                firstName: {
+                    value: "",
+                    state: null
+                },
+                lastName: {
+                    value: "Last",
+                    state: "success"
+                },
+                contact: {
+                    value: null,
+                    state: null
+                },
+                credit: null
+            }
+        }, {
+            type: actionTypes.SAVE_CUSTOMER
+        });
+        expect(returnValue.customerInDialog.firstName.state).toBe("error");
+        expect(returnValue.customerInDialog.lastName.state).toBe("success");
+        expect(returnValue.dialogState.error).toBe(true);
+    });
+    it('should return the initial state when receiving SAVE_CUSTOMER action with an valid input', () => {
+        const state = {
+            dialogState: {
+                open: false,
+                title: dialogTitles.EDIT_CUSTOMER,
+                mode: dialogModes.EDIT_MODE,
+                error: false,
+                editable: false
+            },
+            customerInDialog: {
+                id: null,
+                firstName: {
+                    value: "First",
+                    state: "success"
+                },
+                lastName: {
+                    value: "Last",
+                    state: "success"
+                },
+                contact: {
+                    value: null,
+                    state: null
+                },
+                credit: null
+            }
+        };
+        const action = {
+            type: actionTypes.SAVE_CUSTOMER
+        }
+        assertInitialDialogState(state, action);
+        assertInitialState(state, action);
+    });
+    it('should return the initial state when receiving ADD_CUSTOMER action with an valid input', () => {
+        const state = {
+            dialogState: {
+                open: false,
+                title: dialogTitles.ADD_CUSTOMER,
+                mode: dialogModes.ADD_MODE,
+                error: false,
+                editable: false
+            },
+            customerInDialog: {
+                id: null,
+                firstName: {
+                    value: "First",
+                    state: "success"
+                },
+                lastName: {
+                    value: "Last",
+                    state: "success"
+                },
+                contact: {
+                    value: null,
+                    state: null
+                },
+                credit: null
+            }
+        };
+        const action = {
+            type: actionTypes.ADD_CUSTOMER
+        }
+        assertInitialDialogState(state, action);
+        assertInitialState(state, action);
     });
 });

@@ -1,7 +1,7 @@
 import * as actions from './../actions';
 import actionTypes from './../constants/actionTypes';
 
-describe('Actions', () => {
+describe('UserRecords Actions', () => {
     it('should create an action to open add user dialog', () => {
         const expectedAction = {
             type: actionTypes.OPEN_ADD_USER_DIALOG
@@ -78,6 +78,22 @@ describe('Actions', () => {
         expect(actions.updateConfirmPasswordField(dummyPassword)).toEqual(expectedAction);
     });
 
+    it('should create an action to add user', () => {
+        const expectedAction = {
+            type: actionTypes.ADD_USER
+        }
+        expect(actions.addUser()).toEqual(expectedAction);
+    });
+
+    it('should create an action to save user', () => {
+        const expectedAction = {
+            type: actionTypes.SAVE_USER
+        }
+        expect(actions.saveUser()).toEqual(expectedAction);
+    });
+});
+
+describe('CustomerRecords Actions', () => {
     it('should create an action to open add customer dialog', () => {
         const expectedAction = {
             type: actionTypes.OPEN_ADD_CUSTOMER_DIALOG
@@ -132,5 +148,19 @@ describe('Actions', () => {
             contact: dummyContact
         }
         expect(actions.updateContactField(dummyContact)).toEqual(expectedAction);
+    });
+
+    it('should create an action to add customer', () => {
+        const expectedAction = {
+            type: actionTypes.ADD_CUSTOMER
+        }
+        expect(actions.addCustomer()).toEqual(expectedAction);
+    });
+
+    it('should create an action to save customer', () => {
+        const expectedAction = {
+            type: actionTypes.SAVE_CUSTOMER
+        }
+        expect(actions.saveCustomer()).toEqual(expectedAction);
     });
 });

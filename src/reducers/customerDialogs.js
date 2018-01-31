@@ -7,6 +7,7 @@ const initialState = {
         open: false,
         title: "",
         mode: null,
+        error: false,
         editable: false
     },
     customerInDialog: {
@@ -27,18 +28,22 @@ const initialState = {
     }
 }
 
+const getDialogErrorState = (currentState) => {
+    return (currentState.customerInDialog.firstName.state === "success" &&
+        currentState.customerInDialog.lastName.state === "success") ? false : true
+}
+
 const customerDialogs = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.OPEN_ADD_CUSTOMER_DIALOG:
-            return {...state, dialogState: {
+            return {...state, dialogState: {...state.dialogState,
                 open: true,
                 title: dialogTitles.ADD_CUSTOMER,
                 mode: dialogModes.ADD_MODE,
                 editable: true
             }};
         case actionTypes.OPEN_EDIT_CUSTOMER_DIALOG:
-            return {...state, 
-                dialogState: {
+            return {...state, dialogState: {...state.dialogState,
                     open: true,
                     title: dialogTitles.EDIT_CUSTOMER,
                     mode: dialogModes.EDIT_MODE,
@@ -57,7 +62,7 @@ const customerDialogs = (state = initialState, action) => {
                     },
                     contact: {
                         value: action.customer.contact,
-                        state: "success"
+                        state: action.customer.contact ? "success" : null
                     },
                     credit: action.customer.credit
                 }
@@ -89,6 +94,48 @@ const customerDialogs = (state = initialState, action) => {
                     state: action.contact ? "success" : null
                 }
             }}
+        case actionTypes.ADD_CUSTOMER:
+            {
+                let dialogStateError = getDialogErrorState(state);
+                if (dialogStateError) {
+                    return {
+                        dialogState: {
+                            ...state.dialogState,
+                            error: dialogStateError
+                        },
+                        customerInDialog: {...state.customerInDialog,
+                            firstName: {...state.customerInDialog.firstName,
+                                state: state.customerInDialog.firstName.state !== "success" ? "error" : "success"},
+                            lastName: {...state.customerInDialog.lastName,
+                                state: (state.customerInDialog.lastName.state !== "success" &&
+                                    state.customerInDialog.lastName.state !== "warning") ? "error" : 
+                                    state.customerInDialog.lastName.state}
+                        }
+                    }
+                }
+                return initialState;
+            }
+        case actionTypes.SAVE_CUSTOMER:
+            {
+                let dialogStateError = getDialogErrorState(state);
+                if (dialogStateError) {
+                    return {
+                        dialogState: {
+                            ...state.dialogState,
+                            error: dialogStateError
+                        },
+                        customerInDialog: {...state.customerInDialog,
+                            firstName: {...state.customerInDialog.firstName,
+                                state: state.customerInDialog.firstName.state !== "success" ? "error" : "success"},
+                            lastName: {...state.customerInDialog.lastName,
+                                state: (state.customerInDialog.lastName.state !== "success" &&
+                                    state.customerInDialog.lastName.state !== "warning") ? "error" : 
+                                    state.customerInDialog.lastName.state}
+                        }
+                    }
+                }
+                return initialState;
+            }
         default:
             return state;
     }

@@ -7,6 +7,7 @@ const assertInitialDialogState = (state, action) => {
     expect(userDialogs(state, action).dialogState.open).toBeFalsy();
     expect(userDialogs(state, action).dialogState.title).toEqual("");
     expect(userDialogs(state, action).dialogState.mode).toBeNull();
+    expect(userDialogs(state, action).dialogState.error).toBeFalsy();
     expect(userDialogs(state, action).dialogState.editable).toEqual(false);
 }
 
@@ -340,5 +341,254 @@ describe('UserDialogs', () => {
         });
         expect(returnValue.userInDialog.confirmPassword.value).toEqual(dummyPassword);
         expect(returnValue.userInDialog.confirmPassword.state).toBe("error");
+    });
+    it('should return all null required fields with error state and dialogState of error when receiving ADD_USER action', () => {
+        const returnValue = userDialogs({
+            dialogState: {
+                open: false,
+                title: "",
+                mode: dialogModes.ADD_MODE,
+                error: false,
+                editable: false
+            },
+            userInDialog: {
+                id: null,
+                username: {
+                    value: null,
+                    state: null
+                },
+                timeout: {
+                    value: null,
+                    state: null
+                },
+                password: {
+                    value: null,
+                    state: null
+                },
+                confirmPassword: {
+                    value: null,
+                    state: null
+                }
+            }
+        }, {
+            type: actionTypes.ADD_USER
+        });
+        expect(returnValue.userInDialog.username.state).toBe("error");
+        expect(returnValue.userInDialog.timeout.state).toBe("error");
+        expect(returnValue.userInDialog.password.state).toBe("error");
+        expect(returnValue.userInDialog.confirmPassword.state).toBe("error");
+        expect(returnValue.dialogState.error).toBe(true);
+    });
+    it('should return all empty required fields with error state and dialogState of error when receiving ADD_USER action', () => {
+        const returnValue = userDialogs({
+            dialogState: {
+                open: false,
+                title: "",
+                mode: dialogModes.ADD_MODE,
+                error: false,
+                editable: false
+            },
+            userInDialog: {
+                id: null,
+                username: {
+                    value: "",
+                    state: null
+                },
+                timeout: {
+                    value: "",
+                    state: null
+                },
+                password: {
+                    value: "",
+                    state: null
+                },
+                confirmPassword: {
+                    value: "",
+                    state: null
+                }
+            }
+        }, {
+            type: actionTypes.ADD_USER
+        });
+        expect(returnValue.userInDialog.username.state).toBe("error");
+        expect(returnValue.userInDialog.timeout.state).toBe("error");
+        expect(returnValue.userInDialog.password.state).toBe("error");
+        expect(returnValue.userInDialog.confirmPassword.state).toBe("error");
+        expect(returnValue.dialogState.error).toBe(true);
+    });
+    it('should return timeout null required fields with error state and dialogState of error when receiving SAVE_USER action', () => {
+        const returnValue = userDialogs({
+            dialogState: {
+                open: false,
+                title: "",
+                mode: dialogModes.EDIT_MODE,
+                error: false,
+                editable: false
+            },
+            userInDialog: {
+                id: null,
+                username: {
+                    value: null,
+                    state: null
+                },
+                timeout: {
+                    value: null,
+                    state: null
+                },
+                password: {
+                    value: null,
+                    state: null
+                },
+                confirmPassword: {
+                    value: null,
+                    state: null
+                }
+            }
+        }, {
+            type: actionTypes.SAVE_USER
+        });
+        expect(returnValue.userInDialog.timeout.state).toBe("error");
+        expect(returnValue.dialogState.error).toBe(true);
+    });
+    it('should return timeout empty required fields with error state and dialogState of error when receiving SAVE_USER action', () => {
+        const returnValue = userDialogs({
+            dialogState: {
+                open: false,
+                title: "",
+                mode: dialogModes.EDIT_MODE,
+                error: false,
+                editable: false
+            },
+            userInDialog: {
+                id: null,
+                username: {
+                    value: "",
+                    state: null
+                },
+                timeout: {
+                    value: "",
+                    state: null
+                },
+                password: {
+                    value: "",
+                    state: null
+                },
+                confirmPassword: {
+                    value: "",
+                    state: null
+                }
+            }
+        }, {
+            type: actionTypes.SAVE_USER
+        });
+        expect(returnValue.userInDialog.timeout.state).toBe("error");
+        expect(returnValue.dialogState.error).toBe(true);
+    });
+    it('should return the state of all fields that are success or warning and dialogState of error when receiving ADD_USER action with an invalid username', () => {
+        const returnValue = userDialogs({
+            dialogState: {
+                open: false,
+                title: dialogTitles.ADD_USER,
+                mode: dialogModes.ADD_MODE,
+                error: false,
+                editable: false
+            },
+            userInDialog: {
+                id: null,
+                username: {
+                    value: "admin",
+                    state: "error"
+                },
+                timeout: {
+                    value: "10",
+                    state: "success"
+                },
+                password: {
+                    value: "123456789",
+                    state: "warning"
+                },
+                confirmPassword: {
+                    value: "123456789",
+                    state: "success"
+                }
+            }
+        }, {
+            type: actionTypes.ADD_USER
+        });
+        expect(returnValue.userInDialog.username.state).toBe("error");
+        expect(returnValue.userInDialog.password.state).toBe("warning");
+        expect(returnValue.userInDialog.confirmPassword.state).toBe("success");
+        expect(returnValue.userInDialog.timeout.state).toBe("success");
+        expect(returnValue.dialogState.error).toBe(true);
+    });
+    it('should return the initial state when receiving ADD_USER action with valid inputs', () => {
+        const state = {
+            dialogState: {
+                open: false,
+                title: dialogTitles.ADD_USER,
+                mode: dialogModes.ADD_MODE,
+                error: false,
+                editable: false
+            },
+            userInDialog: {
+                id: null,
+                username: {
+                    value: "admin2",
+                    state: "success"
+                },
+                timeout: {
+                    value: "10",
+                    state: "success"
+                },
+                password: {
+                    value: "123456789",
+                    state: "warning"
+                },
+                confirmPassword: {
+                    value: "123456789",
+                    state: "success"
+                }
+            }
+        };
+        const action = {
+            type: actionTypes.ADD_USER
+        };
+        assertInitialDialogState(state, action);
+        assertInitialState(state, action);
+    });
+    it('should return the initial state when receiving SAVE_USER action with valid inputs', () => {
+        const state = {
+            dialogState: {
+                open: false,
+                title: dialogTitles.EDIT_USER,
+                mode: dialogModes.EDIT_MODE,
+                error: false,
+                editable: false
+            },
+            userInDialog: {
+                id: null,
+                username: {
+                    value: "admin2",
+                    state: "success"
+                },
+                timeout: {
+                    value: "10",
+                    state: "success"
+                },
+                password: {
+                    value: null,
+                    state: null
+                },
+                confirmPassword: {
+                    value: null,
+                    state: null
+                }
+            }
+        };
+        const action = {
+            type: actionTypes.SAVE_USER
+        };
+        assertInitialDialogState(state, action);
+        assertInitialState(state, action);
     });
 });
