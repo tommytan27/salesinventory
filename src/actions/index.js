@@ -117,3 +117,41 @@ export const saveCustomer = () => {
         type: actionTypes.SAVE_CUSTOMER
     };
 }
+
+export const openAddSupplierDialog = () => {
+    return {
+        type: actionTypes.OPEN_ADD_SUPPLIER_DIALOG
+    };
+}
+
+export const openEditSupplierDialog = (supplier) => {
+    return {
+        type: actionTypes.OPEN_EDIT_SUPPLIER_DIALOG,
+        supplier: supplier
+    };
+}
+
+export const closeSupplierDialog = () => {
+    return {
+        type: actionTypes.CLOSE_SUPPLIER_DIALOG
+    };
+}
+
+export const updateSupplierNameField = (supplierName) => {
+    return {
+        type: actionTypes.UPDATE_SUPPLIER_NAME_FIELD,
+        supplierName: supplierName
+    };
+}
+
+export const addSupplier = () => {
+    return {
+        type: actionTypes.ADD_SUPPLIER
+    };
+}
+
+export const saveSupplier = () => {
+    return {
+        type: actionTypes.SAVE_SUPPLIER
+    };
+}
