@@ -17,7 +17,7 @@ class SupplierRecord extends React.Component {
 
 SupplierRecord.propTypes = {
     id: PropTypes.number.isRequired,
-    Name: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
     contact: PropTypes.string.isRequired,
     onClick: PropTypes.func.isRequired
 };

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import SupplierRecordTable from './../components/SupplierRecordTable';
-// import { openAddCustomerDialog, openEditCustomerDialog } from '../actions/index';
+import { openAddSupplierDialog, openEditSupplierDialog } from './../actions'
 
 const mapStateToProps = (state) => {
     return {
@@ -10,8 +10,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        // onAddCustomerClick: () => { dispatch(openAddCustomerDialog()) },
-        // onCustomerRecordClick: (customer) => { dispatch(openEditCustomerDialog(customer)) }
+        onAddSupplierClick: () => { dispatch(openAddSupplierDialog()) },
+        onSupplierRecordClick: (supplier) => { dispatch(openEditSupplierDialog(supplier)) }
     };
 }
 

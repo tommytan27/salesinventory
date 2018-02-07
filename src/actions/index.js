@@ -137,10 +137,10 @@ export const closeSupplierDialog = () => {
     };
 }
 
-export const updateSupplierNameField = (supplierName) => {
+export const updateSupplierNameField = (name) => {
     return {
         type: actionTypes.UPDATE_SUPPLIER_NAME_FIELD,
-        supplierName: supplierName
+        name: name
     };
 }
 

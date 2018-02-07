@@ -79,20 +79,20 @@ describe('CustomerDialogs', () => {
     it('should return initial state of all fields', () => {
         assertInitialState(undefined, {});
     });
-    it('should return user dialog opened when receiving OPEN_ADD_CUSTOMER_DIALOG action', () => {
+    it('should return customer dialog opened when receiving OPEN_ADD_CUSTOMER_DIALOG action', () => {
         const returnValue = customerDialogs(undefined, {
             type: actionTypes.OPEN_ADD_CUSTOMER_DIALOG
         });
         assertOpenAddCustomerDialog(returnValue);
     });
-    it('should return user dialog opened but not in edit mode when receiving OPEN_EDIT_CUSTOMER_DIALOG action', () => {
+    it('should return customer dialog opened but not in edit mode when receiving OPEN_EDIT_CUSTOMER_DIALOG action', () => {
         const returnValue = customerDialogs(undefined, {
             type: actionTypes.OPEN_EDIT_CUSTOMER_DIALOG,
             customer: dummyCustomer
         });
         assertOpenEditCustomerDialog(returnValue);
     });
-    it('should return user dialog opened after closed when receiving OPEN_ADD_CUSTOMER_DIALOG action', () => {
+    it('should return customer dialog opened after closed when receiving OPEN_ADD_CUSTOMER_DIALOG action', () => {
         const returnValue = customerDialogs({
             dialogState: {
                 open: false
@@ -102,7 +102,7 @@ describe('CustomerDialogs', () => {
         });
         assertOpenAddCustomerDialog(returnValue);
     });
-    it('should return user dialog opened after closed when receiving OPEN_EDIT_CUSTOMER_DIALOG action', () => {
+    it('should return customer dialog opened after closed when receiving OPEN_EDIT_CUSTOMER_DIALOG action', () => {
         const returnValue = customerDialogs({
             dialogModes: {
                 open: false,
@@ -114,7 +114,7 @@ describe('CustomerDialogs', () => {
         });
         assertOpenEditCustomerDialog(returnValue);
     });
-    it('should return selected user record when receiving OPEN_EDIT_CUSTOMER_DIALOG action', () => {        
+    it('should return selected customer record when receiving OPEN_EDIT_CUSTOMER_DIALOG action', () => {        
         const returnValue = customerDialogs({
             dialogState: {
                 open: false,
@@ -164,7 +164,7 @@ describe('CustomerDialogs', () => {
         expect(returnValue.customerInDialog.lastName.state).toBe("success");
         expect(returnValue.customerInDialog.contact.state).toBeNull();
     });
-    it('should return user dialog closed and initial state of all fields when receiving CLOSE_CUSTOMER_DIALOG action', () => {
+    it('should return customer dialog closed and initial state of all fields when receiving CLOSE_CUSTOMER_DIALOG action', () => {
         let state = undefined;
         let action = {
             type: actionTypes.CLOSE_CUSTOMER_DIALOG
@@ -172,7 +172,7 @@ describe('CustomerDialogs', () => {
         assertInitialDialogState(state, action);
         assertInitialState(state, action);
     });
-    it('should return user dialog closed and initial state of all fields after opened when receiving CLOSE_CUSTOMER_DIALOG action', () => {
+    it('should return customer dialog closed and initial state of all fields after opened when receiving CLOSE_CUSTOMER_DIALOG action', () => {
         let state = {
             dialogState: {
                 open: true
@@ -373,8 +373,8 @@ describe('CustomerDialogs', () => {
         const returnValue = customerDialogs({
             dialogState: {
                 open: false,
-                title: dialogTitles.ADD_CUSTOMER,
-                mode: dialogModes.ADD_MODE,
+                title: dialogTitles.EDIT_CUSTOMER,
+                mode: dialogModes.EDIT_MODE,
                 error: false,
                 editable: false
             },
