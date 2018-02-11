@@ -163,7 +163,9 @@ describe('CustomerRecords Actions', () => {
         }
         expect(actions.saveCustomer()).toEqual(expectedAction);
     });
+});
 
+describe ('SupplierRecords Actions', () => {
     it('should create an action to open add supplier dialog', () => {
         const expectedAction = {
             type: actionTypes.OPEN_ADD_SUPPLIER_DIALOG
@@ -172,10 +174,16 @@ describe('CustomerRecords Actions', () => {
     });
 
     it('should create an action to open edit supplier dialog', () => {
+        const dummySupplier = {
+            id: 123,
+            name: "supplier",
+            contact: "0425297556"
+        };
         const expectedAction = {
-            type: actionTypes.OPEN_EDIT_SUPPLIER_DIALOG
+            type: actionTypes.OPEN_EDIT_SUPPLIER_DIALOG,
+            supplier: dummySupplier
         }
-        expect(actions.openEditSupplierDialog()).toEqual(expectedAction);
+        expect(actions.openEditSupplierDialog(dummySupplier)).toEqual(expectedAction);
     });
 
     it('should create an action to close supplier dialog', () => {
@@ -186,10 +194,12 @@ describe('CustomerRecords Actions', () => {
     });
 
     it('should create an action to update supplier name', () => {
+        const dummySupplierName = "dummy";
         const expectedAction = {
-            type: actionTypes.UPDATE_SUPPLIER_NAME_FIELD
+            type: actionTypes.UPDATE_SUPPLIER_NAME_FIELD,
+            name: dummySupplierName
         }
-        expect(actions.updateSupplierNameField()).toEqual(expectedAction);
+        expect(actions.updateSupplierNameField(dummySupplierName)).toEqual(expectedAction);
     });
 
     it('should create an action to add supplier', () => {
@@ -212,6 +222,57 @@ describe('CustomerRecords Actions', () => {
         }
         expect(actions.changeTabSupplierRecord()).toEqual(expectedAction);
     });
+});
+
+describe ('BrandRecords Actions', () => {
+    it('should create an action to open add brand dialog', () => {
+        const expectedAction = {
+            type: actionTypes.OPEN_ADD_BRAND_DIALOG
+        }
+        expect(actions.openAddBrandDialog()).toEqual(expectedAction);
+    });
+
+    it('should create an action to open edit brand dialog', () => {
+        const dummyBrand = {
+            id: 12,
+            name: 'brand'
+        }
+        const expectedAction = {
+            type: actionTypes.OPEN_EDIT_BRAND_DIALOG,
+            brand: dummyBrand
+        }
+        expect(actions.openEditBrandDialog(dummyBrand)).toEqual(expectedAction);
+    });
+
+    it('should create an action to close brand dialog', () => {
+        const expectedAction = {
+            type: actionTypes.CLOSE_BRAND_DIALOG
+        }
+        expect(actions.closeBrandDialog()).toEqual(expectedAction);
+    });
+
+    it('should create an action to update brand name', () => {
+        const dummyBrandName = 'dummy';
+        const expectedAction = {
+            type: actionTypes.UPDATE_BRAND_NAME_FIELD,
+            name: dummyBrandName
+        }
+        expect(actions.updateBrandNameField(dummyBrandName)).toEqual(expectedAction);
+    });
+
+    it('should create an action to add brand', () => {
+        const expectedAction = {
+            type: actionTypes.ADD_BRAND
+        }
+        expect(actions.addBrand()).toEqual(expectedAction);
+    });
+
+    it('should create an action to save brand', () => {
+        const expectedAction = {
+            type: actionTypes.SAVE_BRAND
+        }
+        expect(actions.saveBrand()).toEqual(expectedAction);
+    });
 
     it('should create an action to change tab to brand record', () => {
         const expectedAction = {
@@ -219,6 +280,57 @@ describe('CustomerRecords Actions', () => {
         }
         expect(actions.changeTabBrandRecord()).toEqual(expectedAction);
     });
+});
+
+describe ('ItemRecords Actions', () => {
+    // it('should create an action to open add brand dialog', () => {
+    //     const expectedAction = {
+    //         type: actionTypes.OPEN_ADD_BRAND_DIALOG
+    //     }
+    //     expect(actions.openAddBrandDialog()).toEqual(expectedAction);
+    // });
+
+    // it('should create an action to open edit brand dialog', () => {
+    //     const dummyBrand = {
+    //         id: 12,
+    //         name: 'brand'
+    //     }
+    //     const expectedAction = {
+    //         type: actionTypes.OPEN_EDIT_BRAND_DIALOG,
+    //         brand: dummyBrand
+    //     }
+    //     expect(actions.openEditBrandDialog(dummyBrand)).toEqual(expectedAction);
+    // });
+
+    // it('should create an action to close brand dialog', () => {
+    //     const expectedAction = {
+    //         type: actionTypes.CLOSE_BRAND_DIALOG
+    //     }
+    //     expect(actions.closeBrandDialog()).toEqual(expectedAction);
+    // });
+
+    // it('should create an action to update brand name', () => {
+    //     const dummyBrandName = 'dummy';
+    //     const expectedAction = {
+    //         type: actionTypes.UPDATE_BRAND_NAME_FIELD,
+    //         name: dummyBrandName
+    //     }
+    //     expect(actions.updateBrandNameField(dummyBrandName)).toEqual(expectedAction);
+    // });
+
+    // it('should create an action to add supplier', () => {
+    //     const expectedAction = {
+    //         type: actionTypes.ADD_SUPPLIER
+    //     }
+    //     expect(actions.addSupplier()).toEqual(expectedAction);
+    // });
+
+    // it('should create an action to save supplier', () => {
+    //     const expectedAction = {
+    //         type: actionTypes.SAVE_SUPPLIER
+    //     }
+    //     expect(actions.saveSupplier()).toEqual(expectedAction);
+    // });
 
     it('should create an action to change tab to item record', () => {
         const expectedAction = {
