@@ -1,11 +1,9 @@
 import React from 'react';
-import SystemUserRecordTable from './containers/SystemUserRecordTable';
-import SystemCustomerRecordTable from './containers/SystemCustomerRecordTable';
 import './App.css';
+import SystemSupplierBrandItemPage from './containers/SystemSupplierBrandItemPage';
 
 const App = () => (
-  // <SystemUserRecordTable />
-  <SystemCustomerRecordTable />
+  <SystemSupplierBrandItemPage />
 );
 
 export default App;

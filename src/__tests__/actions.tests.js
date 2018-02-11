@@ -163,4 +163,67 @@ describe('CustomerRecords Actions', () => {
         }
         expect(actions.saveCustomer()).toEqual(expectedAction);
     });
+
+    it('should create an action to open add supplier dialog', () => {
+        const expectedAction = {
+            type: actionTypes.OPEN_ADD_SUPPLIER_DIALOG
+        }
+        expect(actions.openAddSupplierDialog()).toEqual(expectedAction);
+    });
+
+    it('should create an action to open edit supplier dialog', () => {
+        const expectedAction = {
+            type: actionTypes.OPEN_EDIT_SUPPLIER_DIALOG
+        }
+        expect(actions.openEditSupplierDialog()).toEqual(expectedAction);
+    });
+
+    it('should create an action to close supplier dialog', () => {
+        const expectedAction = {
+            type: actionTypes.CLOSE_SUPPLIER_DIALOG
+        }
+        expect(actions.closeSupplierDialog()).toEqual(expectedAction);
+    });
+
+    it('should create an action to update supplier name', () => {
+        const expectedAction = {
+            type: actionTypes.UPDATE_SUPPLIER_NAME_FIELD
+        }
+        expect(actions.updateSupplierNameField()).toEqual(expectedAction);
+    });
+
+    it('should create an action to add supplier', () => {
+        const expectedAction = {
+            type: actionTypes.ADD_SUPPLIER
+        }
+        expect(actions.addSupplier()).toEqual(expectedAction);
+    });
+
+    it('should create an action to save supplier', () => {
+        const expectedAction = {
+            type: actionTypes.SAVE_SUPPLIER
+        }
+        expect(actions.saveSupplier()).toEqual(expectedAction);
+    });
+
+    it('should create an action to change tab to supplier record', () => {
+        const expectedAction = {
+            type: actionTypes.CHANGE_TAB_SUPPLIER_RECORD
+        }
+        expect(actions.changeTabSupplierRecord()).toEqual(expectedAction);
+    });
+
+    it('should create an action to change tab to brand record', () => {
+        const expectedAction = {
+            type: actionTypes.CHANGE_TAB_BRAND_RECORD
+        }
+        expect(actions.changeTabBrandRecord()).toEqual(expectedAction);
+    });
+
+    it('should create an action to change tab to item record', () => {
+        const expectedAction = {
+            type: actionTypes.CHANGE_TAB_ITEM_RECORD
+        }
+        expect(actions.changeTabItemRecord()).toEqual(expectedAction);
+    });
 });

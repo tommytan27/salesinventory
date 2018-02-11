@@ -128,11 +128,9 @@ const customerDialogs = (state = initialState, action) => {
                             firstName: {...state.customerInDialog.firstName,
                                 state: state.customerInDialog.firstName.state !== "success" ? "error" : "success"},
                             lastName: {...state.customerInDialog.lastName,
-                                state: (state.customerInDialog.lastName.state !== "success" &&
-                                    state.customerInDialog.lastName.state !== "warning") ? "error" : 
-                                    state.customerInDialog.lastName.state}
+                                state: state.customerInDialog.lastName.state !== "success" ? "error" : "success"}
+                            }
                         }
-                    }
                 }
                 return initialState;
             }

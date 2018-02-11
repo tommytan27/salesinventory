@@ -117,3 +117,59 @@ export const saveCustomer = () => {
         type: actionTypes.SAVE_CUSTOMER
     };
 }
+
+export const openAddSupplierDialog = () => {
+    return {
+        type: actionTypes.OPEN_ADD_SUPPLIER_DIALOG
+    };
+}
+
+export const openEditSupplierDialog = (supplier) => {
+    return {
+        type: actionTypes.OPEN_EDIT_SUPPLIER_DIALOG,
+        supplier: supplier
+    };
+}
+
+export const closeSupplierDialog = () => {
+    return {
+        type: actionTypes.CLOSE_SUPPLIER_DIALOG
+    };
+}
+
+export const updateSupplierNameField = (name) => {
+    return {
+        type: actionTypes.UPDATE_SUPPLIER_NAME_FIELD,
+        name: name
+    };
+}
+
+export const addSupplier = () => {
+    return {
+        type: actionTypes.ADD_SUPPLIER
+    };
+}
+
+export const saveSupplier = () => {
+    return {
+        type: actionTypes.SAVE_SUPPLIER
+    };
+}
+
+export const changeTabSupplierRecord = () => {
+    return {
+        type: actionTypes.CHANGE_TAB_SUPPLIER_RECORD
+    };
+}
+
+export const changeTabBrandRecord = () => {
+    return {
+        type: actionTypes.CHANGE_TAB_BRAND_RECORD
+    };
+}
+
+export const changeTabItemRecord = () => {
+    return {
+        type: actionTypes.CHANGE_TAB_ITEM_RECORD
+    };
+}
