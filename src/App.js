@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
-import SupplierBrandItemPage from './components/SupplierBrandItemPage';
+import SystemSupplierBrandItemPage from './containers/SystemSupplierBrandItemPage';
 
 const App = () => (
-  <SupplierBrandItemPage />
+  <SystemSupplierBrandItemPage />
 );
 
 export default App;

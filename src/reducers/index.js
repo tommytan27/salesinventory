@@ -5,6 +5,7 @@ import customers from './customers';
 import customerDialogs from './customerDialogs';
 import suppliers from './suppliers';
 import supplierDialogs from './supplierDialogs';
+import activeTab from './activeTab';
 
 const salesInventoryApp = combineReducers({
     users,
@@ -12,7 +13,8 @@ const salesInventoryApp = combineReducers({
     customers,
     customerDialogs,
     suppliers,
-    supplierDialogs
+    supplierDialogs,
+    activeTab
 });
 
 export default salesInventoryApp;

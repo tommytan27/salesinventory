@@ -205,4 +205,25 @@ describe('CustomerRecords Actions', () => {
         }
         expect(actions.saveSupplier()).toEqual(expectedAction);
     });
+
+    it('should create an action to change tab to supplier record', () => {
+        const expectedAction = {
+            type: actionTypes.CHANGE_TAB_SUPPLIER_RECORD
+        }
+        expect(actions.changeTabSupplierRecord()).toEqual(expectedAction);
+    });
+
+    it('should create an action to change tab to brand record', () => {
+        const expectedAction = {
+            type: actionTypes.CHANGE_TAB_BRAND_RECORD
+        }
+        expect(actions.changeTabBrandRecord()).toEqual(expectedAction);
+    });
+
+    it('should create an action to change tab to item record', () => {
+        const expectedAction = {
+            type: actionTypes.CHANGE_TAB_ITEM_RECORD
+        }
+        expect(actions.changeTabItemRecord()).toEqual(expectedAction);
+    });
 });

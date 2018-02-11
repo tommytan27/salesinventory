@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { DataTable, TableHeader, TableBody, TableColumn, TableRow, Button, DialogContainer } from 'react-md';
+import { DataTable, TableHeader, TableBody, TableColumn, TableRow, DialogContainer } from 'react-md';
 import { FormGroup, ControlLabel, FormControl, HelpBlock } from 'react-bootstrap';
 import SupplierRecord from './SupplierRecord';
-import SystemSupplierDialog from '../containers/SystemSupplierDialog';
 import styles from './../constants/styles';
 
 class SupplierRecordTable extends React.Component {
@@ -26,13 +25,6 @@ class SupplierRecordTable extends React.Component {
                         ))}
                     </TableBody>
                 </DataTable>
-                
-                <Button floating primary style={styles.floatingButton.left}>navigate_before</Button>
-                <Button floating primary style={styles.floatingButton.right} onClick={this.props.onAddSupplierClick}>
-                    add
-                </Button>
-
-                 <SystemSupplierDialog /> 
             </div>
         );
     }
@@ -46,7 +38,6 @@ SupplierRecordTable.propTypes = {
             contact: PropTypes.string.isRequired
         }).isRequired
     ).isRequired,
-    onAddSupplierClick: PropTypes.func.isRequired,
     onSupplierRecordClick: PropTypes.func.isRequired
 };
 

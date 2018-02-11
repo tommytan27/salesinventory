@@ -155,3 +155,21 @@ export const saveSupplier = () => {
         type: actionTypes.SAVE_SUPPLIER
     };
 }
+
+export const changeTabSupplierRecord = () => {
+    return {
+        type: actionTypes.CHANGE_TAB_SUPPLIER_RECORD
+    };
+}
+
+export const changeTabBrandRecord = () => {
+    return {
+        type: actionTypes.CHANGE_TAB_BRAND_RECORD
+    };
+}
+
+export const changeTabItemRecord = () => {
+    return {
+        type: actionTypes.CHANGE_TAB_ITEM_RECORD
+    };
+}
