@@ -19,12 +19,6 @@ export const closeUserDialog = () => {
     };
 }
 
-export const enableEditable = () => {
-    return {
-        type: actionTypes.ENABLE_EDITABLE
-    };
-}
-
 export const updateUsernameField = (username, allUsers) => {
     return {
         type: actionTypes.UPDATE_USERNAME_FIELD,
@@ -99,13 +93,6 @@ export const updateLastNameField = (lastName) => {
     };
 }
 
-export const updateContactField = (contact) => {
-    return {
-        type: actionTypes.UPDATE_CONTACT_FIELD,
-        contact: contact
-    };
-}
-
 export const addCustomer = () => {
     return {
         type: actionTypes.ADD_CUSTOMER
@@ -153,6 +140,57 @@ export const addSupplier = () => {
 export const saveSupplier = () => {
     return {
         type: actionTypes.SAVE_SUPPLIER
+    };
+}
+
+export const openAddBrandDialog = () => {
+    return {
+        type: actionTypes.OPEN_ADD_BRAND_DIALOG
+    };
+}
+
+export const openEditBrandDialog = (brand) => {
+    return {
+        type: actionTypes.OPEN_EDIT_BRAND_DIALOG,
+        brand: brand
+    };
+}
+
+export const closeBrandDialog = () => {
+    return {
+        type: actionTypes.CLOSE_BRAND_DIALOG
+    };
+}
+
+export const updateBrandNameField = (name) => {
+    return {
+        type: actionTypes.UPDATE_BRAND_NAME_FIELD,
+        name: name
+    };
+}
+
+export const addBrand = () => {
+    return {
+        type: actionTypes.ADD_BRAND
+    };
+}
+
+export const saveBrand = () => {
+    return {
+        type: actionTypes.SAVE_BRAND
+    };
+}
+
+export const enableEditable = () => {
+    return {
+        type: actionTypes.ENABLE_EDITABLE
+    };
+}
+
+export const updateContactField = (contact) => {
+    return {
+        type: actionTypes.UPDATE_CONTACT_FIELD,
+        contact: contact
     };
 }
 
