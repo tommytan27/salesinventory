@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { DataTable, TableHeader, TableBody, TableColumn, TableRow, Button, DialogContainer } from 'react-md';
 import { FormGroup, ControlLabel, FormControl, HelpBlock } from 'react-bootstrap';
-import UserRecord from './UserRecord';
-import SystemUserDialog from '../containers/SystemUserDialog';
-import styles from './../constants/styles';
+import UserRecord from './../records/UserRecord';
+import SystemUserDialog from '../../containers/systemDialogs/SystemUserDialog';
+import styles from './../../constants/styles';
 
 class UserRecordTable extends React.Component {
     render() {

@@ -1,4 +1,4 @@
-import supplierDialogs from './../reducers/supplierDialogs';
+import supplierDialogs from './../reducers/dialogs/supplierDialogs';
 import actionTypes from './../constants/actionTypes';
 import dialogModes from './../constants/dialogModes';
 import dialogTitles from './../constants/dialogTitles';

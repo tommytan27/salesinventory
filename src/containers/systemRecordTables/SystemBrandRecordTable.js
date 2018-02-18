@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import BrandRecordTable from './../components/BrandRecordTable';
-import { openEditBrandDialog } from './../actions';
+import BrandRecordTable from './../../components/recordTables/BrandRecordTable';
+import { openEditBrandDialog } from './../../actions';
 
 const mapStateToProps = (state) => {
     return {

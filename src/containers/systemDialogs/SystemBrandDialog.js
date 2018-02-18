@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
-import BrandDialog from "../components/BrandDialog";
+import BrandDialog from "../../components/dialogs/BrandDialog";
 import { closeBrandDialog, enableEditable, updateBrandNameField,
-    addBrand, saveBrand } from "../actions/index";
+    addBrand, saveBrand } from "../../actions/index";
 
 const mapStateToProps = (state) => {
     return {

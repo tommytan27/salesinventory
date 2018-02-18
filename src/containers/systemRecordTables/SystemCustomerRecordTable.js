@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import CustomerRecordTable from './../components/CustomerRecordTable';
-import { openAddCustomerDialog, openEditCustomerDialog } from '../actions/index';
+import CustomerRecordTable from './../../components/recordTables/CustomerRecordTable';
+import { openAddCustomerDialog, openEditCustomerDialog } from '../../actions/index';
 
 const mapStateToProps = (state) => {
     return {

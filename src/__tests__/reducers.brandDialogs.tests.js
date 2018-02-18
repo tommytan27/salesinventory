@@ -1,4 +1,4 @@
-import brandDialogs from './../reducers/brandDialogs';
+import brandDialogs from './../reducers/dialogs/brandDialogs';
 import actionTypes from './../constants/actionTypes';
 import dialogModes from './../constants/dialogModes';
 import dialogTitles from './../constants/dialogTitles';

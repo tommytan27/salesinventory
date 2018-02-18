@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import UserRecordTable from './../components/UserRecordTable';
-import { openEditUserDialog, openAddUserDialog } from '../actions/index';
+import UserRecordTable from './../../components/recordTables/UserRecordTable';
+import { openEditUserDialog, openAddUserDialog } from '../../actions/index';
 
 const mapStateToProps = (state) => {
     return {

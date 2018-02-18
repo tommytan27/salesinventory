@@ -1,11 +1,11 @@
 import React from 'react';
 import { TabsContainer, Tabs, Tab, Button } from 'react-md';
-import SystemSupplierRecordTable from './../containers/SystemSupplierRecordTable';
-import SystemBrandRecordTable from './../containers/SystemBrandRecordTable';
-import SystemSupplierDialog from '../containers/SystemSupplierDialog';
-import styles from '../constants/styles';
-import tabOptions from '../constants/tabOptions';
-import SystemBrandDialog from '../containers/SystemBrandDialog';
+import SystemSupplierRecordTable from './../../containers/systemRecordTables/SystemSupplierRecordTable';
+import SystemBrandRecordTable from './../../containers/systemRecordTables/SystemBrandRecordTable';
+import SystemSupplierDialog from '../../containers/systemDialogs/SystemSupplierDialog';
+import SystemBrandDialog from '../../containers/systemDialogs/SystemBrandDialog';
+import styles from '../../constants/styles';
+import tabOptions from '../../constants/tabOptions';
 
 class SupplierBrandItemPage extends React.Component {
     constructor(props) {
@@ -17,8 +17,10 @@ class SupplierBrandItemPage extends React.Component {
         switch (this.props.activeTab) {
             case tabOptions.SUPPLIER_RECORD:
                 this.props.onAddSupplierClick();
+                break;
             case tabOptions.BRAND_RECORD:
                 this.props.onAddBrandClick();
+                break;
         }
     }
 

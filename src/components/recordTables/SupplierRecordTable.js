@@ -2,25 +2,26 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { DataTable, TableHeader, TableBody, TableColumn, TableRow, DialogContainer } from 'react-md';
 import { FormGroup, ControlLabel, FormControl, HelpBlock } from 'react-bootstrap';
-import BrandRecord from './BrandRecord';
-import styles from './../constants/styles';
+import SupplierRecord from '../records/SupplierRecord';
+import styles from './../../constants/styles';
 
-class BrandRecordTable extends React.Component {
+class SupplierRecordTable extends React.Component {
     render() {
         return (
             <div style={styles.page}>
-                <h2>Brands</h2>
+                <h2>Suppliers</h2>
 
                 <DataTable plain>
                     <TableHeader>
                         <TableRow>
                             <TableColumn>ID</TableColumn>
-                            <TableColumn>Name</TableColumn>                        
+                            <TableColumn>Name</TableColumn>
+                            <TableColumn>Contact</TableColumn>                            
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {this.props.brands.map((brand) => (
-                            <BrandRecord key={brand.id} {...brand} onClick={() => this.props.onBrandRecordClick(brand)} />
+                        {this.props.suppliers.map((supplier) => (
+                            <SupplierRecord key={supplier.id} {...supplier} onClick={() => this.props.onSupplierRecordClick(supplier)} />
                         ))}
                     </TableBody>
                 </DataTable>
@@ -29,14 +30,15 @@ class BrandRecordTable extends React.Component {
     }
 }
 
-BrandRecordTable.propTypes = {
-    brands: PropTypes.arrayOf(
+SupplierRecordTable.propTypes = {
+    suppliers: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.number.isRequired,
-            name: PropTypes.string.isRequired
+            name: PropTypes.string.isRequired,
+            contact: PropTypes.string.isRequired
         }).isRequired
     ).isRequired,
-    onBrandRecordClick: PropTypes.func.isRequired
+    onSupplierRecordClick: PropTypes.func.isRequired
 };
 
-export default BrandRecordTable;
+export default SupplierRecordTable;

@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
-import UserDialog from "../components/UserDialog";
+import UserDialog from "../../components/dialogs/UserDialog";
 import { closeUserDialog, enableEditable, updateUsernameField, 
-    updateTimeoutField, updatePasswordField, updateConfirmPasswordField, addUser, saveUser } from "../actions/index";
+    updateTimeoutField, updatePasswordField, updateConfirmPasswordField, addUser, saveUser } from "../../actions/index";
 
 const mapStateToProps = (state) => {
     return {

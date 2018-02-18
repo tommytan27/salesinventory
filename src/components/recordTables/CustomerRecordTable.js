@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { DataTable, TableHeader, TableBody, TableColumn, TableRow, Button, DialogContainer } from 'react-md';
 import { FormGroup, ControlLabel, FormControl, HelpBlock } from 'react-bootstrap';
-import CustomerRecord from './CustomerRecord';
-import SystemCustomerDialog from '../containers/SystemCustomerDialog';
-import styles from './../constants/styles';
+import CustomerRecord from '../records/CustomerRecord';
+import SystemCustomerDialog from '../../containers/systemDialogs/SystemCustomerDialog';
+import styles from './../../constants/styles';
 
 class CustomerRecordTable extends React.Component {
     render() {

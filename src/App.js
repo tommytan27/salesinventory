@@ -1,9 +1,13 @@
 import React from 'react';
 import './App.css';
-import SystemSupplierBrandItemPage from './containers/SystemSupplierBrandItemPage';
+import SystemSupplierBrandItemPage from './containers/systemPages/SystemSupplierBrandItemPage';
+import SystemUserRecordTable from './containers/systemRecordTables/SystemUserRecordTable';
+import SystemCustomerRecordTable from './containers/systemRecordTables/SystemCustomerRecordTable';
 
 const App = () => (
   <SystemSupplierBrandItemPage />
+  // <SystemUserRecordTable />
+  // <SystemCustomerRecordTable />
 );
 
 export default App;

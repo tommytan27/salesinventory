@@ -1,4 +1,4 @@
-import brands from "../reducers/brands";
+import brands from "../reducers/records/brands";
 
 describe('Brands Store', () => {
     it('should return initial state of 3 brands', () => {

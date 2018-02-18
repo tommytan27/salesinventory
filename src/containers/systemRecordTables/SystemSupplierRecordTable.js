@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import SupplierRecordTable from './../components/SupplierRecordTable';
-import { openEditSupplierDialog } from './../actions';
+import SupplierRecordTable from './../../components/recordTables/SupplierRecordTable';
+import { openEditSupplierDialog } from './../../actions';
 
 const mapStateToProps = (state) => {
     return {

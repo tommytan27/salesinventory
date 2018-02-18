@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
-import SupplierBrandItemPage from "../components/SupplierBrandItemPage";
+import SupplierBrandItemPage from "../../components/pages/SupplierBrandItemPage";
 import { openAddSupplierDialog, changeTabSupplierRecord, changeTabItemRecord, 
-    openAddBrandDialog, changeTabBrandRecord } from './../actions';
+    openAddBrandDialog, changeTabBrandRecord } from './../../actions';
 
 const mapStateToProps = (state) => {
     return {
