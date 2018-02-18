@@ -1,4 +1,4 @@
-import userDialogs from './../reducers/userDialogs';
+import userDialogs from './../reducers/dialogs/userDialogs';
 import actionTypes from './../constants/actionTypes';
 import dialogModes from './../constants/dialogModes';
 import dialogTitles from './../constants/dialogTitles';

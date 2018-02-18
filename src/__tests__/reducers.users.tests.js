@@ -1,4 +1,4 @@
-import users from './../reducers/users';
+import users from './../reducers/records/users';
 
 describe('Users Store', () => {
     it('should return initial state of 3 users', () => {

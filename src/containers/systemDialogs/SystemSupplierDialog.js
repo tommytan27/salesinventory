@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
-import SupplierDialog from "../components/SupplierDialog";
+import SupplierDialog from "../../components/dialogs/SupplierDialog";
 import { closeSupplierDialog, enableEditable, updateSupplierNameField,
-    updateContactField, addSupplier, saveSupplier } from "../actions/index";
+    updateContactField, addSupplier, saveSupplier } from "../../actions/index";
 
 const mapStateToProps = (state) => {
     return {

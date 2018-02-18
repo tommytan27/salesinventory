@@ -1,12 +1,12 @@
 import { combineReducers } from "redux";
-import users from './users';
-import userDialogs from './userDialogs';
-import customers from './customers';
-import customerDialogs from './customerDialogs';
-import suppliers from './suppliers';
-import supplierDialogs from './supplierDialogs';
-import brands from './brands';
-import brandDialogs from './brandDialogs';
+import users from './records/users';
+import userDialogs from './dialogs/userDialogs';
+import customers from './records/customers';
+import customerDialogs from './dialogs/customerDialogs';
+import suppliers from './records/suppliers';
+import supplierDialogs from './dialogs/supplierDialogs';
+import brands from './records/brands';
+import brandDialogs from './dialogs/brandDialogs';
 import activeTab from './activeTab';
 
 const salesInventoryApp = combineReducers({

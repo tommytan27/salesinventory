@@ -1,4 +1,4 @@
-import customerDialogs from './../reducers/customerDialogs';
+import customerDialogs from './../reducers/dialogs/customerDialogs';
 import actionTypes from './../constants/actionTypes';
 import dialogModes from './../constants/dialogModes';
 import dialogTitles from './../constants/dialogTitles';

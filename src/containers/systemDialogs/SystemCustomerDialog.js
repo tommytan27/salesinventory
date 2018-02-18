@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
-import CustomerDialog from "../components/CustomerDialog";
+import CustomerDialog from "../../components/dialogs/CustomerDialog";
 import { closeCustomerDialog, enableEditable, updateFirstNameField,
-    updateLastNameField, updateContactField, addCustomer, saveCustomer } from "../actions/index";
+    updateLastNameField, updateContactField, addCustomer, saveCustomer } from "../../actions/index";
 
 const mapStateToProps = (state) => {
     return {

@@ -1,7 +1,7 @@
-import { validateUsername, validatePassword, validateConfirmPassword } from '../utils/validators';
-import actionTypes from './../constants/actionTypes';
-import dialogTitles from '../constants/dialogTitles';
-import dialogModes from '../constants/dialogModes';
+import { validateUsername, validatePassword, validateConfirmPassword } from '../../utils/validators';
+import actionTypes from '../../constants/actionTypes';
+import dialogTitles from '../../constants/dialogTitles';
+import dialogModes from '../../constants/dialogModes';
 
 const initialState = {
     dialogState: {

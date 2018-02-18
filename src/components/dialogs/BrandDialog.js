@@ -1,8 +1,8 @@
 import React from 'react';
 import { Button, DialogContainer } from 'react-md';
 import { FormGroup, ControlLabel, FormControl, HelpBlock } from 'react-bootstrap';
-import dialogModes from '../constants/dialogModes';
-import styles from './../constants/styles';
+import dialogModes from '../../constants/dialogModes';
+import styles from './../../constants/styles';
 import { PropTypes } from 'prop-types';
 import Dialog from './Dialog';
 
