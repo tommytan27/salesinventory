@@ -20,6 +20,14 @@ const styles = {
             color: 'green'
         }
     },
+    fontIcon: {
+        done: {
+            color: 'green'
+        },
+        clear: {
+            color: 'red'
+        }
+    },
     floatingButton: {
         left: {
             top: 'auto',

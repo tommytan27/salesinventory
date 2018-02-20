@@ -6,7 +6,9 @@ const dialogTitles = {
     ADD_SUPPLIER: "Add Supplier",
     EDIT_SUPPLIER: "Edit Supplier",
     ADD_BRAND: "Add Brand",
-    EDIT_BRAND: "Edit Brand"
+    EDIT_BRAND: "Edit Brand",
+    ADD_ITEM: "Add Item",
+    EDIT_ITEM: "Edit Item"
 }
 
 export default dialogTitles;
