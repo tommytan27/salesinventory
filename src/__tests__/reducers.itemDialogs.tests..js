@@ -54,12 +54,12 @@ const dummyItem = {
     qty: dummyQty
 };
 
-// const assertOpenAddBrandDialog = (state) => {
-//     expect(state.dialogState.open).toBeTruthy();
-//     expect(state.dialogState.title).toEqual(dialogTitles.ADD_BRAND);
-//     expect(state.dialogState.mode).toEqual(dialogModes.ADD_MODE);
-//     expect(state.dialogState.editable).toBeTruthy();
-// }
+const assertOpenAddItemDialog = (state) => {
+    expect(state.dialogState.open).toBeTruthy();
+    expect(state.dialogState.title).toEqual(dialogTitles.ADD_ITEM);
+    expect(state.dialogState.mode).toEqual(dialogModes.ADD_MODE);
+    expect(state.dialogState.editable).toBeTruthy();
+}
 
 const assertOpenEditItemDialog = (state) => {
     expect(state.dialogState.open).toBeTruthy();
@@ -79,12 +79,12 @@ describe('itemDialogs', () => {
     it('should return initial state of all fields', () => {
         assertInitialState(undefined, {});
     });
-    // it('should return brand dialog opened when receiving OPEN_ADD_BRAND_DIALOG action', () => {
-    //     const returnValue = itemDialogs(undefined, {
-    //         type: actionTypes.OPEN_ADD_BRAND_DIALOG
-    //     });
-    //     assertOpenAddBrandDialog(returnValue);
-    // });
+    it('should return item dialog opened when receiving OPEN_ADD_ITEM_DIALOG action', () => {
+        const returnValue = itemDialogs(undefined, {
+            type: actionTypes.OPEN_ADD_ITEM_DIALOG
+        });
+        assertOpenAddItemDialog(returnValue);
+    });
     it('should return item dialog opened but not in edit mode when receiving OPEN_EDIT_ITEM_DIALOG action', () => {
         const returnValue = itemDialogs(undefined, {
             type: actionTypes.OPEN_EDIT_ITEM_DIALOG,
@@ -92,16 +92,16 @@ describe('itemDialogs', () => {
         });
         assertOpenEditItemDialog(returnValue);
     });
-    // it('should return brand dialog opened after closed when receiving OPEN_ADD_BRAND_DIALOG action', () => {
-    //     const returnValue = itemDialogs({
-    //         dialogState: {
-    //             open: false
-    //         }
-    //     }, {
-    //         type: actionTypes.OPEN_ADD_BRAND_DIALOG
-    //     });
-    //     assertOpenAddBrandDialog(returnValue);
-    // });
+    it('should return item dialog opened after closed when receiving OPEN_ADD_ITEM_DIALOG action', () => {
+        const returnValue = itemDialogs({
+            dialogState: {
+                open: false
+            }
+        }, {
+            type: actionTypes.OPEN_ADD_ITEM_DIALOG
+        });
+        assertOpenAddItemDialog(returnValue);
+    });
     it('should return brand dialog opened after closed when receiving OPEN_EDIT_ITEM_DIALOG action', () => {
         const returnValue = itemDialogs({
             dialogModes: {

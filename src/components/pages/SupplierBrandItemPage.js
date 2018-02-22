@@ -23,6 +23,9 @@ class SupplierBrandItemPage extends React.Component {
             case tabOptions.BRAND_RECORD:
                 this.props.onAddBrandClick();
                 break;
+            case tabOptions.ITEM_RECORD:
+                this.props.onAddItemClick();
+                break;
         }
     }
 

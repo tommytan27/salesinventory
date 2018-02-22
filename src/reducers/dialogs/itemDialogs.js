@@ -40,13 +40,13 @@ const initialState = {
 
 const itemDialogs = (state = initialState, action) => {
     switch (action.type) {
-        // case actionTypes.OPEN_ADD_BRAND_DIALOG:
-        //     return {...state, dialogState: {...state.dialogState,
-        //         open: true,
-        //         title: dialogTitles.ADD_BRAND,
-        //         mode: dialogModes.ADD_MODE,
-        //         editable: true
-        //     }};
+        case actionTypes.OPEN_ADD_ITEM_DIALOG:
+            return {...state, dialogState: {...state.dialogState,
+                open: true,
+                title: dialogTitles.ADD_ITEM,
+                mode: dialogModes.ADD_MODE,
+                editable: true
+            }};
         case actionTypes.OPEN_EDIT_ITEM_DIALOG:
             return {...state, dialogState: {...state.dialogState,
                     open: true,
