@@ -20,8 +20,7 @@ const initialState = {
 }
 
 const getDialogErrorState = (currentState) => {
-    return (currentState.brandInDialog.name.state === "success") ? false : true
-    return false;
+    return (currentState.brandInDialog.name.state === "success") ? false : true;
 }
 
 const brandDialogs = (state = initialState, action) => {

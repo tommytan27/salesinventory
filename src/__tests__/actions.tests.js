@@ -342,12 +342,10 @@ describe ('ItemRecords Actions', () => {
     });
 
     it('should create an action to toggle item vegan', () => {
-        const dummyVegan = true;
         const expectedAction = {
-            type: actionTypes.TOGGLE_VEGAN_FLAG,
-            vegan: dummyVegan
+            type: actionTypes.TOGGLE_VEGAN_FLAG
         }
-        expect(actions.toggleVeganFlag(dummyVegan)).toEqual(expectedAction);
+        expect(actions.toggleVeganFlag()).toEqual(expectedAction);
     });
 
     it('should create an action to select supplier', () => {

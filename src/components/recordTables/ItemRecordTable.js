@@ -41,8 +41,7 @@ ItemRecordTable.propTypes = {
             brandId: PropTypes.number.isRequired,
             price: PropTypes.number.isRequired,
             vegan: PropTypes.bool.isRequired,
-            qty: PropTypes.number.isRequired,
-            onClick: PropTypes.func.isRequired
+            qty: PropTypes.number.isRequired
         }).isRequired
     ).isRequired,
     onItemRecordClick: PropTypes.func.isRequired

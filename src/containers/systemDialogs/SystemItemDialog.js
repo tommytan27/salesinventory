@@ -1,6 +1,9 @@
 import { connect } from "react-redux";
 import ItemDialog from "../../components/dialogs/ItemDialog";
-import { closeItemDialog, enableEditable } from "../../actions/index";
+import { closeItemDialog, enableEditable, updateItemNameField, 
+    updateBarcodeField, updateQtyField, updateSellPriceField, 
+    toggleVeganFlag, selectSupplier, selectBrand,
+    addItem, saveItem} from "../../actions/index";
 
 const mapStateToProps = (state) => {
     return {
@@ -15,9 +18,15 @@ const mapDispatchToProps = (dispatch) => {
     return {
         onDialogClose: () => { dispatch(closeItemDialog()) },
         onEditButtonClick: () => { dispatch(enableEditable()) },
-        // onBrandNameFieldChange: (name) => { dispatch(updateBrandNameField(name)) },
-        // onAddButtonClick: () => { dispatch(addBrand()) },
-        // onSaveButtonClick: () => { dispatch(saveBrand()) }
+        onItemNameFieldChange: (name) => { dispatch(updateItemNameField(name)) },
+        onBarcodeFieldChange: (barcode) => { dispatch(updateBarcodeField(barcode)) },
+        onSellPriceFieldChange: (price) => { dispatch(updateSellPriceField(price)) },
+        onQtyFieldChange: (qty) => { dispatch(updateQtyField(qty)) },
+        onVeganFlagToggled: () => { dispatch(toggleVeganFlag()) },
+        onSupplierComboChanged: (supplierId) => { dispatch(selectSupplier(supplierId)) },
+        onBrandComboChanged: (brandId) => { dispatch(selectBrand(brandId)) },
+        onAddButtonClick: () => { dispatch(addItem()) },
+        onSaveButtonClick: () => { dispatch(saveItem()) }
     };
 }
 

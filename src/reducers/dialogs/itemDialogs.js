@@ -1,6 +1,7 @@
 import actionTypes from '../../constants/actionTypes';
 import dialogTitles from '../../constants/dialogTitles';
 import dialogModes from '../../constants/dialogModes';
+import { validateDecimal } from '../../utils/validators';
 
 const initialState = {
     dialogState: {
@@ -33,10 +34,11 @@ const initialState = {
     }
 }
 
-// const getDialogErrorState = (currentState) => {
-//     return (currentState.itemInDialog.name.state === "success") ? false : true
-//     return false;
-// }
+const getDialogErrorState = (currentState) => {
+    return (currentState.itemInDialog.barcode.state === "success" &&
+    currentState.itemInDialog.name.state === "success" &&
+    currentState.itemInDialog.price.state === "success") ? false : true;
+}
 
 const itemDialogs = (state = initialState, action) => {
     switch (action.type) {
@@ -46,6 +48,11 @@ const itemDialogs = (state = initialState, action) => {
                 title: dialogTitles.ADD_ITEM,
                 mode: dialogModes.ADD_MODE,
                 editable: true
+            }, itemInDialog: {
+                ...state.itemInDialog,
+                vegan: false,
+                supplierId: 1,
+                brandId: 1
             }};
         case actionTypes.OPEN_EDIT_ITEM_DIALOG:
             return {...state, dialogState: {...state.dialogState,
@@ -67,7 +74,7 @@ const itemDialogs = (state = initialState, action) => {
                     supplierId: action.item.supplierId,
                     brandId: action.item.brandId,
                     price: {
-                        value: action.item.price,
+                        value: action.item.price.toFixed(2),
                         state: "success"
                     },
                     vegan: action.item.vegan,
@@ -83,47 +90,89 @@ const itemDialogs = (state = initialState, action) => {
             return {...state, dialogState: {
                 ...state.dialogState, editable: true
             }};
-        // case actionTypes.UPDATE_BRAND_NAME_FIELD:
-        //     return {...state, itemInDialog: {
-        //         ...state.itemInDialog, name: {
-        //             value: action.name,
-        //             state: action.name ? "success" : null
-        //         }
-        //     }};
-        // case actionTypes.ADD_BRAND:
-        //     {
-        //         let dialogStateError = getDialogErrorState(state);
-        //         if (dialogStateError) {
-        //             return {
-        //                 dialogState: {
-        //                     ...state.dialogState,
-        //                     error: dialogStateError
-        //                 },
-        //                 itemInDialog: {...state.itemInDialog,
-        //                     name: {...state.itemInDialog.name,
-        //                         state: state.itemInDialog.name.state !== "success" ? "error" : "success"}
-        //                 }
-        //             }
-        //         }
-        //         return initialState;
-        //     }
-        // case actionTypes.SAVE_BRAND:
-        //     {
-        //         let dialogStateError = getDialogErrorState(state);
-        //         if (dialogStateError) {
-        //             return {
-        //                 dialogState: {
-        //                     ...state.dialogState,
-        //                     error: dialogStateError
-        //                 },
-        //                 itemInDialog: {...state.itemInDialog,
-        //                     name: {...state.itemInDialog.name,
-        //                         state: state.itemInDialog.name.state !== "success" ? "error" : "success"}
-        //                 }
-        //             }
-        //         }
-        //         return initialState;
-        //     }
+        case actionTypes.UPDATE_ITEM_NAME_FIELD:
+            return {...state, itemInDialog: {
+                ...state.itemInDialog, name: {
+                    value: action.name,
+                    state: action.name ? "success" : null
+                }
+            }};
+        case actionTypes.UPDATE_BARCODE_FIELD:
+            return {...state, itemInDialog: {
+                ...state.itemInDialog, barcode: {
+                    value: action.barcode,
+                    state: action.barcode ? "success" : null
+                }
+            }};
+        case actionTypes.UPDATE_QTY_FIELD:
+            return {...state, itemInDialog: {
+                ...state.itemInDialog, qty: {
+                    value: Number.parseInt(action.qty),
+                    state: Number.parseInt(action.qty) ? "success" : null
+                }
+            }};
+        case actionTypes.UPDATE_SELL_PRICE_FIELD:
+            return {...state, itemInDialog: {
+                ...state.itemInDialog, price: {
+                    value: validateDecimal(action.price) ? action.price : state.itemInDialog.price.value,
+                    state: action.price ? (validateDecimal(action.price) ? "success" : state.itemInDialog.price.state) : null
+                }
+            }};
+        case actionTypes.TOGGLE_VEGAN_FLAG:
+            return {...state, itemInDialog: {
+                ...state.itemInDialog, 
+                vegan: !state.itemInDialog.vegan
+            }};
+        case actionTypes.SELECT_SUPPLIER:
+            return {...state, itemInDialog: {
+                ...state.itemInDialog, supplierId: action.supplierId
+            }};
+        case actionTypes.SELECT_BRAND:
+            return {...state, itemInDialog: {
+                ...state.itemInDialog, brandId: action.brandId
+            }};
+        case actionTypes.ADD_ITEM:
+            {
+                let dialogStateError = getDialogErrorState(state);
+                if (dialogStateError) {
+                    return {
+                        dialogState: {
+                            ...state.dialogState,
+                            error: dialogStateError
+                        },
+                        itemInDialog: {...state.itemInDialog,
+                            barcode: {...state.itemInDialog.barcode,
+                                state: state.itemInDialog.barcode.state !== "success" ? "error" : "success"},
+                            name: {...state.itemInDialog.name,
+                                state: state.itemInDialog.name.state !== "success" ? "error" : "success"},
+                            price: {...state.itemInDialog.price,
+                                state: state.itemInDialog.price.state !== "success" ? "error" : "success"}
+                        }
+                    }
+                }
+                return initialState;
+            }
+        case actionTypes.SAVE_ITEM:
+            {
+                let dialogStateError = getDialogErrorState(state);
+                if (dialogStateError) {
+                    return {
+                        dialogState: {
+                            ...state.dialogState,
+                            error: dialogStateError
+                        },
+                        itemInDialog: {...state.itemInDialog,
+                            barcode: {...state.itemInDialog.barcode,
+                                state: state.itemInDialog.barcode.state !== "success" ? "error" : "success"},
+                            name: {...state.itemInDialog.name,
+                                state: state.itemInDialog.name.state !== "success" ? "error" : "success"},
+                            price: {...state.itemInDialog.price,
+                                state: state.itemInDialog.price.state !== "success" ? "error" : "success"}
+                        }
+                    }
+                }
+                return initialState;
+            }
         default:
             return state;
     }

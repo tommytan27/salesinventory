@@ -242,10 +242,9 @@ export const selectBrand = (brandId) => {
     };
 }
 
-export const toggleVeganFlag = (vegan) => {
+export const toggleVeganFlag = () => {
     return {
-        type: actionTypes.TOGGLE_VEGAN_FLAG,
-        vegan: vegan
+        type: actionTypes.TOGGLE_VEGAN_FLAG
     };
 }
 

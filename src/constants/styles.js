@@ -3,6 +3,9 @@ const styles = {
         paddingLeft: '1%',
         paddingRight: '1%'
     },
+    paragraph: {
+        fontSize: '1em'
+    },
     dialog: {
         width: 'auto'
     },

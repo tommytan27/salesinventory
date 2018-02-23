@@ -521,6 +521,43 @@ describe('UserDialogs', () => {
         expect(returnValue.userInDialog.timeout.state).toBe("success");
         expect(returnValue.dialogState.error).toBe(true);
     });
+    it('should return the state of all fields that are success or warning and dialogState of error when receiving SAVE_USER action with an invalid username', () => {
+        const returnValue = userDialogs({
+            dialogState: {
+                open: false,
+                title: dialogTitles.EDIT_USER,
+                mode: dialogModes.EDIT_MODE,
+                error: false,
+                editable: false
+            },
+            userInDialog: {
+                id: null,
+                username: {
+                    value: "admin",
+                    state: "success"
+                },
+                timeout: {
+                    value: "",
+                    state: "error"
+                },
+                password: {
+                    value: "123456789",
+                    state: "warning"
+                },
+                confirmPassword: {
+                    value: "123456789",
+                    state: "success"
+                }
+            }
+        }, {
+            type: actionTypes.SAVE_USER
+        });
+        expect(returnValue.userInDialog.username.state).toBe("success");
+        expect(returnValue.userInDialog.password.state).toBe("warning");
+        expect(returnValue.userInDialog.confirmPassword.state).toBe("success");
+        expect(returnValue.userInDialog.timeout.state).toBe("error");
+        expect(returnValue.dialogState.error).toBe(true);
+    });
     it('should return the initial state when receiving ADD_USER action with valid inputs', () => {
         const state = {
             dialogState: {

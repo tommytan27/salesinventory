@@ -10,6 +10,24 @@ import Dialog from './Dialog';
 class ItemDialog extends Dialog {
     render() { 
         const item = this.props.itemInDialog;
+        const barcodeFieldDisabled = this.props.dialogState.mode === dialogModes.EDIT_MODE ? 
+                                    true : !this.props.dialogState.editable;
+        
+        if (this.props.suppliers.length === 0 || this.props.brands.length === 0) {
+            let closeAction = [
+                <Button flat iconChildren="clear" onClick={this.props.onDialogClose} id="closeButton">CLOSE</Button>,
+            ];
+            return (
+                <DialogContainer id="ItemDialog" title="Error!"
+                    visible={this.props.dialogState.open} dialogStyle={styles.dialog}
+                    actions={closeAction} modal={false} initialFocus="#closeButton"
+                    onHide={this.props.onDialogClose}>
+                    <p style={styles.paragraph}>No supplier and brand records available to relate to an item. <br />
+                    Please add a supplier and a brand first.</p>
+                </DialogContainer>
+            );
+        }
+        
         return (
             <DialogContainer id="ItemDialog" title={this.props.dialogState.title}
                 visible={this.props.dialogState.open} dialogStyle={{width: '80%'}}
@@ -22,6 +40,7 @@ class ItemDialog extends Dialog {
                     <Col sm={10}>
                         <Select name="SupplierSelect" value={item.supplierId}
                             disabled={!this.props.dialogState.editable}
+                            onChange={(e) => {this.props.onSupplierComboChanged(e.value)}}
                             options={this.props.suppliers.map((supplier) => {
                                 return {
                                     value: supplier.id,
@@ -35,6 +54,7 @@ class ItemDialog extends Dialog {
                     <Col sm={10}>
                         <Select name="BrandSelect" value={item.brandId}
                             disabled={!this.props.dialogState.editable}
+                            onChange={(e) => {this.props.onBrandComboChanged(e.value)}}
                             options={this.props.brands.map((brand) => {
                                 return {
                                     value: brand.id,
@@ -48,7 +68,7 @@ class ItemDialog extends Dialog {
                     <Col sm={10}>
                     <FormControl type="text" placeholder="Barcode #"
                         value={item.barcode.value ? item.barcode.value : ""}
-                        disabled={!this.props.dialogState.editable}
+                        disabled={barcodeFieldDisabled}
                         onChange={ (e) => {this.props.onBarcodeFieldChange(e.target.value)} } />
                     <FormControl.Feedback />
                     </Col>
@@ -67,14 +87,15 @@ class ItemDialog extends Dialog {
                     <Col componentClass={ControlLabel} sm={2}>Vegan:</Col>
                     <Col sm={10}>
                     <Switch type="switch" label={item.vegan ? "Vegan" : "Vegetarian Only"}
+                        id="veganFlag" name="veganFlag" checked={item.vegan}
                         disabled={!this.props.dialogState.editable}
-                        onChange={ (e) => {this.props.onVeganFlagToggled(e.target.value)} } />
+                        onChange={ (e) => {this.props.onVeganFlagToggled()} } />
                     </Col>
                 </FormGroup>
                 <FormGroup validationState={item.price.state}>
                     <Col componentClass={ControlLabel} sm={2}>Price:</Col>
                     <Col sm={3}>
-                    <FormControl type="text" placeholder="Price"
+                    <FormControl type="text" placeholder="0.00"
                         value={item.price.value ? item.price.value : ""}
                         disabled={!this.props.dialogState.editable}
                         onChange={ (e) => {this.props.onSellPriceFieldChange(e.target.value)} } />
@@ -84,7 +105,7 @@ class ItemDialog extends Dialog {
                 <FormGroup validationState={item.qty.state}>
                     <Col componentClass={ControlLabel} sm={2}>Qty:</Col>
                     <Col sm={2}>
-                    <FormControl type="text" placeholder="Qty"
+                    <FormControl type="text" placeholder="0"
                         value={item.qty.value ? item.qty.value : ""}
                         disabled={!this.props.dialogState.editable}
                         onChange={ (e) => {this.props.onQtyFieldChange(e.target.value)} } />
@@ -107,25 +128,24 @@ ItemDialog.propTypes = {
     }).isRequired,
     itemInDialog: PropTypes.shape({
         barcode: PropTypes.shape({
-            value: PropTypes.string.isRequired,
-            state: PropTypes.string.isRequired
+            value: PropTypes.string,
+            state: PropTypes.string
         }),
         barcode: PropTypes.shape({
-            value: PropTypes.string.isRequired,
-            state: PropTypes.string.isRequired
+            value: PropTypes.string,
+            state: PropTypes.string
         }),
-        supplierId: PropTypes.number.isRequired,
-        itemId: PropTypes.number.isRequired,
+        supplierId: PropTypes.number,
+        itemId: PropTypes.number,
         price: PropTypes.shape({
-            value: PropTypes.string.isRequired,
-            state: PropTypes.string.isRequired
+            value: PropTypes.string,
+            state: PropTypes.string
         }),
-        vegan: PropTypes.bool.isRequired,
+        vegan: PropTypes.bool,
         qty: PropTypes.shape({
-            value: PropTypes.string.isRequired,
-            state: PropTypes.string.isRequired
-        }),
-        onClick: PropTypes.func.isRequired
+            value: PropTypes.number,
+            state: PropTypes.string
+        })
     }).isRequired,
     brands: PropTypes.arrayOf(
         PropTypes.shape({
@@ -142,7 +162,13 @@ ItemDialog.propTypes = {
     ).isRequired,
     onDialogClose: PropTypes.func.isRequired,
     onEditButtonClick: PropTypes.func.isRequired,
-    // onBarcodeFieldChange: PropTypes.func.isRequired,
+    onItemNameFieldChange: PropTypes.func.isRequired,
+    onBarcodeFieldChange: PropTypes.func.isRequired,
+    onSellPriceFieldChange: PropTypes.func.isRequired,
+    onQtyFieldChange: PropTypes.func.isRequired,
+    onVeganFlagToggled: PropTypes.func.isRequired,
+    onSupplierComboChanged: PropTypes.func.isRequired,
+    onBrandComboChanged: PropTypes.func.isRequired
     // onAddButtonClick: PropTypes.func.isRequired,
     // onSaveButtonClick: PropTypes.func.isRequired
 }
