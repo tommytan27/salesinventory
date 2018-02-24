@@ -44,3 +44,14 @@ export const validateConfirmPassword = (password, confirmPassword) => {
     }
     return null;
 }
+
+export const validateDecimal = (decimal) => {
+    const validChars = ['0','1','2','3','4','5','6','7','8','9','.'];
+
+    for(var i=0; i<decimal.length; i++) {
+        if (!validChars.includes(decimal.charAt(i))) {
+            return false;
+        }
+    };
+    return true;
+}

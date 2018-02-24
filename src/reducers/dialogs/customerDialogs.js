@@ -64,7 +64,7 @@ const customerDialogs = (state = initialState, action) => {
                         value: action.customer.contact,
                         state: action.customer.contact ? "success" : null
                     },
-                    credit: action.customer.credit
+                    credit: action.customer.credit.toFixed(2)
                 }
             };
         case actionTypes.CLOSE_CUSTOMER_DIALOG:

@@ -3,6 +3,9 @@ const styles = {
         paddingLeft: '1%',
         paddingRight: '1%'
     },
+    paragraph: {
+        fontSize: '1em'
+    },
     dialog: {
         width: 'auto'
     },
@@ -18,6 +21,14 @@ const styles = {
         },
         save: {
             color: 'green'
+        }
+    },
+    fontIcon: {
+        done: {
+            color: 'green'
+        },
+        clear: {
+            color: 'red'
         }
     },
     floatingButton: {

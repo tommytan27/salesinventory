@@ -25,7 +25,6 @@ const initialState = {
 
 const getDialogErrorState = (currentState) => {
     return (currentState.supplierInDialog.name.state === "success") ? false : true
-    return false;
 }
 
 const supplierDialogs = (state = initialState, action) => {

@@ -248,11 +248,11 @@ describe('supplierDialogs', () => {
             supplierInDialog: {
                 id: null,
                 name: {
-                    value: null,
+                    value: "",
                     state: null
                 },
                 contact: {
-                    value: null,
+                    value: "",
                     state: null
                 }
             }
@@ -298,7 +298,32 @@ describe('supplierDialogs', () => {
             supplierInDialog: {
                 id: null,
                 name: {
-                    value: null,
+                    value: "",
+                    state: null
+                },
+                contact: {
+                    value: "",
+                    state: null
+                }
+            }
+        }, {
+            type: actionTypes.SAVE_SUPPLIER
+        });
+        assertAddAndSaveSupplier(returnValue);
+    });
+    it('should return the state of all fields that are success and dialogState of error when receiving ADD_SUPPLIER action with an empty firstName', () => {
+        const returnValue = supplierDialogs({
+            dialogState: {
+                open: false,
+                title: dialogTitles.ADD_SUPPLIER,
+                mode: dialogModes.ADD_MODE,
+                error: false,
+                editable: false
+            },
+            supplierInDialog: {
+                id: null,
+                name: {
+                    value: "",
                     state: null
                 },
                 contact: {
@@ -307,9 +332,10 @@ describe('supplierDialogs', () => {
                 }
             }
         }, {
-            type: actionTypes.SAVE_SUPPLIER
+            type: actionTypes.ADD_SUPPLIER
         });
-        assertAddAndSaveSupplier(returnValue);
+        expect(returnValue.supplierInDialog.name.state).toBe("error");
+        expect(returnValue.dialogState.error).toBe(true);
     });
     it('should return the state of all fields that are success and dialogState of error when receiving SAVE_SUPPLIER action with an empty firstName', () => {
         const returnValue = supplierDialogs({

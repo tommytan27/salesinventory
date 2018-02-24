@@ -233,15 +233,15 @@ describe ('BrandRecords Actions', () => {
     });
 
     it('should create an action to open edit brand dialog', () => {
-        const dummyBrand = {
+        const dummyItem = {
             id: 12,
             name: 'brand'
         }
         const expectedAction = {
             type: actionTypes.OPEN_EDIT_BRAND_DIALOG,
-            brand: dummyBrand
+            brand: dummyItem
         }
-        expect(actions.openEditBrandDialog(dummyBrand)).toEqual(expectedAction);
+        expect(actions.openEditBrandDialog(dummyItem)).toEqual(expectedAction);
     });
 
     it('should create an action to close brand dialog', () => {
@@ -252,12 +252,12 @@ describe ('BrandRecords Actions', () => {
     });
 
     it('should create an action to update brand name', () => {
-        const dummyBrandName = 'dummy';
+        const dummyItemName = 'dummy';
         const expectedAction = {
             type: actionTypes.UPDATE_BRAND_NAME_FIELD,
-            name: dummyBrandName
+            name: dummyItemName
         }
-        expect(actions.updateBrandNameField(dummyBrandName)).toEqual(expectedAction);
+        expect(actions.updateBrandNameField(dummyItemName)).toEqual(expectedAction);
     });
 
     it('should create an action to add brand', () => {
@@ -283,54 +283,102 @@ describe ('BrandRecords Actions', () => {
 });
 
 describe ('ItemRecords Actions', () => {
-    // it('should create an action to open add brand dialog', () => {
-    //     const expectedAction = {
-    //         type: actionTypes.OPEN_ADD_BRAND_DIALOG
-    //     }
-    //     expect(actions.openAddBrandDialog()).toEqual(expectedAction);
-    // });
+    it('should create an action to open add item dialog', () => {
+        const expectedAction = {
+            type: actionTypes.OPEN_ADD_ITEM_DIALOG
+        }
+        expect(actions.openAddItemDialog()).toEqual(expectedAction);
+    });
 
-    // it('should create an action to open edit brand dialog', () => {
-    //     const dummyBrand = {
-    //         id: 12,
-    //         name: 'brand'
-    //     }
-    //     const expectedAction = {
-    //         type: actionTypes.OPEN_EDIT_BRAND_DIALOG,
-    //         brand: dummyBrand
-    //     }
-    //     expect(actions.openEditBrandDialog(dummyBrand)).toEqual(expectedAction);
-    // });
+    it('should create an action to open edit item dialog', () => {
+        const dummyItem = {
+            barcode: 124315,
+            name: 'item',
+            supplierId: 2,
+            brandId: 3,
+            price: 5.00,
+            vegan: true,
+            qty: 3
+        }
+        const expectedAction = {
+            type: actionTypes.OPEN_EDIT_ITEM_DIALOG,
+            item: dummyItem
+        }
+        expect(actions.openEditItemDialog(dummyItem)).toEqual(expectedAction);
+    });
 
-    // it('should create an action to close brand dialog', () => {
-    //     const expectedAction = {
-    //         type: actionTypes.CLOSE_BRAND_DIALOG
-    //     }
-    //     expect(actions.closeBrandDialog()).toEqual(expectedAction);
-    // });
+    it('should create an action to close item dialog', () => {
+        const expectedAction = {
+            type: actionTypes.CLOSE_ITEM_DIALOG
+        }
+        expect(actions.closeItemDialog()).toEqual(expectedAction);
+    });
 
-    // it('should create an action to update brand name', () => {
-    //     const dummyBrandName = 'dummy';
-    //     const expectedAction = {
-    //         type: actionTypes.UPDATE_BRAND_NAME_FIELD,
-    //         name: dummyBrandName
-    //     }
-    //     expect(actions.updateBrandNameField(dummyBrandName)).toEqual(expectedAction);
-    // });
+    it('should create an action to update item name', () => {
+        const dummyItemName = 'dummy';
+        const expectedAction = {
+            type: actionTypes.UPDATE_ITEM_NAME_FIELD,
+            name: dummyItemName
+        }
+        expect(actions.updateItemNameField(dummyItemName)).toEqual(expectedAction);
+    });
 
-    // it('should create an action to add supplier', () => {
-    //     const expectedAction = {
-    //         type: actionTypes.ADD_SUPPLIER
-    //     }
-    //     expect(actions.addSupplier()).toEqual(expectedAction);
-    // });
+    it('should create an action to update item barcode', () => {
+        const dummyItemBarcode = '5315162';
+        const expectedAction = {
+            type: actionTypes.UPDATE_BARCODE_FIELD,
+            barcode: dummyItemBarcode
+        }
+        expect(actions.updateBarcodeField(dummyItemBarcode)).toEqual(expectedAction);
+    });
 
-    // it('should create an action to save supplier', () => {
-    //     const expectedAction = {
-    //         type: actionTypes.SAVE_SUPPLIER
-    //     }
-    //     expect(actions.saveSupplier()).toEqual(expectedAction);
-    // });
+    it('should create an action to update item price', () => {
+        const dummySellPrice = 5.60;
+        const expectedAction = {
+            type: actionTypes.UPDATE_SELL_PRICE_FIELD,
+            price: dummySellPrice
+        }
+        expect(actions.updateSellPriceField(dummySellPrice)).toEqual(expectedAction);
+    });
+
+    it('should create an action to toggle item vegan', () => {
+        const expectedAction = {
+            type: actionTypes.TOGGLE_VEGAN_FLAG
+        }
+        expect(actions.toggleVeganFlag()).toEqual(expectedAction);
+    });
+
+    it('should create an action to select supplier', () => {
+        const dummySupplierId = 2;
+        const expectedAction = {
+            type: actionTypes.SELECT_SUPPLIER,
+            supplierId: dummySupplierId
+        }
+        expect(actions.selectSupplier(dummySupplierId)).toEqual(expectedAction);
+    });
+
+    it('should create an action to select brand', () => {
+        const dummyBrandId = 2;
+        const expectedAction = {
+            type: actionTypes.SELECT_BRAND,
+            brandId: dummyBrandId
+        }
+        expect(actions.selectBrand(dummyBrandId)).toEqual(expectedAction);
+    });
+
+    it('should create an action to add item', () => {
+        const expectedAction = {
+            type: actionTypes.ADD_ITEM
+        }
+        expect(actions.addItem()).toEqual(expectedAction);
+    });
+
+    it('should create an action to save item', () => {
+        const expectedAction = {
+            type: actionTypes.SAVE_ITEM
+        }
+        expect(actions.saveItem()).toEqual(expectedAction);
+    });
 
     it('should create an action to change tab to item record', () => {
         const expectedAction = {

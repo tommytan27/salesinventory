@@ -194,7 +194,7 @@ describe('brandDialogs', () => {
             brandInDialog: {
                 id: null,
                 name: {
-                    value: null,
+                    value: "",
                     state: null
                 }
             }
@@ -236,11 +236,7 @@ describe('brandDialogs', () => {
             brandInDialog: {
                 id: null,
                 name: {
-                    value: null,
-                    state: null
-                },
-                contact: {
-                    value: null,
+                    value: "",
                     state: null
                 }
             }
@@ -249,11 +245,33 @@ describe('brandDialogs', () => {
         });
         assertAddAndSaveBrand(returnValue);
     });
+    it('should return the state of all fields that are success and dialogState of error when receiving ADD_BRAND action with an empty firstName', () => {
+        const returnValue = brandDialogs({
+            dialogState: {
+                open: false,
+                title: dialogTitles.ADD_BRAND,
+                mode: dialogModes.ADD_MODE,
+                error: false,
+                editable: false
+            },
+            brandInDialog: {
+                id: null,
+                name: {
+                    value: "",
+                    state: null
+                }
+            }
+        }, {
+            type: actionTypes.ADD_BRAND
+        });
+        expect(returnValue.brandInDialog.name.state).toBe("error");
+        expect(returnValue.dialogState.error).toBe(true);
+    });
     it('should return the state of all fields that are success and dialogState of error when receiving SAVE_BRAND action with an empty firstName', () => {
         const returnValue = brandDialogs({
             dialogState: {
                 open: false,
-                title: dialogTitles.EDIT_SUPPLIER,
+                title: dialogTitles.EDIT_BRAND,
                 mode: dialogModes.EDIT_MODE,
                 error: false,
                 editable: false
@@ -275,7 +293,7 @@ describe('brandDialogs', () => {
         const state = {
             dialogState: {
                 open: false,
-                title: dialogTitles.EDIT_SUPPLIER,
+                title: dialogTitles.EDIT_BRAND,
                 mode: dialogModes.EDIT_MODE,
                 error: false,
                 editable: false

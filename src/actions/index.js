@@ -181,6 +181,85 @@ export const saveBrand = () => {
     };
 }
 
+export const openAddItemDialog = () => {
+    return {
+        type: actionTypes.OPEN_ADD_ITEM_DIALOG
+    };
+}
+
+export const openEditItemDialog = (item) => {
+    return {
+        type: actionTypes.OPEN_EDIT_ITEM_DIALOG,
+        item: item
+    };
+}
+
+export const closeItemDialog = () => {
+    return {
+        type: actionTypes.CLOSE_ITEM_DIALOG
+    };
+}
+
+export const updateItemNameField = (name) => {
+    return {
+        type: actionTypes.UPDATE_ITEM_NAME_FIELD,
+        name: name
+    };
+}
+
+export const updateBarcodeField = (barcode) => {
+    return {
+        type: actionTypes.UPDATE_BARCODE_FIELD,
+        barcode: barcode
+    };
+}
+
+export const updateSellPriceField = (price) => {
+    return {
+        type: actionTypes.UPDATE_SELL_PRICE_FIELD,
+        price: price
+    };
+}
+
+export const updateQtyField = (qty) => {
+    return {
+        type: actionTypes.UPDATE_QTY_FIELD,
+        qty: qty
+    };
+}
+
+export const selectSupplier = (supplierId) => {
+    return {
+        type: actionTypes.SELECT_SUPPLIER,
+        supplierId: supplierId
+    };
+}
+
+export const selectBrand = (brandId) => {
+    return {
+        type: actionTypes.SELECT_BRAND,
+        brandId: brandId
+    };
+}
+
+export const toggleVeganFlag = () => {
+    return {
+        type: actionTypes.TOGGLE_VEGAN_FLAG
+    };
+}
+
+export const addItem = () => {
+    return {
+        type: actionTypes.ADD_ITEM
+    };
+}
+
+export const saveItem = () => {
+    return {
+        type: actionTypes.SAVE_ITEM
+    };
+}
+
 export const enableEditable = () => {
     return {
         type: actionTypes.ENABLE_EDITABLE
