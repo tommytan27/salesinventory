@@ -1,7 +1,7 @@
-import customerDialogs from './../reducers/dialogs/customerDialogs';
-import actionTypes from './../constants/actionTypes';
-import dialogModes from './../constants/dialogModes';
-import dialogTitles from './../constants/dialogTitles';
+import customerDialogs from './../../reducers/dialogs/customerDialogs';
+import actionTypes from './../../constants/actionTypes';
+import dialogModes from './../../constants/dialogModes';
+import dialogTitles from './../../constants/dialogTitles';
 
 const assertInitialDialogState = (state, action) => {
     expect(customerDialogs(state, action).dialogState.open).toBeFalsy();

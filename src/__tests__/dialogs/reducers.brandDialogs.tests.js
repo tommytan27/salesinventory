@@ -1,7 +1,7 @@
-import brandDialogs from './../reducers/dialogs/brandDialogs';
-import actionTypes from './../constants/actionTypes';
-import dialogModes from './../constants/dialogModes';
-import dialogTitles from './../constants/dialogTitles';
+import brandDialogs from './../../reducers/dialogs/brandDialogs';
+import actionTypes from './../../constants/actionTypes';
+import dialogModes from './../../constants/dialogModes';
+import dialogTitles from './../../constants/dialogTitles';
 
 const assertInitialDialogState = (state, action) => {
     expect(brandDialogs(state, action).dialogState.open).toBeFalsy();

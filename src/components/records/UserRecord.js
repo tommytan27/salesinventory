@@ -9,7 +9,7 @@ class UserRecord extends React.Component {
             <TableRow onClick={this.props.onClick}>
                 <TableColumn>{this.props.id}</TableColumn>
                 <TableColumn>{this.props.username}</TableColumn>
-                <TableColumn>{this.props.timeout}</TableColumn>
+                <TableColumn>{this.props.timeout} mins</TableColumn>
             </TableRow>
         );
     }
