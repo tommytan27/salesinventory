@@ -387,3 +387,30 @@ describe ('ItemRecords Actions', () => {
         expect(actions.changeTabItemRecord()).toEqual(expectedAction);
     });
 });
+
+describe ('SalesRecords Actions', () => {
+    it('should create an action to change tab to sales record', () => {
+        const expectedAction = {
+            type: actionTypes.CHANGE_TAB_SALES_RECORD
+        }
+        expect(actions.changeTabSalesRecord()).toEqual(expectedAction);
+    });
+});
+
+describe ('CreditRecords Actions', () => {
+    it('should create an action to change tab to sales record', () => {
+        const expectedAction = {
+            type: actionTypes.CHANGE_TAB_CREDIT_RECORD
+        }
+        expect(actions.changeTabCreditRecord()).toEqual(expectedAction);
+    });
+});
+
+describe ('StockRecords Actions', () => {
+    it('should create an action to change tab to sales record', () => {
+        const expectedAction = {
+            type: actionTypes.CHANGE_TAB_STOCK_RECORD
+        }
+        expect(actions.changeTabStockRecord()).toEqual(expectedAction);
+    });
+});

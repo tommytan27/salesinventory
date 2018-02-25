@@ -28,10 +28,12 @@ SalesRecord.propTypes = {
     id: PropTypes.string.isRequired,
     date: PropTypes.string.isRequired,
     customer: PropTypes.string.isRequired,
-    salesDetails: PropTypes.shape({
-        qty: PropTypes.number.isRequired,
-        price: PropTypes.number.isRequired
-    }).isRequired,
+    salesDetails: PropTypes.arrayOf(
+        PropTypes.shape({
+            qty: PropTypes.number.isRequired,
+            price: PropTypes.number.isRequired
+        }).isRequired
+    ).isRequired,
     onClick: PropTypes.func.isRequired
 };
 

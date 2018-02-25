@@ -290,3 +290,21 @@ export const changeTabItemRecord = () => {
         type: actionTypes.CHANGE_TAB_ITEM_RECORD
     };
 }
+
+export const changeTabSalesRecord = () => {
+    return {
+        type: actionTypes.CHANGE_TAB_SALES_RECORD
+    };
+}
+
+export const changeTabCreditRecord = () => {
+    return {
+        type: actionTypes.CHANGE_TAB_CREDIT_RECORD
+    };
+}
+
+export const changeTabStockRecord = () => {
+    return {
+        type: actionTypes.CHANGE_TAB_STOCK_RECORD
+    };
+}

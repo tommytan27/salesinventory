@@ -58,7 +58,7 @@ SalesRecordTable.propTypes = {
         PropTypes.shape({
             id: PropTypes.string.isRequired,
             date: PropTypes.string.isRequired,
-            customerId: PropTypes.string.isRequired,
+            customerId: PropTypes.number.isRequired,
             salesDetails: PropTypes.arrayOf(
                 PropTypes.shape({
                     barcode: PropTypes.string.isRequired,

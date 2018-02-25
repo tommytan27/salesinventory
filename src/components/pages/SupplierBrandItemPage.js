@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { TabsContainer, Tabs, Tab, Button } from 'react-md';
 import SystemSupplierRecordTable from './../../containers/systemRecordTables/SystemSupplierRecordTable';
 import SystemBrandRecordTable from './../../containers/systemRecordTables/SystemBrandRecordTable';
@@ -58,5 +59,15 @@ class SupplierBrandItemPage extends React.Component {
         );
     }
 }
+
+SupplierBrandItemPage.propTypes = {
+    activeTab: PropTypes.string.isRequired,
+    onSupplierTabClick: PropTypes.func.isRequired,
+    onBrandTabClick: PropTypes.func.isRequired,
+    onItemTabClick: PropTypes.func.isRequired,
+    onAddSupplierClick: PropTypes.func.isRequired,
+    onAddBrandClick: PropTypes.func.isRequired,
+    onAddItemClick: PropTypes.func.isRequired
+};
 
 export default SupplierBrandItemPage;

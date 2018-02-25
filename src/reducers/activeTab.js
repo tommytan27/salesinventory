@@ -9,6 +9,12 @@ const activeTab = (state = {}, action) => {
             return tabOptions.BRAND_RECORD;
         case actionTypes.CHANGE_TAB_ITEM_RECORD:
             return tabOptions.ITEM_RECORD;
+        case actionTypes.CHANGE_TAB_SALES_RECORD:
+            return tabOptions.SALES_RECORD;
+        case actionTypes.CHANGE_TAB_CREDIT_RECORD:
+            return tabOptions.CREDIT_RECORD;
+        case actionTypes.CHANGE_TAB_STOCK_RECORD:
+            return tabOptions.STOCK_RECORD;
         default:
             return state;
     }
