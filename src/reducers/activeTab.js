@@ -1,7 +1,7 @@
 import tabOptions from "../constants/tabOptions";
 import actionTypes from "../constants/actionTypes";
 
-const activeTab = (state = {}, action) => {
+const activeTab = (state = "", action) => {
     switch(action.type) {
         case actionTypes.CHANGE_TAB_SUPPLIER_RECORD:
             return tabOptions.SUPPLIER_RECORD;

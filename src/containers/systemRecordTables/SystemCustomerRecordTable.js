@@ -4,7 +4,7 @@ import { openAddCustomerDialog, openEditCustomerDialog } from '../../actions/ind
 
 const mapStateToProps = (state) => {
     return {
-        customers: state.customers
+        customers: state.customers.slice(1)
     };
 }
 

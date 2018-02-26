@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { changeTabBrandRecord, changeTabSupplierRecord, changeTabItemRecord, 
-    openAddBrandDialog, openAddItemDialog, openAddSupplierDialog, changeTabSalesRecord, changeTabCreditRecord, changeTabStockRecord } from './../../actions';
+    openAddBrandDialog, openAddItemDialog, openAddSupplierDialog, changeTabSalesRecord, changeTabCreditRecord, changeTabStockRecord, openSearchDialog } from './../../actions';
 import SalesCreditStockPage from "../../components/pages/SalesCreditsStockPage";
 
 const mapStateToProps = (state) => {
@@ -14,6 +14,7 @@ const mapDispatchToProps = (dispatch) => {
         onSalesTabClick: () => { dispatch(changeTabSalesRecord()) },
         onCreditTabClick: () => { dispatch(changeTabCreditRecord()) },
         onStockTabClick: () => { dispatch(changeTabStockRecord()) },
+        onSearchButtonClick: () => { dispatch(openSearchDialog()) }
         // onAddSupplierClick: () => { dispatch(openAddSupplierDialog()) },
         // onAddBrandClick: () => { dispatch(openAddBrandDialog()) },
         // onAddItemClick: () => { dispatch(openAddItemDialog()) }

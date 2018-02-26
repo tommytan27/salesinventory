@@ -40,7 +40,7 @@ class ItemDialog extends Dialog {
                     <Col sm={10}>
                         <Select name="SupplierSelect" value={item.supplierId}
                             disabled={!this.props.dialogState.editable}
-                            onChange={(e) => {this.props.onSupplierComboChanged(e.value)}}
+                            onChange={(e) => {if (e) this.props.onSupplierComboChanged(e.value)}}
                             options={this.props.suppliers.map((supplier) => {
                                 return {
                                     value: supplier.id,
@@ -54,7 +54,7 @@ class ItemDialog extends Dialog {
                     <Col sm={10}>
                         <Select name="BrandSelect" value={item.brandId}
                             disabled={!this.props.dialogState.editable}
-                            onChange={(e) => {this.props.onBrandComboChanged(e.value)}}
+                            onChange={(e) => {if (e) this.props.onBrandComboChanged(e.value)}}
                             options={this.props.brands.map((brand) => {
                                 return {
                                     value: brand.id,
@@ -168,9 +168,9 @@ ItemDialog.propTypes = {
     onQtyFieldChange: PropTypes.func.isRequired,
     onVeganFlagToggled: PropTypes.func.isRequired,
     onSupplierComboChanged: PropTypes.func.isRequired,
-    onBrandComboChanged: PropTypes.func.isRequired
-    // onAddButtonClick: PropTypes.func.isRequired,
-    // onSaveButtonClick: PropTypes.func.isRequired
+    onBrandComboChanged: PropTypes.func.isRequired,
+    onAddButtonClick: PropTypes.func.isRequired,
+    onSaveButtonClick: PropTypes.func.isRequired
 }
 
 export default ItemDialog;

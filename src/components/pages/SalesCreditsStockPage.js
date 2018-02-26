@@ -2,12 +2,7 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 import { TabsContainer, Tabs, Tab, Button } from 'react-md';
 import SystemSalesRecordTable from '../../containers/systemRecordTables/SystemSalesRecordTable';
-// import SystemSupplierRecordTable from './../../containers/systemRecordTables/SystemSupplierRecordTable';
-// import SystemBrandRecordTable from './../../containers/systemRecordTables/SystemBrandRecordTable';
-// import SystemItemRecordTable from './../../containers/systemRecordTables/SystemItemRecordTable';
-// import SystemSupplierDialog from '../../containers/systemDialogs/SystemSupplierDialog';
-// import SystemBrandDialog from '../../containers/systemDialogs/SystemBrandDialog';
-// import SystemItemDialog from '../../containers/systemDialogs/SystemItemDialog';
+import SystemSeachDialog from '../../containers/systemDialogs/SystemSearchDialog';
 import styles from '../../constants/styles';
 import tabOptions from '../../constants/tabOptions';
 
@@ -48,12 +43,10 @@ class SalesCreditStockPage extends React.Component {
                 </Tabs>
                 </TabsContainer>
               
-                {/* <SystemSupplierDialog /> 
-                <SystemBrandDialog />
-                <SystemItemDialog /> */}
+                <SystemSeachDialog />
                     
                 <Button floating primary style={styles.floatingButton.left}>navigate_before</Button>
-                <Button floating primary style={styles.floatingButton.right} onClick={this.handleSearchClick}>
+                <Button floating primary style={styles.floatingButton.right} onClick={this.props.onSearchButtonClick}>
                     search
                 </Button>
             </div>
@@ -66,6 +59,7 @@ SalesCreditStockPage.propTypes = {
     onSalesTabClick: PropTypes.func.isRequired,
     onCreditTabClick: PropTypes.func.isRequired,
     onStockTabClick: PropTypes.func.isRequired,
+    onSearchButtonClick: PropTypes.func.isRequired
     // onAddSupplierClick: PropTypes.func.isRequired,
     // onAddBrandClick: PropTypes.func.isRequired,
     // onAddItemClick: PropTypes.func.isRequired

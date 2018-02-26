@@ -414,3 +414,46 @@ describe ('StockRecords Actions', () => {
         expect(actions.changeTabStockRecord()).toEqual(expectedAction);
     });
 });
+
+describe ('SearchDialogs Actions', () => {
+    it ('should create an action to open search dialog', () => {
+        const expectedAction = {
+            type: actionTypes.OPEN_SEARCH_DIALOG
+        }
+        expect(actions.openSearchDialog()).toEqual(expectedAction);
+    });
+
+    it ('should create an action to update fromDate field', () => {
+        const expectedFromDate = '2018/02/26';
+        const expectedAction = {
+            type: actionTypes.UPDATE_FROM_DATE_FIELD,
+            fromDate: expectedFromDate
+        }
+        expect(actions.updateFromDateField(expectedFromDate)).toEqual(expectedAction);
+    });
+
+    it ('should create an action to update toDate field', () => {
+        const expectedToDate = '2018/02/26';
+        const expectedAction = {
+            type: actionTypes.UPDATE_FROM_DATE_FIELD,
+            toDate: expectedToDate
+        }
+        expect(actions.updateToDateField(expectedToDate)).toEqual(expectedAction);
+    });
+
+    it ('should create an action to update customer combo', () => {
+        const expectedCustomerId = 1;
+        const expectedAction = {
+            type: actionTypes.UPDATE_CUSTOMER_COMBO,
+            customerId: expectedCustomerId
+        }
+        expect(actions.updateCustomerCombo(expectedCustomerId)).toEqual(expectedAction);
+    });
+
+    it ('should create an action to close search dialog', () => {
+        const expectedAction = {
+            type: actionTypes.CLOSE_SEARCH_DIALOG
+        }
+        expect(actions.closeSearchDialog()).toEqual(expectedAction);
+    });
+});
