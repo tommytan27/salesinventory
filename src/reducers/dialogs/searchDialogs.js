@@ -15,12 +15,24 @@ const searchDialogs = (state = initialState, action) => {
             var today = new Date();
             return { ...state,
                 open: true,
-                fromDate: today.toLocaleDateString('ja-JP'),
-                toDate: today.toLocaleDateString('ja-JP'),
+                fromDate: today.toLocaleDateString("en-ZA"),
+                toDate: today.toLocaleDateString("en-ZA"),
                 customerId: -1
-            }
+            };
         case actionTypes.CLOSE_SEARCH_DIALOG:
             return initialState;
+        case actionTypes.UPDATE_CUSTOMER_COMBO:
+            return { ...state,
+                customerId: action.customerId
+            };
+        case actionTypes.UPDATE_FROM_DATE_FIELD:
+            return { ...state,
+                fromDate: action.fromDate
+            };
+        case actionTypes.UPDATE_TO_DATE_FIELD:
+            return { ...state,
+                toDate: action.toDate
+            };
         default:
             return state;
     }

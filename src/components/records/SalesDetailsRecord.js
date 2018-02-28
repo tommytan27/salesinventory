@@ -1,17 +1,16 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
-import { TableRow } from 'react-md';
-import TableColumn from 'react-md/lib/DataTables/TableColumn';
+import { TableRow, TableColumn } from 'react-md';
 
 class SalesDetailsRecord extends React.Component {
     render() {
         return (
-            <TableRow onClick={this.props.onClick}>
+            <TableRow>
                 <TableColumn>{this.props.barcode}</TableColumn>
                 <TableColumn>{this.props.itemName}</TableColumn>
                 <TableColumn>{this.props.qty}</TableColumn>
-                <TableColumn>{this.props.price}</TableColumn>
-                <TableColumn>{this.props.qty * this.props.price}</TableColumn>
+                <TableColumn>${this.props.price.toFixed(2)}</TableColumn>
+                <TableColumn>${(this.props.qty * this.props.price).toFixed(2)}</TableColumn>
             </TableRow>
         );
     }

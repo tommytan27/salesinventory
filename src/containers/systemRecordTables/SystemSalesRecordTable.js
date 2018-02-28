@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import SalesRecordTable from './../../components/recordTables/SalesRecordTable';
-// import { openEditBrandDialog } from './../../actions';
+import { openRecordsDetailsDialog } from './../../actions';
 
 const mapStateToProps = (state) => {
     return {
@@ -12,7 +12,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        // onBrandRecordClick: (brand) => { dispatch(openEditBrandDialog(brand)) }
+        onSalesRecordClick: (salesDetails) => { dispatch(openRecordsDetailsDialog(salesDetails)) }
     };
 }
 

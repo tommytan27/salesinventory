@@ -435,7 +435,7 @@ describe ('SearchDialogs Actions', () => {
     it ('should create an action to update toDate field', () => {
         const expectedToDate = '2018/02/26';
         const expectedAction = {
-            type: actionTypes.UPDATE_FROM_DATE_FIELD,
+            type: actionTypes.UPDATE_TO_DATE_FIELD,
             toDate: expectedToDate
         }
         expect(actions.updateToDateField(expectedToDate)).toEqual(expectedAction);
@@ -455,5 +455,24 @@ describe ('SearchDialogs Actions', () => {
             type: actionTypes.CLOSE_SEARCH_DIALOG
         }
         expect(actions.closeSearchDialog()).toEqual(expectedAction);
+    });
+
+    it ('should create an action to open records details dialog', () => {
+        const expetedRecordsDetails = [
+            {barcode: "1153135151", qty: 2},
+            {barcode: "3531312151", qty: 2}
+        ];
+        const expectedAction = {
+            type: actionTypes.OPEN_RECORDS_DETAILS_DIALOG,
+            recordsDetails: expetedRecordsDetails
+        }
+        expect(actions.openRecordsDetailsDialog(expetedRecordsDetails)).toEqual(expectedAction);
+    });
+
+    it ('should create an action to close records details dialog', () => {
+        const expectedAction = {
+            type: actionTypes.CLOSE_RECORDS_DETAILS_DIALOG
+        }
+        expect(actions.closeRecordsDetailsDialog()).toEqual(expectedAction);
     });
 });

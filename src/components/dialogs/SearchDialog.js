@@ -52,13 +52,15 @@ class SearchDialog extends React.Component {
                 <FormGroup>
                     <ControlLabel>From:</ControlLabel>
                     <DatePicker id="FromDate" disableOuterDates portal={true} lastChild={true}
+                        locales="en-ZA"
                         disableScrollLocking={true} renderNode={document.body}
                         value={this.props.searchDialogs.fromDate}
                         fullWidth={false} onChange={ (value) => {this.props.onFromDateFieldChanged(value)} }/>
                 </FormGroup>
                 <FormGroup>
-                    <ControlLabel>From:</ControlLabel>
+                    <ControlLabel>To:</ControlLabel>
                     <DatePicker id="ToDate" disableOuterDates portal={true} lastChild={true}
+                        locales="en-ZA"
                         disableScrollLocking={true} renderNode={document.body}
                         value={this.props.searchDialogs.toDate}
                         minDate={new Date(this.props.searchDialogs.fromDate)}

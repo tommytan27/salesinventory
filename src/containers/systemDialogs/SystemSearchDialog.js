@@ -17,7 +17,7 @@ const mapDispatchToProps = (dispatch) => {
         onCustomerComboChanged: (customerId) => { dispatch(updateCustomerCombo(customerId)) },
         onFromDateFieldChanged: (fromDate) => { dispatch(updateFromDateField(fromDate)) },
         onToDateFieldChanged: (toDate) => { dispatch(updateToDateField(toDate)) }
-        // onSearchButtonClick: () => { dispatch(saveBrand()) }
+        // onSearchButtonClick: () => { dispatch(searchRecords()) }
     };
 }
 

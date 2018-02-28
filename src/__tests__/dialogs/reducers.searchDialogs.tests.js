@@ -1,7 +1,5 @@
 import searchDialogs from './../../reducers/dialogs/searchDialogs';
 import actionTypes from './../../constants/actionTypes';
-import dialogModes from './../../constants/dialogModes';
-import dialogTitles from './../../constants/dialogTitles';
 
 const assertInitialState = (state, action) => {    
     expect(searchDialogs(state, action).open).toBeFalsy();
@@ -10,21 +8,7 @@ const assertInitialState = (state, action) => {
     expect(searchDialogs(state, action).customerId).toBeNull();
 }
 
-const dummyName = "name";
-
-const dummyBrand = {
-    id: 0,
-    name: dummyName,
-};
-
-// const assertOpenAddBrandDialog = (state) => {
-//     expect(state.dialogState.open).toBeTruthy();
-//     expect(state.dialogState.title).toEqual(dialogTitles.ADD_BRAND);
-//     expect(state.dialogState.mode).toEqual(dialogModes.ADD_MODE);
-//     expect(state.dialogState.editable).toBeTruthy();
-// }
-
-describe('searchDialogs', () => {
+describe('SearchDialogs', () => {
     it ('should return all null values at the initial state', () => {
         assertInitialState(undefined, {});
     });
@@ -39,8 +23,8 @@ describe('searchDialogs', () => {
         var returnValues = searchDialogs(undefined, {
             type: actionTypes.OPEN_SEARCH_DIALOG
         });
-        expect(returnValues.fromDate).toEqual(today.toLocaleDateString('ja-JP'));
-        expect(returnValues.toDate).toEqual(today.toLocaleDateString('ja-JP'));
+        expect(returnValues.fromDate).toEqual(today.toLocaleDateString("en-ZA"));
+        expect(returnValues.toDate).toEqual(today.toLocaleDateString("en-ZA"));
     });
     it ('should return the dialog with customer set to -1 when receiving OPEN_SEARCH_DIALOG action', () => {
         var today = new Date();
@@ -60,5 +44,26 @@ describe('searchDialogs', () => {
         }, {
             type: actionTypes.CLOSE_SEARCH_DIALOG
         })
+    });
+    it ('should return updated customerId when receiving UPDATE_CUSTOMER_COMBO action with valid customer Id', () => {
+        var returnValues = searchDialogs(undefined, {
+            type: actionTypes.UPDATE_CUSTOMER_COMBO,
+            customerId: 2
+        });
+        expect(returnValues.customerId).toEqual(2);
+    });
+    it ('should return updated fromDate when receiving UPDATE_FROM_DATE_FIELD action with valid fromDate', () => {
+        var returnValues = searchDialogs(undefined, {
+            type: actionTypes.UPDATE_FROM_DATE_FIELD,
+            fromDate: "2018/02/2018"
+        });
+        expect(returnValues.fromDate).toEqual("2018/02/2018");
+    });
+    it ('should return updated toDate when receiving UPDATE_TO_DATE_FIELD action with valid toDate', () => {
+        var returnValues = searchDialogs(undefined, {
+            type: actionTypes.UPDATE_TO_DATE_FIELD,
+            toDate: "2018/02/2018"
+        });
+        expect(returnValues.toDate).toEqual("2018/02/2018");
     });
 });

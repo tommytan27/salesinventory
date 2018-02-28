@@ -44,7 +44,7 @@ class SalesRecordTable extends React.Component {
                                         price: this.getItemPrice(saleDetailsRecord.barcode)
                                     }
                                 })}
-                                onClick={() => this.props.onSalesRecordClick(sale)} />
+                                onClick={() => this.props.onSalesRecordClick(sale.salesDetails)} />
                         ))}
                     </TableBody>
                 </DataTable>

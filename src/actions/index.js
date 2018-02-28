@@ -294,7 +294,7 @@ export const updateFromDateField = (fromDate) => {
 
 export const updateToDateField = (toDate) => {
     return {
-        type: actionTypes.UPDATE_FROM_DATE_FIELD,
+        type: actionTypes.UPDATE_TO_DATE_FIELD,
         toDate: toDate
     };
 }
@@ -304,6 +304,19 @@ export const updateCustomerCombo = (customerId) => {
         type: actionTypes.UPDATE_CUSTOMER_COMBO,
         customerId: customerId
     };
+}
+
+export const openRecordsDetailsDialog = (recordsDetails) => {
+    return {
+        type: actionTypes.OPEN_RECORDS_DETAILS_DIALOG,
+        recordsDetails: recordsDetails
+    }
+}
+
+export const closeRecordsDetailsDialog = () => {
+    return {
+        type: actionTypes.CLOSE_RECORDS_DETAILS_DIALOG
+    }
 }
 
 export const changeTabSupplierRecord = () => {
