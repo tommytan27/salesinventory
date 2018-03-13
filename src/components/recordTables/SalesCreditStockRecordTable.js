@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { DataTable, TableHeader, TableBody, TableColumn, TableRow, DialogContainer } from 'react-md';
 import { FormGroup, ControlLabel, FormControl, HelpBlock } from 'react-bootstrap';
-import SalesRecord from '../records/SalesRecord';
+import SalesCreditStockRecord from '../records/SalesCreditStockRecord';
 import styles from './../../constants/styles';
 
-class SalesRecordTable extends React.Component {
+class SalesCreditStockRecordTable extends React.Component {
     getCustomerName = (customerId) => {
         let foundCustomer = this.props.customers.find((customer) => {
             return customer.id === customerId;
@@ -35,16 +35,16 @@ class SalesRecordTable extends React.Component {
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {this.props.sales.map((sale) => (
-                            <SalesRecord key={sale.id} {...sale} 
-                                customer={this.getCustomerName(sale.customerId)}
-                                salesDetails={sale.salesDetails.map((saleDetailsRecord) => {
+                        {this.props.records.map((record) => (
+                            <SalesCreditStockRecord key={record.id} {...record} 
+                                customer={this.getCustomerName(record.customerId)}
+                                details={record.details.map((saleDetailsRecord) => {
                                     return {
                                         qty: saleDetailsRecord.qty,
                                         price: this.getItemPrice(saleDetailsRecord.barcode)
                                     }
                                 })}
-                                onClick={() => this.props.onSalesRecordClick(sale.salesDetails)} />
+                                onClick={() => this.props.onRecordClick(record.details)} />
                         ))}
                     </TableBody>
                 </DataTable>
@@ -53,13 +53,13 @@ class SalesRecordTable extends React.Component {
     }
 }
 
-SalesRecordTable.propTypes = {
-    sales: PropTypes.arrayOf(
+SalesCreditStockRecordTable.propTypes = {
+    records: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.string.isRequired,
             date: PropTypes.string.isRequired,
             customerId: PropTypes.number.isRequired,
-            salesDetails: PropTypes.arrayOf(
+            details: PropTypes.arrayOf(
                 PropTypes.shape({
                     barcode: PropTypes.string.isRequired,
                     qty: PropTypes.number.isRequired
@@ -87,7 +87,7 @@ SalesRecordTable.propTypes = {
             qty: PropTypes.number.isRequired
         }).isRequired
     ).isRequired,
-    onSalesRecordClick: PropTypes.func.isRequired
+    onRecordClick: PropTypes.func.isRequired
 };
 
-export default SalesRecordTable;
+export default SalesCreditStockRecordTable;

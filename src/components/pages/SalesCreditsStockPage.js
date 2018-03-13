@@ -2,6 +2,7 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 import { TabsContainer, Tabs, Tab, Button } from 'react-md';
 import SystemSalesRecordTable from '../../containers/systemRecordTables/SystemSalesRecordTable';
+import SystemCreditsRecordTable from '../../containers/systemRecordTables/SystemCreditsRecordTable';
 import SystemSeachDialog from '../../containers/systemDialogs/SystemSearchDialog';
 import SystemRecordsDetailsDialog from '../../containers/systemDialogs/SystemRecordsDetailsDialog';
 import styles from '../../constants/styles';
@@ -21,7 +22,7 @@ class SalesCreditStockPage extends React.Component {
                         <SystemSalesRecordTable />
                     </Tab>
                     <Tab label="Credit" onClick={this.props.onCreditTabClick}>
-                        {/* <SystemBrandRecordTable /> */}
+                        <SystemCreditsRecordTable />
                     </Tab>
                     <Tab label="Stock" onClick={this.props.onStockTabClick}>
                         {/* <SystemItemRecordTable /> */}

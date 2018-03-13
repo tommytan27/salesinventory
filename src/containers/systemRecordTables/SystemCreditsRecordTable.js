@@ -4,7 +4,7 @@ import { openRecordsDetailsDialog } from './../../actions';
 
 const mapStateToProps = (state) => {
     return {
-        records: state.sales,
+        records: state.credits,
         customers: state.customers,
         items: state.items
     };
@@ -16,8 +16,8 @@ const mapDispatchToProps = (dispatch) => {
     };
 }
 
-const SystemSalesRecordTable = connect(
+const SystemCreditsRecordTable = connect(
     mapStateToProps, mapDispatchToProps
 )(SalesCreditStockRecordTable);
 
-export default SystemSalesRecordTable;
+export default SystemCreditsRecordTable;

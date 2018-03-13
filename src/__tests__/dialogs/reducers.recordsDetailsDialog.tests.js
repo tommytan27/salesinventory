@@ -1,4 +1,4 @@
-import recordsDetailsDialog from './../../reducers/dialogs/recordsDetailsDialog';
+import recordsDetailsDialog from './../../reducers/dialogs/recordsDetailsDialogs';
 import actionTypes from './../../constants/actionTypes';
 import dialogModes from './../../constants/dialogModes';
 import dialogTitles from './../../constants/dialogTitles';
