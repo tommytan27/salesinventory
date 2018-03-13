@@ -35,16 +35,16 @@ class SalesCreditStockRecordTable extends React.Component {
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {this.props.records.map((sale) => (
-                            <SalesCreditStockRecord key={sale.id} {...sale} 
-                                customer={this.getCustomerName(sale.customerId)}
-                                details={sale.details.map((saleDetailsRecord) => {
+                        {this.props.records.map((record) => (
+                            <SalesCreditStockRecord key={record.id} {...record} 
+                                customer={this.getCustomerName(record.customerId)}
+                                details={record.details.map((saleDetailsRecord) => {
                                     return {
                                         qty: saleDetailsRecord.qty,
                                         price: this.getItemPrice(saleDetailsRecord.barcode)
                                     }
                                 })}
-                                onClick={() => this.props.onRecordClick(sale.details)} />
+                                onClick={() => this.props.onRecordClick(record.details)} />
                         ))}
                     </TableBody>
                 </DataTable>
