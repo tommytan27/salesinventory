@@ -5,7 +5,6 @@ import SalesCreditStockPage from "../../components/pages/SalesCreditsStockPage";
 
 const mapStateToProps = (state) => {
     return {
-        activeTab: state.activeTab
     }
 }
 
@@ -15,9 +14,6 @@ const mapDispatchToProps = (dispatch) => {
         onCreditTabClick: () => { dispatch(changeTabCreditRecord()) },
         onStockTabClick: () => { dispatch(changeTabStockRecord()) },
         onSearchButtonClick: () => { dispatch(openSearchDialog()) }
-        // onAddSupplierClick: () => { dispatch(openAddSupplierDialog()) },
-        // onAddBrandClick: () => { dispatch(openAddBrandDialog()) },
-        // onAddItemClick: () => { dispatch(openAddItemDialog()) }
     };
 }
 

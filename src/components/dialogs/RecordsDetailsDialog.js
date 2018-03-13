@@ -5,6 +5,7 @@ import TableFooter from 'react-md/lib/DataTables/TableFooter';
 import DetailsRecord from '../records/DetailsRecord';
 import dialogModes from '../../constants/dialogModes';
 import styles from './../../constants/styles';
+import tabOptions from '../../constants/tabOptions';
 
 class RecordsDetailsDialog extends React.Component { 
     getItemName = (itemBarcode) => {
@@ -21,12 +22,42 @@ class RecordsDetailsDialog extends React.Component {
         return foundItem.price;
     }
 
+    getItemCostPrice = (itemBarcode) => {
+        let foundItem = this.props.items.find((item) => {
+            return item.barcode === itemBarcode;
+        });
+        return foundItem.costPrice;
+    }
+
     getTotal = (recordsDetails) => {
         let total = 0;
         recordsDetails.forEach((record) => {
-            total += record.qty * this.getItemPrice(record.barcode)
+            if (this.props.activeTab === tabOptions.SALES_RECORD ||
+                this.props.activeTab === tabOptions.CREDIT_RECORD) {
+                total += record.qty * this.getItemPrice(record.barcode)
+            }
+            else {
+                total += record.qty * this.getItemCostPrice(record.barcode)
+            }
         });
         return total;
+    }
+
+    renderDetailsRecord = (recordDetails) => {
+        if (this.props.activeTab === tabOptions.SALES_RECORD ||
+            this.props.activeTab === tabOptions.CREDIT_RECORD) {
+            return (
+                <DetailsRecord key={recordDetails.barcode} {...recordDetails}
+                    itemName={this.getItemName(recordDetails.barcode)}
+                    price={this.getItemPrice(recordDetails.barcode)} />
+            );
+        };
+        return (
+            <DetailsRecord key={recordDetails.barcode} {...recordDetails}
+                itemName={this.getItemName(recordDetails.barcode)}
+                price={this.getItemPrice(recordDetails.barcode)}
+                costPrice={this.getItemCostPrice(recordDetails.barcode)} />
+        );
     }
 
     render() { 
@@ -47,14 +78,16 @@ class RecordsDetailsDialog extends React.Component {
                             <TableColumn>Name</TableColumn>      
                             <TableColumn>Qty</TableColumn>   
                             <TableColumn>Unit Price</TableColumn>
+                            {(this.props.activeTab === tabOptions.SALES_RECORD ||
+                            this.props.activeTab === tabOptions.CREDIT_RECORD)
+                            ? (<div></div>)
+                            : (<TableColumn>Cost Price</TableColumn>)}
                             <TableColumn>Sub Total</TableColumn>                     
                         </TableRow>
                     </TableHeader>
                     <TableBody>
                         {this.props.recordsDetailsDialogs.recordsDetails.map((recordDetails) => (
-                            <DetailsRecord key={recordDetails.barcode} {...recordDetails}
-                                itemName={this.getItemName(recordDetails.barcode)}
-                                price={this.getItemPrice(recordDetails.barcode)} />
+                            this.renderDetailsRecord(recordDetails)
                         ))}
                     </TableBody>
                     <TableFooter>
@@ -63,6 +96,10 @@ class RecordsDetailsDialog extends React.Component {
                             <TableColumn></TableColumn>      
                             <TableColumn></TableColumn>   
                             <TableColumn></TableColumn>
+                            {(this.props.activeTab === tabOptions.SALES_RECORD ||
+                            this.props.activeTab === tabOptions.CREDIT_RECORD)
+                            ? (<div></div>)
+                            : (<TableColumn></TableColumn>)}
                             <TableColumn>
                                 ${this.getTotal(this.props.recordsDetailsDialogs.recordsDetails).toFixed(2)}
                             </TableColumn>                     
@@ -75,6 +112,7 @@ class RecordsDetailsDialog extends React.Component {
 }
 
 RecordsDetailsDialog.propTypes = {
+    activeTab: PropTypes.string.isRequired,
     recordsDetailsDialogs: PropTypes.shape({
         open: PropTypes.bool.isRequired,
         title: PropTypes.string,
@@ -93,6 +131,7 @@ RecordsDetailsDialog.propTypes = {
             supplierId: PropTypes.number.isRequired,
             brandId: PropTypes.number.isRequired,
             price: PropTypes.number.isRequired,
+            costPrice: PropTypes.number.isRequired,
             vegan: PropTypes.bool.isRequired,
             qty: PropTypes.number.isRequired
         }).isRequired

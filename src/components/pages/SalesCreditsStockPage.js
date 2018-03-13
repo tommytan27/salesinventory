@@ -3,10 +3,10 @@ import { PropTypes } from 'prop-types';
 import { TabsContainer, Tabs, Tab, Button } from 'react-md';
 import SystemSalesRecordTable from '../../containers/systemRecordTables/SystemSalesRecordTable';
 import SystemCreditsRecordTable from '../../containers/systemRecordTables/SystemCreditsRecordTable';
+import SystemStocksRecordTable from '../../containers/systemRecordTables/SystemStocksRecordTable';
 import SystemSeachDialog from '../../containers/systemDialogs/SystemSearchDialog';
 import SystemRecordsDetailsDialog from '../../containers/systemDialogs/SystemRecordsDetailsDialog';
 import styles from '../../constants/styles';
-import tabOptions from '../../constants/tabOptions';
 
 class SalesCreditStockPage extends React.Component {
     constructor(props) {
@@ -25,7 +25,7 @@ class SalesCreditStockPage extends React.Component {
                         <SystemCreditsRecordTable />
                     </Tab>
                     <Tab label="Stock" onClick={this.props.onStockTabClick}>
-                        {/* <SystemItemRecordTable /> */}
+                        <SystemStocksRecordTable />
                     </Tab>
                 </Tabs>
                 </TabsContainer>
@@ -43,14 +43,10 @@ class SalesCreditStockPage extends React.Component {
 }
 
 SalesCreditStockPage.propTypes = {
-    activeTab: PropTypes.string.isRequired,
     onSalesTabClick: PropTypes.func.isRequired,
     onCreditTabClick: PropTypes.func.isRequired,
     onStockTabClick: PropTypes.func.isRequired,
     onSearchButtonClick: PropTypes.func.isRequired
-    // onAddSupplierClick: PropTypes.func.isRequired,
-    // onAddBrandClick: PropTypes.func.isRequired,
-    // onAddItemClick: PropTypes.func.isRequired
 };
 
 export default SalesCreditStockPage;
