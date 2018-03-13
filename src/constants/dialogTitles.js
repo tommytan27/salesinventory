@@ -8,7 +8,8 @@ const dialogTitles = {
     ADD_BRAND: "Add Brand",
     EDIT_BRAND: "Edit Brand",
     ADD_ITEM: "Add Item",
-    EDIT_ITEM: "Edit Item"
+    EDIT_ITEM: "Edit Item",
+    SALES_DETAILS: "Sales Details"
 }
 
 export default dialogTitles;

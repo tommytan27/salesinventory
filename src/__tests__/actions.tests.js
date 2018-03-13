@@ -387,3 +387,92 @@ describe ('ItemRecords Actions', () => {
         expect(actions.changeTabItemRecord()).toEqual(expectedAction);
     });
 });
+
+describe ('SalesRecords Actions', () => {
+    it('should create an action to change tab to sales record', () => {
+        const expectedAction = {
+            type: actionTypes.CHANGE_TAB_SALES_RECORD
+        }
+        expect(actions.changeTabSalesRecord()).toEqual(expectedAction);
+    });
+});
+
+describe ('CreditRecords Actions', () => {
+    it('should create an action to change tab to sales record', () => {
+        const expectedAction = {
+            type: actionTypes.CHANGE_TAB_CREDIT_RECORD
+        }
+        expect(actions.changeTabCreditRecord()).toEqual(expectedAction);
+    });
+});
+
+describe ('StockRecords Actions', () => {
+    it('should create an action to change tab to sales record', () => {
+        const expectedAction = {
+            type: actionTypes.CHANGE_TAB_STOCK_RECORD
+        }
+        expect(actions.changeTabStockRecord()).toEqual(expectedAction);
+    });
+});
+
+describe ('SearchDialogs Actions', () => {
+    it ('should create an action to open search dialog', () => {
+        const expectedAction = {
+            type: actionTypes.OPEN_SEARCH_DIALOG
+        }
+        expect(actions.openSearchDialog()).toEqual(expectedAction);
+    });
+
+    it ('should create an action to update fromDate field', () => {
+        const expectedFromDate = '2018/02/26';
+        const expectedAction = {
+            type: actionTypes.UPDATE_FROM_DATE_FIELD,
+            fromDate: expectedFromDate
+        }
+        expect(actions.updateFromDateField(expectedFromDate)).toEqual(expectedAction);
+    });
+
+    it ('should create an action to update toDate field', () => {
+        const expectedToDate = '2018/02/26';
+        const expectedAction = {
+            type: actionTypes.UPDATE_TO_DATE_FIELD,
+            toDate: expectedToDate
+        }
+        expect(actions.updateToDateField(expectedToDate)).toEqual(expectedAction);
+    });
+
+    it ('should create an action to update customer combo', () => {
+        const expectedCustomerId = 1;
+        const expectedAction = {
+            type: actionTypes.UPDATE_CUSTOMER_COMBO,
+            customerId: expectedCustomerId
+        }
+        expect(actions.updateCustomerCombo(expectedCustomerId)).toEqual(expectedAction);
+    });
+
+    it ('should create an action to close search dialog', () => {
+        const expectedAction = {
+            type: actionTypes.CLOSE_SEARCH_DIALOG
+        }
+        expect(actions.closeSearchDialog()).toEqual(expectedAction);
+    });
+
+    it ('should create an action to open records details dialog', () => {
+        const expetedRecordsDetails = [
+            {barcode: "1153135151", qty: 2},
+            {barcode: "3531312151", qty: 2}
+        ];
+        const expectedAction = {
+            type: actionTypes.OPEN_RECORDS_DETAILS_DIALOG,
+            recordsDetails: expetedRecordsDetails
+        }
+        expect(actions.openRecordsDetailsDialog(expetedRecordsDetails)).toEqual(expectedAction);
+    });
+
+    it ('should create an action to close records details dialog', () => {
+        const expectedAction = {
+            type: actionTypes.CLOSE_RECORDS_DETAILS_DIALOG
+        }
+        expect(actions.closeRecordsDetailsDialog()).toEqual(expectedAction);
+    });
+});

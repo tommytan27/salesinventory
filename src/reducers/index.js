@@ -9,6 +9,9 @@ import brands from './records/brands';
 import brandDialogs from './dialogs/brandDialogs';
 import items from './records/items';
 import itemDialogs from './dialogs/itemDialogs';
+import sales from './records/sales';
+import searchDialogs from './dialogs/searchDialogs';
+import recordsDetailsDialogs from './dialogs/recordsDetailsDialogs';
 import activeTab from './activeTab';
 
 const salesInventoryApp = combineReducers({
@@ -22,6 +25,9 @@ const salesInventoryApp = combineReducers({
     brandDialogs,
     items,
     itemDialogs,
+    sales,
+    searchDialogs,
+    recordsDetailsDialogs,
     activeTab
 });
 

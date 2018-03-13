@@ -273,6 +273,52 @@ export const updateContactField = (contact) => {
     };
 }
 
+export const openSearchDialog = () => {
+    return {
+        type: actionTypes.OPEN_SEARCH_DIALOG
+    };
+}
+
+export const closeSearchDialog = () => {
+    return {
+        type: actionTypes.CLOSE_SEARCH_DIALOG
+    };
+}
+
+export const updateFromDateField = (fromDate) => {
+    return {
+        type: actionTypes.UPDATE_FROM_DATE_FIELD,
+        fromDate: fromDate
+    };
+}
+
+export const updateToDateField = (toDate) => {
+    return {
+        type: actionTypes.UPDATE_TO_DATE_FIELD,
+        toDate: toDate
+    };
+}
+
+export const updateCustomerCombo = (customerId) => {
+    return {
+        type: actionTypes.UPDATE_CUSTOMER_COMBO,
+        customerId: customerId
+    };
+}
+
+export const openRecordsDetailsDialog = (recordsDetails) => {
+    return {
+        type: actionTypes.OPEN_RECORDS_DETAILS_DIALOG,
+        recordsDetails: recordsDetails
+    }
+}
+
+export const closeRecordsDetailsDialog = () => {
+    return {
+        type: actionTypes.CLOSE_RECORDS_DETAILS_DIALOG
+    }
+}
+
 export const changeTabSupplierRecord = () => {
     return {
         type: actionTypes.CHANGE_TAB_SUPPLIER_RECORD
@@ -288,5 +334,23 @@ export const changeTabBrandRecord = () => {
 export const changeTabItemRecord = () => {
     return {
         type: actionTypes.CHANGE_TAB_ITEM_RECORD
+    };
+}
+
+export const changeTabSalesRecord = () => {
+    return {
+        type: actionTypes.CHANGE_TAB_SALES_RECORD
+    };
+}
+
+export const changeTabCreditRecord = () => {
+    return {
+        type: actionTypes.CHANGE_TAB_CREDIT_RECORD
+    };
+}
+
+export const changeTabStockRecord = () => {
+    return {
+        type: actionTypes.CHANGE_TAB_STOCK_RECORD
     };
 }

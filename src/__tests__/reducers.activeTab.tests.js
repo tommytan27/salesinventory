@@ -18,4 +18,19 @@ describe('ActiveTab', () => {
             type: actionTypes.CHANGE_TAB_ITEM_RECORD
         })).toBe(tabOptions.ITEM_RECORD);
     });
+    it('should return ITEM_RECORD when receiving CHANGE_TAB_SALES_RECORD action', () => {
+        expect(activeTab(undefined, {
+            type: actionTypes.CHANGE_TAB_SALES_RECORD
+        })).toBe(tabOptions.SALES_RECORD);
+    });
+    it('should return ITEM_RECORD when receiving CHANGE_TAB_CREDIT_RECORD action', () => {
+        expect(activeTab(undefined, {
+            type: actionTypes.CHANGE_TAB_CREDIT_RECORD
+        })).toBe(tabOptions.CREDIT_RECORD);
+    });
+    it('should return ITEM_RECORD when receiving CHANGE_TAB_STOCK_RECORD action', () => {
+        expect(activeTab(undefined, {
+            type: actionTypes.CHANGE_TAB_STOCK_RECORD
+        })).toBe(tabOptions.STOCK_RECORD);
+    });
 });

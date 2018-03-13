@@ -10,7 +10,7 @@ class ItemRecord extends React.Component {
             <TableRow onClick={this.props.onClick}>
                 <TableColumn>{this.props.barcode}</TableColumn>
                 <TableColumn>{this.props.name}</TableColumn>
-                <TableColumn>{this.props.price}</TableColumn>
+                <TableColumn>${this.props.price.toFixed(2)}</TableColumn>
                 <TableColumn>{this.props.qty}</TableColumn>
                 <TableColumn>
                     {this.props.vegan ? 
