@@ -2,7 +2,7 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 import { TableRow, TableColumn } from 'react-md';
 
-class SalesDetailsRecord extends React.Component {
+class DetailsRecord extends React.Component {
     render() {
         return (
             <TableRow>
@@ -16,11 +16,11 @@ class SalesDetailsRecord extends React.Component {
     }
 }
 
-SalesDetailsRecord.propTypes = {
+DetailsRecord.propTypes = {
     barcode: PropTypes.string.isRequired,
     itemName: PropTypes.string.isRequired,
     qty: PropTypes.number.isRequired,
     price: PropTypes.number.isRequired
 };
 
-export default SalesDetailsRecord;
+export default DetailsRecord;

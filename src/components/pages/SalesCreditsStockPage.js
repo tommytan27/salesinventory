@@ -10,21 +10,6 @@ import tabOptions from '../../constants/tabOptions';
 class SalesCreditStockPage extends React.Component {
     constructor(props) {
         super(props);
-        this.handleSearchClick = this.handleSearchClick.bind(this);
-    }
-
-    handleSearchClick = () => {
-        // switch (this.props.activeTab) {
-        //     case tabOptions.SUPPLIER_RECORD:
-        //         this.props.onAddSupplierClick();
-        //         break;
-        //     case tabOptions.BRAND_RECORD:
-        //         this.props.onAddBrandClick();
-        //         break;
-        //     case tabOptions.ITEM_RECORD:
-        //         this.props.onAddItemClick();
-        //         break;
-        // }
     }
 
     render() {

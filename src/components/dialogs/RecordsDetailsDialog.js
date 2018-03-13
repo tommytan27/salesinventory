@@ -2,7 +2,7 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 import { Button, DialogContainer, DataTable, TableHeader, TableBody, TableColumn, TableRow } from 'react-md';
 import TableFooter from 'react-md/lib/DataTables/TableFooter';
-import SalesDetailsRecord from '../records/SalesDetailsRecord';
+import DetailsRecord from '../records/DetailsRecord';
 import dialogModes from '../../constants/dialogModes';
 import styles from './../../constants/styles';
 
@@ -52,7 +52,7 @@ class RecordsDetailsDialog extends React.Component {
                     </TableHeader>
                     <TableBody>
                         {this.props.recordsDetailsDialogs.recordsDetails.map((recordDetails) => (
-                            <SalesDetailsRecord key={recordDetails.barcode} {...recordDetails}
+                            <DetailsRecord key={recordDetails.barcode} {...recordDetails}
                                 itemName={this.getItemName(recordDetails.barcode)}
                                 price={this.getItemPrice(recordDetails.barcode)} />
                         ))}
