@@ -7,10 +7,13 @@ import styles from './../../constants/styles';
 
 class SalesCreditStockRecordTable extends React.Component {
     getCustomerName = (customerId) => {
-        let foundCustomer = this.props.customers.find((customer) => {
-            return customer.id === customerId;
-        });
-        return (foundCustomer.firstName + " " + foundCustomer.lastName);
+        if (this.props.customers && this.props.customers.length > 0) {
+            let foundCustomer = this.props.customers.find((customer) => {
+                return customer.id === customerId;
+            });
+            return (foundCustomer.firstName + " " + foundCustomer.lastName);
+        }
+        return null;
     }
 
     getItemPrice = (itemBarcode) => {
@@ -23,14 +26,16 @@ class SalesCreditStockRecordTable extends React.Component {
     render() {
         return (
             <div style={styles.page}>
-                <h2>Sales</h2>
+                <h2>{this.props.title}</h2>
 
                 <DataTable plain>
                     <TableHeader>
                         <TableRow>
                             <TableColumn>ID</TableColumn>
                             <TableColumn>Date</TableColumn>      
-                            <TableColumn>Customer</TableColumn>   
+                            {this.props.customers && this.props.customers.length > 0
+                            ? (<TableColumn>Customer</TableColumn>)
+                            : (<div></div>)}
                             <TableColumn>Total</TableColumn>                     
                         </TableRow>
                     </TableHeader>
@@ -54,6 +59,7 @@ class SalesCreditStockRecordTable extends React.Component {
 }
 
 SalesCreditStockRecordTable.propTypes = {
+    title: PropTypes.string.isRequired,
     records: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.string.isRequired,
@@ -69,13 +75,13 @@ SalesCreditStockRecordTable.propTypes = {
     ).isRequired,
     customers: PropTypes.arrayOf(
         PropTypes.shape({
-            id: PropTypes.number.isRequired,
-            firstName: PropTypes.string.isRequired,
-            lastName: PropTypes.string.isRequired,
-            contact: PropTypes.string.isRequired,
-            credit: PropTypes.number.isRequired
-        }).isRequired
-    ).isRequired,
+            id: PropTypes.number,
+            firstName: PropTypes.string,
+            lastName: PropTypes.string,
+            contact: PropTypes.string,
+            credit: PropTypes.number
+        })
+    ),
     items: PropTypes.arrayOf(
         PropTypes.shape({
             barcode: PropTypes.string.isRequired,
@@ -83,6 +89,7 @@ SalesCreditStockRecordTable.propTypes = {
             supplierId: PropTypes.number.isRequired,
             brandId: PropTypes.number.isRequired,
             price: PropTypes.number.isRequired,
+            costPrice: PropTypes.number.isRequired,
             vegan: PropTypes.bool.isRequired,
             qty: PropTypes.number.isRequired
         }).isRequired

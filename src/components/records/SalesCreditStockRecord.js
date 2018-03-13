@@ -17,7 +17,9 @@ class SalesCreditStockRecord extends React.Component {
             <TableRow onClick={this.props.onClick}>
                 <TableColumn>{this.props.id}</TableColumn>
                 <TableColumn>{this.props.date}</TableColumn>
-                <TableColumn>{this.props.customer}</TableColumn>
+                {this.props.customer 
+                    ? (<TableColumn>{this.props.customer}</TableColumn>)
+                    : (<div></div>)}
                 <TableColumn>${this.getTotalPrice(this.props.details)}</TableColumn>
             </TableRow>
         );

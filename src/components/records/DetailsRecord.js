@@ -10,7 +10,12 @@ class DetailsRecord extends React.Component {
                 <TableColumn>{this.props.itemName}</TableColumn>
                 <TableColumn>{this.props.qty}</TableColumn>
                 <TableColumn>${this.props.price.toFixed(2)}</TableColumn>
-                <TableColumn>${(this.props.qty * this.props.price).toFixed(2)}</TableColumn>
+                {this.props.costPrice
+                ? (<TableColumn>${this.props.costPrice.toFixed(2)}</TableColumn>)
+                : (<div></div>)}
+                {this.props.costPrice
+                ? (<TableColumn>${(this.props.qty * this.props.costPrice).toFixed(2)}</TableColumn>)
+                : (<TableColumn>${(this.props.qty * this.props.price).toFixed(2)}</TableColumn>)}
             </TableRow>
         );
     }
@@ -20,7 +25,8 @@ DetailsRecord.propTypes = {
     barcode: PropTypes.string.isRequired,
     itemName: PropTypes.string.isRequired,
     qty: PropTypes.number.isRequired,
-    price: PropTypes.number.isRequired
+    price: PropTypes.number.isRequired,
+    costPrice: PropTypes.number.isRequired
 };
 
 export default DetailsRecord;

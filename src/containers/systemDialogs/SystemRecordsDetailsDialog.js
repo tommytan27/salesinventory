@@ -4,6 +4,7 @@ import { closeRecordsDetailsDialog } from "../../actions";
 
 const mapStateToProps = (state) => {
     return {
+        activeTab: state.activeTab,
         recordsDetailsDialogs: state.recordsDetailsDialogs,
         items: state.items
     }

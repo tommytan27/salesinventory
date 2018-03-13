@@ -5,9 +5,8 @@ import recordTableTitles from './../../constants/recordTableTitles';
 
 const mapStateToProps = (state) => {
     return {
-        title: recordTableTitles.CREDITS,
-        records: state.credits,
-        customers: state.customers,
+        title: recordTableTitles.STOCKS,
+        records: state.stocks,
         items: state.items
     };
 }
@@ -18,8 +17,8 @@ const mapDispatchToProps = (dispatch) => {
     };
 }
 
-const SystemCreditsRecordTable = connect(
+const SystemSalesRecordTable = connect(
     mapStateToProps, mapDispatchToProps
 )(SalesCreditStockRecordTable);
 
-export default SystemCreditsRecordTable;
+export default SystemSalesRecordTable;
