@@ -4,9 +4,11 @@ import SystemUserRecordTable from './containers/systemRecordTables/SystemUserRec
 import SystemCustomerRecordTable from './containers/systemRecordTables/SystemCustomerRecordTable';
 import SystemSupplierBrandItemPage from './containers/systemPages/SystemSupplierBrandItemPage';
 import SystemSalesCreditStockPage from './containers/systemPages/SystemSalesCreditStockPage';
+import SystemStockInventoryPage from './containers/systemPages/SystemStockInventoryPage';
 
 const App = () => (
-  <SystemSalesCreditStockPage />
+  <SystemStockInventoryPage />
+  // <SystemSalesCreditStockPage />
   // <SystemSupplierBrandItemPage />
   // <SystemUserRecordTable />
   // <SystemCustomerRecordTable />
