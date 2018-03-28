@@ -22,13 +22,6 @@ class RecordsDetailsDialog extends React.Component {
         return foundItem.price;
     }
 
-    getItemCostPrice = (itemBarcode) => {
-        let foundItem = this.props.items.find((item) => {
-            return item.barcode === itemBarcode;
-        });
-        return foundItem.costPrice;
-    }
-
     getTotal = (recordsDetails) => {
         let total = 0;
         recordsDetails.forEach((record) => {
@@ -37,7 +30,7 @@ class RecordsDetailsDialog extends React.Component {
                 total += record.qty * this.getItemPrice(record.barcode)
             }
             else {
-                total += record.qty * this.getItemCostPrice(record.barcode)
+                total += record.qty * record.costPrice
             }
         });
         return total;
@@ -55,8 +48,7 @@ class RecordsDetailsDialog extends React.Component {
         return (
             <DetailsRecord key={recordDetails.barcode} {...recordDetails}
                 itemName={this.getItemName(recordDetails.barcode)}
-                price={this.getItemPrice(recordDetails.barcode)}
-                costPrice={this.getItemCostPrice(recordDetails.barcode)} />
+                price={recordDetails.sellPrice} />
         );
     }
 

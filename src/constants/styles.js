@@ -118,7 +118,6 @@ const styles = {
             textAlign: 'left',
             width: '70%',
             paddingLeft: '1%',
-            paddingTop: '1%',
             fontSize: '1.5em'
         },
         right: {
@@ -138,7 +137,8 @@ const styles = {
         }
     },
     removeRecord: {
-        color: 'red'
+        color: 'red',
+        paddingTop: '3.5%'
     },
     recordsBox: {
         overflowY: 'scroll',
