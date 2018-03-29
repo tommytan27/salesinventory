@@ -14,6 +14,8 @@ import credits from './records/credits';
 import stocks from './records/stocks';
 import searchDialogs from './dialogs/searchDialogs';
 import recordsDetailsDialogs from './dialogs/recordsDetailsDialogs';
+import stockingRecords from './records/stockingRecords';
+import itemSelectionForm from './forms/itemSelectionForm';
 import activeTab from './activeTab';
 
 const salesInventoryApp = combineReducers({
@@ -30,8 +32,10 @@ const salesInventoryApp = combineReducers({
     sales,
     credits,
     stocks,
+    stockingRecords,
     searchDialogs,
     recordsDetailsDialogs,
+    itemSelectionForm,
     activeTab
 });
 

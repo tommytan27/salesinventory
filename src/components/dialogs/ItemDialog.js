@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, DialogContainer, Switch } from 'react-md';
-import { Form, Col, FormGroup, ControlLabel, FormControl, HelpBlock } from 'react-bootstrap';
+import { Form, Col, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 import Select from 'react-select';
 import dialogModes from '../../constants/dialogModes';
 import styles from './../../constants/styles';

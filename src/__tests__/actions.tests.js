@@ -341,6 +341,15 @@ describe ('ItemRecords Actions', () => {
         expect(actions.updateSellPriceField(dummySellPrice)).toEqual(expectedAction);
     });
 
+    it('should create an action to update item cost price', () => {
+        const dummyCostPrice = 4.60;
+        const expectedAction = {
+            type: actionTypes.UPDATE_COST_PRICE_FIELD,
+            price: dummyCostPrice
+        }
+        expect(actions.updateCostPriceField(dummyCostPrice)).toEqual(expectedAction);
+    });
+
     it('should create an action to toggle item vegan', () => {
         const expectedAction = {
             type: actionTypes.TOGGLE_VEGAN_FLAG
@@ -364,6 +373,30 @@ describe ('ItemRecords Actions', () => {
             brandId: dummyBrandId
         }
         expect(actions.selectBrand(dummyBrandId)).toEqual(expectedAction);
+    });
+
+    it('should create an action to select item', () => {
+        const dummyBarcode = "151531553";
+        const dummyItems = [
+            {
+                barcode: "1153135151", name: "Salted Chicken", supplierId: 1, 
+                brandId: 1, price: 9.00, costPrice: 8.50, vegan: true, qty: 2
+            },
+            {
+                barcode: "1531831812", name: "Soy Nugget", supplierId: 2, 
+                brandId: 2, price: 8.50, costPrice: 7.50, vegan: true, qty: 5
+            },
+            {
+                barcode: "3531312151", name: "ItemX", supplierId: 3, 
+                brandId: 3, price: 13.00, costPrice: 11.50, vegan: false, qty: 8
+            }
+        ];
+        const expectedAction = {
+            type: actionTypes.SELECT_ITEM,
+            barcode: dummyBarcode,
+            items: dummyItems
+        }
+        expect(actions.selectItem(dummyBarcode, dummyItems)).toEqual(expectedAction);
     });
 
     it('should create an action to add item', () => {
@@ -474,5 +507,58 @@ describe ('SearchDialogs Actions', () => {
             type: actionTypes.CLOSE_RECORDS_DETAILS_DIALOG
         }
         expect(actions.closeRecordsDetailsDialog()).toEqual(expectedAction);
+    });
+});
+
+describe ('StockingRecords Actions', () => {
+    it ('should create an action to remove stocking record from the list', () => {
+        let expectedRecordId = 1;
+        const expectedAction = {
+            type: actionTypes.REMOVE_STOCKING_RECORD_FROM_LIST,
+            recordId: expectedRecordId
+        }
+        expect(actions.removeStockingRecordFromList(expectedRecordId)).toEqual(expectedAction);
+    });
+    it ('should create an action to add stocking record to the list', () => {
+        let expectedItem = {
+            barcode: "123456789",
+            qty: 4,
+            sellPrice: 10.50,
+            costPRice: 8.75
+        };
+        const expectedAction = {
+            type: actionTypes.ADD_STOCKING_RECORD_TO_LIST,
+            item: expectedItem
+        }
+        expect(actions.addStockingRecordToList(expectedItem)).toEqual(expectedAction);
+    });
+    it ('should create an action to initiate barcode scanning', () => {
+        const expectedAction = {
+            type: actionTypes.INITIATE_BARCODE_SCANNING
+        }
+        expect(actions.initiateBarcodeScanning()).toEqual(expectedAction);
+    });
+    it ('should create an action to select item and add to list', () => {
+        const dummyBarcode = "151531553";
+        const dummyItems = [
+            {
+                barcode: "1153135151", name: "Salted Chicken", supplierId: 1, 
+                brandId: 1, price: 9.00, costPrice: 8.50, vegan: true, qty: 2
+            },
+            {
+                barcode: "1531831812", name: "Soy Nugget", supplierId: 2, 
+                brandId: 2, price: 8.50, costPrice: 7.50, vegan: true, qty: 5
+            },
+            {
+                barcode: "3531312151", name: "ItemX", supplierId: 3, 
+                brandId: 3, price: 13.00, costPrice: 11.50, vegan: false, qty: 8
+            }
+        ];
+        const expectedAction = {
+            type: actionTypes.SELECT_ITEM_AND_ADD,
+            barcode: dummyBarcode,
+            items: dummyItems
+        }
+        expect(actions.selectItemAndAdd(dummyBarcode, dummyItems)).toEqual(expectedAction);
     });
 });

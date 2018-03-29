@@ -221,6 +221,13 @@ export const updateSellPriceField = (price) => {
     };
 }
 
+export const updateCostPriceField = (price) => {
+    return {
+        type: actionTypes.UPDATE_COST_PRICE_FIELD,
+        price: price
+    };
+}
+
 export const updateQtyField = (qty) => {
     return {
         type: actionTypes.UPDATE_QTY_FIELD,
@@ -239,6 +246,22 @@ export const selectBrand = (brandId) => {
     return {
         type: actionTypes.SELECT_BRAND,
         brandId: brandId
+    };
+}
+
+export const selectItem = (barcode, items) => {
+    return {
+        type: actionTypes.SELECT_ITEM,
+        barcode: barcode,
+        items: items
+    };
+}
+
+export const selectItemAndAdd = (barcode, items) => {
+    return {
+        type: actionTypes.SELECT_ITEM_AND_ADD,
+        barcode: barcode,
+        items: items
     };
 }
 
@@ -353,4 +376,24 @@ export const changeTabStockRecord = () => {
     return {
         type: actionTypes.CHANGE_TAB_STOCK_RECORD
     };
+}
+
+export const removeStockingRecordFromList = (recordId) => {
+    return {
+        type: actionTypes.REMOVE_STOCKING_RECORD_FROM_LIST,
+        recordId: recordId
+    }
+}
+
+export const addStockingRecordToList = (item) => {
+    return {
+        type: actionTypes.ADD_STOCKING_RECORD_TO_LIST,
+        item: item
+    }
+}
+
+export const initiateBarcodeScanning = () => {
+    return {
+        type: actionTypes.INITIATE_BARCODE_SCANNING
+    }
 }
