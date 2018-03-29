@@ -23,6 +23,10 @@ const dummySellPrice = 5.50;
 const dummyCostPrice = 4.50;
 const dummyQty = 3;
 
+const dummyItem = {
+    barcode: "3531312151", qty: {value: 5}, sellPrice: {value: 14.00}, costPrice: {value: 12.00}
+}
+
 const dummyItems = [
     {
         barcode: "1153135151", name: "Salted Chicken", supplierId: 1, 
@@ -82,6 +86,8 @@ describe('ItemSelectionForm Store', () => {
         expect(returnValue.selectedItem.sellPrice.state).toEqual("success");
         expect(returnValue.selectedItem.costPrice.value).toEqual(7.50);
         expect(returnValue.selectedItem.costPrice.state).toEqual("success");
+        expect(returnValue.selectedItem.qty.value).toEqual(1);
+        expect(returnValue.selectedItem.qty.state).toEqual("success");
     });
     it('should return the null other fields when receiving SELECT_ITEM action with invalid barcode', () => {
         const returnValue = itemSelectionForm(undefined, {
@@ -97,6 +103,24 @@ describe('ItemSelectionForm Store', () => {
         expect(returnValue.selectedItem.sellPrice.state).toBeNull();
         expect(returnValue.selectedItem.costPrice.value).toBeNull();
         expect(returnValue.selectedItem.costPrice.state).toBeNull();
+        expect(returnValue.selectedItem.qty.value).toBeNull();
+        expect(returnValue.selectedItem.qty.state).toBeNull();
+    });    
+    it('should return the autoAdd false when receiving SELECT_ITEM action', () => {
+        const returnValue = itemSelectionForm(undefined, {
+            type: actionTypes.SELECT_ITEM,
+            barcode: dummyBarcode,
+            items: dummyItems
+        });
+        expect(returnValue.autoAdd).toBeFalsy();
+    });
+    it('should return the autoAdd true when receiving SELECT_ITEM_AND_ADD action', () => {
+        const returnValue = itemSelectionForm(undefined, {
+            type: actionTypes.SELECT_ITEM_AND_ADD,
+            barcode: dummyBarcode,
+            items: dummyItems
+        });
+        expect(returnValue.autoAdd).toBeTruthy();
     });
     it('should return the modified price field with success state when receiving UPDATE_SELL_PRICE_FIELD action', () => {
         const returnValue = itemSelectionForm(undefined, {
@@ -255,10 +279,34 @@ describe('ItemSelectionForm Store', () => {
         expect(returnValue.barcodeField).toEqual(dummyBarcode);
     });
     it('should return the empty name field with null state when receiving UPDATE_BARCODE_FIELD action with empty firstName', () => {
-        const returnValue = itemSelectionForm(undefined, {
+        const returnValue = itemSelectionForm({
+            barcodeField: "123456789"
+        }, {
             type: actionTypes.UPDATE_BARCODE_FIELD,
             barcode: ""
         });
         expect(returnValue.barcodeField).toEqual("");
+    });
+    it('should reset to initial state when receiving ', () => {
+        const returnValue = itemSelectionForm({
+            selectedItem: {
+                costPrice: {
+                    value: "15",
+                    state: "success"
+                }
+            }
+        }, {
+            type: actionTypes.ADD_STOCKING_RECORD_TO_LIST,
+            item: dummyItem
+        });
+        assertInitialState(returnValue);
+    });
+    it('should return null barcode field when receiving INITIATE_BARCODE_SCANNING', () => {
+        const returnValue = itemSelectionForm({
+            barcodeField: "123456789"
+        }, {
+            type: actionTypes.INITIATE_BARCODE_SCANNING,
+        });
+        expect(returnValue.barcodeField).toBeNull();
     });
 });

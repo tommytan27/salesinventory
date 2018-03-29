@@ -257,6 +257,14 @@ export const selectItem = (barcode, items) => {
     };
 }
 
+export const selectItemAndAdd = (barcode, items) => {
+    return {
+        type: actionTypes.SELECT_ITEM_AND_ADD,
+        barcode: barcode,
+        items: items
+    };
+}
+
 export const toggleVeganFlag = () => {
     return {
         type: actionTypes.TOGGLE_VEGAN_FLAG
@@ -381,5 +389,11 @@ export const addStockingRecordToList = (item) => {
     return {
         type: actionTypes.ADD_STOCKING_RECORD_TO_LIST,
         item: item
+    }
+}
+
+export const initiateBarcodeScanning = () => {
+    return {
+        type: actionTypes.INITIATE_BARCODE_SCANNING
     }
 }

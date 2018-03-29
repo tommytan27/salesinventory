@@ -1,4 +1,5 @@
 import React from 'react';
+import { PropTypes } from 'prop-types';
 import { Image, Form, Col, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 import { Paper, Button } from 'react-md';
 import Select from 'react-select';
@@ -7,6 +8,22 @@ import styles from '../../constants/styles';
 const enterKey = 13;
 
 class StockInventoryForm extends React.Component {
+    constructor(props) {
+        super(props);
+        this.handleBarcodeButton = this.handleBarcodeButton.bind(this);
+    }
+
+    componentDidUpdate(){
+        if (this.props.itemSelectionForm.autoAdd) {
+            this.props.onAddToListClick(this.props.itemSelectionForm.selectedItem);
+        }
+    }
+
+    handleBarcodeButton = () => {
+        this.barcodeField.focus();
+        this.props.onBarcodeButtonClick();
+    }
+
     render() {
         let selectedItem = this.props.itemSelectionForm.selectedItem;
         return (
@@ -18,6 +35,7 @@ class StockInventoryForm extends React.Component {
                     <Col componentClass={ControlLabel} sm={2}>Barcode:</Col>
                     <Col sm={8}>
                     <FormControl type="text" placeholder="Barcode #"
+                        inputRef={(barcodeFld) => { this.barcodeField = barcodeFld; }} 
                         disabled={!this.props.itemSelectionForm.barcodeEditable}
                         value={this.props.itemSelectionForm.barcodeField ? 
                             this.props.itemSelectionForm.barcodeField : ""}
@@ -30,7 +48,17 @@ class StockInventoryForm extends React.Component {
                         }} />
                     </Col>
                     <Col sm={2} style={styles.barcodeButton}>
-                        <Button icon>select_all</Button>
+                        <Button icon onClick={this.handleBarcodeButton}>
+                            select_all
+                        </Button>
+                        <Button icon onClick={() => {
+                            this.props.onItemComboChanged(
+                                this.props.itemSelectionForm.barcodeField,
+                                this.props.allItems
+                            )
+                        }}>
+                            search
+                        </Button>
                     </Col>
                 </FormGroup>
                 <FormGroup>
@@ -124,5 +152,75 @@ class StockInventoryForm extends React.Component {
         );
     }
 }
+
+StockInventoryForm.propTypes = {
+    suppliers: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.number.isRequired,
+            name: PropTypes.string.isRequired,
+            contact: PropTypes.string.isRequired
+        }).isRequired
+    ).isRequired,
+    brands: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.number.isRequired,
+            name: PropTypes.string.isRequired
+        }).isRequired
+    ).isRequired,
+    allItems: PropTypes.arrayOf(
+        PropTypes.shape({
+            barcode: PropTypes.string.isRequired,
+            name: PropTypes.string.isRequired,
+            supplierId: PropTypes.number.isRequired,
+            brandId: PropTypes.number.isRequired,
+            price: PropTypes.number.isRequired,
+            vegan: PropTypes.bool.isRequired,
+            qty: PropTypes.number.isRequired
+        }).isRequired
+    ).isRequired,
+    items: PropTypes.arrayOf(
+        PropTypes.shape({
+            barcode: PropTypes.string.isRequired,
+            name: PropTypes.string.isRequired,
+            supplierId: PropTypes.number.isRequired,
+            brandId: PropTypes.number.isRequired,
+            price: PropTypes.number.isRequired,
+            vegan: PropTypes.bool.isRequired,
+            qty: PropTypes.number.isRequired
+        }).isRequired
+    ),
+    itemSelectionForm: PropTypes.shape({
+        barcodeEditable: PropTypes.bool.isRequired,
+        barcodeField: PropTypes.string,
+        addableItem: PropTypes.bool,
+        selectedItem: PropTypes.shape({
+            supplierId: PropTypes.number.isRequired,
+            brandId: PropTypes.number.isRequired,
+            barcode: PropTypes.string,
+            sellPrice: PropTypes.shape({
+                value: PropTypes.string,
+                state: PropTypes.string
+            }).isRequired,
+            costPrice: PropTypes.shape({
+                value: PropTypes.string,
+                state: PropTypes.string
+            }).isRequired,
+            qty: PropTypes.shape({
+                value: PropTypes.number,
+                state: PropTypes.string
+            }).isRequired
+        }).isRequired
+    }).isRequired,
+    onSupplierComboChanged: PropTypes.func.isRequired,
+    onBrandComboChanged: PropTypes.func.isRequired,
+    onItemComboChanged: PropTypes.func.isRequired,
+    onSellPriceFieldChange: PropTypes.func.isRequired,
+    onCostPriceFieldChange: PropTypes.func.isRequired,
+    onQtyFieldChange: PropTypes.func.isRequired,
+    onBarcodeFieldChange: PropTypes.func.isRequired,
+    onBarcodeFieldEnterKey: PropTypes.func.isRequired,
+    onAddToListClick: PropTypes.func.isRequired,
+    onBarcodeButtonClick: PropTypes.func.isRequired
+};
 
 export default StockInventoryForm;

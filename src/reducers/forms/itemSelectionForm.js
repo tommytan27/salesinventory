@@ -21,7 +21,8 @@ const initialState = {
             value: null,
             state: null
         }
-    }
+    },
+    autoAdd: false
 };
 
 const getAddableItem = (state) => {
@@ -49,6 +50,10 @@ const getItem = (barcode, items) => {
     }
 }
 
+const getAutoAdd = (barcode, actionType) => {
+    return (barcode && actionType === actionTypes.SELECT_ITEM_AND_ADD);
+}
+
 const itemSelectionFor = (state = initialState, action) => {
     var temp;
     switch(action.type) {
@@ -62,21 +67,27 @@ const itemSelectionFor = (state = initialState, action) => {
                 ...state.selectedItem, brandId: action.brandId
             }};
             return {...temp, addableItem: getAddableItem(temp)};
+        case actionTypes.SELECT_ITEM_AND_ADD:
         case actionTypes.SELECT_ITEM:
             let matchingItem = getItem(action.barcode, action.items);
-            temp = {...state, barcodeField: matchingItem.barcode, 
+            temp = {...state, barcodeField: matchingItem.barcode,
+                autoAdd: getAutoAdd(matchingItem.barcode, action.type), 
                 selectedItem: {
                     ...state.selectedItem,
                     supplierId: matchingItem.supplierId,
                     brandId: matchingItem.brandId, 
                     barcode: matchingItem.barcode,
                     sellPrice: {
-                        value: matchingItem.price,
+                        value: matchingItem.price ? matchingItem.price.toString() : null,
                         state: matchingItem.price ? "success" : null
                     },
                     costPrice: {
-                        value: matchingItem.costPrice,
+                        value: matchingItem.costPrice ? matchingItem.costPrice.toString() : null,
                         state: matchingItem.costPrice ? "success" : null
+                    },
+                    qty:{
+                        value: matchingItem.barcode ? 1 : null,
+                        state: matchingItem.barcode ? "success" : null
                     }
                 }};
             return {...temp, addableItem: getAddableItem(temp)};
@@ -106,6 +117,10 @@ const itemSelectionFor = (state = initialState, action) => {
                 }
             }};
             return {...temp, addableItem: getAddableItem(temp)};
+        case actionTypes.ADD_STOCKING_RECORD_TO_LIST:
+            return initialState;
+        case actionTypes.INITIATE_BARCODE_SCANNING:
+            return {...state, barcodeField: null}
         default:
             return state;
     }

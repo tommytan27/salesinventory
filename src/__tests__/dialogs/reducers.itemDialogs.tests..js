@@ -226,7 +226,11 @@ describe('itemDialogs', () => {
             .barcode.state).toEqual("success");
     });
     it('should return the empty barcode field with null state when receiving UPDATE_BARCODE_FIELD action with empty firstName', () => {
-        const returnValue = itemDialogs(undefined, {
+        const returnValue = itemDialogs({
+            itemDialogs: {
+                barcode: "123456789"
+            }
+        }, {
             type: actionTypes.UPDATE_BARCODE_FIELD,
             barcode: ""
         });
