@@ -1,10 +1,11 @@
 import React from 'react';
+import { PropTypes } from 'prop-types';
 import { Button, FontIcon, Divider } from 'react-md';
 import Select from 'react-select';
 import StockingRecord from '../records/StockingRecord';
 import styles from '../../constants/styles';
 
-class StockInventoryPage extends React.Component {
+class StockingRecordsList extends React.Component {
     getItem = (barcode) => {
         if (this.props.items && this.props.items.length > 0) {
             let foundItem = this.props.items.find((item) => {
@@ -46,4 +47,28 @@ class StockInventoryPage extends React.Component {
     }
 }
 
-export default StockInventoryPage;
+StockingRecordsList.propTypes = {
+    items: PropTypes.arrayOf(
+        PropTypes.shape({
+            barcode: PropTypes.string.isRequired,
+            name: PropTypes.string.isRequired,
+            supplierId: PropTypes.number.isRequired,
+            brandId: PropTypes.number.isRequired,
+            price: PropTypes.number.isRequired,
+            vegan: PropTypes.bool.isRequired,
+            qty: PropTypes.number.isRequired
+        }).isRequired
+    ).isRequired,
+    stockingRecords: PropTypes.arrayOf(
+        PropTypes.shape({
+            id: PropTypes.number.isRequired,
+            barcode: PropTypes.string.isRequired,
+            sellPrice: PropTypes.number.isRequired,
+            costPrice: PropTypes.number.isRequired,
+            qty: PropTypes.number.isRequired
+        }).isRequired
+    ).isRequired,
+    onRemoveClick: PropTypes.func.isRequired
+};
+
+export default StockingRecordsList;

@@ -6,18 +6,19 @@ import styles from '../../constants/styles';
 
 class StockInventoryForm extends React.Component {
     render() {
+        let selectedItem = this.props.itemSelectionForm.selectedItem;
         return (
             <div style={styles.page.left}>
                 <Image src="logo.png" style={styles.logo} />
                 <Paper key="stockInventoryPaper" zDepth={3} style={styles.paperLeftPart}>
                 <Form horizontal>
-                <FormGroup validationState="success">
+                <FormGroup>
                     <Col componentClass={ControlLabel} sm={2}>Barcode:</Col>
                     <Col sm={8}>
                     <FormControl type="text" placeholder="Barcode #"
+                        disabled={!this.props.itemSelectionForm.barcodeEditable}
                         // value={item.barcode.value ? item.barcode.value : ""}
                         />
-                    <FormControl.Feedback />
                     </Col>
                     <Col sm={2} style={styles.barcodeButton}>
                         <Button icon>select_all</Button>
@@ -26,7 +27,8 @@ class StockInventoryForm extends React.Component {
                 <FormGroup>
                     <Col componentClass={ControlLabel} sm={2}>Supplier:</Col>
                     <Col sm={10}>
-                        <Select name="SupplierSelect" value={1}
+                        <Select name="SupplierSelect" 
+                            value={selectedItem.supplierId}
                             onChange={(e) => {if (e) this.props.onSupplierComboChanged(e.value)}}
                             options={this.props.suppliers.map((supplier) => {
                                 return {
@@ -39,7 +41,8 @@ class StockInventoryForm extends React.Component {
                 <FormGroup>
                     <Col componentClass={ControlLabel} sm={2}>Brand:</Col>
                     <Col sm={10}>
-                        <Select name="BrandSelect" value={1}
+                        <Select name="BrandSelect" 
+                            value={selectedItem.brandId}
                             onChange={(e) => {if (e) this.props.onBrandComboChanged(e.value)}}
                             options={this.props.brands.map((brand) => {
                                 return {
@@ -52,7 +55,8 @@ class StockInventoryForm extends React.Component {
                 <FormGroup>
                     <Col componentClass={ControlLabel} sm={2}>Item:</Col>
                     <Col sm={10}>
-                        <Select name="ItemSelect" value={"1153135151"}
+                        <Select name="ItemSelect" 
+                            value={selectedItem.barcode}
                             onChange={(e) => {if (e) this.props.onItemComboChanged(e.value)}}
                             options={this.props.items.map((item) => {
                                 return {
@@ -62,36 +66,38 @@ class StockInventoryForm extends React.Component {
                             })} />
                     </Col>
                 </FormGroup>
-                <FormGroup validationState="success">
+                <FormGroup validationState={selectedItem.sellPrice.state}>
                     <Col componentClass={ControlLabel} sm={2}>Sell Price:</Col>
                     <Col sm={3}>
                     <FormControl type="text" placeholder="0.00"
-                        // value={item.price.value ? item.price.value : ""}
+                        value={selectedItem.sellPrice.value ? selectedItem.price.value : ""}
                         onChange={ (e) => {this.props.onSellPriceFieldChange(e.target.value)} } />
                     <FormControl.Feedback />
                     </Col>
                 </FormGroup>
-                <FormGroup validationState="success">
+                <FormGroup validationState={selectedItem.costPrice.state}>
                     <Col componentClass={ControlLabel} sm={2}>Cost Price:</Col>
                     <Col sm={3}>
                     <FormControl type="text" placeholder="0.00"
-                        // value={item.price.value ? item.price.value : ""}
+                        value={selectedItem.costPrice.value ? selectedItem.price.value : ""}
                         onChange={ (e) => {this.props.onCostPriceFieldChange(e.target.value)} } />
                     <FormControl.Feedback />
                     </Col>
                 </FormGroup>
-                <FormGroup validationState="success">
+                <FormGroup validationState={selectedItem.qty.state}>
                     <Col componentClass={ControlLabel} sm={2}>Qty:</Col>
                     <Col sm={2}>
                     <FormControl type="text" placeholder="0"
-                        // value={item.qty.value ? item.qty.value : ""}
+                        value={selectedItem.qty.value ? selectedItem.qty.value : ""}
                         onChange={ (e) => {this.props.onQtyFieldChange(e.target.value)} } />
                     <FormControl.Feedback />
                     </Col>
                 </FormGroup>
                 <FormGroup>
                     <Col componentClass={ControlLabel} sm={2}>Sub Total:</Col>
-                    <Col style={styles.valueLabel} sm={9}>$0.00</Col>
+                    <Col style={styles.valueLabel} sm={9}>
+                        ${(selectedItem.qty.value * selectedItem.costPrice.value).toFixed(2)}
+                    </Col>
                     <Col sm={1}><Button floating primary>shopping_basket</Button></Col>
                 </FormGroup>
                 </Form>

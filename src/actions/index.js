@@ -354,3 +354,10 @@ export const changeTabStockRecord = () => {
         type: actionTypes.CHANGE_TAB_STOCK_RECORD
     };
 }
+
+export const removeStockingRecordFromList = (recordId) => {
+    return {
+        type: actionTypes.REMOVE_STOCKING_RECORD_FROM_LIST,
+        recordId: recordId
+    }
+}

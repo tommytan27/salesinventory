@@ -1,11 +1,20 @@
 import { connect } from "react-redux";
 import StockInventoryForm from "../../components/forms/StockInventoryForm";
 
+const getFilteredItems = (state) => {
+    let supplierId = state.itemSelectionForm.selectedItem.supplierId;
+    let brandId = state.itemSelectionForm.selectedItem.brandId;
+    return state.items.filter((item) => {
+        return item.supplierId === supplierId && item.brandId === brandId;
+    })
+}
+
 const mapStateToProps = (state) => {
     return {
         suppliers: state.suppliers,
         brands: state.brands,
-        items: state.items
+        items: getFilteredItems(state),
+        itemSelectionForm: state.itemSelectionForm
     }
 }
 

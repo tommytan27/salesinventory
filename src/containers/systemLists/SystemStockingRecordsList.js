@@ -1,4 +1,5 @@
 import { connect } from "react-redux";
+import { removeStockingRecordFromList } from '../../actions';
 import StockingRecordsList from "../../components/lists/StockingRecordsList";
 
 const mapStateToProps = (state) => {
@@ -10,6 +11,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        onRemoveClick: (recordId) => { dispatch(removeStockingRecordFromList(recordId)); }
     };
 }
 

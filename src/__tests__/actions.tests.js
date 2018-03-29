@@ -476,3 +476,14 @@ describe ('SearchDialogs Actions', () => {
         expect(actions.closeRecordsDetailsDialog()).toEqual(expectedAction);
     });
 });
+
+describe ('StockingRecords Actions', () => {
+    it ('should create an action to remove stocking record from the list', () => {
+        let expectedRecordId = 1;
+        const expectedAction = {
+            type: actionTypes.REMOVE_STOCKING_RECORD_FROM_LIST,
+            recordId: expectedRecordId
+        }
+        expect(actions.removeStockingRecordFromList(expectedRecordId)).toEqual(expectedAction);
+    });
+});
