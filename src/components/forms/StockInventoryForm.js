@@ -1,7 +1,7 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 import { Image, Form, Col, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
-import { Paper, Button } from 'react-md';
+import { Paper, Button, DialogContainer } from 'react-md';
 import Select from 'react-select';
 import styles from '../../constants/styles';
 
@@ -25,6 +25,11 @@ class StockInventoryForm extends React.Component {
     }
 
     render() {
+        let actions = [
+            <Button flat primary iconChildren="keyboard_arrow_left" swapTheming id="backButton">
+                BACK
+            </Button>
+        ];
         let selectedItem = this.props.itemSelectionForm.selectedItem;
         return (
             <div style={styles.page.left}>
@@ -148,6 +153,13 @@ class StockInventoryForm extends React.Component {
                     style={styles.floatingButton.left}>
                     BACK
                 </Button>
+
+                <DialogContainer id="ErrorDialog" title="Error"
+                    visible={this.props.suppliers.length === 0 || this.props.brands.length === 0}
+                    actions={actions} modal={false} initialFocus="#backButton"
+                    onHide={this.props.onDialogClose}>
+                    <p>No available supplier and/or brand to be selected</p>
+                </DialogContainer>
             </div>
         );
     }
