@@ -215,7 +215,7 @@ describe('itemDialogs', () => {
         expect(returnValue.itemInDialog
             .name.state).toBeNull();
     });
-    it('should return the modified name field with success state when receiving UPDATE_BARCODE_FIELD action', () => {
+    it('should return the modified barcode field with success state when receiving UPDATE_BARCODE_FIELD action', () => {
         const returnValue = itemDialogs(undefined, {
             type: actionTypes.UPDATE_BARCODE_FIELD,
             barcode: dummyBarcode
@@ -225,7 +225,7 @@ describe('itemDialogs', () => {
         expect(returnValue.itemInDialog
             .barcode.state).toEqual("success");
     });
-    it('should return the empty name field with null state when receiving UPDATE_BARCODE_FIELD action with empty firstName', () => {
+    it('should return the empty barcode field with null state when receiving UPDATE_BARCODE_FIELD action with empty firstName', () => {
         const returnValue = itemDialogs(undefined, {
             type: actionTypes.UPDATE_BARCODE_FIELD,
             barcode: ""
@@ -338,7 +338,7 @@ describe('itemDialogs', () => {
         expect(returnValue.itemInDialog
             .vegan).toEqual(!dummyVegan);
     });
-    it('should return the modified supplier field with success state when receiving SELECT_SUPPLIER action', () => {
+    it('should return the modified supplier field when receiving SELECT_SUPPLIER action', () => {
         const returnValue = itemDialogs(undefined, {
             type: actionTypes.SELECT_SUPPLIER,
             supplierId: dummySupplierId
@@ -346,7 +346,7 @@ describe('itemDialogs', () => {
         expect(returnValue.itemInDialog
             .supplierId).toEqual(dummySupplierId);
     });
-    it('should return the modified brand field with success state when receiving SELECT_BRAND action', () => {
+    it('should return the modified brand field when receiving SELECT_BRAND action', () => {
         const returnValue = itemDialogs(undefined, {
             type: actionTypes.SELECT_BRAND,
             brandId: dummyBrandId

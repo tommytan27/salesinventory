@@ -4,6 +4,8 @@ import { Paper, Button } from 'react-md';
 import Select from 'react-select';
 import styles from '../../constants/styles';
 
+const enterKey = 13;
+
 class StockInventoryForm extends React.Component {
     render() {
         let selectedItem = this.props.itemSelectionForm.selectedItem;
@@ -17,8 +19,15 @@ class StockInventoryForm extends React.Component {
                     <Col sm={8}>
                     <FormControl type="text" placeholder="Barcode #"
                         disabled={!this.props.itemSelectionForm.barcodeEditable}
-                        // value={item.barcode.value ? item.barcode.value : ""}
-                        />
+                        value={this.props.itemSelectionForm.barcodeField ? 
+                            this.props.itemSelectionForm.barcodeField : ""}
+                        onChange={ (e) => {this.props.onBarcodeFieldChange(e.target.value)} }
+                        onKeyUp={ (e) => {
+                            var key = e.which || e.keyCode;
+                            if (key === enterKey) {
+                                this.props.onBarcodeFieldEnterKey(e.target.value, this.props.allItems);
+                            }
+                        }} />
                     </Col>
                     <Col sm={2} style={styles.barcodeButton}>
                         <Button icon>select_all</Button>
@@ -57,7 +66,7 @@ class StockInventoryForm extends React.Component {
                     <Col sm={10}>
                         <Select name="ItemSelect" 
                             value={selectedItem.barcode}
-                            onChange={(e) => {if (e) this.props.onItemComboChanged(e.value)}}
+                            onChange={(e) => {if (e) this.props.onItemComboChanged(e.value, this.props.items)}}
                             options={this.props.items.map((item) => {
                                 return {
                                     value: item.barcode,
@@ -70,7 +79,7 @@ class StockInventoryForm extends React.Component {
                     <Col componentClass={ControlLabel} sm={2}>Sell Price:</Col>
                     <Col sm={3}>
                     <FormControl type="text" placeholder="0.00"
-                        value={selectedItem.sellPrice.value ? selectedItem.price.value : ""}
+                        value={selectedItem.sellPrice.value ? selectedItem.sellPrice.value : ""}
                         onChange={ (e) => {this.props.onSellPriceFieldChange(e.target.value)} } />
                     <FormControl.Feedback />
                     </Col>
@@ -79,7 +88,7 @@ class StockInventoryForm extends React.Component {
                     <Col componentClass={ControlLabel} sm={2}>Cost Price:</Col>
                     <Col sm={3}>
                     <FormControl type="text" placeholder="0.00"
-                        value={selectedItem.costPrice.value ? selectedItem.price.value : ""}
+                        value={selectedItem.costPrice.value ? selectedItem.costPrice.value : ""}
                         onChange={ (e) => {this.props.onCostPriceFieldChange(e.target.value)} } />
                     <FormControl.Feedback />
                     </Col>
@@ -98,7 +107,11 @@ class StockInventoryForm extends React.Component {
                     <Col style={styles.valueLabel} sm={9}>
                         ${(selectedItem.qty.value * selectedItem.costPrice.value).toFixed(2)}
                     </Col>
-                    <Col sm={1}><Button floating primary>shopping_basket</Button></Col>
+                    <Col sm={1}><Button floating primary
+                        disabled={!this.props.itemSelectionForm.addableItem}
+                        onClick={ () => {this.props.onAddToListClick(selectedItem)} }>
+                        shopping_basket
+                    </Button></Col>
                 </FormGroup>
                 </Form>
                 </Paper>

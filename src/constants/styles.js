@@ -95,6 +95,9 @@ const styles = {
         fontSize: '0.8em',
         color: 'black'
     },
+    veganIcon: {
+        color: 'green'
+    },
     itemCounter: {
         padding: '1%',
         paddingLeft: '2%',

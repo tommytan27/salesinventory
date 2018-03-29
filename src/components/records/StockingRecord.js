@@ -1,6 +1,6 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
-import { Button } from 'react-md';
+import { Button, FontIcon } from 'react-md';
 import styles from '../../constants/styles';
 
 class StockingRecord extends React.Component {
@@ -11,7 +11,10 @@ class StockingRecord extends React.Component {
                     <Button icon style={styles.removeRecord} onClick={this.props.onRemoveClick}>
                         remove_circle
                     </Button>
-                    {this.props.selectedItem.name}
+                    {this.props.selectedItem.name}&nbsp;
+                    {this.props.selectedItem.vegan ? 
+                        <FontIcon style={styles.veganIcon}>check_circle</FontIcon> :
+                        <div></div>}
                 </div>                        
                 <div style={styles.record.right}>${this.props.total.toFixed(2)}</div>
                 <br />
@@ -25,7 +28,8 @@ class StockingRecord extends React.Component {
 
 StockingRecord.propTypes = {
     selectedItem: PropTypes.shape({
-        name: PropTypes.string.isRequired
+        name: PropTypes.string.isRequired,
+        vegan: PropTypes.bool.isRequired
     }).isRequired,
     costPrice: PropTypes.number.isRequired,
     qty: PropTypes.number.isRequired,
