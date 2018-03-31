@@ -8,7 +8,7 @@ import styles from './../../constants/styles';
 class SupplierRecordTable extends React.Component {
     render() {
         return (
-            <div style={styles.page}>
+            <div style={styles.pageTable}>
                 <h2>Suppliers</h2>
 
                 <DataTable plain>

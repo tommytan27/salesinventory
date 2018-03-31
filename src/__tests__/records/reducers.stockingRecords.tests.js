@@ -11,8 +11,8 @@ const fakeItem = {
 }
 
 describe('StockingRecord Store', () => {
-    it ('should return initial state of 3 stockingRecords', () => {
-        expect(stockingRecords(undefined, {})).toHaveLength(3);
+    it ('should return initial state of 0 stockingRecords', () => {
+        expect(stockingRecords(undefined, {})).toHaveLength(0);
     });
     it ('should return updated stocking records list when receiving action REMOVE_STOCKING_RECORD_FROM_LIST', () => {
         const returnValue = stockingRecords(fakeStockingRecords, {

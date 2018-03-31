@@ -70,7 +70,7 @@ describe('ItemSelectionForm Store', () => {
             items: dummyItems
         });
         expect(returnValue.selectedItem
-            .barcode).toEqual(dummyBarcode);
+            .barcode).toEqual(dummyBarcode.toString());
     });
     it('should return the modified other fields when receiving SELECT_ITEM action', () => {
         const returnValue = itemSelectionForm(undefined, {
@@ -79,12 +79,12 @@ describe('ItemSelectionForm Store', () => {
             items: dummyItems
         });
 
-        expect(returnValue.barcodeField).toEqual(dummyBarcode);
+        expect(returnValue.barcodeField).toEqual(dummyBarcode.toString());
         expect(returnValue.selectedItem.supplierId).toEqual(2);
         expect(returnValue.selectedItem.brandId).toEqual(2);
-        expect(returnValue.selectedItem.sellPrice.value).toEqual(8.50);
+        expect(returnValue.selectedItem.sellPrice.value).toEqual("8.5");
         expect(returnValue.selectedItem.sellPrice.state).toEqual("success");
-        expect(returnValue.selectedItem.costPrice.value).toEqual(7.50);
+        expect(returnValue.selectedItem.costPrice.value).toEqual("7.5");
         expect(returnValue.selectedItem.costPrice.state).toEqual("success");
         expect(returnValue.selectedItem.qty.value).toEqual(1);
         expect(returnValue.selectedItem.qty.state).toEqual("success");

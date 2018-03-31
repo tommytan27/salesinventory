@@ -16,7 +16,9 @@ import searchDialogs from './dialogs/searchDialogs';
 import recordsDetailsDialogs from './dialogs/recordsDetailsDialogs';
 import stockingRecords from './records/stockingRecords';
 import itemSelectionForm from './forms/itemSelectionForm';
+import activePage from './activePage';
 import activeTab from './activeTab';
+import activeMode from './activeMode';
 
 const salesInventoryApp = combineReducers({
     users,
@@ -36,7 +38,9 @@ const salesInventoryApp = combineReducers({
     searchDialogs,
     recordsDetailsDialogs,
     itemSelectionForm,
-    activeTab
+    activePage,
+    activeTab,
+    activeMode
 });
 
 export default salesInventoryApp;

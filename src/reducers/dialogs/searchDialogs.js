@@ -11,6 +11,7 @@ const initialState = {
 
 const searchDialogs = (state = initialState, action) => {
     switch (action.type) {
+        case actionTypes.CHANGE_PAGE_ADMIN_RECORDS_HISTORY:
         case actionTypes.OPEN_SEARCH_DIALOG:
             var today = new Date();
             return { ...state,

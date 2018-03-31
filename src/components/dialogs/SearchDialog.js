@@ -40,7 +40,7 @@ class SearchDialog extends React.Component {
     render() {         
         let actions = [
             <Button flat iconChildren="clear" onClick={this.props.onDialogClose} id="cancelButton">CANCEL</Button>,
-            <Button primary flat iconChildren="search" onClick={this.props.onSearchButtonClick}>ADD</Button>
+            <Button primary flat iconChildren="search" onClick={this.props.onSearchButtonClick}>SEARCH</Button>
         ];
         
         return (

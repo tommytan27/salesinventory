@@ -7,7 +7,7 @@ import styles from './../../constants/styles';
 
 class SalesCreditStockRecordTable extends React.Component {
     getCustomerName = (customerId) => {
-        if (this.props.customers && this.props.customers.length > 0) {
+        if (customerId && this.props.customers && this.props.customers.length > 0) {
             let foundCustomer = this.props.customers.find((customer) => {
                 return customer.id === customerId;
             });
@@ -23,9 +23,16 @@ class SalesCreditStockRecordTable extends React.Component {
         return foundItem.price;
     }
 
+    renderCustomerColumn = () => {
+        if (this.props.customers && this.props.customers.length > 0) {
+            return (<TableColumn>Customer</TableColumn>);
+        }
+        return;
+    }
+
     render() {
         return (
-            <div style={styles.page}>
+            <div style={styles.pageTable}>
                 <h2>{this.props.title}</h2>
 
                 <DataTable plain>
@@ -33,9 +40,7 @@ class SalesCreditStockRecordTable extends React.Component {
                         <TableRow>
                             <TableColumn>ID</TableColumn>
                             <TableColumn>Date</TableColumn>      
-                            {this.props.customers && this.props.customers.length > 0
-                            ? (<TableColumn>Customer</TableColumn>)
-                            : (<div></div>)}
+                            {this.renderCustomerColumn()}
                             <TableColumn>Total</TableColumn>                     
                         </TableRow>
                     </TableHeader>
@@ -64,7 +69,7 @@ SalesCreditStockRecordTable.propTypes = {
         PropTypes.shape({
             id: PropTypes.string.isRequired,
             date: PropTypes.string.isRequired,
-            customerId: PropTypes.number.isRequired,
+            customerId: PropTypes.number,
             details: PropTypes.arrayOf(
                 PropTypes.shape({
                     barcode: PropTypes.string.isRequired,

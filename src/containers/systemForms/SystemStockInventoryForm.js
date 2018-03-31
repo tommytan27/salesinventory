@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { selectSupplier, selectBrand, selectItem, updateCostPriceField, 
     updateSellPriceField, updateQtyField, updateBarcodeField, 
-    addStockingRecordToList, initiateBarcodeScanning, selectItemAndAdd } from "../../actions";
+    addStockingRecordToList, initiateBarcodeScanning, selectItemAndAdd, changePageAdminMainMenu } from "../../actions";
 import StockInventoryForm from "../../components/forms/StockInventoryForm";
 
 const getFilteredItems = (state) => {
@@ -33,7 +33,8 @@ const mapDispatchToProps = (dispatch) => {
         onBarcodeFieldChange: (barcode) => { dispatch(updateBarcodeField(barcode)); },
         onBarcodeFieldEnterKey: (barcode, items) => { dispatch(selectItemAndAdd(barcode, items)); },
         onAddToListClick: (item) => { dispatch(addStockingRecordToList(item)); },
-        onBarcodeButtonClick: () => { dispatch(initiateBarcodeScanning()) }
+        onBarcodeButtonClick: () => { dispatch(initiateBarcodeScanning()) },
+        onBackButtonClick: () => { dispatch(changePageAdminMainMenu()) }
     };
 }
 

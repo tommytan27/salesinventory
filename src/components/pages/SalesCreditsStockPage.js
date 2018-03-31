@@ -9,13 +9,12 @@ import SystemRecordsDetailsDialog from '../../containers/systemDialogs/SystemRec
 import styles from '../../constants/styles';
 
 class SalesCreditStockPage extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
-            <div>
+            <div style={styles.page.mainNoLogo}>
+                <SystemSeachDialog />
+                <SystemRecordsDetailsDialog />
+
                 <TabsContainer colored fixed slideHeightProp="minHeight">
                 <Tabs tabId="Sales_Credit_Stock_Page">
                     <Tab label="Sales" onClick={this.props.onSalesTabClick}>
@@ -29,11 +28,8 @@ class SalesCreditStockPage extends React.Component {
                     </Tab>
                 </Tabs>
                 </TabsContainer>
-              
-                <SystemSeachDialog />
-                <SystemRecordsDetailsDialog />
                     
-                <Button floating primary style={styles.floatingButton.left}>navigate_before</Button>
+                <Button floating primary style={styles.floatingButton.left} onClick={this.props.onBackButtonClick}>navigate_before</Button>
                 <Button floating primary style={styles.floatingButton.right} onClick={this.props.onSearchButtonClick}>
                     search
                 </Button>
@@ -46,7 +42,8 @@ SalesCreditStockPage.propTypes = {
     onSalesTabClick: PropTypes.func.isRequired,
     onCreditTabClick: PropTypes.func.isRequired,
     onStockTabClick: PropTypes.func.isRequired,
-    onSearchButtonClick: PropTypes.func.isRequired
+    onSearchButtonClick: PropTypes.func.isRequired,
+    onBackButtonClick: PropTypes.func.isRequired
 };
 
 export default SalesCreditStockPage;

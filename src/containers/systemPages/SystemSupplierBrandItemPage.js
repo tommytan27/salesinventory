@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import SupplierBrandItemPage from "../../components/pages/SupplierBrandItemPage";
 import { changeTabBrandRecord, changeTabSupplierRecord, changeTabItemRecord, 
-    openAddBrandDialog, openAddItemDialog, openAddSupplierDialog } from './../../actions';
+    openAddBrandDialog, openAddItemDialog, openAddSupplierDialog, changePageAdminMainMenu } from './../../actions';
 
 const mapStateToProps = (state) => {
     return {
@@ -16,7 +16,8 @@ const mapDispatchToProps = (dispatch) => {
         onItemTabClick: () => { dispatch(changeTabItemRecord()) },
         onAddSupplierClick: () => { dispatch(openAddSupplierDialog()) },
         onAddBrandClick: () => { dispatch(openAddBrandDialog()) },
-        onAddItemClick: () => { dispatch(openAddItemDialog()) }
+        onAddItemClick: () => { dispatch(openAddItemDialog()) },
+        onBackButtonClick: () => { dispatch(changePageAdminMainMenu()) }
     };
 }
 

@@ -1,10 +1,10 @@
 const styles = {
-    page: {
-        paddingLeft: '1%',
-        paddingRight: '1%'
-    },
     mainPage: {
         height: '100%'
+    },
+    pageTable: {
+        paddingLeft: '1%',
+        paddingRight: '1%'
     },
     page:{
         left: {
@@ -20,6 +20,21 @@ const styles = {
             height: '100%',
             float: 'left',
             backgroundColor: '#d6e2f0'
+        },
+        main: {
+            position: 'relative',
+            paddingTop: '4%',
+            width: '100%',
+            height: '100%',
+            backgroundColor: 'white',
+            float: 'left'
+        },
+        mainNoLogo: {
+            position: 'relative',
+            width: '100%',
+            height: '100%',
+            backgroundColor: 'white',
+            float: 'left'
         }
     },
     paperLeftPart: {
@@ -35,10 +50,18 @@ const styles = {
         paddingLeft: '0px'
     },
     logo: {
-        position: 'absolute',
-        width: '30%',
-        left: '5px',
-        top: '5px'
+        left: {
+            position: 'absolute',
+            width: '30%',
+            left: '5px',
+            top: '5px'
+        },
+        main: {
+            position: 'absolute',
+            width: '18%',
+            left: '5px',
+            top: '5px'
+        }
     },
     paragraph: {
         fontSize: '1em'
@@ -66,6 +89,24 @@ const styles = {
         },
         clear: {
             color: 'red'
+        },
+        veganIcon: {
+            color: 'green'
+        },
+        adminMenuButton: {
+            fontSize: '8em'
+        }
+    },
+    iconButton: {        
+        removeRecord: {
+            color: 'red',
+            paddingTop: '3.5%'
+        },
+        adminMenuButton: {
+            borderRadius: "90%",
+            border: "none",
+            outline: "none",
+            margin: "3%"
         }
     },
     floatingButton: {
@@ -94,9 +135,6 @@ const styles = {
     shoppingCart: {
         fontSize: '0.8em',
         color: 'black'
-    },
-    veganIcon: {
-        color: 'green'
     },
     itemCounter: {
         padding: '1%',
@@ -139,13 +177,25 @@ const styles = {
             fontSize: '1.5em'
         }
     },
-    removeRecord: {
-        color: 'red',
-        paddingTop: '3.5%'
-    },
     recordsBox: {
         overflowY: 'scroll',
         height: '82%'
+    },
+    recordTableBox: {
+        overflowY: 'scroll',
+        height: '30%'
+    },
+    adminButtonRow1: {
+        textAlign: "center",
+        padding: "1%",
+        paddingBottom: "0px",
+        marginTop: "3%"
+    },    
+    adminButtonRow2: {
+        textAlign: "center",
+        padding: "1%",
+        paddingBottom: "0px",
+        marginBottom: "3%"
     }
 };
 

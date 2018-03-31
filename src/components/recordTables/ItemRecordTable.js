@@ -8,7 +8,7 @@ import styles from './../../constants/styles';
 class ItemRecordTable extends React.Component {
     render() {
         return (
-            <div style={styles.page}>
+            <div style={styles.pageTable}>
                 <h2>Items</h2>
 
                 <DataTable plain>

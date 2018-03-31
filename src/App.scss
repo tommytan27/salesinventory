@@ -22,6 +22,18 @@
   font-size: large;
 }
 
+.AdminButton {
+  background-color: transparent;
+}
+
+.AdminButton:hover {
+  background-color: rgba(0, 150, 136, 0.12);
+}
+
+.AdminButton:active {
+  background-color: rgba(0, 150, 136, 0.35);
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

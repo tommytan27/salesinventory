@@ -12,14 +12,19 @@ class SalesCreditStockRecord extends React.Component {
         return total.toFixed(2);
     }
 
+    renderCustomerCell = () => {
+        if (this.props.customer) {
+            return (<TableColumn>{this.props.customer}</TableColumn>);
+        } 
+        return;
+    }
+
     render() {
         return (
             <TableRow onClick={this.props.onClick}>
                 <TableColumn>{this.props.id}</TableColumn>
                 <TableColumn>{this.props.date}</TableColumn>
-                {this.props.customer 
-                    ? (<TableColumn>{this.props.customer}</TableColumn>)
-                    : (<div></div>)}
+                {this.renderCustomerCell()}
                 <TableColumn>${this.getTotalPrice(this.props.details)}</TableColumn>
             </TableRow>
         );
@@ -29,7 +34,7 @@ class SalesCreditStockRecord extends React.Component {
 SalesCreditStockRecord.propTypes = {
     id: PropTypes.string.isRequired,
     date: PropTypes.string.isRequired,
-    customer: PropTypes.string.isRequired,
+    customer: PropTypes.string,
     details: PropTypes.arrayOf(
         PropTypes.shape({
             qty: PropTypes.number.isRequired,

@@ -51,7 +51,7 @@ class SupplierBrandItemPage extends React.Component {
                 <SystemBrandDialog />
                 <SystemItemDialog />
                     
-                <Button floating primary style={styles.floatingButton.left}>navigate_before</Button>
+                <Button floating primary style={styles.floatingButton.left} onClick={this.props.onBackButtonClick}>navigate_before</Button>
                 <Button floating primary style={styles.floatingButton.right} onClick={this.handleAddButtonClick}>
                     add
                 </Button>
@@ -67,7 +67,8 @@ SupplierBrandItemPage.propTypes = {
     onItemTabClick: PropTypes.func.isRequired,
     onAddSupplierClick: PropTypes.func.isRequired,
     onAddBrandClick: PropTypes.func.isRequired,
-    onAddItemClick: PropTypes.func.isRequired
+    onAddItemClick: PropTypes.func.isRequired,
+    onBackButtonClick: PropTypes.func.isRequired
 };
 
 export default SupplierBrandItemPage;
