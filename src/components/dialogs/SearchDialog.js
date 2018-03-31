@@ -4,7 +4,6 @@ import { Button, DialogContainer, DatePicker } from 'react-md';
 import { Form, FormGroup, ControlLabel } from 'react-bootstrap';
 import Select from 'react-select';
 import tabOptions from '../../constants/tabOptions';
-import dialogModes from '../../constants/dialogModes';
 import styles from './../../constants/styles';
 
 class SearchDialog extends React.Component {

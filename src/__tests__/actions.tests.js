@@ -510,6 +510,22 @@ describe ('SearchDialogs Actions', () => {
     });
 });
 
+describe ('LoginDialogs Actions', () => {    
+    it ('should create an action to open login dialog', () => {
+        const expectedAction = {
+            type: actionTypes.OPEN_LOGIN_DIALOG
+        }
+        expect(actions.openLoginDialog()).toEqual(expectedAction);
+    });
+
+    it ('should create an action to close login dialog', () => {
+        const expectedAction = {
+            type: actionTypes.CLOSE_LOGIN_DIALOG
+        }
+        expect(actions.closeLoginDialog()).toEqual(expectedAction);
+    });
+});
+
 describe ('StockingRecords Actions', () => {
     it ('should create an action to remove stocking record from the list', () => {
         let expectedRecordId = 1;
@@ -602,19 +618,25 @@ describe ('ActivePage Actions', () => {
     });
 });
 
-
-
 describe ('ActiveMode Actions', () => {
     it('should create an action to change mode to admin', () => {
+        const expectedTimeout = 10;
         const expectedAction = {
-            type: actionTypes.CHANGE_MODE_ADMIN
+            type: actionTypes.CHANGE_MODE_ADMIN,
+            timeout: expectedTimeout
         }
-        expect(actions.changeModeAdmin()).toEqual(expectedAction);
+        expect(actions.changeModeAdmin(expectedTimeout)).toEqual(expectedAction);
     });
     it('should create an action to change mode to user', () => {
         const expectedAction = {
             type: actionTypes.CHANGE_MODE_USER
         }
         expect(actions.changeModeUser()).toEqual(expectedAction);
+    });
+    it('should create an action to change mode to user due to timeout', () => {
+        const expectedAction = {
+            type: actionTypes.CHANGE_MODE_USER_DUE_TIMEOUT
+        }
+        expect(actions.changeModeUserDueTimeout()).toEqual(expectedAction);
     });
 });

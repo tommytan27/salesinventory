@@ -296,6 +296,18 @@ export const updateContactField = (contact) => {
     };
 }
 
+export const openLoginDialog = () => {
+    return {
+        type: actionTypes.OPEN_LOGIN_DIALOG
+    };
+}
+
+export const closeLoginDialog = () => {
+    return {
+        type: actionTypes.CLOSE_LOGIN_DIALOG
+    };
+}
+
 export const openSearchDialog = () => {
     return {
         type: actionTypes.OPEN_SEARCH_DIALOG
@@ -434,13 +446,21 @@ export const changePageAdminRecordsHistory = () => {
     };
 }
 
-export const changeModeAdmin = () => {
+export const changeModeAdmin = (timeout) => {
     return {
-        type: actionTypes.CHANGE_MODE_ADMIN
+        type: actionTypes.CHANGE_MODE_ADMIN,
+        timeout: timeout
     };
 }
+
 export const changeModeUser = () => {
     return {
         type: actionTypes.CHANGE_MODE_USER
+    };
+}
+
+export const changeModeUserDueTimeout = () => {
+    return {
+        type: actionTypes.CHANGE_MODE_USER_DUE_TIMEOUT
     };
 }

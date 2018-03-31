@@ -1,8 +1,9 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 import { Image } from 'react-bootstrap';
-import { Paper, Button, FontIcon } from 'react-md';
+import DialogContainer, { Button } from 'react-md';
 import styles from '../../constants/styles';
+import SystemLoginDialog from '../../containers/systemDialogs/SystemLoginDialog';
 
 class UserMenuPage extends React.Component {
     render() {
@@ -17,6 +18,8 @@ class UserMenuPage extends React.Component {
                     onClick={this.props.onAdminButtonClick}>
                     ADMIN
                 </Button>
+
+                <SystemLoginDialog />
             </div>
         );
     }
