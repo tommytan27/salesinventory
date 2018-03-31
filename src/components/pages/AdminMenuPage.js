@@ -4,7 +4,7 @@ import { Image } from 'react-bootstrap';
 import { Paper, Button, FontIcon } from 'react-md';
 import styles from '../../constants/styles';
 
-class AdminPage extends React.Component {
+class AdminMenuPage extends React.Component {
     render() {
         return (
             <div style={styles.page.main}>
@@ -41,7 +41,7 @@ class AdminPage extends React.Component {
                 </div>
                 
                 <Button flat primary iconChildren="keyboard_arrow_left" swapTheming
-                    style={styles.floatingButton.left}>
+                    style={styles.floatingButton.left} onClick={this.props.onLogoutButtonClick}>
                     LOGOUT
                 </Button>
             </div>
@@ -49,7 +49,7 @@ class AdminPage extends React.Component {
     }
 }
 
-AdminPage.propTypes = {    
+AdminMenuPage.propTypes = {    
     onUserRecordsButtonClick: PropTypes.func.isRequired,
     onCustomerRecordsButtonClick: PropTypes.func.isRequired,
     onProductsDetailsButtonClick: PropTypes.func.isRequired,
@@ -57,4 +57,4 @@ AdminPage.propTypes = {
     onRecordsHistoryButtonClick: PropTypes.func.isRequired
 }
 
-export default AdminPage;
+export default AdminMenuPage;

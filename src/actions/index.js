@@ -433,3 +433,14 @@ export const changePageAdminRecordsHistory = () => {
         type: actionTypes.CHANGE_PAGE_ADMIN_RECORDS_HISTORY
     };
 }
+
+export const changeModeAdmin = () => {
+    return {
+        type: actionTypes.CHANGE_MODE_ADMIN
+    };
+}
+export const changeModeUser = () => {
+    return {
+        type: actionTypes.CHANGE_MODE_USER
+    };
+}

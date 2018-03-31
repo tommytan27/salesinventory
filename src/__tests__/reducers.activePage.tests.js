@@ -33,4 +33,9 @@ describe('ActivePage', () => {
             type: actionTypes.CHANGE_PAGE_ADMIN_RECORDS_HISTORY
         })).toBe(pageOptions.ADMIN_RECORDS_HISTORY);
     });
+    it('should return ADMIN_MAIN_MENU when receiving CHANGE_MODE_ADMIN action', () => {
+        expect(activePage(undefined, {
+            type: actionTypes.CHANGE_MODE_ADMIN
+        })).toBe(pageOptions.ADMIN_MAIN_MENU);
+    });
 });

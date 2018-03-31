@@ -26,4 +26,8 @@ class AdminPage extends React.Component {
     }
 }
 
+AdminPage.propTypes = {
+    activePage: PropTypes.string.isRequired
+};
+
 export default AdminPage;

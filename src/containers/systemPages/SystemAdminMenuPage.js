@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { changePageAdminMainMenu, changePageAdminUserRecords,
     changePageAdminCustomerRecords, changePageAdminProductsPage, 
-    changePageAdminStockingPage, changePageAdminRecordsHistory } from '../../actions'
+    changePageAdminStockingPage, changePageAdminRecordsHistory, changeModeUser } from '../../actions'
 import AdminMenuPage from "../../components/pages/AdminMenuPage";
 
 const mapStateToProps = (state) => {
@@ -15,7 +15,8 @@ const mapDispatchToProps = (dispatch) => {
         onCustomerRecordsButtonClick: () => { dispatch(changePageAdminCustomerRecords()); },
         onProductsDetailsButtonClick: () => { dispatch(changePageAdminProductsPage()); },
         onStockingButtonClick: () => { dispatch(changePageAdminStockingPage()); },
-        onRecordsHistoryButtonClick: () => { dispatch(changePageAdminRecordsHistory()); }
+        onRecordsHistoryButtonClick: () => { dispatch(changePageAdminRecordsHistory()); },
+        onLogoutButtonClick: () => { dispatch(changeModeUser()); }
     };
 }
 

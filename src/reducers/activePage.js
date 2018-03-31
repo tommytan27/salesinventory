@@ -1,8 +1,9 @@
 import pageOptions from "../constants/pageOptions";
 import actionTypes from "../constants/actionTypes";
 
-const activePage = (state = pageOptions.ADMIN_MAIN_MENU, action) => {
+const activePage = (state = "", action) => {
     switch(action.type) {
+        case actionTypes.CHANGE_MODE_ADMIN:
         case actionTypes.CHANGE_PAGE_ADMIN_MAIN_MENU:
             return pageOptions.ADMIN_MAIN_MENU;
         case actionTypes.CHANGE_PAGE_ADMIN_USER_RECORDS:

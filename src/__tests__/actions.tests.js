@@ -601,3 +601,20 @@ describe ('ActivePage Actions', () => {
         expect(actions.changePageAdminRecordsHistory()).toEqual(expectedAction);
     });
 });
+
+
+
+describe ('ActiveMode Actions', () => {
+    it('should create an action to change mode to admin', () => {
+        const expectedAction = {
+            type: actionTypes.CHANGE_MODE_ADMIN
+        }
+        expect(actions.changeModeAdmin()).toEqual(expectedAction);
+    });
+    it('should create an action to change mode to user', () => {
+        const expectedAction = {
+            type: actionTypes.CHANGE_MODE_USER
+        }
+        expect(actions.changeModeUser()).toEqual(expectedAction);
+    });
+});
