@@ -9,7 +9,7 @@ import styles from './../../constants/styles';
 class UserRecordTable extends React.Component {
     render() {
         return (
-            <div style={styles.page}>
+            <div style={styles.pageTable}>
                 <h2>Users</h2>
 
                 <DataTable plain>
@@ -27,7 +27,7 @@ class UserRecordTable extends React.Component {
                     </TableBody>
                 </DataTable>
                 
-                <Button floating primary style={styles.floatingButton.left}>navigate_before</Button>
+                <Button floating primary style={styles.floatingButton.left} onClick={this.props.onBackButtonClick}>navigate_before</Button>
                 <Button floating primary style={styles.floatingButton.right} onClick={this.props.onAddUserClick}>
                     person_add
                 </Button>
@@ -47,7 +47,8 @@ UserRecordTable.propTypes = {
         }).isRequired
     ).isRequired,
     onAddUserClick: PropTypes.func.isRequired,
-    onUserRecordClick: PropTypes.func.isRequired
+    onUserRecordClick: PropTypes.func.isRequired,
+    onBackButtonClick: PropTypes.func.isRequired
 };
 
 export default UserRecordTable;

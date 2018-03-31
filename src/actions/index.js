@@ -397,3 +397,39 @@ export const initiateBarcodeScanning = () => {
         type: actionTypes.INITIATE_BARCODE_SCANNING
     }
 }
+
+export const changePageAdminMainMenu = () => {
+    return {
+        type: actionTypes.CHANGE_PAGE_ADMIN_MAIN_MENU
+    };
+}
+
+export const changePageAdminUserRecords = () => {
+    return {
+        type: actionTypes.CHANGE_PAGE_ADMIN_USER_RECORDS
+    };
+}
+
+export const changePageAdminCustomerRecords = () => {
+    return {
+        type: actionTypes.CHANGE_PAGE_ADMIN_CUSTOMER_RECORDS
+    };
+}
+
+export const changePageAdminProductsPage = () => {
+    return {
+        type: actionTypes.CHANGE_PAGE_ADMIN_PRODUCTS_PAGE
+    };
+}
+
+export const changePageAdminStockingPage = () => {
+    return {
+        type: actionTypes.CHANGE_PAGE_ADMIN_STOCKING_PAGE
+    };
+}
+
+export const changePageAdminRecordsHistory = () => {
+    return {
+        type: actionTypes.CHANGE_PAGE_ADMIN_RECORDS_HISTORY
+    };
+}

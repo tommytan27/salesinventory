@@ -66,4 +66,10 @@ describe('SearchDialogs', () => {
         });
         expect(returnValues.toDate).toEqual("2018/02/2018");
     });
+    it ('should return the dialog open when receiving CHANGE_PAGE_ADMIN_RECORDS_HISTORY action', () => {
+        var returnValues = searchDialogs(undefined, {
+            type: actionTypes.CHANGE_PAGE_ADMIN_RECORDS_HISTORY
+        });
+        expect(returnValues.open).toBeTruthy();
+    });
 });

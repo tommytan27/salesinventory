@@ -562,3 +562,42 @@ describe ('StockingRecords Actions', () => {
         expect(actions.selectItemAndAdd(dummyBarcode, dummyItems)).toEqual(expectedAction);
     });
 });
+
+describe ('ActivePage Actions', () => {
+    it('should create an action to change page to admin main menu', () => {
+        const expectedAction = {
+            type: actionTypes.CHANGE_PAGE_ADMIN_MAIN_MENU
+        }
+        expect(actions.changePageAdminMainMenu()).toEqual(expectedAction);
+    });
+    it('should create an action to change page to admin user records', () => {
+        const expectedAction = {
+            type: actionTypes.CHANGE_PAGE_ADMIN_USER_RECORDS
+        }
+        expect(actions.changePageAdminUserRecords()).toEqual(expectedAction);
+    });
+    it('should create an action to change page to admin customer records', () => {
+        const expectedAction = {
+            type: actionTypes.CHANGE_PAGE_ADMIN_CUSTOMER_RECORDS
+        }
+        expect(actions.changePageAdminCustomerRecords()).toEqual(expectedAction);
+    });
+    it('should create an action to change page to admin products page', () => {
+        const expectedAction = {
+            type: actionTypes.CHANGE_PAGE_ADMIN_PRODUCTS_PAGE
+        }
+        expect(actions.changePageAdminProductsPage()).toEqual(expectedAction);
+    });
+    it('should create an action to change page to admin stocking page', () => {
+        const expectedAction = {
+            type: actionTypes.CHANGE_PAGE_ADMIN_STOCKING_PAGE
+        }
+        expect(actions.changePageAdminStockingPage()).toEqual(expectedAction);
+    });
+    it('should create an action to change page to admin records history', () => {
+        const expectedAction = {
+            type: actionTypes.CHANGE_PAGE_ADMIN_RECORDS_HISTORY
+        }
+        expect(actions.changePageAdminRecordsHistory()).toEqual(expectedAction);
+    });
+});

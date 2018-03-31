@@ -8,12 +8,12 @@ class StockingRecord extends React.Component {
         return (
             <div>
                 <div style={styles.record.left}>
-                    <Button icon style={styles.removeRecord} onClick={this.props.onRemoveClick}>
+                    <Button icon style={styles.iconButton.removeRecord} onClick={this.props.onRemoveClick}>
                         remove_circle
                     </Button>
                     {this.props.selectedItem.name}&nbsp;
                     {this.props.selectedItem.vegan ? 
-                        <FontIcon style={styles.veganIcon}>check_circle</FontIcon> :
+                        <FontIcon style={styles.fontIcon.veganIcon}>check_circle</FontIcon> :
                         <div></div>}
                 </div>                        
                 <div style={styles.record.right}>${this.props.total.toFixed(2)}</div>

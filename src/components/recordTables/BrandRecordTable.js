@@ -8,7 +8,7 @@ import styles from './../../constants/styles';
 class BrandRecordTable extends React.Component {
     render() {
         return (
-            <div style={styles.page}>
+            <div style={styles.pageTable}>
                 <h2>Brands</h2>
 
                 <DataTable plain>

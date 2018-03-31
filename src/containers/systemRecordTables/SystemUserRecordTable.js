@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import UserRecordTable from './../../components/recordTables/UserRecordTable';
-import { openEditUserDialog, openAddUserDialog } from '../../actions/index';
+import { openEditUserDialog, openAddUserDialog, changePageAdminMainMenu } from '../../actions/index';
 
 const mapStateToProps = (state) => {
     return {
@@ -11,7 +11,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         onAddUserClick: () => { dispatch(openAddUserDialog()) },
-        onUserRecordClick: (user) => { dispatch(openEditUserDialog(user)) }
+        onUserRecordClick: (user) => { dispatch(openEditUserDialog(user)) },
+        onBackButtonClick: () => { dispatch(changePageAdminMainMenu()) }
     };
 }
 

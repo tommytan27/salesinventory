@@ -26,14 +26,15 @@ class StockInventoryForm extends React.Component {
 
     render() {
         let actions = [
-            <Button flat primary iconChildren="keyboard_arrow_left" swapTheming id="backButton">
+            <Button flat primary iconChildren="keyboard_arrow_left" swapTheming id="backButton"
+                onClick={this.props.onBackButtonClick}>
                 BACK
             </Button>
         ];
         let selectedItem = this.props.itemSelectionForm.selectedItem;
         return (
             <div style={styles.page.left}>
-                <Image src="logo.png" style={styles.logo} />
+                <Image src="logo.png" style={styles.logo.left} />
                 <Paper key="stockInventoryPaper" zDepth={3} style={styles.paperLeftPart}>
                 <Form horizontal>
                 <FormGroup>
@@ -150,15 +151,15 @@ class StockInventoryForm extends React.Component {
                 </Paper>
 
                 <Button flat primary iconChildren="keyboard_arrow_left" swapTheming
-                    style={styles.floatingButton.left}>
+                    style={styles.floatingButton.left} onClick={this.props.onBackButtonClick}>
                     BACK
                 </Button>
 
                 <DialogContainer id="ErrorDialog" title="Error"
                     visible={this.props.suppliers.length === 0 || this.props.brands.length === 0}
                     actions={actions} modal={false} initialFocus="#backButton"
-                    onHide={this.props.onDialogClose}>
-                    <p>No available supplier and/or brand to be selected</p>
+                    onHide={() => {}}>
+                    <p style={styles.paragraph}>No available supplier and/or brand to be selected</p>
                 </DialogContainer>
             </div>
         );
@@ -232,7 +233,8 @@ StockInventoryForm.propTypes = {
     onBarcodeFieldChange: PropTypes.func.isRequired,
     onBarcodeFieldEnterKey: PropTypes.func.isRequired,
     onAddToListClick: PropTypes.func.isRequired,
-    onBarcodeButtonClick: PropTypes.func.isRequired
+    onBarcodeButtonClick: PropTypes.func.isRequired,
+    onBackButtonClick: PropTypes.func.isRequired
 };
 
 export default StockInventoryForm;
