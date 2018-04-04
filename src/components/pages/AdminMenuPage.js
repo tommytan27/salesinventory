@@ -9,7 +9,8 @@ class AdminMenuPage extends React.Component {
         return (
             <div style={styles.page.main}>
                 <Image src="logo.png" style={styles.logo.main} />
-                
+                <p style={styles.welcome.main}>Welcome, {this.props.activeAdmin.username}</p>
+
                 <div style={styles.adminButtonRow1}>
                     <button type="button" style={styles.iconButton.adminMenuButton} className="AdminButton"
                         title={"User Records"} onClick={this.props.onUserRecordsButtonClick}>
@@ -50,6 +51,10 @@ class AdminMenuPage extends React.Component {
 }
 
 AdminMenuPage.propTypes = {    
+    activeAdmin: PropTypes.shape({
+        username: PropTypes.string.isRequired,
+        timeout: PropTypes.number.isRequired
+    }).isRequired,
     onUserRecordsButtonClick: PropTypes.func.isRequired,
     onCustomerRecordsButtonClick: PropTypes.func.isRequired,
     onProductsDetailsButtonClick: PropTypes.func.isRequired,

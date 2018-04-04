@@ -14,6 +14,8 @@ const adminTimer = store => next => action => {
             break;
         case actionTypes.CHANGE_MODE_USER:
             clearTimeout(adminTiming);
+            adminTiming = null;
+            timeout = 0;
         default:
             let activeMode = store.getState().activeMode;
             if (activeMode === modeOptions.ADMIN_MODE) {
@@ -25,9 +27,7 @@ const adminTimer = store => next => action => {
             break;
     }
 
-    let result = next(action);
-
-    return result;
+    return next(action);
 }
 
 export default adminTimer;

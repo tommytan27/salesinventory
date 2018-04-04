@@ -46,17 +46,77 @@ describe('LoginDialogs', () => {
             type: actionTypes.CLOSE_LOGIN_DIALOG
         })
     });
-    // it ('should return updated customerId when receiving UPDATE_CUSTOMER_COMBO action with valid customer Id', () => {
-    //     var returnValues = loginDialogs(undefined, {
-    //         type: actionTypes.UPDATE_CUSTOMER_COMBO,
-    //         customerId: 2
-    //     });
-    //     expect(returnValues.customerId).toEqual(2);
-    // });
-    // it ('should return the dialog open when receiving CHANGE_PAGE_ADMIN_RECORDS_HISTORY action', () => {
-    //     var returnValues = loginDialogs(undefined, {
-    //         type: actionTypes.CHANGE_PAGE_ADMIN_RECORDS_HISTORY
-    //     });
-    //     expect(returnValues.open).toBeTruthy();
-    // });
+    it ('should return initial state after opening dialog when receiving CHANGE_MODE_ADMIN action', () => {
+        assertInitialState({
+            open: true
+        }, {
+            type: actionTypes.CHANGE_MODE_ADMIN,
+            username: "admin",
+            timeout: 10
+        })
+    });
+    it ('should return updated username with success state when receiving UPDATE_CUSTOMER_COMBO action with valid username', () => {
+        var returnValues = loginDialogs(undefined, {
+            type: actionTypes.UPDATE_USERNAME_FIELD,
+            username: "admin",
+            allUsers: []
+        });
+        expect(returnValues.userInDialog.username.value).toEqual("admin");
+        expect(returnValues.userInDialog.username.state).toEqual("success");
+    });
+    it ('should return empty username with null state when receiving UPDATE_USERNAME_FIELD action with empty username', () => {
+        var returnValues = loginDialogs(undefined, {
+            type: actionTypes.UPDATE_USERNAME_FIELD,
+            username: "",
+            allUsers: []
+        });
+        expect(returnValues.userInDialog.username.value).toEqual("");
+        expect(returnValues.userInDialog.username.state).toBeNull();
+    });
+    it ('should return undefined username with null state when receiving UPDATE_USERNAME_FIELD action with undefined username', () => {
+        var returnValues = loginDialogs(undefined, {
+            type: actionTypes.UPDATE_USERNAME_FIELD,
+            username: undefined,
+            allUsers: []
+        });
+        expect(returnValues.userInDialog.username.value).toEqual(undefined);
+        expect(returnValues.userInDialog.username.state).toBeNull();
+    });
+    it ('should return updated password with success state when receiving UPDATE_PASSWORD_FIELD action with valid username', () => {
+        var returnValues = loginDialogs(undefined, {
+            type: actionTypes.UPDATE_PASSWORD_FIELD,
+            password: "admin"
+        });
+        expect(returnValues.userInDialog.password.value).toEqual("admin");
+        expect(returnValues.userInDialog.password.state).toEqual("success");
+    });
+    it ('should return empty password with null state when receiving UPDATE_PASSWORD_FIELD action with empty username', () => {
+        var returnValues = loginDialogs(undefined, {
+            type: actionTypes.UPDATE_PASSWORD_FIELD,
+            password: ""
+        });
+        expect(returnValues.userInDialog.password.value).toEqual("");
+        expect(returnValues.userInDialog.password.state).toBeNull();
+    });
+    it ('should return undefined password with null state when receiving UPDATE_PASSWORD_FIELD action with undefined username', () => {
+        var returnValues = loginDialogs(undefined, {
+            type: actionTypes.UPDATE_PASSWORD_FIELD,
+            password: undefined
+        });
+        expect(returnValues.userInDialog.password.value).toEqual(undefined);
+        expect(returnValues.userInDialog.password.state).toBeNull();
+    });
+    it ('should return initial state of error dialog when receiving FAIL_LOGIN_USER action', () => {
+        var returnValues = loginDialogs({
+            error: false
+        }, {
+            type: actionTypes.FAIL_LOGIN_USER
+        });
+        expect(returnValues.error).toBeTruthy();
+        expect(returnValues.loginable).toBeFalsy();
+        expect(returnValues.userInDialog.username.value).toBeNull();
+        expect(returnValues.userInDialog.username.state).toBeNull();
+        expect(returnValues.userInDialog.password.value).toBeNull();
+        expect(returnValues.userInDialog.password.state).toBeNull();
+    });
 });

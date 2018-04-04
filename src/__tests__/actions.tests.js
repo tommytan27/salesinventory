@@ -621,11 +621,13 @@ describe ('ActivePage Actions', () => {
 describe ('ActiveMode Actions', () => {
     it('should create an action to change mode to admin', () => {
         const expectedTimeout = 10;
+        const expectedUsername = "testUser";
         const expectedAction = {
             type: actionTypes.CHANGE_MODE_ADMIN,
+            username: expectedUsername,
             timeout: expectedTimeout
         }
-        expect(actions.changeModeAdmin(expectedTimeout)).toEqual(expectedAction);
+        expect(actions.changeModeAdmin(expectedUsername, expectedTimeout)).toEqual(expectedAction);
     });
     it('should create an action to change mode to user', () => {
         const expectedAction = {

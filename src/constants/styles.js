@@ -63,6 +63,20 @@ const styles = {
             top: '5px'
         }
     },
+    welcome: {
+        left: {
+            position: 'absolute',
+            right: '5px',
+            top: '5px',
+            fontSize: '1.5em'
+        },
+        main: {
+            position: 'absolute',
+            right: '10px',
+            top: '10px',
+            fontSize: '1.5em'
+        }
+    },
     paragraph: {
         fontSize: '1em'
     },

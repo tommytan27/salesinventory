@@ -446,9 +446,10 @@ export const changePageAdminRecordsHistory = () => {
     };
 }
 
-export const changeModeAdmin = (timeout) => {
+export const changeModeAdmin = (username, timeout) => {
     return {
         type: actionTypes.CHANGE_MODE_ADMIN,
+        username: username,
         timeout: timeout
     };
 }
@@ -463,4 +464,18 @@ export const changeModeUserDueTimeout = () => {
     return {
         type: actionTypes.CHANGE_MODE_USER_DUE_TIMEOUT
     };
+}
+
+export const signalRLoginUser = (username, password) => {
+    return {
+        type: actionTypes.SIGNAL_R_LOGIN_USER,
+        username: username,
+        password: password
+    }
+}
+
+export const failLoginUser = () => {
+    return {
+        type: actionTypes.FAIL_LOGIN_USER
+    }
 }

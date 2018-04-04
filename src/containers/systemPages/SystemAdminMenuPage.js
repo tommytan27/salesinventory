@@ -6,6 +6,7 @@ import AdminMenuPage from "../../components/pages/AdminMenuPage";
 
 const mapStateToProps = (state) => {
     return {
+        activeAdmin: state.activeAdmin
     }
 }
 

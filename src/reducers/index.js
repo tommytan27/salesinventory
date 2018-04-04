@@ -20,6 +20,7 @@ import itemSelectionForm from './forms/itemSelectionForm';
 import activePage from './activePage';
 import activeTab from './activeTab';
 import activeMode from './activeMode';
+import activeAdmin from './activeAdmin';
 
 const salesInventoryApp = combineReducers({
     users,
@@ -42,7 +43,8 @@ const salesInventoryApp = combineReducers({
     itemSelectionForm,
     activePage,
     activeTab,
-    activeMode
+    activeMode,
+    activeAdmin
 });
 
 export default salesInventoryApp;
