@@ -7,7 +7,7 @@ import styles from '../../constants/styles';
 
 const enterKey = 13;
 
-class StockInventoryForm extends React.Component {
+class ShoppingForm extends React.Component {
     constructor(props) {
         super(props);
         this.handleBarcodeButton = this.handleBarcodeButton.bind(this);
@@ -34,7 +34,15 @@ class StockInventoryForm extends React.Component {
         let selectedItem = this.props.itemSelectionForm.selectedItem;
         return (
             <div style={styles.page.left}>
-                <Image src="logo.png" style={styles.logo.left} />
+                <Image src="logo.png" style={styles.logo.left} />                
+                <p style={styles.welcome.left}>
+                    <Button flat iconChildren="face" topltips="Change User"
+                        style={styles.iconButton.changeUserButton} onClick={this.props.onBackButtonClick}>
+                        CHANGE USER
+                    </Button>&nbsp;
+                    Hi, Tommy Tanzil
+                </p>
+
                 <Paper key="stockInventoryPaper" zDepth={3} style={styles.paper.left}>
                 <Form horizontal>
                 <FormGroup>
@@ -150,8 +158,8 @@ class StockInventoryForm extends React.Component {
                 </Form>
                 </Paper>
 
-                <Button flat primary iconChildren="keyboard_arrow_left" swapTheming
-                    style={styles.floatingButton.left} onClick={this.props.onBackButtonClick}>
+                <Button flat iconChildren="keyboard_arrow_left" swapTheming
+                    style={styles.floatingButton.leftMainPage} onClick={this.props.onBackButtonClick}>
                     BACK
                 </Button>
 
@@ -166,7 +174,7 @@ class StockInventoryForm extends React.Component {
     }
 }
 
-StockInventoryForm.propTypes = {
+ShoppingForm.propTypes = {
     suppliers: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.number.isRequired,
@@ -237,4 +245,4 @@ StockInventoryForm.propTypes = {
     onBackButtonClick: PropTypes.func.isRequired
 };
 
-export default StockInventoryForm;
+export default ShoppingForm;

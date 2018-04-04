@@ -13,12 +13,14 @@ import sales from './records/sales';
 import credits from './records/credits';
 import stocks from './records/stocks';
 import searchDialogs from './dialogs/searchDialogs';
+import loginDialogs from './dialogs/loginDialogs';
 import recordsDetailsDialogs from './dialogs/recordsDetailsDialogs';
 import stockingRecords from './records/stockingRecords';
 import itemSelectionForm from './forms/itemSelectionForm';
 import activePage from './activePage';
 import activeTab from './activeTab';
 import activeMode from './activeMode';
+import activeAdmin from './activeAdmin';
 
 const salesInventoryApp = combineReducers({
     users,
@@ -36,11 +38,13 @@ const salesInventoryApp = combineReducers({
     stocks,
     stockingRecords,
     searchDialogs,
+    loginDialogs,
     recordsDetailsDialogs,
     itemSelectionForm,
     activePage,
     activeTab,
-    activeMode
+    activeMode,
+    activeAdmin
 });
 
 export default salesInventoryApp;

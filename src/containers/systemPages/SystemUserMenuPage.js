@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { changeModeAdmin } from '../../actions'
+import { openLoginDialog, changePageUserShoppingPage } from '../../actions'
 import UserMenuPage from "../../components/pages/UserMenuPage";
 
 const mapStateToProps = (state) => {
@@ -9,7 +9,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onAdminButtonClick: () => { dispatch(changeModeAdmin()); }
+        onAdminButtonClick: () => { dispatch(openLoginDialog()); },
+        onShoppingButtonClick: () => { dispatch(changePageUserShoppingPage()); },
+        onPriceCheckButtonClick: () => { dispatch(); }
     };
 }
 

@@ -16,4 +16,9 @@ describe('activeMode', () => {
             type: actionTypes.CHANGE_MODE_USER
         })).toBe(modeOptions.USER_MODE);
     });
+    it('should return USER_MODE when receiving CHANGE_MODE_USER_DUE_TIMEOUT action', () => {
+        expect(activeMode(modeOptions.ADMIN_MODE, {
+            type: actionTypes.CHANGE_MODE_USER_DUE_TIMEOUT
+        })).toBe(modeOptions.USER_MODE);
+    });
 });

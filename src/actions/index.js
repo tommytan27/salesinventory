@@ -296,6 +296,18 @@ export const updateContactField = (contact) => {
     };
 }
 
+export const openLoginDialog = () => {
+    return {
+        type: actionTypes.OPEN_LOGIN_DIALOG
+    };
+}
+
+export const closeLoginDialog = () => {
+    return {
+        type: actionTypes.CLOSE_LOGIN_DIALOG
+    };
+}
+
 export const openSearchDialog = () => {
     return {
         type: actionTypes.OPEN_SEARCH_DIALOG
@@ -434,13 +446,48 @@ export const changePageAdminRecordsHistory = () => {
     };
 }
 
-export const changeModeAdmin = () => {
+export const changePageUserMainMenu = () => {
     return {
-        type: actionTypes.CHANGE_MODE_ADMIN
+        type: actionTypes.CHANGE_PAGE_USER_MAIN_MENU
     };
 }
+
+export const changePageUserShoppingPage = () => {
+    return {
+        type: actionTypes.CHANGE_PAGE_USER_SHOPPING_PAGE
+    };
+}
+
+export const changeModeAdmin = (username, timeout) => {
+    return {
+        type: actionTypes.CHANGE_MODE_ADMIN,
+        username: username,
+        timeout: timeout
+    };
+}
+
 export const changeModeUser = () => {
     return {
         type: actionTypes.CHANGE_MODE_USER
     };
+}
+
+export const changeModeUserDueTimeout = () => {
+    return {
+        type: actionTypes.CHANGE_MODE_USER_DUE_TIMEOUT
+    };
+}
+
+export const signalRLoginUser = (username, password) => {
+    return {
+        type: actionTypes.SIGNAL_R_LOGIN_USER,
+        username: username,
+        password: password
+    }
+}
+
+export const failLoginUser = () => {
+    return {
+        type: actionTypes.FAIL_LOGIN_USER
+    }
 }

@@ -1,6 +1,4 @@
 import actionTypes from '../../constants/actionTypes';
-import dialogTitles from '../../constants/dialogTitles';
-import dialogModes from '../../constants/dialogModes';
 
 const initialState = {
     open: false,
