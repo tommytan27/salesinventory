@@ -21,6 +21,12 @@ const styles = {
             float: 'left',
             backgroundColor: '#d6e2f0'
         },
+        rightShopping: {
+            width: '40%',
+            height: '100%',
+            float: 'left',
+            backgroundColor: 'rgb(213,249,249)'
+        },
         main: {
             position: 'relative',
             paddingTop: '4%',
@@ -37,11 +43,31 @@ const styles = {
             float: 'left'
         }
     },
-    paperLeftPart: {
-        padding: '3%',
-        paddingBottom: '0.75%',
-        margin: '3%',
-        top: '-150px'
+    paper: {
+        left: {
+            padding: '3%',
+            paddingBottom: '0.75%',
+            margin: '3%',
+            top: '-150px'
+        },
+        main: {
+            padding: '3%',
+            margin: '1.5%',
+            height: '83%',
+            backgroundColor: 'rgba(169,244,240,0.3)',
+        },
+        mainTextLarge: {
+            fontSize: '7em',
+            color: 'rgb(0,254,103)',
+            textAlign: 'center',
+            margin: '8%'
+        },
+        mainText: {
+            fontSize: '4em',
+            color: 'rgb(0,254,103)',
+            textAlign: 'center',
+            margin: '1%'
+        }
     },
     valueLabel: {
         paddingTop: '7px'
@@ -66,8 +92,8 @@ const styles = {
     welcome: {
         left: {
             position: 'absolute',
-            right: '5px',
-            top: '5px',
+            right: '3%',
+            top: '10px',
             fontSize: '1.5em'
         },
         main: {
@@ -109,12 +135,23 @@ const styles = {
         },
         adminMenuButton: {
             fontSize: '8em'
+        },
+        rightArrow: {
+            color: 'rgb(0,254,103)',
+            fontSize: '7em',
+            position: 'absolute',
+            right: '15px',
+            top: '40%'
         }
     },
     iconButton: {        
         removeRecord: {
             color: 'red',
             paddingTop: '3.5%'
+        },
+        changeUserButton: {
+            backgroundColor: 'rgba(0,217,87,0.75)',
+            color: 'white'
         },
         adminMenuButton: {
             borderRadius: "90%",
@@ -144,6 +181,23 @@ const styles = {
             right: '1.5%',
             bottom: '2%',
             position: 'absolute'
+        },
+        leftMainPage: {
+            backgroundColor: 'rgba(0,217,87,0.75)',
+            color: 'white',
+            top: 'auto',
+            right: 'auto',
+            left: '1.5%',
+            bottom: '2%',
+            position: 'fixed'
+        },
+        rightMainPage: {
+            backgroundColor: 'rgb(0,254,103)',
+            top: 'auto',
+            left: 'auto',
+            right: '1.5%',
+            bottom: '2%',
+            position: 'fixed'
         }
     },
     shoppingCart: {
@@ -158,6 +212,18 @@ const styles = {
         height: '9%'
     },
     completeButton: {
+        bottom: '0px',
+        right: '0px',
+        position: 'fixed',
+        fontWeight: 'bold',
+        fontSize: '3em',
+        width: '40%',
+        height: '9%',
+        paddingTop: '0px'
+    },
+    payButton: {
+        backgroundColor: 'rgba(0,217,87,0.75)',
+        color: 'white',
         bottom: '0px',
         right: '0px',
         position: 'fixed',

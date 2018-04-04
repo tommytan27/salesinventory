@@ -5,7 +5,7 @@ import Select from 'react-select';
 import StockingRecord from '../records/StockingRecord';
 import styles from '../../constants/styles';
 
-class ShoppingRecordsList extends React.Component {
+class StockingRecordsList extends React.Component {
     getItem = (barcode) => {
         if (this.props.items && this.props.items.length > 0) {
             let foundItem = this.props.items.find((item) => {
@@ -26,7 +26,7 @@ class ShoppingRecordsList extends React.Component {
 
     render() {
         return (
-            <div style={styles.page.right}>
+            <div style={styles.page.rightShopping}>
                 <div style={styles.itemCounter}>
                     <FontIcon style={styles.shoppingCart}>shopping_cart</FontIcon>&nbsp;
                     {this.props.stockingRecords.length} Items
@@ -39,15 +39,15 @@ class ShoppingRecordsList extends React.Component {
                             onRemoveClick={() => {this.props.onRemoveClick(record.id)}} />
                     ))}
                 </div>
-                <Button flat primary swapTheming style={styles.completeButton}>
-                    DONE ${this.getTotal().toFixed(2)}
+                <Button flat swapTheming style={styles.payButton}>
+                    PAY ${this.getTotal().toFixed(2)}
                 </Button>
             </div>
         );
     }
 }
 
-ShoppingRecordsList.propTypes = {
+StockingRecordsList.propTypes = {
     items: PropTypes.arrayOf(
         PropTypes.shape({
             barcode: PropTypes.string.isRequired,
@@ -71,4 +71,4 @@ ShoppingRecordsList.propTypes = {
     onRemoveClick: PropTypes.func.isRequired
 };
 
-export default ShoppingRecordsList;
+export default StockingRecordsList;

@@ -616,6 +616,18 @@ describe ('ActivePage Actions', () => {
         }
         expect(actions.changePageAdminRecordsHistory()).toEqual(expectedAction);
     });
+    it('should create an action to change page to user main menu', () => {
+        const expectedAction = {
+            type: actionTypes.CHANGE_PAGE_USER_MAIN_MENU
+        }
+        expect(actions.changePageUserMainMenu()).toEqual(expectedAction);
+    });
+    it('should create an action to change page to user shopping page', () => {
+        const expectedAction = {
+            type: actionTypes.CHANGE_PAGE_USER_SHOPPING_PAGE
+        }
+        expect(actions.changePageUserShoppingPage()).toEqual(expectedAction);
+    });
 });
 
 describe ('ActiveMode Actions', () => {

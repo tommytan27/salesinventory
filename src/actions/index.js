@@ -446,6 +446,18 @@ export const changePageAdminRecordsHistory = () => {
     };
 }
 
+export const changePageUserMainMenu = () => {
+    return {
+        type: actionTypes.CHANGE_PAGE_USER_MAIN_MENU
+    };
+}
+
+export const changePageUserShoppingPage = () => {
+    return {
+        type: actionTypes.CHANGE_PAGE_USER_SHOPPING_PAGE
+    };
+}
+
 export const changeModeAdmin = (username, timeout) => {
     return {
         type: actionTypes.CHANGE_MODE_ADMIN,
