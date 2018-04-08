@@ -5,7 +5,7 @@ import ShoppingRecordsList from "../../components/lists/ShoppingRecordsList";
 const mapStateToProps = (state) => {
     return {
         items: state.items,
-        stockingRecords: state.stockingRecords
+        stockShopRecords: state.stockShopRecords
     }
 }
 

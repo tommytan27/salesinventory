@@ -1,4 +1,4 @@
-import stockingRecords from "../../reducers/records/stockingRecords";
+import stockShopRecords from "../../reducers/records/stockShopRecords";
 import actionTypes from "../../constants/actionTypes";
 
 var fakeStockingRecords = [
@@ -10,12 +10,21 @@ const fakeItem = {
     barcode: "3531312151", qty: {value: 5}, sellPrice: {value: 14.00}, costPrice: {value: 12.00}
 }
 
-describe('StockingRecord Store', () => {
-    it ('should return initial state of 0 stockingRecords', () => {
-        expect(stockingRecords(undefined, {})).toHaveLength(0);
+describe('StockShopRecords Store', () => {
+    it ('should return initial state of 0 stockShopRecords', () => {
+        expect(stockShopRecords(undefined, {})).toHaveLength(0);
+    });
+    it ('should return initial state when receiving CHANGE_PAGE_USER_MAIN_MENU', () => {
+        expect(stockShopRecords(undefined, {type: actionTypes.CHANGE_PAGE_USER_MAIN_MENU})).toHaveLength(0);
+    });
+    it ('should return initial state when receiving CHANGE_PAGE_ADMIN_MAIN_MENU', () => {
+        expect(stockShopRecords(undefined, {type: actionTypes.CHANGE_PAGE_ADMIN_MAIN_MENU})).toHaveLength(0);
+    });
+    it ('should return initial state when receiving CHANGE_MODE_USER_DUE_TIMEOUT', () => {
+        expect(stockShopRecords(undefined, {type: actionTypes.CHANGE_MODE_USER_DUE_TIMEOUT})).toHaveLength(0);
     });
     it ('should return updated stocking records list when receiving action REMOVE_STOCKING_RECORD_FROM_LIST', () => {
-        const returnValue = stockingRecords(fakeStockingRecords, {
+        const returnValue = stockShopRecords(fakeStockingRecords, {
             type: actionTypes.REMOVE_STOCKING_RECORD_FROM_LIST,
             recordId: 2
         });
@@ -24,7 +33,7 @@ describe('StockingRecord Store', () => {
         expect(returnValue[1].id).toBe(3);
     });
     it ('should return updated list with newly added record when receiving action ADD_STOCKING_RECORD_TO_LIST', () => {
-        const returnValue = stockingRecords(fakeStockingRecords, {
+        const returnValue = stockShopRecords(fakeStockingRecords, {
             type: actionTypes.ADD_STOCKING_RECORD_TO_LIST,
             item: fakeItem
         });

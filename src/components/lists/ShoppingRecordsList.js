@@ -18,7 +18,7 @@ class StockingRecordsList extends React.Component {
 
     getTotal = () => {
         let total = 0;
-        this.props.stockingRecords.forEach((record) => {
+        this.props.stockShopRecords.forEach((record) => {
             total += (record.qty * record.sellPrice);
         });
         return total;
@@ -29,11 +29,11 @@ class StockingRecordsList extends React.Component {
             <div style={styles.page.rightShopping}>
                 <div style={styles.itemCounter}>
                     <FontIcon style={styles.shoppingCart}>shopping_cart</FontIcon>&nbsp;
-                    {this.props.stockingRecords.length} Items
+                    {this.props.stockShopRecords.length} Items
                 </div>
                 <Divider />
                 <div style={styles.recordsBox}>
-                    {this.props.stockingRecords.map((record) => (
+                    {this.props.stockShopRecords.map((record) => (
                         <ShoppingRecord key={record.id} selectedItem={this.getItem(record.barcode)} 
                             total={record.qty * record.sellPrice} {...record}
                             onRemoveClick={() => {this.props.onRemoveClick(record.id)}} />
@@ -59,7 +59,7 @@ StockingRecordsList.propTypes = {
             qty: PropTypes.number.isRequired
         }).isRequired
     ).isRequired,
-    stockingRecords: PropTypes.arrayOf(
+    stockShopRecords: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.number.isRequired,
             barcode: PropTypes.string.isRequired,
