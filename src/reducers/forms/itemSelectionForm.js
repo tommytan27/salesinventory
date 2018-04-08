@@ -124,6 +124,8 @@ const itemSelectionFor = (state = initialState, action) => {
             return {...state, barcodeField: null};
         case actionTypes.SHOW_SHOPPING_FORM:
             return {...state, shoppingFormVisible: true};
+        case actionTypes.CHANGE_PAGE_USER_MAIN_MENU:
+            return initialState;
         default:
             return state;
     }
