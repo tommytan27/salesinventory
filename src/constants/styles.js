@@ -47,8 +47,12 @@ const styles = {
         left: {
             padding: '3%',
             paddingBottom: '0.75%',
-            margin: '3%',
-            top: '-150px'
+            margin: '3%'
+        },
+        leftGuide: {
+            padding: '3%',
+            backgroundColor: 'rgba(169,244,240,0.3)',
+            margin: '3%'
         },
         main: {
             padding: '3%',
@@ -67,6 +71,12 @@ const styles = {
             color: 'rgb(0,254,103)',
             textAlign: 'center',
             margin: '1%'
+        },
+        leftText: {
+            fontSize: '4em',
+            color: 'rgb(0,254,103)',
+            textAlign: 'center',
+            margin: '4%'
         }
     },
     valueLabel: {
@@ -136,6 +146,10 @@ const styles = {
         adminMenuButton: {
             fontSize: '8em'
         },
+        shoppingSearch: {
+            color: 'rgba(0,217,87,0.75)',
+            fontSize: '10em'
+        },
         rightArrow: {
             color: 'rgb(0,254,103)',
             fontSize: '7em',
@@ -158,6 +172,14 @@ const styles = {
             border: "none",
             outline: "none",
             margin: "3%"
+        },
+        barcodeButton: {
+            paddingRight: "0px",
+            paddingLeft: "30px"
+        },
+        searchButton: {
+            paddingRight: "30px",
+            paddingLeft: "0px"
         }
     },
     floatingButton: {

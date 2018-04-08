@@ -4,6 +4,7 @@ import actionTypes from './../../constants/actionTypes';
 const assertInitialState = (returnValue) => {
     expect(returnValue.barcodeEditable).toBeTruthy();
     expect(returnValue.barcodeField).toBeNull();
+    expect(returnValue.shoppingFormVisible).toBeFalsy();
     expect(returnValue.addableItem).toBeFalsy();
     expect(returnValue.selectedItem.supplierId).toBe(1);
     expect(returnValue.selectedItem.brandId).toBe(1);
@@ -308,5 +309,13 @@ describe('ItemSelectionForm Store', () => {
             type: actionTypes.INITIATE_BARCODE_SCANNING,
         });
         expect(returnValue.barcodeField).toBeNull();
+    });
+    it('should return shoppingFormVisible opened when receiving SHOW_SHOPPING_FORM', () => {
+        const returnValue = itemSelectionForm({
+            shoppingFormVisible: false
+        }, {
+            type: actionTypes.SHOW_SHOPPING_FORM,
+        });
+        expect(returnValue.shoppingFormVisible).toBeTruthy();
     });
 });

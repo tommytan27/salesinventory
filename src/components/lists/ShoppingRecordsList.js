@@ -2,7 +2,7 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 import { Button, FontIcon, Divider } from 'react-md';
 import Select from 'react-select';
-import StockingRecord from '../records/StockingRecord';
+import ShoppingRecord from '../records/ShoppingRecord';
 import styles from '../../constants/styles';
 
 class StockingRecordsList extends React.Component {
@@ -19,7 +19,7 @@ class StockingRecordsList extends React.Component {
     getTotal = () => {
         let total = 0;
         this.props.stockingRecords.forEach((record) => {
-            total += (record.qty * record.costPrice);
+            total += (record.qty * record.sellPrice);
         });
         return total;
     }
@@ -34,8 +34,8 @@ class StockingRecordsList extends React.Component {
                 <Divider />
                 <div style={styles.recordsBox}>
                     {this.props.stockingRecords.map((record) => (
-                        <StockingRecord key={record.id} selectedItem={this.getItem(record.barcode)} 
-                            total={record.qty * record.costPrice} {...record}
+                        <ShoppingRecord key={record.id} selectedItem={this.getItem(record.barcode)} 
+                            total={record.qty * record.sellPrice} {...record}
                             onRemoveClick={() => {this.props.onRemoveClick(record.id)}} />
                     ))}
                 </div>

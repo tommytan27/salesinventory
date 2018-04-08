@@ -526,7 +526,7 @@ describe ('LoginDialogs Actions', () => {
     });
 });
 
-describe ('StockingRecords Actions', () => {
+describe ('StockingShoppingRecords Actions', () => {
     it ('should create an action to remove stocking record from the list', () => {
         let expectedRecordId = 1;
         const expectedAction = {
@@ -576,6 +576,12 @@ describe ('StockingRecords Actions', () => {
             items: dummyItems
         }
         expect(actions.selectItemAndAdd(dummyBarcode, dummyItems)).toEqual(expectedAction);
+    });    
+    it('should create an action to show shopping form', () => {
+        const expectedAction = {
+            type: actionTypes.SHOW_SHOPPING_FORM
+        }
+        expect(actions.showShoppingForm()).toEqual(expectedAction);
     });
 });
 

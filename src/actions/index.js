@@ -478,6 +478,12 @@ export const changeModeUserDueTimeout = () => {
     };
 }
 
+export const showShoppingForm = () => {
+    return {
+        type: actionTypes.SHOW_SHOPPING_FORM
+    }
+}
+
 export const signalRLoginUser = (username, password) => {
     return {
         type: actionTypes.SIGNAL_R_LOGIN_USER,
