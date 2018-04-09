@@ -2,7 +2,6 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 import { Button, DialogContainer, DatePicker } from 'react-md';
 import { Form, FormGroup, ControlLabel, FormControl, Alert } from 'react-bootstrap';
-import Select from 'react-select';
 import styles from './../../constants/styles';
 
 class LoginDialog extends React.Component {
@@ -65,7 +64,7 @@ class LoginDialog extends React.Component {
         
         return (
             <DialogContainer id="LoginDialog" title={this.props.loginDialogs.title}
-                visible={this.props.loginDialogs.open} dialogStyle={{width: styles.dialog}}
+                visible={this.props.loginDialogs.open} dialogStyle={styles.dialog}
                 actions={actions} modal={false} initialFocus="#cancelButton"
                 onHide={this.props.onDialogClose}>
                 {this.renderDialogError(this.props.loginDialogs.error)}

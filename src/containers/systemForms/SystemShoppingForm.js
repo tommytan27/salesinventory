@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
-import { selectSupplier, selectBrand, selectItem, updateCostPriceField, 
-    updateSellPriceField, updateQtyField, updateBarcodeField, 
-    addStockingRecordToList, initiateBarcodeScanning, selectItemAndAdd, changePageUserMainMenu, showShoppingForm } from "../../actions";
+import { selectSupplier, selectBrand, selectItem, updateQtyField, updateBarcodeField, 
+    addStockingRecordToList, initiateBarcodeScanning, selectItemAndAdd, 
+    changePageUserMainMenu, showShoppingForm, openSelectCustomerDialog } from "../../actions";
 import ShoppingForm from "../../components/forms/ShoppingForm";
 
 const getFilteredItems = (state) => {
@@ -18,7 +18,8 @@ const mapStateToProps = (state) => {
         brands: state.brands,
         items: getFilteredItems(state),
         allItems: state.items,
-        itemSelectionForm: state.itemSelectionForm
+        itemSelectionForm: state.itemSelectionForm,
+        activeCustomer: state.customers.find((customer) => { return customer.id === state.activeCustomer.id; })
     }
 }
 
@@ -33,7 +34,8 @@ const mapDispatchToProps = (dispatch) => {
         onAddToListClick: (item) => { dispatch(addStockingRecordToList(item)); },
         onBarcodeButtonClick: () => { dispatch(initiateBarcodeScanning()) },
         onBackButtonClick: () => { dispatch(changePageUserMainMenu()) },
-        onShoppingSearchButtonClick: () => { dispatch(showShoppingForm()); }
+        onShoppingSearchButtonClick: () => { dispatch(showShoppingForm()); },
+        onChangeCustomerButtonClick: () => { dispatch(openSelectCustomerDialog()) }
     };
 }
 

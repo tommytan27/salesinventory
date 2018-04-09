@@ -2,7 +2,7 @@ import activeAdmin from "../reducers/activeAdmin";
 import actionTypes from "../constants/actionTypes";
 
 describe('activeAdmin', () => {
-    it('should return USER_MODE initially', () => {
+    it('should return null user initially', () => {
         expect(activeAdmin(undefined, {}).username).toBeNull();
         expect(activeAdmin(undefined, {}).timeout).toBeNull();
     });

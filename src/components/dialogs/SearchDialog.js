@@ -38,13 +38,13 @@ class SearchDialog extends React.Component {
 
     render() {         
         let actions = [
-            <Button flat iconChildren="clear" onClick={this.props.onDialogClose} id="cancelButton">CANCEL</Button>,
-            <Button primary flat iconChildren="search" onClick={this.props.onSearchButtonClick}>SEARCH</Button>
+            <Button primary flat iconChildren="search" onClick={this.props.onSearchButtonClick}>SEARCH</Button>,
+            <Button flat iconChildren="clear" onClick={this.props.onDialogClose} id="cancelButton">CANCEL</Button>
         ];
         
         return (
             <DialogContainer id="SearchDialog" title="Search"
-                visible={this.props.searchDialogs.open} dialogStyle={{width: styles.dialog}}
+                visible={this.props.searchDialogs.open} dialogStyle={styles.dialog}
                 actions={actions} modal={false} initialFocus="#cancelButton"
                 onHide={this.props.onDialogClose}>
                 {this.renderCustomerCombo()}

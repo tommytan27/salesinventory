@@ -308,6 +308,18 @@ export const closeLoginDialog = () => {
     };
 }
 
+export const openSelectCustomerDialog = () => {
+    return {
+        type: actionTypes.OPEN_SELECT_CUSTOMER_DIALOG
+    };
+}
+
+export const closeSelectCustomerDialog = () => {
+    return {
+        type: actionTypes.CLOSE_SELECT_CUSTOMER_DIALOG
+    };
+}
+
 export const openSearchDialog = () => {
     return {
         type: actionTypes.OPEN_SEARCH_DIALOG
@@ -495,5 +507,18 @@ export const signalRLoginUser = (username, password) => {
 export const failLoginUser = () => {
     return {
         type: actionTypes.FAIL_LOGIN_USER
+    }
+}
+
+export const selectCustomer = (customerId) => {
+    return {
+        type: actionTypes.SELECT_CUSTOMER,
+        customerId: customerId
+    };
+}
+
+export const selectAnonymous = () => {
+    return {
+        type: actionTypes.SELECT_ANONYMOUS
     }
 }

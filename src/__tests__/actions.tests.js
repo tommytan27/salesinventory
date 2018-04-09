@@ -526,6 +526,40 @@ describe ('LoginDialogs Actions', () => {
     });
 });
 
+describe ('SelectCustomerDialogs Actions', () => {    
+    it ('should create an action to open select customer dialog', () => {
+        const expectedAction = {
+            type: actionTypes.OPEN_SELECT_CUSTOMER_DIALOG
+        }
+        expect(actions.openSelectCustomerDialog()).toEqual(expectedAction);
+    });
+
+    it ('should create an action to close select customer dialog', () => {
+        const expectedAction = {
+            type: actionTypes.CLOSE_SELECT_CUSTOMER_DIALOG
+        }
+        expect(actions.closeSelectCustomerDialog()).toEqual(expectedAction);
+    });
+
+    it ('should create an action to select a customer', () => {
+        const expectedCustomer = {
+            id: 1, firstName: "Tommy", lastName: "Tanzil", contact: "0425927766", credit: 2.50
+        };
+        const expectedAction = {
+            type: actionTypes.SELECT_CUSTOMER,
+            customerId: expectedCustomer.id
+        }
+        expect(actions.selectCustomer(expectedCustomer.id)).toEqual(expectedAction);
+    });
+
+    it ('should create an action to select anonymous', () => {
+        const expectedAction = {
+            type: actionTypes.SELECT_ANONYMOUS
+        }
+        expect(actions.selectAnonymous()).toEqual(expectedAction);
+    });
+});
+
 describe ('StockingShoppingRecords Actions', () => {
     it ('should create an action to remove stocking record from the list', () => {
         let expectedRecordId = 1;

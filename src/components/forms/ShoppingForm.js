@@ -2,8 +2,10 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 import { Image, Form, Col, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 import { Paper, Button, DialogContainer, Autocomplete, FontIcon } from 'react-md';
+import SystemSelectCustomerDialog from './../../containers/systemDialogs/SystemSelectCustomerDialog';
 import Select from 'react-select';
 import styles from '../../constants/styles';
+import SystemCustomerDialog from './../../containers/systemDialogs/SystemCustomerDialog';
 
 const enterKey = 13;
 
@@ -131,10 +133,10 @@ class ShoppingForm extends React.Component {
                 <Image src="logo.png" style={styles.logo.left} />                
                 <p style={styles.welcome.left}>
                     <Button flat iconChildren="face" topltips="Change User"
-                        style={styles.iconButton.changeUserButton} onClick={this.props.onBackButtonClick}>
-                        CHANGE USER
+                        style={styles.iconButton.changeUserButton} onClick={this.props.onChangeCustomerButtonClick}>
+                        CHANGE CUSTOMER
                     </Button>&nbsp;
-                    Hi, Tommy Tanzil
+                    Hi, {this.props.activeCustomer.firstName} {this.props.activeCustomer.lastName}
                 </p>
                 <Paper key="shopingGuidePaper" zDepth={3} style={styles.paper.leftGuide}>
                     <p style={styles.paper.leftText}>Scan or</p><br />
@@ -184,6 +186,10 @@ class ShoppingForm extends React.Component {
                     onHide={() => {}}>
                     <p style={styles.paragraph}>No available supplier and/or brand to be selected</p>
                 </DialogContainer>
+
+                <SystemSelectCustomerDialog />
+
+                <SystemCustomerDialog />
             </div>
         );
     }
@@ -247,6 +253,13 @@ ShoppingForm.propTypes = {
             }).isRequired
         }).isRequired
     }).isRequired,
+    activeCustomer: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        firstName: PropTypes.string.isRequired,
+        lastName: PropTypes.string.isRequired,
+        contact: PropTypes.string.isRequired,
+        credit: PropTypes.number.isRequired
+    }).isRequired,
     onSupplierComboChanged: PropTypes.func.isRequired,
     onBrandComboChanged: PropTypes.func.isRequired,
     onItemComboChanged: PropTypes.func.isRequired,
@@ -256,7 +269,8 @@ ShoppingForm.propTypes = {
     onAddToListClick: PropTypes.func.isRequired,
     onBarcodeButtonClick: PropTypes.func.isRequired,
     onBackButtonClick: PropTypes.func.isRequired,
-    onShoppingSearchButtonClick: PropTypes.func.isRequired
+    onShoppingSearchButtonClick: PropTypes.func.isRequired,
+    onChangeCustomerButtonClick: PropTypes.func.isRequired
 };
 
 export default ShoppingForm;
