@@ -150,6 +150,10 @@ const styles = {
             color: 'rgba(0,217,87,0.75)',
             fontSize: '10em'
         },
+        shoppingSearchDisabled: {
+            color: 'rgb(171,171,171)',
+            fontSize: '10em'
+        },
         rightArrow: {
             color: 'rgb(0,254,103)',
             fontSize: '7em',
@@ -178,6 +182,13 @@ const styles = {
             color: 'white'
         },
         adminMenuButton: {
+            borderRadius: "90%",
+            border: "none",
+            outline: "none",
+            margin: "3%"
+        },
+        adminMenuButtonDisabled: {
+            enabled: "false",
             borderRadius: "90%",
             border: "none",
             outline: "none",

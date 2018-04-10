@@ -522,3 +522,15 @@ export const selectAnonymous = () => {
         type: actionTypes.SELECT_ANONYMOUS
     }
 }
+
+export const openPaymentDialog = () => {
+    return {
+        type: actionTypes.OPEN_PAYMENT_DIALOG
+    };
+}
+
+export const closePaymentDialog = () => {
+    return {
+        type: actionTypes.CLOSE_PAYMENT_DIALOG
+    };
+}

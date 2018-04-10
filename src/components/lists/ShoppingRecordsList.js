@@ -69,7 +69,7 @@ class StockingRecordsList extends React.Component {
                     ))}
                     {this.renderCustomerCredit()}
                 </div>
-                <Button flat disabled={totalDisabled}
+                <Button flat disabled={totalDisabled} onClick={this.props.onPayButtonClick}
                     style={totalDisabled ? styles.payButton.disabled : styles.payButton.enabled}>
                     PAY ${total.toFixed(2)}
                 </Button>
@@ -106,7 +106,8 @@ StockingRecordsList.propTypes = {
         contact: PropTypes.string.isRequired,
         credit: PropTypes.number.isRequired
     }).isRequired,
-    onRemoveClick: PropTypes.func.isRequired
+    onRemoveClick: PropTypes.func.isRequired,
+    onPayButtonClick: PropTypes.func.isRequired
 };
 
 export default StockingRecordsList;

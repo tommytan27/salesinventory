@@ -694,3 +694,19 @@ describe ('ActiveMode Actions', () => {
         expect(actions.changeModeUserDueTimeout()).toEqual(expectedAction);
     });
 });
+
+describe ('PaymentDialogs Actions', () => {    
+    it ('should create an action to open payment dialog', () => {
+        const expectedAction = {
+            type: actionTypes.OPEN_PAYMENT_DIALOG
+        }
+        expect(actions.openPaymentDialog()).toEqual(expectedAction);
+    });
+
+    it ('should create an action to close payment dialog', () => {
+        const expectedAction = {
+            type: actionTypes.CLOSE_PAYMENT_DIALOG
+        }
+        expect(actions.closePaymentDialog()).toEqual(expectedAction);
+    });
+});

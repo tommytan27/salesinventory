@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { removeStockingRecordFromList } from '../../actions';
+import { removeStockingRecordFromList, openPaymentDialog } from '../../actions';
 import ShoppingRecordsList from "../../components/lists/ShoppingRecordsList";
 
 const mapStateToProps = (state) => {
@@ -13,7 +13,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onRemoveClick: (recordId) => { dispatch(removeStockingRecordFromList(recordId)); }
+        onRemoveClick: (recordId) => { dispatch(removeStockingRecordFromList(recordId)); },
+        onPayButtonClick: () => { dispatch(openPaymentDialog()); }
     };
 }
 

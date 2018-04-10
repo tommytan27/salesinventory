@@ -23,6 +23,7 @@ import activeTab from './activeTab';
 import activeMode from './activeMode';
 import activeAdmin from './activeAdmin';
 import activeCustomer from './activeCustomer';
+import paymentDialogs from './dialogs/paymentDialogs';
 
 const salesInventoryApp = combineReducers({
     users,
@@ -44,6 +45,7 @@ const salesInventoryApp = combineReducers({
     selectCustomerDialogs,
     recordsDetailsDialogs,
     itemSelectionForm,
+    paymentDialogs,
     activePage,
     activeTab,
     activeMode,
