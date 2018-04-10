@@ -31,8 +31,8 @@ class SelectCustomerDialog extends React.Component {
                         }
                     })} />
                 <center>
-                    <Button flat primary swapTheming iconChildren="add"
-                        style={{padding: "8%", margin: "18%"}} onClick={this.props.onNewCustomerClick}>
+                    <Button flat iconChildren="add"
+                        style={styles.newCustomerButton} onClick={this.props.onNewCustomerClick}>
                         NEW CUSTOMER
                     </Button>
                 </center>

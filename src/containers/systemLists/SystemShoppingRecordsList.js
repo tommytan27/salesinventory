@@ -14,7 +14,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         onRemoveClick: (recordId) => { dispatch(removeStockingRecordFromList(recordId)); },
-        onPayButtonClick: () => { dispatch(openPaymentDialog()); }
+        onPayButtonClick: (total) => { dispatch(openPaymentDialog(total)); }
     };
 }
 

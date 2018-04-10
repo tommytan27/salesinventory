@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import PaymentDialog from "../../components/dialogs/PaymentDialog";
-import { closePaymentDialog } from './../../actions';
+import { closePaymentDialog, payNow, updateCashField } from './../../actions';
+import { payCash } from './../../actions/index';
 
 const mapStateToProps = (state) => {
     return {
@@ -14,7 +15,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onDialogClose: () => { dispatch(closePaymentDialog()) },
+        onDialogClose: () => { dispatch(closePaymentDialog()); },
+        onPayNowButtonClick: () => { dispatch(payNow()); },
+        onCashFieldChange: (cash) => { dispatch(updateCashField(cash)); },
+        onPayCashButtonClick: () => { dispatch(payCash()); }
         // onCustomerComboChanged: (customerId) => { dispatch(updateCustomerCombo(customerId)) },
         // onFromDateFieldChanged: (fromDate) => { dispatch(updateFromDateField(fromDate)) },
         // onToDateFieldChanged: (toDate) => { dispatch(updateToDateField(toDate)) }

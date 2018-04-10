@@ -69,7 +69,7 @@ class StockingRecordsList extends React.Component {
                     ))}
                     {this.renderCustomerCredit()}
                 </div>
-                <Button flat disabled={totalDisabled} onClick={this.props.onPayButtonClick}
+                <Button flat disabled={totalDisabled} onClick={() => {this.props.onPayButtonClick(total)}}
                     style={totalDisabled ? styles.payButton.disabled : styles.payButton.enabled}>
                     PAY ${total.toFixed(2)}
                 </Button>

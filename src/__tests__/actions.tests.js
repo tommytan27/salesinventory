@@ -698,9 +698,10 @@ describe ('ActiveMode Actions', () => {
 describe ('PaymentDialogs Actions', () => {    
     it ('should create an action to open payment dialog', () => {
         const expectedAction = {
-            type: actionTypes.OPEN_PAYMENT_DIALOG
+            type: actionTypes.OPEN_PAYMENT_DIALOG,
+            total: "20.50"
         }
-        expect(actions.openPaymentDialog()).toEqual(expectedAction);
+        expect(actions.openPaymentDialog("20.50")).toEqual(expectedAction);
     });
 
     it ('should create an action to close payment dialog', () => {
@@ -708,5 +709,34 @@ describe ('PaymentDialogs Actions', () => {
             type: actionTypes.CLOSE_PAYMENT_DIALOG
         }
         expect(actions.closePaymentDialog()).toEqual(expectedAction);
+    });
+
+    it ('should create an action to pay now', () => {
+        const expectedAction = {
+            type: actionTypes.PAY_NOW
+        }
+        expect(actions.payNow()).toEqual(expectedAction);
+    });
+
+    it ('should create an action to pay cash', () => {
+        const expectedAction = {
+            type: actionTypes.PAY_CASH
+        }
+        expect(actions.payCash()).toEqual(expectedAction);
+    });
+
+    it ('should create an action to set change has been taken', () => {
+        const expectedAction = {
+            type: actionTypes.CHANGE_TAKEN
+        }
+        expect(actions.changeTaken()).toEqual(expectedAction);
+    });
+
+    it ('should create an action to update cash field', () => {
+        const expectedAction = {
+            type: actionTypes.UPDATE_CASH_FIELD,
+            cash: "20.50"
+        }
+        expect(actions.updateCashField("20.50")).toEqual(expectedAction);
     });
 });

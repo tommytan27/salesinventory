@@ -523,14 +523,40 @@ export const selectAnonymous = () => {
     }
 }
 
-export const openPaymentDialog = () => {
+export const openPaymentDialog = (total) => {
     return {
-        type: actionTypes.OPEN_PAYMENT_DIALOG
+        type: actionTypes.OPEN_PAYMENT_DIALOG,
+        total: total
     };
 }
 
 export const closePaymentDialog = () => {
     return {
         type: actionTypes.CLOSE_PAYMENT_DIALOG
+    };
+}
+
+export const payNow = () => {
+    return {
+        type: actionTypes.PAY_NOW
+    };
+}
+
+export const payCash = () => {
+    return {
+        type: actionTypes.PAY_CASH
+    };
+}
+
+export const changeTaken = () => {
+    return {
+        type: actionTypes.CHANGE_TAKEN
+    };
+}
+
+export const updateCashField = (cash) => {
+    return {
+        type: actionTypes.UPDATE_CASH_FIELD,
+        cash: cash
     };
 }

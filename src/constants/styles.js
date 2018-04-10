@@ -303,6 +303,15 @@ const styles = {
             paddingTop: '0px'
         }
     },
+    newCustomerButton: {
+        padding: "8%",
+        margin: "18%",
+        backgroundColor: 'rgba(0,217,87,0.75)',
+        color: "white"
+    },
+    shoppingPageButton: {
+        color: 'rgba(0,217,87,0.75)'
+    },
     record:{
         left: {
             float: 'left',
