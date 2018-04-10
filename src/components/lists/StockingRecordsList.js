@@ -24,6 +24,10 @@ class ShoppingRecordsList extends React.Component {
         return total;
     }
 
+    componentDidUpdate() {
+        this.recordListBox.scrollTop = this.recordListBox.scrollHeight - this.recordListBox.clientHeight;
+    }
+
     render() {
         return (
             <div style={styles.page.right}>
@@ -32,7 +36,7 @@ class ShoppingRecordsList extends React.Component {
                     {this.props.stockShopRecords.length} Items
                 </div>
                 <Divider />
-                <div style={styles.recordsBox}>
+                <div style={styles.recordsBox} ref={(recordBox) => { this.recordListBox = recordBox; }}>
                     {this.props.stockShopRecords.map((record) => (
                         <StockingRecord key={record.id} selectedItem={this.getItem(record.barcode)} 
                             total={record.qty * record.costPrice} {...record}

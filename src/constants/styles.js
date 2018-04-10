@@ -156,6 +156,16 @@ const styles = {
             position: 'absolute',
             right: '15px',
             top: '40%'
+        },
+        customerCredit: {
+            color: 'green',
+            paddingTop: "3.5%"
+        },
+        customerCreditContainer: {
+            width: "40px",
+            height: "40px",
+            padding: "10px",
+            display: "inline"
         }
     },
     iconButton: {        

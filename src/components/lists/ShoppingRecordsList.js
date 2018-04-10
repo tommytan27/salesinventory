@@ -4,6 +4,7 @@ import { Button, FontIcon, Divider } from 'react-md';
 import Select from 'react-select';
 import ShoppingRecord from '../records/ShoppingRecord';
 import styles from '../../constants/styles';
+import activeCustomer from './../../reducers/activeCustomer';
 
 class StockingRecordsList extends React.Component {
     getItem = (barcode) => {
@@ -21,7 +22,33 @@ class StockingRecordsList extends React.Component {
         this.props.stockShopRecords.forEach((record) => {
             total += (record.qty * record.sellPrice);
         });
+        if (!this.props.selectCustomerDialogs.open && activeCustomer.id !== 0) {
+            total -= this.props.activeCustomer.credit;
+        }
         return total;
+    }
+
+    renderCustomerCredit = () => {
+        if (!this.props.selectCustomerDialogs.open && activeCustomer.id !== 0) {
+            return (
+                <div>
+                <div style={styles.record.left}>
+                    <div style={styles.fontIcon.customerCreditContainer}>
+                    <FontIcon style={styles.fontIcon.customerCredit}>
+                        monetization_on
+                    </FontIcon>
+                    </div>
+                    Customer Credit
+                </div>                        
+                <div style={styles.record.right}>-${this.props.activeCustomer.credit.toFixed(2)}</div>
+            </div>
+            );
+        }
+        return;
+    }
+
+    componentDidUpdate() {
+        this.recordListBox.scrollTop = this.recordListBox.scrollHeight - this.recordListBox.clientHeight;
     }
 
     render() {
@@ -32,12 +59,13 @@ class StockingRecordsList extends React.Component {
                     {this.props.stockShopRecords.length} Items
                 </div>
                 <Divider />
-                <div style={styles.recordsBox}>
+                <div style={styles.recordsBox} ref={(recordBox) => { this.recordListBox = recordBox; }}>
                     {this.props.stockShopRecords.map((record) => (
                         <ShoppingRecord key={record.id} selectedItem={this.getItem(record.barcode)} 
                             total={record.qty * record.sellPrice} {...record}
                             onRemoveClick={() => {this.props.onRemoveClick(record.id)}} />
                     ))}
+                    {this.renderCustomerCredit()}
                 </div>
                 <Button flat swapTheming style={styles.payButton}>
                     PAY ${this.getTotal().toFixed(2)}
