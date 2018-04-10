@@ -22,7 +22,8 @@ class ShoppingForm extends React.Component {
     }
 
     handleBarcodeButton = () => {
-        this.barcodeField.focus();
+        let barcodeField = document.getElementsByClassName("itemBarcodeField").item(0);
+        barcodeField.focus();
         this.props.onBarcodeButtonClick();
     }
 
@@ -124,7 +125,7 @@ class ShoppingForm extends React.Component {
             </Button>
         ];
         
-        let itemBarcodes = this.props.items.map((item) => {
+        let itemBarcodes = this.props.allItems.map((item) => {
             return item.barcode;
         });
 
@@ -155,7 +156,20 @@ class ShoppingForm extends React.Component {
                             id="itemBarcode"
                             placeholder="Item Barcode"
                             data={itemBarcodes}
+                            focusInputOnAutocomplete
                             filter={Autocomplete.caseInsensitiveFilter}
+                            value={this.props.itemSelectionForm.barcodeField ? 
+                                this.props.itemSelectionForm.barcodeField : ""}
+                            onChange={ (e) => {this.props.onBarcodeFieldChange(e)} }
+                            onAutocomplete={ (e) => {this.props.onBarcodeFieldChange(e)} }
+                            onKeyDown={ (e) => {
+                                var key = e.which || e.keyCode;
+                                if (key === enterKey) {
+                                    e.preventDefault();
+                                    this.props.onBarcodeFieldEnterKey(e.target.value, this.props.allItems);
+                                }
+                            }} 
+                            inputClassName="itemBarcodeField"
                         />
                     </Col>
                     <Col sm={1} style={styles.iconButton.searchButton}>

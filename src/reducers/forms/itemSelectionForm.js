@@ -73,6 +73,7 @@ const itemSelectionFor = (state = initialState, action) => {
             let matchingItem = getItem(action.barcode, action.items);
             temp = {...state, barcodeField: matchingItem.barcode,
                 autoAdd: getAutoAdd(matchingItem.barcode, action.type), 
+                shoppingFormVisible: action.type === actionTypes.SELECT_ITEM,
                 selectedItem: {
                     ...state.selectedItem,
                     supplierId: matchingItem.supplierId,

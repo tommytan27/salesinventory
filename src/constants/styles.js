@@ -255,7 +255,7 @@ const styles = {
             paddingTop: '0px'
         },
         disabled: {
-            backgroundColor: 'grey',
+            backgroundColor: 'rgb(171,171,171)',
             bottom: '0px',
             right: '0px',
             position: 'fixed',
@@ -280,7 +280,7 @@ const styles = {
             paddingTop: '0px'
         },
         disabled: {
-            backgroundColor: 'grey',
+            backgroundColor: 'rgb(171,171,171)',
             color: 'white',
             bottom: '0px',
             right: '0px',

@@ -325,4 +325,24 @@ describe('ItemSelectionForm Store', () => {
         });
         expect(returnValue.shoppingFormVisible).toBeTruthy();
     });
+    it('should return shoppingFormVisible opened when receiving SELECT_ITEM', () => {
+        const returnValue = itemSelectionForm({
+            shoppingFormVisible: false
+        }, {
+            type: actionTypes.SELECT_ITEM,
+            barcode: dummyBarcode,
+            items: dummyItems
+        });
+        expect(returnValue.shoppingFormVisible).toBeTruthy();
+    });
+    it('should return shoppingFormVisible closed when receiving SELECT_ITEM_AND_ADD', () => {
+        const returnValue = itemSelectionForm({
+            shoppingFormVisible: true
+        }, {
+            type: actionTypes.SELECT_ITEM_AND_ADD,
+            barcode: dummyBarcode,
+            items: dummyItems
+        });
+        expect(returnValue.shoppingFormVisible).toBeFalsy();
+    });
 });
