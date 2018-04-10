@@ -244,26 +244,53 @@ const styles = {
         height: '9%'
     },
     completeButton: {
-        bottom: '0px',
-        right: '0px',
-        position: 'fixed',
-        fontWeight: 'bold',
-        fontSize: '3em',
-        width: '40%',
-        height: '9%',
-        paddingTop: '0px'
+        enabled: {
+            bottom: '0px',
+            right: '0px',
+            position: 'fixed',
+            fontWeight: 'bold',
+            fontSize: '3em',
+            width: '40%',
+            height: '9%',
+            paddingTop: '0px'
+        },
+        disabled: {
+            backgroundColor: 'grey',
+            bottom: '0px',
+            right: '0px',
+            position: 'fixed',
+            fontWeight: 'bold',
+            fontSize: '3em',
+            width: '40%',
+            height: '9%',
+            paddingTop: '0px'
+        }
     },
     payButton: {
-        backgroundColor: 'rgba(0,217,87,0.75)',
-        color: 'white',
-        bottom: '0px',
-        right: '0px',
-        position: 'fixed',
-        fontWeight: 'bold',
-        fontSize: '3em',
-        width: '40%',
-        height: '9%',
-        paddingTop: '0px'
+        enabled: {
+            backgroundColor: 'rgba(0,217,87,0.75)',
+            color: 'white',
+            bottom: '0px',
+            right: '0px',
+            position: 'fixed',
+            fontWeight: 'bold',
+            fontSize: '3em',
+            width: '40%',
+            height: '9%',
+            paddingTop: '0px'
+        },
+        disabled: {
+            backgroundColor: 'grey',
+            color: 'white',
+            bottom: '0px',
+            right: '0px',
+            position: 'fixed',
+            fontWeight: 'bold',
+            fontSize: '3em',
+            width: '40%',
+            height: '9%',
+            paddingTop: '0px'
+        }
     },
     record:{
         left: {

@@ -29,6 +29,8 @@ class ShoppingRecordsList extends React.Component {
     }
 
     render() {
+        let total = this.getTotal();
+        let totalDisabled = (total <= 0);
         return (
             <div style={styles.page.right}>
                 <div style={styles.itemCounter}>
@@ -43,8 +45,9 @@ class ShoppingRecordsList extends React.Component {
                             onRemoveClick={() => {this.props.onRemoveClick(record.id)}} />
                     ))}
                 </div>
-                <Button flat primary swapTheming style={styles.completeButton}>
-                    DONE ${this.getTotal().toFixed(2)}
+                <Button flat primary swapTheming disabled={totalDisabled}
+                    style={totalDisabled ? styles.completeButton.disabled : styles.completeButton.enabled}>
+                    DONE ${total.toFixed(2)}
                 </Button>
             </div>
         );

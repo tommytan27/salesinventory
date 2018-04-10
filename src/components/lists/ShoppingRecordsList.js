@@ -22,14 +22,14 @@ class StockingRecordsList extends React.Component {
         this.props.stockShopRecords.forEach((record) => {
             total += (record.qty * record.sellPrice);
         });
-        if (!this.props.selectCustomerDialogs.open && activeCustomer.id !== 0) {
+        if (!this.props.selectCustomerDialogs.open && this.props.activeCustomer.id !== 0) {
             total -= this.props.activeCustomer.credit;
         }
         return total;
     }
 
     renderCustomerCredit = () => {
-        if (!this.props.selectCustomerDialogs.open && activeCustomer.id !== 0) {
+        if (!this.props.selectCustomerDialogs.open && this.props.activeCustomer.id !== 0) {
             return (
                 <div>
                 <div style={styles.record.left}>
@@ -52,6 +52,8 @@ class StockingRecordsList extends React.Component {
     }
 
     render() {
+        let total = this.getTotal();
+        let totalDisabled = (total <= 0);
         return (
             <div style={styles.page.rightShopping}>
                 <div style={styles.itemCounter}>
@@ -67,8 +69,9 @@ class StockingRecordsList extends React.Component {
                     ))}
                     {this.renderCustomerCredit()}
                 </div>
-                <Button flat swapTheming style={styles.payButton}>
-                    PAY ${this.getTotal().toFixed(2)}
+                <Button flat disabled={totalDisabled}
+                    style={totalDisabled ? styles.payButton.disabled : styles.payButton.enabled}>
+                    PAY ${total.toFixed(2)}
                 </Button>
             </div>
         );
@@ -96,6 +99,13 @@ StockingRecordsList.propTypes = {
             qty: PropTypes.number.isRequired
         }).isRequired
     ).isRequired,
+    activeCustomer: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        firstName: PropTypes.string.isRequired,
+        lastName: PropTypes.string.isRequired,
+        contact: PropTypes.string.isRequired,
+        credit: PropTypes.number.isRequired
+    }).isRequired,
     onRemoveClick: PropTypes.func.isRequired
 };
 
