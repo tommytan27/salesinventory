@@ -116,6 +116,15 @@ const styles = {
     paragraph: {
         fontSize: '1em'
     },
+    paymentDialog: {
+        paragraph: {
+            fontSize: "1.5em"
+        },
+        change: {
+            color: 'rgba(0,217,87,0.75)',
+            fontSize: '8em'
+        }
+    },
     dialog: {
         width: 'auto'
     },

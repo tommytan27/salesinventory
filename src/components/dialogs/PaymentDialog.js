@@ -60,10 +60,12 @@ class PaymentDialog extends React.Component {
         }
 
         return (
-            <div>                
-                <center><p style={styles.paragraph}>Thank you for shopping with us</p></center>
-                <center><p style={styles.paragraph}>Please take your change</p></center>
-            </div>
+            <center>
+                <p style={styles.paymentDialog.paragraph}>Thank you for shopping with us</p>
+                <p style={styles.paymentDialog.paragraph}>Please take your change</p>
+                
+                <div style={styles.paymentDialog.change}>${this.props.paymentDialogs.change.toFixed(2)}</div>
+            </center>
         );
     }
 
@@ -74,17 +76,23 @@ class PaymentDialog extends React.Component {
 
         if (this.props.paymentDialogs.payNow) {
             if (this.props.paymentDialogs.change) {
-                actions = [
-                    <Button flat onClick={this.props.onPayCashButtonClick}
-                        style={styles.shoppingPageButton} id="focusButton">
-                        CHANGE TAKEN
-                    </Button>
-                ];
                 if (this.props.activeCustomer.id !== 0) {
-                    actions.push(                                     
+                    actions = [                              
                         <Button flat onClick={this.props.onPayCashButtonClick}
                             style={styles.shoppingPageButton}>
                             SAVE AS CREDIT
+                        </Button>,
+                        <Button flat onClick={this.props.onPayCashButtonClick}
+                            style={styles.shoppingPageButton} id="focusButton">
+                            CHANGE TAKEN
+                        </Button>
+                    ];
+                }
+                else {
+                    actions.push(
+                        <Button flat onClick={this.props.onPayCashButtonClick}
+                            style={styles.shoppingPageButton}>
+                            CHANGE TAKEN
                         </Button>
                     );
                 }
@@ -103,7 +111,8 @@ class PaymentDialog extends React.Component {
         return (
             <DialogContainer id="PaymentDialog" title="Payment"
                 visible={this.props.paymentDialogs.open} modal={false}
-                dialogStyle={{width:"50%", height: this.props.paymentDialogs.payNow ? "27%" : "52%"}}
+                dialogStyle={{width:"50%", height: this.props.paymentDialogs.payNow ? 
+                    this.props.paymentDialogs.change ? "45%" : "27%" : "52%"}}
                 actions={actions} modal={false} initialFocus="#focusButton"
                 onHide={this.props.onDialogClose}>
                 {this.renderPaymentOption()}
