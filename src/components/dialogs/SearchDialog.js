@@ -44,7 +44,7 @@ class SearchDialog extends React.Component {
         
         return (
             <DialogContainer id="SearchDialog" title="Search"
-                visible={this.props.searchDialogs.open} dialogStyle={styles.dialog}
+                visible={this.props.searchDialogs.open} dialogStyle={styles.dialog} contentStyle={{maxHeight: "auto"}}
                 actions={actions} modal={false} initialFocus="#cancelButton"
                 onHide={this.props.onDialogClose}>
                 {this.renderCustomerCombo()}

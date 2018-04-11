@@ -11,7 +11,7 @@ class SupplierDialog extends Dialog {
         const supplier = this.props.supplierInDialog;
         return (
             <DialogContainer id="SupplierDialog" title={this.props.dialogState.title}
-                visible={this.props.dialogState.open} dialogStyle={styles.dialog}
+                visible={this.props.dialogState.open} dialogStyle={styles.dialog} contentStyle={{maxHeight: "auto"}}
                 actions={this.getDialogActions()} modal={false} initialFocus="#cancelButton"
                 onHide={this.props.onDialogClose}>
                 {this.renderDialogError(this.props.dialogState.error)}

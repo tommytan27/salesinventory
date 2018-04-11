@@ -1,11 +1,30 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
-import { Button, FontIcon, Divider } from 'react-md';
+import { Button, FontIcon, Divider, DialogContainer } from 'react-md';
 import Select from 'react-select';
 import StockingRecord from '../records/StockingRecord';
 import styles from '../../constants/styles';
 
 class ShoppingRecordsList extends React.Component {
+    constructor(props) {
+        super(props);
+        this.resetConfirmationDialog = this.resetConfirmationDialog.bind(this);
+        this.renderConfirmationDialog = this.renderConfirmationDialog.bind(this);
+        this.state = {
+            confirmationDialogOpen: false,
+            confirmationAction: () => {},
+            confirmationText: ""
+        };
+    }
+
+    resetConfirmationDialog() {
+        this.setState({
+            confirmationDialogOpen: false,
+            confirmationAction: () => {},
+            confirmationText: ""
+        });
+    }
+    
     getItem = (barcode) => {
         if (this.props.items && this.props.items.length > 0) {
             let foundItem = this.props.items.find((item) => {
@@ -28,6 +47,32 @@ class ShoppingRecordsList extends React.Component {
         this.recordListBox.scrollTop = this.recordListBox.scrollHeight - this.recordListBox.clientHeight;
     }
 
+    renderConfirmationDialog() {
+        if (this.state.confirmationDialogOpen) {
+            let actions = [
+                <Button flat iconChildren="clear" onClick={() => {this.resetConfirmationDialog()}} 
+                    id="focusButton">NO</Button>,
+                <Button flat iconChildren="check" onClick={this.state.confirmationAction}>YES</Button>
+            ];
+            return (                        
+                <DialogContainer id="ConfirmationDialog" title="Confirmation" modal={true}
+                    portal={true} lastChild={true} disableScrollLocking={true} renderNode={document.body}
+                    actions={actions} initialFocus="#focusButton" visible={this.state.confirmationDialogOpen}>
+                    <p style={styles.paragraph}>{this.state.confirmationText}</p>
+                </DialogContainer>
+            );
+        }
+        return;
+    }
+
+    handleDone = () => {
+        this.setState({
+            confirmationDialogOpen: true,
+            confirmationAction: this.props.onDoneButtonClick,
+            confirmationText: "Are you sure you want to finalize this stocking records?"
+        });
+    }
+
     render() {
         let total = this.getTotal();
         let totalDisabled = (total <= 0);
@@ -45,10 +90,11 @@ class ShoppingRecordsList extends React.Component {
                             onRemoveClick={() => {this.props.onRemoveClick(record.id)}} />
                     ))}
                 </div>
-                <Button flat primary swapTheming disabled={totalDisabled}
+                <Button flat primary swapTheming disabled={totalDisabled} onClick={this.handleDone}
                     style={totalDisabled ? styles.completeButton.disabled : styles.completeButton.enabled}>
                     DONE ${total.toFixed(2)}
                 </Button>
+                {this.renderConfirmationDialog()}
             </div>
         );
     }

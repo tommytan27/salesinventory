@@ -64,7 +64,7 @@ class UserDialog extends Dialog {
         const usernameFieldDisabled = this.props.dialogState.mode === dialogModes.ADD_MODE ? false : true;
         return (
             <DialogContainer id="UserDialog" title={this.props.dialogState.title}
-                visible={this.props.dialogState.open} dialogStyle={styles.dialog}
+                visible={this.props.dialogState.open} dialogStyle={styles.dialog} contentStyle={{maxHeight: "auto"}}
                 actions={this.getDialogActions()} modal={false} initialFocus="#cancelButton"
                 onHide={this.props.onDialogClose}>                
                 {this.renderDialogError(this.props.dialogState.error)}

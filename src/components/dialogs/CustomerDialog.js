@@ -24,7 +24,7 @@ class CustomerDialog extends Dialog {
         const customer = this.props.customerInDialog;
         return (
             <DialogContainer id="CustomerDialog" title={this.props.dialogState.title}
-                visible={this.props.dialogState.open} dialogStyle={styles.dialog}
+                visible={this.props.dialogState.open} dialogStyle={styles.dialog} contentStyle={{maxHeight: "auto"}}
                 actions={this.getDialogActions()} modal={false} initialFocus="#cancelButton"
                 onHide={this.props.onDialogClose}>
                 {this.renderDialogError(this.props.dialogState.error)}

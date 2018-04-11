@@ -64,7 +64,7 @@ class LoginDialog extends React.Component {
         
         return (
             <DialogContainer id="LoginDialog" title={this.props.loginDialogs.title}
-                visible={this.props.loginDialogs.open} dialogStyle={styles.dialog}
+                visible={this.props.loginDialogs.open} contentStyle={{maxHeight: "auto"}}
                 actions={actions} modal={false} initialFocus="#cancelButton"
                 onHide={this.props.onDialogClose}>
                 {this.renderDialogError(this.props.loginDialogs.error)}

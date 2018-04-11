@@ -31,7 +31,7 @@ class PriceCheckDialog extends React.Component {
         return (
             <DialogContainer id="PriceCheckDialog" title="Price Check"
                 visible={this.props.priceCheckDialogs.open}
-                dialogStyle={{width:"50%", height: "55%"}}
+                dialogStyle={{width:"50%"}} contentStyle={{maxHeight: "auto"}}
                 actions={actions} modal={false} initialFocus="#focusButton"
                 onHide={this.props.onDialogClose}>
                 <p style={styles.paragraph}>Scan the item to check the price:</p>

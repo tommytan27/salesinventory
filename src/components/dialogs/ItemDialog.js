@@ -30,7 +30,7 @@ class ItemDialog extends Dialog {
         
         return (
             <DialogContainer id="ItemDialog" title={this.props.dialogState.title}
-                visible={this.props.dialogState.open} dialogStyle={{width: '80%'}}
+                visible={this.props.dialogState.open} dialogStyle={{width: '80%'}} contentStyle={{maxHeight: "auto"}}
                 actions={this.getDialogActions()} modal={false} initialFocus="#cancelButton"
                 onHide={this.props.onDialogClose}>
                 {this.renderDialogError(this.props.dialogState.error)}

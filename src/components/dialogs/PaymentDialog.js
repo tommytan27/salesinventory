@@ -4,6 +4,25 @@ import { Button, DialogContainer, FontIcon, Autocomplete } from 'react-md';
 import styles from './../../constants/styles';
 
 class PaymentDialog extends React.Component {
+    constructor(props) {
+        super(props);
+        this.resetConfirmationDialog = this.resetConfirmationDialog.bind(this);
+        this.renderConfirmationDialog = this.renderConfirmationDialog.bind(this);
+        this.state = {
+            confirmationDialogOpen: false,
+            confirmationAction: () => {},
+            confirmationText: ""
+        };
+    }
+
+    resetConfirmationDialog() {
+        this.setState({
+            confirmationDialogOpen: false,
+            confirmationAction: () => {},
+            confirmationText: ""
+        });
+    }
+
     renderPaymentOption() {
         if (this.props.paymentDialogs.payNow) {
             return;
@@ -15,7 +34,7 @@ class PaymentDialog extends React.Component {
                 {creditAvailable ? (
                     <button type="button" className="ShoppingSearchButton"
                     style={styles.iconButton.adminMenuButton}
-                    title={"Credit - Pay Later"} onClick={this.props.onPayLaterButtonClick}>
+                    title={"Credit - Pay Later"} onClick={this.handlePayLater}>
                         <FontIcon primary style={styles.fontIcon.shoppingSearch}>credit_card</FontIcon>
                     </button>
                 ) :
@@ -69,6 +88,48 @@ class PaymentDialog extends React.Component {
         );
     }
 
+    renderConfirmationDialog() {
+        if (this.state.confirmationDialogOpen) {
+            let actions = [
+                <Button flat iconChildren="clear" onClick={() => {this.resetConfirmationDialog()}} 
+                    id="focusButton">NO</Button>,
+                <Button flat iconChildren="check" onClick={this.state.confirmationAction}>YES</Button>
+            ];
+            return (                        
+                <DialogContainer id="ConfirmationDialog" title="Confirmation" modal={true}
+                    portal={true} lastChild={true} disableScrollLocking={true} renderNode={document.body}
+                    actions={actions} initialFocus="#focusButton" visible={this.state.confirmationDialogOpen}>
+                    <p style={styles.paragraph}>{this.state.confirmationText}</p>
+                </DialogContainer>
+            );
+        }
+        return;
+    }
+
+    handleChangeTaken = () => {
+        this.setState({
+            confirmationDialogOpen: true,
+            confirmationAction: this.props.onChangeTakenClick,
+            confirmationText: "Are you sure you have taken your change?"
+        });
+    }
+
+    handleSaveAsCredit = () => {
+        this.setState({
+            confirmationDialogOpen: true,
+            confirmationAction: this.props.onSaveAsCreditClick,
+            confirmationText: "Are you sure to save the change as your credit?"
+        });
+    }
+
+    handlePayLater = () => {
+        this.setState({
+            confirmationDialogOpen: true,
+            confirmationAction: this.props.onPayLaterButtonClick,
+            confirmationText: "Are you sure you want to pay later?"
+        });
+    }
+
     render() {         
         let actions = [
             <Button flat iconChildren="clear" onClick={this.props.onDialogClose} id="focusButton">CANCEL</Button>
@@ -79,11 +140,13 @@ class PaymentDialog extends React.Component {
                 if (this.props.activeCustomer.id !== 0) {
                     actions = [                              
                         <Button flat onClick={this.props.onPayCashButtonClick}
-                            style={styles.shoppingPageButton}>
+                            style={styles.shoppingPageButton}
+                            onClick={this.handleSaveAsCredit}>
                             SAVE AS CREDIT
                         </Button>,
                         <Button flat onClick={this.props.onPayCashButtonClick}
-                            style={styles.shoppingPageButton} id="focusButton">
+                            style={styles.shoppingPageButton} id="focusButton"
+                            onClick={this.handleChangeTaken}>
                             CHANGE TAKEN
                         </Button>
                     ];
@@ -91,7 +154,8 @@ class PaymentDialog extends React.Component {
                 else {
                     actions.push(
                         <Button flat onClick={this.props.onPayCashButtonClick}
-                            style={styles.shoppingPageButton}>
+                            style={styles.shoppingPageButton}
+                            onClick={this.handleChangeTaken}>
                             CHANGE TAKEN
                         </Button>
                     );
@@ -111,13 +175,13 @@ class PaymentDialog extends React.Component {
         return (
             <DialogContainer id="PaymentDialog" title="Payment"
                 visible={this.props.paymentDialogs.open} modal={true}
-                dialogStyle={{width:"50%", height: this.props.paymentDialogs.payNow ? 
-                    this.props.paymentDialogs.change ? "45%" : "27%" : "52%"}}
+                dialogStyle={{width:"50%"}} contentStyle={{maxHeight: "auto"}}
                 actions={actions} initialFocus="#focusButton"
                 onHide={this.props.onDialogClose}>
                 {this.renderPaymentOption()}
                 {this.renderPaymentNow()}
                 {this.renderChangeInformation()}
+                {this.renderConfirmationDialog()}
             </DialogContainer>
         );
     }
