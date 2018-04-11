@@ -308,6 +308,18 @@ export const closeLoginDialog = () => {
     };
 }
 
+export const openSelectCustomerDialog = () => {
+    return {
+        type: actionTypes.OPEN_SELECT_CUSTOMER_DIALOG
+    };
+}
+
+export const closeSelectCustomerDialog = () => {
+    return {
+        type: actionTypes.CLOSE_SELECT_CUSTOMER_DIALOG
+    };
+}
+
 export const openSearchDialog = () => {
     return {
         type: actionTypes.OPEN_SEARCH_DIALOG
@@ -478,6 +490,12 @@ export const changeModeUserDueTimeout = () => {
     };
 }
 
+export const showShoppingForm = () => {
+    return {
+        type: actionTypes.SHOW_SHOPPING_FORM
+    }
+}
+
 export const signalRLoginUser = (username, password) => {
     return {
         type: actionTypes.SIGNAL_R_LOGIN_USER,
@@ -490,4 +508,67 @@ export const failLoginUser = () => {
     return {
         type: actionTypes.FAIL_LOGIN_USER
     }
+}
+
+export const selectCustomer = (customerId) => {
+    return {
+        type: actionTypes.SELECT_CUSTOMER,
+        customerId: customerId
+    };
+}
+
+export const selectAnonymous = () => {
+    return {
+        type: actionTypes.SELECT_ANONYMOUS
+    }
+}
+
+export const openPaymentDialog = (total) => {
+    return {
+        type: actionTypes.OPEN_PAYMENT_DIALOG,
+        total: total
+    };
+}
+
+export const closePaymentDialog = () => {
+    return {
+        type: actionTypes.CLOSE_PAYMENT_DIALOG
+    };
+}
+
+export const payNow = () => {
+    return {
+        type: actionTypes.PAY_NOW
+    };
+}
+
+export const payCash = () => {
+    return {
+        type: actionTypes.PAY_CASH
+    };
+}
+
+export const changeTaken = () => {
+    return {
+        type: actionTypes.CHANGE_TAKEN
+    };
+}
+
+export const updateCashField = (cash) => {
+    return {
+        type: actionTypes.UPDATE_CASH_FIELD,
+        cash: cash
+    };
+}
+
+export const openPriceCheckDialog = () => {
+    return {
+        type: actionTypes.OPEN_PRICE_CHECK_DIALOG
+    };
+}
+
+export const closePriceCheckDialog = () => {
+    return {
+        type: actionTypes.CLOSE_PRICE_CHECK_DIALOG
+    };
 }

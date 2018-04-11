@@ -4,6 +4,7 @@ import { Image } from 'react-bootstrap';
 import { Button, Paper, FontIcon } from 'react-md';
 import styles from '../../constants/styles';
 import SystemLoginDialog from '../../containers/systemDialogs/SystemLoginDialog';
+import SystemPriceCheckDialog from './../../containers/systemDialogs/SystemPriceCheckDialog';
 
 class UserMenuPage extends React.Component {
     render() {
@@ -24,13 +25,14 @@ class UserMenuPage extends React.Component {
                     ADMIN
                 </Button>
                 
-                {/* <Button flat primary iconChildren="search" swapTheming
+                <Button flat primary iconChildren="search" swapTheming
                     style={styles.floatingButton.rightMainPage}
                     onClick={this.props.onPriceCheckButtonClick}>
                     PRICE CHECK
-                </Button> */}
+                </Button>
 
                 <SystemLoginDialog />
+                <SystemPriceCheckDialog />
             </div>
         );
     }

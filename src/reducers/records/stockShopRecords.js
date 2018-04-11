@@ -1,6 +1,6 @@
-import actionTypes from "../../constants/actionTypes";
+import actionTypes from './../../constants/actionTypes';
 
-const stockingRecords = (state = [], action) => {
+const stockShopRecords = (state = [], action) => {
     switch (action.type) {
         case actionTypes.REMOVE_STOCKING_RECORD_FROM_LIST:
             return state.filter((record) => {
@@ -15,9 +15,13 @@ const stockingRecords = (state = [], action) => {
                 costPrice: parseFloat(action.item.costPrice.value)
             }
             return [...state, newItem];
+        case actionTypes.CHANGE_MODE_USER_DUE_TIMEOUT:
+        case actionTypes.CHANGE_PAGE_USER_MAIN_MENU:
+        case actionTypes.CHANGE_PAGE_ADMIN_MAIN_MENU:
+            return [];
         default:
             return state;
     }
 }
 
-export default stockingRecords;
+export default stockShopRecords;

@@ -526,7 +526,41 @@ describe ('LoginDialogs Actions', () => {
     });
 });
 
-describe ('StockingRecords Actions', () => {
+describe ('SelectCustomerDialogs Actions', () => {    
+    it ('should create an action to open select customer dialog', () => {
+        const expectedAction = {
+            type: actionTypes.OPEN_SELECT_CUSTOMER_DIALOG
+        }
+        expect(actions.openSelectCustomerDialog()).toEqual(expectedAction);
+    });
+
+    it ('should create an action to close select customer dialog', () => {
+        const expectedAction = {
+            type: actionTypes.CLOSE_SELECT_CUSTOMER_DIALOG
+        }
+        expect(actions.closeSelectCustomerDialog()).toEqual(expectedAction);
+    });
+
+    it ('should create an action to select a customer', () => {
+        const expectedCustomer = {
+            id: 1, firstName: "Tommy", lastName: "Tanzil", contact: "0425927766", credit: 2.50
+        };
+        const expectedAction = {
+            type: actionTypes.SELECT_CUSTOMER,
+            customerId: expectedCustomer.id
+        }
+        expect(actions.selectCustomer(expectedCustomer.id)).toEqual(expectedAction);
+    });
+
+    it ('should create an action to select anonymous', () => {
+        const expectedAction = {
+            type: actionTypes.SELECT_ANONYMOUS
+        }
+        expect(actions.selectAnonymous()).toEqual(expectedAction);
+    });
+});
+
+describe ('StockingShoppingRecords Actions', () => {
     it ('should create an action to remove stocking record from the list', () => {
         let expectedRecordId = 1;
         const expectedAction = {
@@ -576,6 +610,12 @@ describe ('StockingRecords Actions', () => {
             items: dummyItems
         }
         expect(actions.selectItemAndAdd(dummyBarcode, dummyItems)).toEqual(expectedAction);
+    });    
+    it('should create an action to show shopping form', () => {
+        const expectedAction = {
+            type: actionTypes.SHOW_SHOPPING_FORM
+        }
+        expect(actions.showShoppingForm()).toEqual(expectedAction);
     });
 });
 
@@ -652,5 +692,67 @@ describe ('ActiveMode Actions', () => {
             type: actionTypes.CHANGE_MODE_USER_DUE_TIMEOUT
         }
         expect(actions.changeModeUserDueTimeout()).toEqual(expectedAction);
+    });
+});
+
+describe ('PaymentDialogs Actions', () => {    
+    it ('should create an action to open payment dialog', () => {
+        const expectedAction = {
+            type: actionTypes.OPEN_PAYMENT_DIALOG,
+            total: "20.50"
+        }
+        expect(actions.openPaymentDialog("20.50")).toEqual(expectedAction);
+    });
+
+    it ('should create an action to close payment dialog', () => {
+        const expectedAction = {
+            type: actionTypes.CLOSE_PAYMENT_DIALOG
+        }
+        expect(actions.closePaymentDialog()).toEqual(expectedAction);
+    });
+
+    it ('should create an action to pay now', () => {
+        const expectedAction = {
+            type: actionTypes.PAY_NOW
+        }
+        expect(actions.payNow()).toEqual(expectedAction);
+    });
+
+    it ('should create an action to pay cash', () => {
+        const expectedAction = {
+            type: actionTypes.PAY_CASH
+        }
+        expect(actions.payCash()).toEqual(expectedAction);
+    });
+
+    it ('should create an action to set change has been taken', () => {
+        const expectedAction = {
+            type: actionTypes.CHANGE_TAKEN
+        }
+        expect(actions.changeTaken()).toEqual(expectedAction);
+    });
+
+    it ('should create an action to update cash field', () => {
+        const expectedAction = {
+            type: actionTypes.UPDATE_CASH_FIELD,
+            cash: "20.50"
+        }
+        expect(actions.updateCashField("20.50")).toEqual(expectedAction);
+    });
+});
+
+describe ('PriceCheckDialogs Actions', () => {    
+    it ('should create an action to open price check dialog', () => {
+        const expectedAction = {
+            type: actionTypes.OPEN_PRICE_CHECK_DIALOG
+        }
+        expect(actions.openPriceCheckDialog()).toEqual(expectedAction);
+    });
+
+    it ('should create an action to close price check dialog', () => {
+        const expectedAction = {
+            type: actionTypes.CLOSE_PRICE_CHECK_DIALOG
+        }
+        expect(actions.closePriceCheckDialog()).toEqual(expectedAction);
     });
 });

@@ -4,6 +4,7 @@ import { validateDecimal } from '../../utils/validators';
 const initialState = {
     barcodeEditable: true,
     barcodeField: null,
+    shoppingFormVisible: false,
     addableItem: false,
     selectedItem: {
         supplierId: 1,
@@ -72,6 +73,7 @@ const itemSelectionFor = (state = initialState, action) => {
             let matchingItem = getItem(action.barcode, action.items);
             temp = {...state, barcodeField: matchingItem.barcode,
                 autoAdd: getAutoAdd(matchingItem.barcode, action.type), 
+                shoppingFormVisible: action.type === actionTypes.SELECT_ITEM,
                 selectedItem: {
                     ...state.selectedItem,
                     supplierId: matchingItem.supplierId,
@@ -120,7 +122,11 @@ const itemSelectionFor = (state = initialState, action) => {
         case actionTypes.ADD_STOCKING_RECORD_TO_LIST:
             return initialState;
         case actionTypes.INITIATE_BARCODE_SCANNING:
-            return {...state, barcodeField: null}
+            return {...state, barcodeField: null};
+        case actionTypes.SHOW_SHOPPING_FORM:
+            return {...state, shoppingFormVisible: true};
+        case actionTypes.CHANGE_PAGE_USER_MAIN_MENU:
+            return initialState;
         default:
             return state;
     }

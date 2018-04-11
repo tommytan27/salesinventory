@@ -75,6 +75,7 @@ const userDialogs = (state = initialState, action) => {
                     }
                 }
             };
+        case actionTypes.CHANGE_MODE_ADMIN:
         case actionTypes.CLOSE_USER_DIALOG:
             return initialState;
         case actionTypes.ENABLE_EDITABLE:

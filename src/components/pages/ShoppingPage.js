@@ -4,6 +4,7 @@ import { Paper, Button, FontIcon, Divider } from 'react-md';
 import Select from 'react-select';
 import SystemShoppingForm from '../../containers/systemForms/SystemShoppingForm';
 import SystemShoppingRecordsList from '../../containers/systemLists/SystemShoppingRecordsList';
+import SystemPaymentDialog from './../../containers/systemDialogs/SystemPaymentDialog';
 import styles from '../../constants/styles';
 
 class ShoppingPage extends React.Component {
@@ -12,6 +13,8 @@ class ShoppingPage extends React.Component {
             <div style={styles.mainPage}>
                 <SystemShoppingForm />
                 <SystemShoppingRecordsList />
+
+                <SystemPaymentDialog />
             </div>
         );
     }

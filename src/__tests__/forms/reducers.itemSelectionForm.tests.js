@@ -1,9 +1,11 @@
 import itemSelectionForm from './../../reducers/forms/itemSelectionForm';
 import actionTypes from './../../constants/actionTypes';
+import { showShoppingForm } from './../../actions/index';
 
 const assertInitialState = (returnValue) => {
     expect(returnValue.barcodeEditable).toBeTruthy();
     expect(returnValue.barcodeField).toBeNull();
+    expect(returnValue.shoppingFormVisible).toBeFalsy();
     expect(returnValue.addableItem).toBeFalsy();
     expect(returnValue.selectedItem.supplierId).toBe(1);
     expect(returnValue.selectedItem.brandId).toBe(1);
@@ -45,6 +47,12 @@ const dummyItems = [
 describe('ItemSelectionForm Store', () => {
     it('should return initial state of supplier, brand, and items set to the first option', () => {
         const returnValue = itemSelectionForm(undefined, {});
+        assertInitialState(returnValue);
+    });
+    it('should return initial state when receiving CHANGE_PAGE_USER_MAIN_MENU', () => {
+        const returnValue = itemSelectionForm({
+            showShoppingForm: true
+        }, {type: actionTypes.CHANGE_PAGE_USER_MAIN_MENU});
         assertInitialState(returnValue);
     });
     it('should return the modified supplier field when receiving SELECT_SUPPLIER action', () => {
@@ -308,5 +316,33 @@ describe('ItemSelectionForm Store', () => {
             type: actionTypes.INITIATE_BARCODE_SCANNING,
         });
         expect(returnValue.barcodeField).toBeNull();
+    });
+    it('should return shoppingFormVisible opened when receiving SHOW_SHOPPING_FORM', () => {
+        const returnValue = itemSelectionForm({
+            shoppingFormVisible: false
+        }, {
+            type: actionTypes.SHOW_SHOPPING_FORM,
+        });
+        expect(returnValue.shoppingFormVisible).toBeTruthy();
+    });
+    it('should return shoppingFormVisible opened when receiving SELECT_ITEM', () => {
+        const returnValue = itemSelectionForm({
+            shoppingFormVisible: false
+        }, {
+            type: actionTypes.SELECT_ITEM,
+            barcode: dummyBarcode,
+            items: dummyItems
+        });
+        expect(returnValue.shoppingFormVisible).toBeTruthy();
+    });
+    it('should return shoppingFormVisible closed when receiving SELECT_ITEM_AND_ADD', () => {
+        const returnValue = itemSelectionForm({
+            shoppingFormVisible: true
+        }, {
+            type: actionTypes.SELECT_ITEM_AND_ADD,
+            barcode: dummyBarcode,
+            items: dummyItems
+        });
+        expect(returnValue.shoppingFormVisible).toBeFalsy();
     });
 });

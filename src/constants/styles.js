@@ -47,8 +47,12 @@ const styles = {
         left: {
             padding: '3%',
             paddingBottom: '0.75%',
-            margin: '3%',
-            top: '-150px'
+            margin: '3%'
+        },
+        leftGuide: {
+            padding: '3%',
+            backgroundColor: 'rgba(169,244,240,0.3)',
+            margin: '3%'
         },
         main: {
             padding: '3%',
@@ -67,6 +71,12 @@ const styles = {
             color: 'rgb(0,254,103)',
             textAlign: 'center',
             margin: '1%'
+        },
+        leftText: {
+            fontSize: '4em',
+            color: 'rgb(0,254,103)',
+            textAlign: 'center',
+            margin: '4%'
         }
     },
     valueLabel: {
@@ -106,6 +116,16 @@ const styles = {
     paragraph: {
         fontSize: '1em'
     },
+    paymentDialog: {
+        paragraph: {
+            color: 'rgba(0,217,87,0.75)',
+            fontSize: "1.5em"
+        },
+        change: {
+            color: 'rgba(0,217,87,0.75)',
+            fontSize: '8em'
+        }
+    },
     dialog: {
         width: 'auto'
     },
@@ -136,12 +156,30 @@ const styles = {
         adminMenuButton: {
             fontSize: '8em'
         },
+        shoppingSearch: {
+            color: 'rgba(0,217,87,0.75)',
+            fontSize: '10em'
+        },
+        shoppingSearchDisabled: {
+            color: 'rgb(171,171,171)',
+            fontSize: '10em'
+        },
         rightArrow: {
             color: 'rgb(0,254,103)',
             fontSize: '7em',
             position: 'absolute',
             right: '15px',
             top: '40%'
+        },
+        customerCredit: {
+            color: 'green',
+            paddingTop: "3.5%"
+        },
+        customerCreditContainer: {
+            width: "40px",
+            height: "40px",
+            padding: "10px",
+            display: "inline"
         }
     },
     iconButton: {        
@@ -158,6 +196,21 @@ const styles = {
             border: "none",
             outline: "none",
             margin: "3%"
+        },
+        adminMenuButtonDisabled: {
+            enabled: "false",
+            borderRadius: "90%",
+            border: "none",
+            outline: "none",
+            margin: "3%"
+        },
+        barcodeButton: {
+            paddingRight: "0px",
+            paddingLeft: "30px"
+        },
+        searchButton: {
+            paddingRight: "30px",
+            paddingLeft: "0px"
         }
     },
     floatingButton: {
@@ -192,7 +245,7 @@ const styles = {
             position: 'fixed'
         },
         rightMainPage: {
-            backgroundColor: 'rgb(0,254,103)',
+            backgroundColor: 'rgba(0,217,87,0.75)',
             top: 'auto',
             left: 'auto',
             right: '1.5%',
@@ -212,26 +265,62 @@ const styles = {
         height: '9%'
     },
     completeButton: {
-        bottom: '0px',
-        right: '0px',
-        position: 'fixed',
-        fontWeight: 'bold',
-        fontSize: '3em',
-        width: '40%',
-        height: '9%',
-        paddingTop: '0px'
+        enabled: {
+            bottom: '0px',
+            right: '0px',
+            position: 'fixed',
+            fontWeight: 'bold',
+            fontSize: '3em',
+            width: '40%',
+            height: '9%',
+            paddingTop: '0px'
+        },
+        disabled: {
+            backgroundColor: 'rgb(171,171,171)',
+            bottom: '0px',
+            right: '0px',
+            position: 'fixed',
+            fontWeight: 'bold',
+            fontSize: '3em',
+            width: '40%',
+            height: '9%',
+            paddingTop: '0px'
+        }
     },
     payButton: {
+        enabled: {
+            backgroundColor: 'rgba(0,217,87,0.75)',
+            color: 'white',
+            bottom: '0px',
+            right: '0px',
+            position: 'fixed',
+            fontWeight: 'bold',
+            fontSize: '3em',
+            width: '40%',
+            height: '9%',
+            paddingTop: '0px'
+        },
+        disabled: {
+            backgroundColor: 'rgb(171,171,171)',
+            color: 'white',
+            bottom: '0px',
+            right: '0px',
+            position: 'fixed',
+            fontWeight: 'bold',
+            fontSize: '3em',
+            width: '40%',
+            height: '9%',
+            paddingTop: '0px'
+        }
+    },
+    newCustomerButton: {
+        padding: "8%",
+        margin: "18%",
         backgroundColor: 'rgba(0,217,87,0.75)',
-        color: 'white',
-        bottom: '0px',
-        right: '0px',
-        position: 'fixed',
-        fontWeight: 'bold',
-        fontSize: '3em',
-        width: '40%',
-        height: '9%',
-        paddingTop: '0px'
+        color: "white"
+    },
+    shoppingPageButton: {
+        color: 'rgba(0,217,87,0.75)'
     },
     record:{
         left: {

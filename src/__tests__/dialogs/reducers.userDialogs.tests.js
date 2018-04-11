@@ -628,4 +628,39 @@ describe('UserDialogs', () => {
         assertInitialDialogState(state, action);
         assertInitialState(state, action);
     });
+    it('should return the initial state when receiving CHANGE_MODE_ADMIN action', () => {
+        const state = {
+            dialogState: {
+                open: false,
+                title: dialogTitles.EDIT_USER,
+                mode: dialogModes.EDIT_MODE,
+                error: false,
+                editable: false
+            },
+            userInDialog: {
+                id: null,
+                username: {
+                    value: "admin2",
+                    state: "success"
+                },
+                timeout: {
+                    value: "10",
+                    state: "success"
+                },
+                password: {
+                    value: null,
+                    state: null
+                },
+                confirmPassword: {
+                    value: null,
+                    state: null
+                }
+            }
+        };
+        const action = {
+            type: actionTypes.CHANGE_MODE_ADMIN
+        };
+        assertInitialDialogState(state, action);
+        assertInitialState(state, action);
+    });
 });

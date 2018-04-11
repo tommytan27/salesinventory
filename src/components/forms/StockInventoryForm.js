@@ -32,6 +32,9 @@ class StockInventoryForm extends React.Component {
             </Button>
         ];
         let selectedItem = this.props.itemSelectionForm.selectedItem;
+        let subTotal = (selectedItem.qty.value * selectedItem.costPrice.value) ? 
+                        (selectedItem.qty.value * selectedItem.costPrice.value) :
+                        0;
         return (
             <div style={styles.page.left}>
                 <Image src="logo.png" style={styles.logo.left} />
@@ -139,7 +142,7 @@ class StockInventoryForm extends React.Component {
                 <FormGroup>
                     <Col componentClass={ControlLabel} sm={2}>Sub Total:</Col>
                     <Col style={styles.valueLabel} sm={9}>
-                        ${(selectedItem.qty.value * selectedItem.costPrice.value).toFixed(2)}
+                        ${subTotal.toFixed(2)}
                     </Col>
                     <Col sm={1}><Button floating primary
                         disabled={!this.props.itemSelectionForm.addableItem}

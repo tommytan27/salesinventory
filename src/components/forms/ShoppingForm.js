@@ -1,9 +1,11 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 import { Image, Form, Col, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
-import { Paper, Button, DialogContainer } from 'react-md';
+import { Paper, Button, DialogContainer, Autocomplete, FontIcon } from 'react-md';
+import SystemSelectCustomerDialog from './../../containers/systemDialogs/SystemSelectCustomerDialog';
 import Select from 'react-select';
 import styles from '../../constants/styles';
+import SystemCustomerDialog from './../../containers/systemDialogs/SystemCustomerDialog';
 
 const enterKey = 13;
 
@@ -20,61 +22,19 @@ class ShoppingForm extends React.Component {
     }
 
     handleBarcodeButton = () => {
-        this.barcodeField.focus();
+        let barcodeField = document.getElementsByClassName("itemBarcodeField").item(0);
+        barcodeField.focus();
         this.props.onBarcodeButtonClick();
     }
 
-    render() {
-        let actions = [
-            <Button flat primary iconChildren="keyboard_arrow_left" swapTheming id="backButton"
-                onClick={this.props.onBackButtonClick}>
-                BACK
-            </Button>
-        ];
-        let selectedItem = this.props.itemSelectionForm.selectedItem;
-        return (
-            <div style={styles.page.left}>
-                <Image src="logo.png" style={styles.logo.left} />                
-                <p style={styles.welcome.left}>
-                    <Button flat iconChildren="face" topltips="Change User"
-                        style={styles.iconButton.changeUserButton} onClick={this.props.onBackButtonClick}>
-                        CHANGE USER
-                    </Button>&nbsp;
-                    Hi, Tommy Tanzil
-                </p>
-
-                <Paper key="stockInventoryPaper" zDepth={3} style={styles.paper.left}>
-                <Form horizontal>
-                <FormGroup>
-                    <Col componentClass={ControlLabel} sm={2}>Barcode:</Col>
-                    <Col sm={8}>
-                    <FormControl type="text" placeholder="Barcode #"
-                        inputRef={(barcodeFld) => { this.barcodeField = barcodeFld; }} 
-                        disabled={!this.props.itemSelectionForm.barcodeEditable}
-                        value={this.props.itemSelectionForm.barcodeField ? 
-                            this.props.itemSelectionForm.barcodeField : ""}
-                        onChange={ (e) => {this.props.onBarcodeFieldChange(e.target.value)} }
-                        onKeyUp={ (e) => {
-                            var key = e.which || e.keyCode;
-                            if (key === enterKey) {
-                                this.props.onBarcodeFieldEnterKey(e.target.value, this.props.allItems);
-                            }
-                        }} />
-                    </Col>
-                    <Col sm={2} style={styles.barcodeButton}>
-                        <Button icon onClick={this.handleBarcodeButton}>
-                            select_all
-                        </Button>
-                        <Button icon onClick={() => {
-                            this.props.onItemComboChanged(
-                                this.props.itemSelectionForm.barcodeField,
-                                this.props.allItems
-                            )
-                        }}>
-                            search
-                        </Button>
-                    </Col>
-                </FormGroup>
+    renderShoppingForm = () => {        
+        if (this.props.itemSelectionForm.shoppingFormVisible) {
+            let selectedItem = this.props.itemSelectionForm.selectedItem;
+            let subTotal = (selectedItem.qty.value * selectedItem.sellPrice.value) ? 
+                            (selectedItem.qty.value * selectedItem.sellPrice.value) :
+                            0;
+            return (
+                <Form horizontal>                
                 <FormGroup>
                     <Col componentClass={ControlLabel} sm={2}>Supplier:</Col>
                     <Col sm={10}>
@@ -118,21 +78,9 @@ class ShoppingForm extends React.Component {
                     </Col>
                 </FormGroup>
                 <FormGroup validationState={selectedItem.sellPrice.state}>
-                    <Col componentClass={ControlLabel} sm={2}>Sell Price:</Col>
-                    <Col sm={3}>
-                    <FormControl type="text" placeholder="0.00"
-                        value={selectedItem.sellPrice.value ? selectedItem.sellPrice.value : ""}
-                        onChange={ (e) => {this.props.onSellPriceFieldChange(e.target.value)} } />
-                    <FormControl.Feedback />
-                    </Col>
-                </FormGroup>
-                <FormGroup validationState={selectedItem.costPrice.state}>
-                    <Col componentClass={ControlLabel} sm={2}>Cost Price:</Col>
-                    <Col sm={3}>
-                    <FormControl type="text" placeholder="0.00"
-                        value={selectedItem.costPrice.value ? selectedItem.costPrice.value : ""}
-                        onChange={ (e) => {this.props.onCostPriceFieldChange(e.target.value)} } />
-                    <FormControl.Feedback />
+                    <Col componentClass={ControlLabel} sm={2}>Unit Price:</Col>
+                    <Col style={styles.valueLabel} sm={9}>
+                        ${selectedItem.sellPrice.value ? parseFloat(selectedItem.sellPrice.value).toFixed(2) : "0.00"}
                     </Col>
                 </FormGroup>
                 <FormGroup validationState={selectedItem.qty.state}>
@@ -147,15 +95,98 @@ class ShoppingForm extends React.Component {
                 <FormGroup>
                     <Col componentClass={ControlLabel} sm={2}>Sub Total:</Col>
                     <Col style={styles.valueLabel} sm={9}>
-                        ${(selectedItem.qty.value * selectedItem.costPrice.value).toFixed(2)}
+                        ${subTotal.toFixed(2)}
                     </Col>
                     <Col sm={1}><Button floating primary
                         disabled={!this.props.itemSelectionForm.addableItem}
                         onClick={ () => {this.props.onAddToListClick(selectedItem)} }>
-                        shopping_basket
+                        add_shopping_cart
                     </Button></Col>
                 </FormGroup>
                 </Form>
+            );
+        }
+
+        return (
+            <center>
+                <button type="button" style={styles.iconButton.adminMenuButton} className="ShoppingSearchButton"
+                    title={"Search Item"} onClick={this.props.onShoppingSearchButtonClick}>
+                    <FontIcon style={styles.fontIcon.shoppingSearch}>search</FontIcon>
+                </button>
+            </center>
+        );
+    }
+
+    render() {
+        let actions = [
+            <Button flat primary iconChildren="keyboard_arrow_left" swapTheming id="backButton"
+                onClick={this.props.onBackButtonClick}>
+                BACK
+            </Button>
+        ];
+        
+        let itemBarcodes = this.props.allItems.map((item) => {
+            return item.barcode;
+        });
+
+        return (
+            <div style={styles.page.left}>
+                <Image src="logo.png" style={styles.logo.left} />                
+                <p style={styles.welcome.left}>
+                    <Button flat iconChildren="face" topltips="Change User"
+                        style={styles.iconButton.changeUserButton} onClick={this.props.onChangeCustomerButtonClick}>
+                        CHANGE CUSTOMER
+                    </Button>&nbsp;
+                    Hi, {this.props.activeCustomer.firstName} {this.props.activeCustomer.lastName}
+                </p>
+                <Paper key="shopingGuidePaper" zDepth={3} style={styles.paper.leftGuide}>
+                    <p style={styles.paper.leftText}>Scan or</p><br />
+                    <p style={styles.paper.leftText}>Search Item Below</p>
+                </Paper>
+
+                <Form horizontal>
+                <FormGroup>
+                    <Col sm={1} style={styles.iconButton.barcodeButton}>
+                        <Button icon onClick={this.handleBarcodeButton}>
+                            select_all
+                        </Button>
+                    </Col>
+                    <Col sm={10}>
+                        <Autocomplete
+                            id="itemBarcode"
+                            placeholder="Item Barcode"
+                            data={itemBarcodes}
+                            focusInputOnAutocomplete
+                            filter={Autocomplete.caseInsensitiveFilter}
+                            value={this.props.itemSelectionForm.barcodeField ? 
+                                this.props.itemSelectionForm.barcodeField : ""}
+                            onChange={ (e) => {this.props.onBarcodeFieldChange(e)} }
+                            onAutocomplete={ (e) => {this.props.onBarcodeFieldChange(e)} }
+                            onKeyDown={ (e) => {
+                                var key = e.which || e.keyCode;
+                                if (key === enterKey) {
+                                    e.preventDefault();
+                                    this.props.onBarcodeFieldEnterKey(e.target.value, this.props.allItems);
+                                }
+                            }} 
+                            inputClassName="itemBarcodeField"
+                        />
+                    </Col>
+                    <Col sm={1} style={styles.iconButton.searchButton}>
+                        <Button icon onClick={() => {
+                            this.props.onItemComboChanged(
+                                this.props.itemSelectionForm.barcodeField,
+                                this.props.allItems
+                            )
+                        }}>
+                            search
+                        </Button>
+                    </Col>
+                </FormGroup>
+                </Form>
+
+                <Paper key="shoppingFormPaper" zDepth={3} style={styles.paper.left}>
+                {this.renderShoppingForm()}
                 </Paper>
 
                 <Button flat iconChildren="keyboard_arrow_left" swapTheming
@@ -169,6 +200,10 @@ class ShoppingForm extends React.Component {
                     onHide={() => {}}>
                     <p style={styles.paragraph}>No available supplier and/or brand to be selected</p>
                 </DialogContainer>
+
+                <SystemSelectCustomerDialog />
+
+                <SystemCustomerDialog />
             </div>
         );
     }
@@ -232,17 +267,24 @@ ShoppingForm.propTypes = {
             }).isRequired
         }).isRequired
     }).isRequired,
+    activeCustomer: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        firstName: PropTypes.string.isRequired,
+        lastName: PropTypes.string.isRequired,
+        contact: PropTypes.string.isRequired,
+        credit: PropTypes.number.isRequired
+    }).isRequired,
     onSupplierComboChanged: PropTypes.func.isRequired,
     onBrandComboChanged: PropTypes.func.isRequired,
     onItemComboChanged: PropTypes.func.isRequired,
-    onSellPriceFieldChange: PropTypes.func.isRequired,
-    onCostPriceFieldChange: PropTypes.func.isRequired,
     onQtyFieldChange: PropTypes.func.isRequired,
     onBarcodeFieldChange: PropTypes.func.isRequired,
     onBarcodeFieldEnterKey: PropTypes.func.isRequired,
     onAddToListClick: PropTypes.func.isRequired,
     onBarcodeButtonClick: PropTypes.func.isRequired,
-    onBackButtonClick: PropTypes.func.isRequired
+    onBackButtonClick: PropTypes.func.isRequired,
+    onShoppingSearchButtonClick: PropTypes.func.isRequired,
+    onChangeCustomerButtonClick: PropTypes.func.isRequired
 };
 
 export default ShoppingForm;
