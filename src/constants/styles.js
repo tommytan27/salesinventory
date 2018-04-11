@@ -118,6 +118,7 @@ const styles = {
     },
     paymentDialog: {
         paragraph: {
+            color: 'rgba(0,217,87,0.75)',
             fontSize: "1.5em"
         },
         change: {
@@ -244,7 +245,7 @@ const styles = {
             position: 'fixed'
         },
         rightMainPage: {
-            backgroundColor: 'rgb(0,254,103)',
+            backgroundColor: 'rgba(0,217,87,0.75)',
             top: 'auto',
             left: 'auto',
             right: '1.5%',

@@ -1,15 +1,11 @@
 import { connect } from "react-redux";
 import PaymentDialog from "../../components/dialogs/PaymentDialog";
-import { closePaymentDialog, payNow, updateCashField } from './../../actions';
-import { payCash } from './../../actions/index';
+import { closePaymentDialog, payNow, updateCashField, payCash } from './../../actions';
 
 const mapStateToProps = (state) => {
     return {
         paymentDialogs: state.paymentDialogs,
         activeCustomer: state.activeCustomer
-        // activeTab: state.activeTab,
-        // searchDialogs: state.searchDialogs,
-        // customers: state.customers
     }
 }
 
@@ -19,10 +15,6 @@ const mapDispatchToProps = (dispatch) => {
         onPayNowButtonClick: () => { dispatch(payNow()); },
         onCashFieldChange: (cash) => { dispatch(updateCashField(cash)); },
         onPayCashButtonClick: () => { dispatch(payCash()); }
-        // onCustomerComboChanged: (customerId) => { dispatch(updateCustomerCombo(customerId)) },
-        // onFromDateFieldChanged: (fromDate) => { dispatch(updateFromDateField(fromDate)) },
-        // onToDateFieldChanged: (toDate) => { dispatch(updateToDateField(toDate)) }
-        // onSearchButtonClick: () => { dispatch(searchRecords()) }
     };
 }
 

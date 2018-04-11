@@ -560,3 +560,15 @@ export const updateCashField = (cash) => {
         cash: cash
     };
 }
+
+export const openPriceCheckDialog = () => {
+    return {
+        type: actionTypes.OPEN_PRICE_CHECK_DIALOG
+    };
+}
+
+export const closePriceCheckDialog = () => {
+    return {
+        type: actionTypes.CLOSE_PRICE_CHECK_DIALOG
+    };
+}

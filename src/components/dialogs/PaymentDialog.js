@@ -110,10 +110,10 @@ class PaymentDialog extends React.Component {
         
         return (
             <DialogContainer id="PaymentDialog" title="Payment"
-                visible={this.props.paymentDialogs.open} modal={false}
+                visible={this.props.paymentDialogs.open} modal={true}
                 dialogStyle={{width:"50%", height: this.props.paymentDialogs.payNow ? 
                     this.props.paymentDialogs.change ? "45%" : "27%" : "52%"}}
-                actions={actions} modal={false} initialFocus="#focusButton"
+                actions={actions} initialFocus="#focusButton"
                 onHide={this.props.onDialogClose}>
                 {this.renderPaymentOption()}
                 {this.renderPaymentNow()}
@@ -124,27 +124,21 @@ class PaymentDialog extends React.Component {
 }
 
 PaymentDialog.propTypes = {
-    // activeTab: PropTypes.string.isRequired,
-    // searchDialogs: PropTypes.shape({
-    //     open: PropTypes.bool.isRequired,
-    //     fromDate: PropTypes.string,
-    //     toDate: PropTypes.string,
-    //     customerId: PropTypes.number
-    // }).isRequired,
-    // onDialogClose: PropTypes.func.isRequired,
-    // customers: PropTypes.arrayOf(
-    //     PropTypes.shape({
-    //         id: PropTypes.number.isRequired,
-    //         firstName: PropTypes.string.isRequired,
-    //         lastName: PropTypes.string.isRequired,
-    //         contact: PropTypes.string.isRequired,
-    //         credit: PropTypes.number.isRequired
-    //     }).isRequired
-    // ).isRequired,
-    // onCustomerComboChanged: PropTypes.func.isRequired,
-    // onFromDateFieldChanged: PropTypes.func.isRequired,
-    // onToDateFieldChanged: PropTypes.func.isRequired
-    // // onSearchButtonClick: PropTypes.func.isRequired
+    paymentDialogs: PropTypes.shape({
+        open: PropTypes.bool.isRequired,
+        payNow: PropTypes.bool.isRequired,
+        total: PropTypes.number,
+        cash: PropTypes.string,
+        change: PropTypes.number,
+        payable: PropTypes.bool.isRequired
+    }).isRequired,
+    activeCustomer: PropTypes.shape({
+        id: PropTypes.number.isRequired
+    }).isRequired,
+    onDialogClose: PropTypes.func.isRequired,
+    onPayNowButtonClick: PropTypes.func.isRequired,
+    onCashFieldChange: PropTypes.func.isRequired,
+    onPayCashButtonClick: PropTypes.func.isRequired
 }
 
 export default PaymentDialog;

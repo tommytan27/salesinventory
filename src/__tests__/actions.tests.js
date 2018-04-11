@@ -740,3 +740,19 @@ describe ('PaymentDialogs Actions', () => {
         expect(actions.updateCashField("20.50")).toEqual(expectedAction);
     });
 });
+
+describe ('PriceCheckDialogs Actions', () => {    
+    it ('should create an action to open price check dialog', () => {
+        const expectedAction = {
+            type: actionTypes.OPEN_PRICE_CHECK_DIALOG
+        }
+        expect(actions.openPriceCheckDialog()).toEqual(expectedAction);
+    });
+
+    it ('should create an action to close price check dialog', () => {
+        const expectedAction = {
+            type: actionTypes.CLOSE_PRICE_CHECK_DIALOG
+        }
+        expect(actions.closePriceCheckDialog()).toEqual(expectedAction);
+    });
+});

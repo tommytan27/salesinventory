@@ -16,6 +16,8 @@ import searchDialogs from './dialogs/searchDialogs';
 import loginDialogs from './dialogs/loginDialogs';
 import selectCustomerDialogs from './dialogs/selectCustomerDialogs';
 import recordsDetailsDialogs from './dialogs/recordsDetailsDialogs';
+import paymentDialogs from './dialogs/paymentDialogs';
+import priceCheckDialogs from './dialogs/priceCheckDialogs';
 import stockShopRecords from './records/stockShopRecords';
 import itemSelectionForm from './forms/itemSelectionForm';
 import activePage from './activePage';
@@ -23,7 +25,6 @@ import activeTab from './activeTab';
 import activeMode from './activeMode';
 import activeAdmin from './activeAdmin';
 import activeCustomer from './activeCustomer';
-import paymentDialogs from './dialogs/paymentDialogs';
 
 const salesInventoryApp = combineReducers({
     users,
@@ -46,6 +47,7 @@ const salesInventoryApp = combineReducers({
     recordsDetailsDialogs,
     itemSelectionForm,
     paymentDialogs,
+    priceCheckDialogs,
     activePage,
     activeTab,
     activeMode,
