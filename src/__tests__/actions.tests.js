@@ -79,17 +79,57 @@ describe('UserRecords Actions', () => {
     });
 
     it('should create an action to add user', () => {
+        const expectedUser = {
+            username: "admin",
+            password: "Admin123",
+            timeout: 10
+        };
         const expectedAction = {
-            type: actionTypes.ADD_USER
+            type: actionTypes.ADD_USER,
+            user: expectedUser
         }
-        expect(actions.addUser()).toEqual(expectedAction);
+        expect(actions.addUser(expectedUser)).toEqual(expectedAction);
     });
 
     it('should create an action to save user', () => {
+        const expectedUser = {
+            username: "admin",
+            password: "Admin123",
+            timeout: 10
+        };
         const expectedAction = {
-            type: actionTypes.SAVE_USER
+            type: actionTypes.SAVE_USER,
+            user: expectedUser
         }
-        expect(actions.saveUser()).toEqual(expectedAction);
+        expect(actions.saveUser(expectedUser)).toEqual(expectedAction);
+    });
+    
+    it('should create an action to add user via signalR', () => {
+        const expectedAction = {
+            type: actionTypes.SIGNAL_R_ADD_USER
+        }
+        expect(actions.signalRAddUser()).toEqual(expectedAction);
+    });
+
+    it('should create an action to save user via signalR', () => {
+        const expectedAction = {
+            type: actionTypes.SIGNAL_R_SAVE_USER
+        }
+        expect(actions.signalRSaveUser()).toEqual(expectedAction);
+    });
+    
+    it ('should create an action to notify user about failing adding user', () => {
+        const expectedAction = {
+            type: actionTypes.FAIL_ADD_USER
+        }
+        expect(actions.failAddUser()).toEqual(expectedAction);
+    });
+    
+    it ('should create an action to notify user about failing saving user', () => {
+        const expectedAction = {
+            type: actionTypes.FAIL_SAVE_USER
+        }
+        expect(actions.failSaveUser()).toEqual(expectedAction);
     });
 });
 
@@ -523,6 +563,22 @@ describe ('LoginDialogs Actions', () => {
             type: actionTypes.CLOSE_LOGIN_DIALOG
         }
         expect(actions.closeLoginDialog()).toEqual(expectedAction);
+    });
+
+    it ('should create an action to login user via signalR', () => {
+        const expectedAction = {
+            type: actionTypes.SIGNAL_R_LOGIN_USER,
+            username: "admin",
+            password: "12345"
+        }
+        expect(actions.signalRLoginUser("admin", "12345")).toEqual(expectedAction);
+    });
+
+    it ('should create an action to notify user about failing login', () => {
+        const expectedAction = {
+            type: actionTypes.FAIL_LOGIN_USER
+        }
+        expect(actions.failLoginUser()).toEqual(expectedAction);
     });
 });
 

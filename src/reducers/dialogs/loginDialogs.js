@@ -57,6 +57,8 @@ const loginDialogs = (state = initialState, action) => {
                     username: { value: null, state: null },
                     password: { value: null, state: null }
                 }};
+        case actionTypes.CHANGE_MODE_USER:
+            return initialState
         default:
             return state;
     }

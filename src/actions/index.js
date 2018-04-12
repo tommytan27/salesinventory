@@ -48,15 +48,17 @@ export const updateConfirmPasswordField = (confirmPassword) => {
     };
 }
 
-export const addUser = () => {
+export const addUser = (user) => {
     return {
-        type: actionTypes.ADD_USER
+        type: actionTypes.ADD_USER,
+        user: user
     };
 }
 
-export const saveUser = () => {
+export const saveUser = (user) => {
     return {
-        type: actionTypes.SAVE_USER
+        type: actionTypes.SAVE_USER,
+        user: user
     };
 }
 
@@ -496,20 +498,6 @@ export const showShoppingForm = () => {
     }
 }
 
-export const signalRLoginUser = (username, password) => {
-    return {
-        type: actionTypes.SIGNAL_R_LOGIN_USER,
-        username: username,
-        password: password
-    }
-}
-
-export const failLoginUser = () => {
-    return {
-        type: actionTypes.FAIL_LOGIN_USER
-    }
-}
-
 export const selectCustomer = (customerId) => {
     return {
         type: actionTypes.SELECT_CUSTOMER,
@@ -570,5 +558,43 @@ export const openPriceCheckDialog = () => {
 export const closePriceCheckDialog = () => {
     return {
         type: actionTypes.CLOSE_PRICE_CHECK_DIALOG
+    };
+}
+
+export const failLoginUser = () => {
+    return {
+        type: actionTypes.FAIL_LOGIN_USER
+    }
+}
+
+export const failAddUser = () => {
+    return {
+        type: actionTypes.FAIL_ADD_USER
+    }
+}
+
+export const failSaveUser = () => {
+    return {
+        type: actionTypes.FAIL_SAVE_USER
+    }
+}
+
+export const signalRLoginUser = (username, password) => {
+    return {
+        type: actionTypes.SIGNAL_R_LOGIN_USER,
+        username: username,
+        password: password
+    }
+}
+
+export const signalRAddUser = () => {
+    return {
+        type: actionTypes.SIGNAL_R_ADD_USER
+    };
+}
+
+export const signalRSaveUser = () => {
+    return {
+        type: actionTypes.SIGNAL_R_SAVE_USER
     };
 }

@@ -26,6 +26,18 @@ describe('LoginDialogs', () => {
         expect(returnValues.timeOutPrompt).toBeFalsy();
         expect(returnValues.title).toBe(dialogTitles.LOGIN);
     });
+    it ('should return the dialog open with timeout title when receiving CHANGE_MODE_USER action', () => {
+        assertInitialState({
+            userInDialog: {
+                username: {
+                    value: "ttanzil",
+                    state: "success"
+                }
+            }
+        }, {
+            type: actionTypes.CHANGE_MODE_USER
+        });
+    });
     it ('should return the dialog open with timeout title when receiving CHANGE_MODE_USER_DUE_TIMEOUT action', () => {
         var returnValues = loginDialogs(undefined, {
             type: actionTypes.CHANGE_MODE_USER_DUE_TIMEOUT

@@ -1,7 +1,8 @@
 import { connect } from "react-redux";
 import UserDialog from "../../components/dialogs/UserDialog";
 import { closeUserDialog, enableEditable, updateUsernameField, 
-    updateTimeoutField, updatePasswordField, updateConfirmPasswordField, addUser, saveUser } from "../../actions/index";
+    signalRAddUser, signalRSaveUser,
+    updateTimeoutField, updatePasswordField, updateConfirmPasswordField } from "../../actions/index";
 
 const mapStateToProps = (state) => {
     return {
@@ -19,8 +20,8 @@ const mapDispatchToProps = (dispatch) => {
         onTimeoutFieldChange: (timeout) => { dispatch(updateTimeoutField(timeout)) },
         onPasswordFieldChange: (password) => { dispatch(updatePasswordField(password)) },
         onConfirmPasswordFieldChange: (confirmPassword) => { dispatch(updateConfirmPasswordField(confirmPassword)) },
-        onAddButtonClick: () => { dispatch(addUser()) },
-        onSaveButtonClick: () => { dispatch(saveUser()) }
+        onAddButtonClick: () => { dispatch(signalRAddUser()) },
+        onSaveButtonClick: () => { dispatch(signalRSaveUser()) }
     };
 }
 

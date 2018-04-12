@@ -13,6 +13,7 @@ import crashReporter from './middlewares/crashReporter';
 import adminTimer from './middlewares/adminTimer';
 import WebFontLoader from 'webfontloader';
 import { loginHub } from './middlewares/loginHub';
+import { userHub } from './middlewares/userHub';
 
 WebFontLoader.load({
     google: {
@@ -23,7 +24,9 @@ WebFontLoader.load({
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 let store = createStore(salesInventoryApp, composeEnhancers(
-    applyMiddleware(logger, crashReporter, loginHub, adminTimer)
+    applyMiddleware(loginHub, userHub, 
+        logger, crashReporter, 
+        adminTimer)
 ));
 
 ReactDOM.render(

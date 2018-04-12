@@ -342,7 +342,7 @@ describe('UserDialogs', () => {
         expect(returnValue.userInDialog.confirmPassword.value).toEqual(dummyPassword);
         expect(returnValue.userInDialog.confirmPassword.state).toBe("error");
     });
-    it('should return all null required fields with error state and dialogState of error when receiving ADD_USER action', () => {
+    it('should return all null required fields with error state and dialogState of error when receiving FAIL_ADD_USER action', () => {
         const returnValue = userDialogs({
             dialogState: {
                 open: false,
@@ -371,7 +371,7 @@ describe('UserDialogs', () => {
                 }
             }
         }, {
-            type: actionTypes.ADD_USER
+            type: actionTypes.FAIL_ADD_USER
         });
         expect(returnValue.userInDialog.username.state).toBe("error");
         expect(returnValue.userInDialog.timeout.state).toBe("error");
@@ -379,7 +379,7 @@ describe('UserDialogs', () => {
         expect(returnValue.userInDialog.confirmPassword.state).toBe("error");
         expect(returnValue.dialogState.error).toBe(true);
     });
-    it('should return all empty required fields with error state and dialogState of error when receiving ADD_USER action', () => {
+    it('should return all empty required fields with error state and dialogState of error when receiving FAIL_ADD_USER action', () => {
         const returnValue = userDialogs({
             dialogState: {
                 open: false,
@@ -408,7 +408,7 @@ describe('UserDialogs', () => {
                 }
             }
         }, {
-            type: actionTypes.ADD_USER
+            type: actionTypes.FAIL_ADD_USER
         });
         expect(returnValue.userInDialog.username.state).toBe("error");
         expect(returnValue.userInDialog.timeout.state).toBe("error");
@@ -416,7 +416,7 @@ describe('UserDialogs', () => {
         expect(returnValue.userInDialog.confirmPassword.state).toBe("error");
         expect(returnValue.dialogState.error).toBe(true);
     });
-    it('should return timeout null required fields with error state and dialogState of error when receiving SAVE_USER action', () => {
+    it('should return timeout null required fields with error state and dialogState of error when receiving FAIL_SAVE_USER action', () => {
         const returnValue = userDialogs({
             dialogState: {
                 open: false,
@@ -426,7 +426,7 @@ describe('UserDialogs', () => {
                 editable: false
             },
             userInDialog: {
-                id: null,
+                id: 1,
                 username: {
                     value: null,
                     state: null
@@ -445,12 +445,13 @@ describe('UserDialogs', () => {
                 }
             }
         }, {
-            type: actionTypes.SAVE_USER
+            type: actionTypes.FAIL_SAVE_USER
         });
+        expect(returnValue.userInDialog.id).toEqual(1);
         expect(returnValue.userInDialog.timeout.state).toBe("error");
         expect(returnValue.dialogState.error).toBe(true);
     });
-    it('should return timeout empty required fields with error state and dialogState of error when receiving SAVE_USER action', () => {
+    it('should return timeout empty required fields with error state and dialogState of error when receiving FAIL_SAVE_USER action', () => {
         const returnValue = userDialogs({
             dialogState: {
                 open: false,
@@ -460,7 +461,7 @@ describe('UserDialogs', () => {
                 editable: false
             },
             userInDialog: {
-                id: null,
+                id: 1,
                 username: {
                     value: "",
                     state: null
@@ -479,12 +480,13 @@ describe('UserDialogs', () => {
                 }
             }
         }, {
-            type: actionTypes.SAVE_USER
+            type: actionTypes.FAIL_SAVE_USER
         });
+        expect(returnValue.userInDialog.id).toEqual(1);
         expect(returnValue.userInDialog.timeout.state).toBe("error");
         expect(returnValue.dialogState.error).toBe(true);
     });
-    it('should return the state of all fields that are success or warning and dialogState of error when receiving ADD_USER action with an invalid username', () => {
+    it('should return the state of all fields that are success or warning and dialogState of error when receiving FAIL_ADD_USER action with an invalid username', () => {
         const returnValue = userDialogs({
             dialogState: {
                 open: false,
@@ -513,7 +515,7 @@ describe('UserDialogs', () => {
                 }
             }
         }, {
-            type: actionTypes.ADD_USER
+            type: actionTypes.FAIL_ADD_USER
         });
         expect(returnValue.userInDialog.username.state).toBe("error");
         expect(returnValue.userInDialog.password.state).toBe("warning");
@@ -521,7 +523,7 @@ describe('UserDialogs', () => {
         expect(returnValue.userInDialog.timeout.state).toBe("success");
         expect(returnValue.dialogState.error).toBe(true);
     });
-    it('should return the state of all fields that are success or warning and dialogState of error when receiving SAVE_USER action with an invalid username', () => {
+    it('should return the state of all fields that are success or warning and dialogState of error when receiving FAIL_SAVE_USER action with an invalid username', () => {
         const returnValue = userDialogs({
             dialogState: {
                 open: false,
@@ -531,7 +533,7 @@ describe('UserDialogs', () => {
                 editable: false
             },
             userInDialog: {
-                id: null,
+                id: 1,
                 username: {
                     value: "admin",
                     state: "success"
@@ -550,8 +552,9 @@ describe('UserDialogs', () => {
                 }
             }
         }, {
-            type: actionTypes.SAVE_USER
+            type: actionTypes.FAIL_SAVE_USER
         });
+        expect(returnValue.userInDialog.id).toEqual(1);
         expect(returnValue.userInDialog.username.state).toBe("success");
         expect(returnValue.userInDialog.password.state).toBe("warning");
         expect(returnValue.userInDialog.confirmPassword.state).toBe("success");
@@ -588,7 +591,8 @@ describe('UserDialogs', () => {
             }
         };
         const action = {
-            type: actionTypes.ADD_USER
+            type: actionTypes.ADD_USER,
+            user: {}
         };
         assertInitialDialogState(state, action);
         assertInitialState(state, action);
@@ -623,7 +627,8 @@ describe('UserDialogs', () => {
             }
         };
         const action = {
-            type: actionTypes.SAVE_USER
+            type: actionTypes.SAVE_USER,
+            user: {}
         };
         assertInitialDialogState(state, action);
         assertInitialState(state, action);

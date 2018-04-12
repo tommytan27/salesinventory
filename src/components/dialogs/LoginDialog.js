@@ -4,6 +4,8 @@ import { Button, DialogContainer, DatePicker } from 'react-md';
 import { Form, FormGroup, ControlLabel, FormControl, Alert } from 'react-bootstrap';
 import styles from './../../constants/styles';
 
+const enterKey = 13;
+
 class LoginDialog extends React.Component {
     renderDialogContent = (loginDialogs) => {
         if (loginDialogs.timeOutPrompt) {
@@ -27,7 +29,15 @@ class LoginDialog extends React.Component {
                     <FormControl type="password" placeholder="Password"
                         ref={(password) => { this.passField = password; }} 
                         value={user.password.value ? user.password.value : ""}
-                        onChange={ (e) => {this.props.onPasswordFieldChange(e.target.value)} } />
+                        onChange={ (e) => {this.props.onPasswordFieldChange(e.target.value)} }
+                        onKeyDown={ (e) => {
+                            var key = e.which || e.keyCode;
+                            if (key === enterKey) {
+                                this.props.onLoginButtonClick(
+                                    this.props.loginDialogs.userInDialog.username.value,
+                                    this.props.loginDialogs.userInDialog.password.value);
+                            }
+                        } } />
                     <FormControl.Feedback />
                 </FormGroup>
             </div>

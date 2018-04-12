@@ -121,56 +121,48 @@ const userDialogs = (state = initialState, action) => {
                         : null
                 }
             }};
-        case actionTypes.ADD_USER:
-            {
-                let dialogStateError = getDialogErrorState(state);
-                if (dialogStateError) {
-                    return {
-                        dialogState: {
-                            ...state.dialogState,
-                            error: dialogStateError
-                        },
-                        userInDialog: {
-                            username: {...state.userInDialog.username,
-                                state: state.userInDialog.username.state !== "success" ? "error" : "success"},
-                            password: {...state.userInDialog.password,
-                                state: (state.userInDialog.password.state !== "success" &&
-                                    state.userInDialog.password.state !== "warning") ? "error" : 
-                                    state.userInDialog.password.state},
-                            confirmPassword: {...state.userInDialog.confirmPassword,
-                                state: state.userInDialog.confirmPassword.state !== "success" ? "error" : "success"},
-                            timeout: {...state.userInDialog.timeout,
-                                state: state.userInDialog.timeout.state !== "success" ? "error" : "success"},
-                        }
-                    }
+        case actionTypes.FAIL_ADD_USER:
+            return {
+                dialogState: {
+                    ...state.dialogState,
+                    error: true
+                },
+                userInDialog: {...state.userInDialog,
+                    username: {...state.userInDialog.username,
+                        state: state.userInDialog.username.state !== "success" ? "error" : "success"},
+                    password: {...state.userInDialog.password,
+                        state: (state.userInDialog.password.state !== "success" &&
+                            state.userInDialog.password.state !== "warning") ? "error" : 
+                            state.userInDialog.password.state},
+                    confirmPassword: {...state.userInDialog.confirmPassword,
+                        state: state.userInDialog.confirmPassword.state !== "success" ? "error" : "success"},
+                    timeout: {...state.userInDialog.timeout,
+                        state: state.userInDialog.timeout.state !== "success" ? "error" : "success"},
                 }
-                return initialState;
+            };
+        case actionTypes.ADD_USER:
+            return initialState;
+        case actionTypes.FAIL_SAVE_USER:
+            return {
+                dialogState: {
+                    ...state.dialogState,
+                    error: true
+                },
+                userInDialog: {...state.userInDialog,
+                    username: {...state.userInDialog.username,
+                        state: state.userInDialog.username.state !== "success" ? "error" : "success"},
+                    password: {...state.userInDialog.password,
+                        state: (state.userInDialog.password.state !== "success" &&
+                            state.userInDialog.password.state !== "warning") ? "error" : 
+                            state.userInDialog.password.state},
+                    confirmPassword: {...state.userInDialog.confirmPassword,
+                        state: state.userInDialog.confirmPassword.state !== "success" ? "error" : "success"},
+                    timeout: {...state.userInDialog.timeout,
+                        state: state.userInDialog.timeout.state !== "success" ? "error" : "success"},
+                }
             }
         case actionTypes.SAVE_USER:
-            {
-                let dialogStateError = getDialogErrorState(state);
-                if (dialogStateError) {
-                    return {
-                        dialogState: {
-                            ...state.dialogState,
-                            error: dialogStateError
-                        },
-                        userInDialog: {
-                            username: {...state.userInDialog.username,
-                                state: state.userInDialog.username.state !== "success" ? "error" : "success"},
-                            password: {...state.userInDialog.password,
-                                state: (state.userInDialog.password.state !== "success" &&
-                                    state.userInDialog.password.state !== "warning") ? "error" : 
-                                    state.userInDialog.password.state},
-                            confirmPassword: {...state.userInDialog.confirmPassword,
-                                state: state.userInDialog.confirmPassword.state !== "success" ? "error" : "success"},
-                            timeout: {...state.userInDialog.timeout,
-                                state: state.userInDialog.timeout.state !== "success" ? "error" : "success"},
-                        }
-                    }
-                }
-                return initialState;
-            }
+            return initialState;
         default:
             return state;
     }
