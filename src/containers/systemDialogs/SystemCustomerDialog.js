@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import CustomerDialog from "../../components/dialogs/CustomerDialog";
 import { closeCustomerDialog, enableEditable, updateFirstNameField,
-    updateLastNameField, updateContactField, addCustomer, saveCustomer } from "../../actions/index";
+    updateLastNameField, updateContactField,  signalRAddCustomer, signalRSaveCustomer } from "../../actions/index";
 
 const mapStateToProps = (state) => {
     return {
@@ -17,8 +17,8 @@ const mapDispatchToProps = (dispatch) => {
         onFirstNameFieldChange: (firstName) => { dispatch(updateFirstNameField(firstName)) },
         onLastNameFieldChange: (lastName) => { dispatch(updateLastNameField(lastName)) },        
         onContactFieldChange: (contact) => { dispatch(updateContactField(contact)) },
-        onAddButtonClick: () => { dispatch(addCustomer()) },
-        onSaveButtonClick: () => { dispatch(saveCustomer()) }
+        onAddButtonClick: () => { dispatch(signalRAddCustomer()) },
+        onSaveButtonClick: () => { dispatch(signalRSaveCustomer()) }
     };
 }
 

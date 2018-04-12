@@ -28,11 +28,6 @@ const initialState = {
     }
 }
 
-const getDialogErrorState = (currentState) => {
-    return (currentState.customerInDialog.firstName.state === "success" &&
-        currentState.customerInDialog.lastName.state === "success") ? false : true
-}
-
 const customerDialogs = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.OPEN_ADD_CUSTOMER_DIALOG:
@@ -94,46 +89,38 @@ const customerDialogs = (state = initialState, action) => {
                     state: action.contact ? "success" : null
                 }
             }}
+        case actionTypes.FAIL_ADD_CUSTOMER:
+            return {
+                dialogState: {
+                    ...state.dialogState,
+                    error: true
+                },
+                customerInDialog: {...state.customerInDialog,
+                    firstName: {...state.customerInDialog.firstName,
+                        state: state.customerInDialog.firstName.state !== "success" ? "error" : "success"},
+                    lastName: {...state.customerInDialog.lastName,
+                        state: (state.customerInDialog.lastName.state !== "success" &&
+                            state.customerInDialog.lastName.state !== "warning") ? "error" : 
+                            state.customerInDialog.lastName.state}
+                }
+            };
         case actionTypes.ADD_CUSTOMER:
-            {
-                let dialogStateError = getDialogErrorState(state);
-                if (dialogStateError) {
-                    return {
-                        dialogState: {
-                            ...state.dialogState,
-                            error: dialogStateError
-                        },
-                        customerInDialog: {...state.customerInDialog,
-                            firstName: {...state.customerInDialog.firstName,
-                                state: state.customerInDialog.firstName.state !== "success" ? "error" : "success"},
-                            lastName: {...state.customerInDialog.lastName,
-                                state: (state.customerInDialog.lastName.state !== "success" &&
-                                    state.customerInDialog.lastName.state !== "warning") ? "error" : 
-                                    state.customerInDialog.lastName.state}
-                        }
-                    }
+            return initialState;
+        case actionTypes.FAIL_SAVE_CUSTOMER:
+            return {
+                dialogState: {
+                    ...state.dialogState,
+                    error: true
+                },
+                customerInDialog: {...state.customerInDialog,
+                    firstName: {...state.customerInDialog.firstName,
+                        state: state.customerInDialog.firstName.state !== "success" ? "error" : "success"},
+                    lastName: {...state.customerInDialog.lastName,
+                        state: state.customerInDialog.lastName.state !== "success" ? "error" : "success"}
                 }
-                return initialState;
-            }
+            };
         case actionTypes.SAVE_CUSTOMER:
-            {
-                let dialogStateError = getDialogErrorState(state);
-                if (dialogStateError) {
-                    return {
-                        dialogState: {
-                            ...state.dialogState,
-                            error: dialogStateError
-                        },
-                        customerInDialog: {...state.customerInDialog,
-                            firstName: {...state.customerInDialog.firstName,
-                                state: state.customerInDialog.firstName.state !== "success" ? "error" : "success"},
-                            lastName: {...state.customerInDialog.lastName,
-                                state: state.customerInDialog.lastName.state !== "success" ? "error" : "success"}
-                            }
-                        }
-                }
-                return initialState;
-            }
+            return initialState;
         default:
             return state;
     }

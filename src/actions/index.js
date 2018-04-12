@@ -95,15 +95,17 @@ export const updateLastNameField = (lastName) => {
     };
 }
 
-export const addCustomer = () => {
+export const addCustomer = (customer) => {
     return {
-        type: actionTypes.ADD_CUSTOMER
+        type: actionTypes.ADD_CUSTOMER,
+        customer: customer
     };
 }
 
-export const saveCustomer = () => {
+export const saveCustomer = (customer) => {
     return {
-        type: actionTypes.SAVE_CUSTOMER
+        type: actionTypes.SAVE_CUSTOMER,
+        customer: customer
     };
 }
 
@@ -579,6 +581,18 @@ export const failSaveUser = () => {
     }
 }
 
+export const failAddCustomer = () => {
+    return {
+        type: actionTypes.FAIL_ADD_CUSTOMER
+    }
+}
+
+export const failSaveCustomer = () => {
+    return {
+        type: actionTypes.FAIL_SAVE_CUSTOMER
+    }
+}
+
 export const signalRLoginUser = (username, password) => {
     return {
         type: actionTypes.SIGNAL_R_LOGIN_USER,
@@ -596,5 +610,17 @@ export const signalRAddUser = () => {
 export const signalRSaveUser = () => {
     return {
         type: actionTypes.SIGNAL_R_SAVE_USER
+    };
+}
+
+export const signalRAddCustomer = () => {
+    return {
+        type: actionTypes.SIGNAL_R_ADD_CUSTOMER
+    };
+}
+
+export const signalRSaveCustomer = () => {
+    return {
+        type: actionTypes.SIGNAL_R_SAVE_CUSTOMER
     };
 }

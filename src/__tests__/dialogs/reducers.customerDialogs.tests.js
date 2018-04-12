@@ -249,7 +249,7 @@ describe('CustomerDialogs', () => {
         expect(returnValue.customerInDialog
             .contact.state).toBeNull();
     });
-    it('should return all null required fields with error state and dialogState of error when receiving ADD_CUSTOMER action', () => {
+    it('should return all null required fields with error state and dialogState of error when receiving FAIL_ADD_CUSTOMER action', () => {
         const returnValue = customerDialogs({
             dialogState: {
                 open: false,
@@ -275,11 +275,11 @@ describe('CustomerDialogs', () => {
                 credit: null
             }
         }, {
-            type: actionTypes.ADD_CUSTOMER
+            type: actionTypes.FAIL_ADD_CUSTOMER
         });
         assertAddAndSaveCustomer(returnValue);
     });
-    it('should return all empty required fields with error state and dialogState of error when receiving ADD_CUSTOMER action', () => {
+    it('should return all empty required fields with error state and dialogState of error when receiving FAIL_ADD_CUSTOMER action', () => {
         const returnValue = customerDialogs({
             dialogState: {
                 open: false,
@@ -305,11 +305,11 @@ describe('CustomerDialogs', () => {
                 credit: ""
             }
         }, {
-            type: actionTypes.ADD_CUSTOMER
+            type: actionTypes.FAIL_ADD_CUSTOMER
         });
         assertAddAndSaveCustomer(returnValue);
     });
-    it('should return all null required fields with error state and dialogState of error when receiving SAVE_CUSTOMER action', () => {
+    it('should return all null required fields with error state and dialogState of error when receiving FAIL_SAVE_CUSTOMER action', () => {
         const returnValue = customerDialogs({
             dialogState: {
                 open: false,
@@ -319,7 +319,7 @@ describe('CustomerDialogs', () => {
                 editable: false
             },
             customerInDialog: {
-                id: null,
+                id: 1,
                 firstName: {
                     value: null,
                     state: null
@@ -335,11 +335,12 @@ describe('CustomerDialogs', () => {
                 credit: null
             }
         }, {
-            type: actionTypes.SAVE_CUSTOMER
+            type: actionTypes.FAIL_SAVE_CUSTOMER
         });
+        expect(returnValue.customerInDialog.id).toEqual(1);
         assertAddAndSaveCustomer(returnValue);
     });
-    it('should return all empty required fields with error state and dialogState of error when receiving SAVE_CUSTOMER action', () => {
+    it('should return all empty required fields with error state and dialogState of error when receiving FAIL_SAVE_CUSTOMER action', () => {
         const returnValue = customerDialogs({
             dialogState: {
                 open: false,
@@ -349,7 +350,7 @@ describe('CustomerDialogs', () => {
                 editable: false
             },
             customerInDialog: {
-                id: null,
+                id: 1,
                 firstName: {
                     value: "",
                     state: null
@@ -365,11 +366,12 @@ describe('CustomerDialogs', () => {
                 credit: ""
             }
         }, {
-            type: actionTypes.SAVE_CUSTOMER
+            type: actionTypes.FAIL_SAVE_CUSTOMER
         });
+        expect(returnValue.customerInDialog.id).toEqual(1);
         assertAddAndSaveCustomer(returnValue);
     });
-    it('should return the state of all fields that are success and dialogState of error when receiving ADD_CUSTOMER action with an empty firstName', () => {
+    it('should return the state of all fields that are success and dialogState of error when receiving FAIL_ADD_CUSTOMER action with an empty firstName', () => {
         const returnValue = customerDialogs({
             dialogState: {
                 open: false,
@@ -395,13 +397,13 @@ describe('CustomerDialogs', () => {
                 credit: null
             }
         }, {
-            type: actionTypes.ADD_CUSTOMER
+            type: actionTypes.FAIL_ADD_CUSTOMER
         });
         expect(returnValue.customerInDialog.firstName.state).toBe("error");
         expect(returnValue.customerInDialog.lastName.state).toBe("success");
         expect(returnValue.dialogState.error).toBe(true);
     });
-    it('should return the state of all fields that are success and dialogState of error when receiving SAVE_CUSTOMER action with an empty firstName', () => {
+    it('should return the state of all fields that are success and dialogState of error when receiving FAIL_SAVE_CUSTOMER action with an empty firstName', () => {
         const returnValue = customerDialogs({
             dialogState: {
                 open: false,
@@ -411,7 +413,7 @@ describe('CustomerDialogs', () => {
                 editable: false
             },
             customerInDialog: {
-                id: null,
+                id: 1,
                 firstName: {
                     value: "",
                     state: null
@@ -427,8 +429,9 @@ describe('CustomerDialogs', () => {
                 credit: null
             }
         }, {
-            type: actionTypes.SAVE_CUSTOMER
+            type: actionTypes.FAIL_SAVE_CUSTOMER
         });
+        expect(returnValue.customerInDialog.id).toEqual(1);
         expect(returnValue.customerInDialog.firstName.state).toBe("error");
         expect(returnValue.customerInDialog.lastName.state).toBe("success");
         expect(returnValue.dialogState.error).toBe(true);
@@ -460,7 +463,8 @@ describe('CustomerDialogs', () => {
             }
         };
         const action = {
-            type: actionTypes.SAVE_CUSTOMER
+            type: actionTypes.SAVE_CUSTOMER,
+            customer: {}
         }
         assertInitialDialogState(state, action);
         assertInitialState(state, action);
@@ -492,7 +496,8 @@ describe('CustomerDialogs', () => {
             }
         };
         const action = {
-            type: actionTypes.ADD_CUSTOMER
+            type: actionTypes.ADD_CUSTOMER,
+            customer: {}
         }
         assertInitialDialogState(state, action);
         assertInitialState(state, action);

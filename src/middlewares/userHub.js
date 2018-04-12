@@ -1,6 +1,5 @@
 import actionTypes from '../constants/actionTypes';
-import { addUser, saveUser } from '../actions';
-import { failSaveUser, failAddUser } from './../actions/index';
+import { addUser, saveUser, failSaveUser, failAddUser } from '../actions';
 
 const isNewUserValid = (user) => {
     return (user.username.state === "success" &&

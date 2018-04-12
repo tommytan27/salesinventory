@@ -32,20 +32,6 @@ const initialState = {
     }
 }
 
-const getDialogErrorState = (currentState) => {
-    if (currentState.dialogState.mode === dialogModes.ADD_MODE) {
-        return (currentState.userInDialog.username.state === "success" &&
-        (currentState.userInDialog.password.state === "success" ||
-        currentState.userInDialog.password.state === "warning") &&
-        currentState.userInDialog.confirmPassword.state === "success" &&
-        currentState.userInDialog.timeout.state === "success") ? false : true
-    }
-    else if (currentState.dialogState.mode === dialogModes.EDIT_MODE) {
-        return (currentState.userInDialog.timeout.state === "success") ? false : true;
-    }
-    return false;
-}
-
 const userDialogs = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.OPEN_ADD_USER_DIALOG:

@@ -191,17 +191,61 @@ describe('CustomerRecords Actions', () => {
     });
 
     it('should create an action to add customer', () => {
-        const expectedAction = {
-            type: actionTypes.ADD_CUSTOMER
+        const expectedCustomer = {
+            id: 1,
+            firstName: "Tommy",
+            lastName: "Tanzil",
+            contact: "0425927766",
+            crdit: 0.0
         }
-        expect(actions.addCustomer()).toEqual(expectedAction);
+        const expectedAction = {
+            type: actionTypes.ADD_CUSTOMER,
+            customer: expectedCustomer
+        }
+        expect(actions.addCustomer(expectedCustomer)).toEqual(expectedAction);
     });
 
     it('should create an action to save customer', () => {
-        const expectedAction = {
-            type: actionTypes.SAVE_CUSTOMER
+        const expectedCustomer = {
+            id: 1,
+            firstName: "Tommy",
+            lastName: "Tanzil",
+            contact: "0425927766",
+            crdit: 0.0
         }
-        expect(actions.saveCustomer()).toEqual(expectedAction);
+        const expectedAction = {
+            type: actionTypes.SAVE_CUSTOMER,
+            customer: expectedCustomer
+        }
+        expect(actions.saveCustomer(expectedCustomer)).toEqual(expectedAction);
+    });
+
+    it('should create an action to add customer via signalR', () => {
+        const expectedAction = {
+            type: actionTypes.SIGNAL_R_ADD_CUSTOMER
+        }
+        expect(actions.signalRAddCustomer()).toEqual(expectedAction);
+    });
+
+    it('should create an action to save customer via signalR', () => {
+        const expectedAction = {
+            type: actionTypes.SIGNAL_R_SAVE_CUSTOMER
+        }
+        expect(actions.signalRSaveCustomer()).toEqual(expectedAction);
+    });
+    
+    it ('should create an action to notify user about failing adding customer', () => {
+        const expectedAction = {
+            type: actionTypes.FAIL_ADD_CUSTOMER
+        }
+        expect(actions.failAddCustomer()).toEqual(expectedAction);
+    });
+    
+    it ('should create an action to notify user about failing saving customer', () => {
+        const expectedAction = {
+            type: actionTypes.FAIL_SAVE_CUSTOMER
+        }
+        expect(actions.failSaveCustomer()).toEqual(expectedAction);
     });
 });
 
