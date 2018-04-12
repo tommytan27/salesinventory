@@ -34,12 +34,6 @@ const initialState = {
     }
 }
 
-const getDialogErrorState = (currentState) => {
-    return (currentState.itemInDialog.barcode.state === "success" &&
-    currentState.itemInDialog.name.state === "success" &&
-    currentState.itemInDialog.price.state === "success") ? false : true;
-}
-
 const itemDialogs = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.OPEN_ADD_ITEM_DIALOG:
@@ -131,48 +125,40 @@ const itemDialogs = (state = initialState, action) => {
             return {...state, itemInDialog: {
                 ...state.itemInDialog, brandId: action.brandId
             }};
+        case actionTypes.FAIL_ADD_ITEM:
+            return {
+                dialogState: {
+                    ...state.dialogState,
+                    error: true
+                },
+                itemInDialog: {...state.itemInDialog,
+                    barcode: {...state.itemInDialog.barcode,
+                        state: state.itemInDialog.barcode.state !== "success" ? "error" : "success"},
+                    name: {...state.itemInDialog.name,
+                        state: state.itemInDialog.name.state !== "success" ? "error" : "success"},
+                    price: {...state.itemInDialog.price,
+                        state: state.itemInDialog.price.state !== "success" ? "error" : "success"}
+                }
+            };
         case actionTypes.ADD_ITEM:
-            {
-                let dialogStateError = getDialogErrorState(state);
-                if (dialogStateError) {
-                    return {
-                        dialogState: {
-                            ...state.dialogState,
-                            error: dialogStateError
-                        },
-                        itemInDialog: {...state.itemInDialog,
-                            barcode: {...state.itemInDialog.barcode,
-                                state: state.itemInDialog.barcode.state !== "success" ? "error" : "success"},
-                            name: {...state.itemInDialog.name,
-                                state: state.itemInDialog.name.state !== "success" ? "error" : "success"},
-                            price: {...state.itemInDialog.price,
-                                state: state.itemInDialog.price.state !== "success" ? "error" : "success"}
-                        }
-                    }
+            return initialState;
+        case actionTypes.FAIL_SAVE_ITEM:
+            return {
+                dialogState: {
+                    ...state.dialogState,
+                    error: true
+                },
+                itemInDialog: {...state.itemInDialog,
+                    barcode: {...state.itemInDialog.barcode,
+                        state: state.itemInDialog.barcode.state !== "success" ? "error" : "success"},
+                    name: {...state.itemInDialog.name,
+                        state: state.itemInDialog.name.state !== "success" ? "error" : "success"},
+                    price: {...state.itemInDialog.price,
+                        state: state.itemInDialog.price.state !== "success" ? "error" : "success"}
                 }
-                return initialState;
-            }
+            };
         case actionTypes.SAVE_ITEM:
-            {
-                let dialogStateError = getDialogErrorState(state);
-                if (dialogStateError) {
-                    return {
-                        dialogState: {
-                            ...state.dialogState,
-                            error: dialogStateError
-                        },
-                        itemInDialog: {...state.itemInDialog,
-                            barcode: {...state.itemInDialog.barcode,
-                                state: state.itemInDialog.barcode.state !== "success" ? "error" : "success"},
-                            name: {...state.itemInDialog.name,
-                                state: state.itemInDialog.name.state !== "success" ? "error" : "success"},
-                            price: {...state.itemInDialog.price,
-                                state: state.itemInDialog.price.state !== "success" ? "error" : "success"}
-                        }
-                    }
-                }
-                return initialState;
-            }
+            return initialState;
         default:
             return state;
     }

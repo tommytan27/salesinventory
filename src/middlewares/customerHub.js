@@ -17,7 +17,7 @@ const mapCustomerInDialogToCustomer = (customerInDialog) => {
 }
 
 export const customerHub = store => next => action => {
-    var currentCustomer = store.getState().customerDialogs.customerInDialog
+    var currentCustomer = store.getState().customerDialogs.customerInDialog;
     switch (action.type) {
         case actionTypes.SIGNAL_R_ADD_CUSTOMER:
             if (isCustomerValid(currentCustomer)) {

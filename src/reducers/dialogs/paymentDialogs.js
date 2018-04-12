@@ -24,7 +24,6 @@ const paymentDialogs = (state = initialState, action) => {
         case actionTypes.PAY_NOW:
             return {...state, payNow: true};
         case actionTypes.UPDATE_CASH_FIELD:
-        case actionTypes.UPDATE_SELL_PRICE_FIELD:
             let temp = {...state, 
                 cash: validateDecimal(action.cash) ? action.cash : state.cash
             };

@@ -23,10 +23,6 @@ const initialState = {
     }
 }
 
-const getDialogErrorState = (currentState) => {
-    return (currentState.supplierInDialog.name.state === "success") ? false : true
-}
-
 const supplierDialogs = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.OPEN_ADD_SUPPLIER_DIALOG:
@@ -76,40 +72,32 @@ const supplierDialogs = (state = initialState, action) => {
                     state: action.contact ? "success" : null
                 }
             }}
+        case actionTypes.FAIL_ADD_SUPPLIER:
+            return {
+                dialogState: {
+                    ...state.dialogState,
+                    error: true
+                },
+                supplierInDialog: {...state.supplierInDialog,
+                    name: {...state.supplierInDialog.name,
+                        state: state.supplierInDialog.name.state !== "success" ? "error" : "success"}
+                }
+            };
         case actionTypes.ADD_SUPPLIER:
-            {
-                let dialogStateError = getDialogErrorState(state);
-                if (dialogStateError) {
-                    return {
-                        dialogState: {
-                            ...state.dialogState,
-                            error: dialogStateError
-                        },
-                        supplierInDialog: {...state.supplierInDialog,
-                            name: {...state.supplierInDialog.name,
-                                state: state.supplierInDialog.name.state !== "success" ? "error" : "success"}
-                        }
-                    }
+            return initialState;
+        case actionTypes.FAIL_SAVE_SUPPLIER:
+            return {
+                dialogState: {
+                    ...state.dialogState,
+                    error: true
+                },
+                supplierInDialog: {...state.supplierInDialog,
+                    name: {...state.supplierInDialog.name,
+                        state: state.supplierInDialog.name.state !== "success" ? "error" : "success"}
                 }
-                return initialState;
-            }
+            };
         case actionTypes.SAVE_SUPPLIER:
-            {
-                let dialogStateError = getDialogErrorState(state);
-                if (dialogStateError) {
-                    return {
-                        dialogState: {
-                            ...state.dialogState,
-                            error: dialogStateError
-                        },
-                        supplierInDialog: {...state.supplierInDialog,
-                            name: {...state.supplierInDialog.name,
-                                state: state.supplierInDialog.name.state !== "success" ? "error" : "success"}
-                        }
-                    }
-                }
-                return initialState;
-            }
+            return initialState;
         default:
             return state;
     }

@@ -135,15 +135,17 @@ export const updateSupplierNameField = (name) => {
     };
 }
 
-export const addSupplier = () => {
+export const addSupplier = (supplier) => {
     return {
-        type: actionTypes.ADD_SUPPLIER
+        type: actionTypes.ADD_SUPPLIER,
+        supplier: supplier
     };
 }
 
-export const saveSupplier = () => {
+export const saveSupplier = (supplier) => {
     return {
-        type: actionTypes.SAVE_SUPPLIER
+        type: actionTypes.SAVE_SUPPLIER,
+        supplier: supplier
     };
 }
 
@@ -173,15 +175,17 @@ export const updateBrandNameField = (name) => {
     };
 }
 
-export const addBrand = () => {
+export const addBrand = (brand) => {
     return {
-        type: actionTypes.ADD_BRAND
+        type: actionTypes.ADD_BRAND,
+        brand: brand
     };
 }
 
-export const saveBrand = () => {
+export const saveBrand = (brand) => {
     return {
-        type: actionTypes.SAVE_BRAND
+        type: actionTypes.SAVE_BRAND,
+        brand: brand
     };
 }
 
@@ -275,15 +279,17 @@ export const toggleVeganFlag = () => {
     };
 }
 
-export const addItem = () => {
+export const addItem = (item) => {
     return {
-        type: actionTypes.ADD_ITEM
+        type: actionTypes.ADD_ITEM,
+        item: item
     };
 }
 
-export const saveItem = () => {
+export const saveItem = (item) => {
     return {
-        type: actionTypes.SAVE_ITEM
+        type: actionTypes.SAVE_ITEM,
+        item: item
     };
 }
 
@@ -593,6 +599,42 @@ export const failSaveCustomer = () => {
     }
 }
 
+export const failAddSupplier = () => {
+    return {
+        type: actionTypes.FAIL_ADD_SUPPLIER
+    }
+}
+
+export const failSaveSupplier = () => {
+    return {
+        type: actionTypes.FAIL_SAVE_SUPPLIER
+    }
+}
+
+export const failAddBrand = () => {
+    return {
+        type: actionTypes.FAIL_ADD_BRAND
+    }
+}
+
+export const failSaveBrand = () => {
+    return {
+        type: actionTypes.FAIL_SAVE_BRAND
+    }
+}
+
+export const failAddItem = () => {
+    return {
+        type: actionTypes.FAIL_ADD_ITEM
+    }
+}
+
+export const failSaveItem = () => {
+    return {
+        type: actionTypes.FAIL_SAVE_ITEM
+    }
+}
+
 export const signalRLoginUser = (username, password) => {
     return {
         type: actionTypes.SIGNAL_R_LOGIN_USER,
@@ -622,5 +664,41 @@ export const signalRAddCustomer = () => {
 export const signalRSaveCustomer = () => {
     return {
         type: actionTypes.SIGNAL_R_SAVE_CUSTOMER
+    };
+}
+
+export const signalRAddSupplier = () => {
+    return {
+        type: actionTypes.SIGNAL_R_ADD_SUPPLIER
+    };
+}
+
+export const signalRSaveSupplier = () => {
+    return {
+        type: actionTypes.SIGNAL_R_SAVE_SUPPLIER
+    };
+}
+
+export const signalRAddBrand = () => {
+    return {
+        type: actionTypes.SIGNAL_R_ADD_BRAND
+    };
+}
+
+export const signalRSaveBrand = () => {
+    return {
+        type: actionTypes.SIGNAL_R_SAVE_BRAND
+    };
+}
+
+export const signalRAddItem = () => {
+    return {
+        type: actionTypes.SIGNAL_R_ADD_ITEM
+    };
+}
+
+export const signalRSaveItem = () => {
+    return {
+        type: actionTypes.SIGNAL_R_SAVE_ITEM
     };
 }

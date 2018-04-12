@@ -23,7 +23,7 @@ const mapUserInDialogToUser = (userInDialog) => {
 }
 
 export const userHub = store => next => action => {
-    var currentUser = store.getState().userDialogs.userInDialog
+    var currentUser = store.getState().userDialogs.userInDialog;
     switch (action.type) {
         case actionTypes.SIGNAL_R_ADD_USER:
             if (isNewUserValid(currentUser)) {

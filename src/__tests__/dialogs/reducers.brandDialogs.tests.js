@@ -161,7 +161,7 @@ describe('brandDialogs', () => {
         expect(returnValue.brandInDialog
             .name.state).toBeNull();
     });
-    it('should return all null required fields with error state and dialogState of error when receiving ADD_BRAND action', () => {
+    it('should return all null required fields with error state and dialogState of error when receiving FAIL_ADD_BRAND action', () => {
         const returnValue = brandDialogs({
             dialogState: {
                 open: false,
@@ -178,11 +178,11 @@ describe('brandDialogs', () => {
                 }
             }
         }, {
-            type: actionTypes.ADD_BRAND
+            type: actionTypes.FAIL_ADD_BRAND
         });
         assertAddAndSaveBrand(returnValue);
     });
-    it('should return all empty required fields with error state and dialogState of error when receiving ADD_BRAND action', () => {
+    it('should return all empty required fields with error state and dialogState of error when receiving FAIL_ADD_BRAND action', () => {
         const returnValue = brandDialogs({
             dialogState: {
                 open: false,
@@ -199,11 +199,11 @@ describe('brandDialogs', () => {
                 }
             }
         }, {
-            type: actionTypes.ADD_BRAND
+            type: actionTypes.FAIL_ADD_BRAND
         });
         assertAddAndSaveBrand(returnValue);
     });
-    it('should return all null required fields with error state and dialogState of error when receiving SAVE_BRAND action', () => {
+    it('should return all null required fields with error state and dialogState of error when receiving FAIL_SAVE_BRAND action', () => {
         const returnValue = brandDialogs({
             dialogState: {
                 open: false,
@@ -213,18 +213,19 @@ describe('brandDialogs', () => {
                 editable: false
             },
             brandInDialog: {
-                id: null,
+                id: 1,
                 name: {
                     value: null,
                     state: null
                 }
             }
         }, {
-            type: actionTypes.SAVE_BRAND
+            type: actionTypes.FAIL_SAVE_BRAND
         });
         assertAddAndSaveBrand(returnValue);
+        expect(returnValue.brandInDialog.id).toEqual(1);
     });
-    it('should return all empty required fields with error state and dialogState of error when receiving SAVE_BRAND action', () => {
+    it('should return all empty required fields with error state and dialogState of error when receiving FAIL_SAVE_BRAND action', () => {
         const returnValue = brandDialogs({
             dialogState: {
                 open: false,
@@ -234,18 +235,19 @@ describe('brandDialogs', () => {
                 editable: false
             },
             brandInDialog: {
-                id: null,
+                id: 1,
                 name: {
                     value: "",
                     state: null
                 }
             }
         }, {
-            type: actionTypes.SAVE_BRAND
+            type: actionTypes.FAIL_SAVE_BRAND
         });
         assertAddAndSaveBrand(returnValue);
+        expect(returnValue.brandInDialog.id).toEqual(1);
     });
-    it('should return the state of all fields that are success and dialogState of error when receiving ADD_BRAND action with an empty firstName', () => {
+    it('should return the state of all fields that are success and dialogState of error when receiving FAIL_ADD_BRAND action with an empty firstName', () => {
         const returnValue = brandDialogs({
             dialogState: {
                 open: false,
@@ -262,12 +264,12 @@ describe('brandDialogs', () => {
                 }
             }
         }, {
-            type: actionTypes.ADD_BRAND
+            type: actionTypes.FAIL_ADD_BRAND
         });
         expect(returnValue.brandInDialog.name.state).toBe("error");
         expect(returnValue.dialogState.error).toBe(true);
     });
-    it('should return the state of all fields that are success and dialogState of error when receiving SAVE_BRAND action with an empty firstName', () => {
+    it('should return the state of all fields that are success and dialogState of error when receiving FAIL_SAVE_BRAND action with an empty firstName', () => {
         const returnValue = brandDialogs({
             dialogState: {
                 open: false,
@@ -277,15 +279,16 @@ describe('brandDialogs', () => {
                 editable: false
             },
             brandInDialog: {
-                id: null,
+                id: 1,
                 name: {
                     value: "",
                     state: null
                 }
             }
         }, {
-            type: actionTypes.SAVE_BRAND
+            type: actionTypes.FAIL_SAVE_BRAND
         });
+        expect(returnValue.brandInDialog.id).toEqual(1);
         expect(returnValue.brandInDialog.name.state).toBe("error");
         expect(returnValue.dialogState.error).toBe(true);
     });
@@ -307,7 +310,8 @@ describe('brandDialogs', () => {
             }
         };
         const action = {
-            type: actionTypes.SAVE_BRAND
+            type: actionTypes.SAVE_BRAND,
+            brand: {}
         }
         assertInitialDialogState(state, action);
         assertInitialState(state, action);
@@ -334,7 +338,8 @@ describe('brandDialogs', () => {
             }
         };
         const action = {
-            type: actionTypes.ADD_BRAND
+            type: actionTypes.ADD_BRAND,
+            brand: {}
         }
         assertInitialDialogState(state, action);
         assertInitialState(state, action);

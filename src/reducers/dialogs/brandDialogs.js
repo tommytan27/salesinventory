@@ -19,10 +19,6 @@ const initialState = {
     }
 }
 
-const getDialogErrorState = (currentState) => {
-    return (currentState.brandInDialog.name.state === "success") ? false : true;
-}
-
 const brandDialogs = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.OPEN_ADD_BRAND_DIALOG:
@@ -61,40 +57,32 @@ const brandDialogs = (state = initialState, action) => {
                     state: action.name ? "success" : null
                 }
             }};
+        case actionTypes.FAIL_ADD_BRAND:
+            return {
+                dialogState: {
+                    ...state.dialogState,
+                    error: true
+                },
+                brandInDialog: {...state.brandInDialog,
+                    name: {...state.brandInDialog.name,
+                        state: state.brandInDialog.name.state !== "success" ? "error" : "success"}
+                }
+            };
         case actionTypes.ADD_BRAND:
-            {
-                let dialogStateError = getDialogErrorState(state);
-                if (dialogStateError) {
-                    return {
-                        dialogState: {
-                            ...state.dialogState,
-                            error: dialogStateError
-                        },
-                        brandInDialog: {...state.brandInDialog,
-                            name: {...state.brandInDialog.name,
-                                state: state.brandInDialog.name.state !== "success" ? "error" : "success"}
-                        }
-                    }
+            return initialState;
+        case actionTypes.FAIL_SAVE_BRAND:
+            return {
+                dialogState: {
+                    ...state.dialogState,
+                    error: true
+                },
+                brandInDialog: {...state.brandInDialog,
+                    name: {...state.brandInDialog.name,
+                        state: state.brandInDialog.name.state !== "success" ? "error" : "success"}
                 }
-                return initialState;
-            }
+            };
         case actionTypes.SAVE_BRAND:
-            {
-                let dialogStateError = getDialogErrorState(state);
-                if (dialogStateError) {
-                    return {
-                        dialogState: {
-                            ...state.dialogState,
-                            error: dialogStateError
-                        },
-                        brandInDialog: {...state.brandInDialog,
-                            name: {...state.brandInDialog.name,
-                                state: state.brandInDialog.name.state !== "success" ? "error" : "success"}
-                        }
-                    }
-                }
-                return initialState;
-            }
+            return initialState;
         default:
             return state;
     }

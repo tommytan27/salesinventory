@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import BrandDialog from "../../components/dialogs/BrandDialog";
 import { closeBrandDialog, enableEditable, updateBrandNameField,
-    addBrand, saveBrand } from "../../actions/index";
+    signalRAddBrand, signalRSaveBrand } from "../../actions/index";
 
 const mapStateToProps = (state) => {
     return {
@@ -15,8 +15,8 @@ const mapDispatchToProps = (dispatch) => {
         onDialogClose: () => { dispatch(closeBrandDialog()) },
         onEditButtonClick: () => { dispatch(enableEditable()) },
         onBrandNameFieldChange: (name) => { dispatch(updateBrandNameField(name)) },
-        onAddButtonClick: () => { dispatch(addBrand()) },
-        onSaveButtonClick: () => { dispatch(saveBrand()) }
+        onAddButtonClick: () => { dispatch(signalRAddBrand()) },
+        onSaveButtonClick: () => { dispatch(signalRSaveBrand()) }
     };
 }
 

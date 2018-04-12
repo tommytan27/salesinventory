@@ -210,7 +210,7 @@ describe('supplierDialogs', () => {
         expect(returnValue.supplierInDialog
             .contact.state).toBeNull();
     });
-    it('should return all null required fields with error state and dialogState of error when receiving ADD_SUPPLIER action', () => {
+    it('should return all null required fields with error state and dialogState of error when receiving FAIL_ADD_SUPPLIER action', () => {
         const returnValue = supplierDialogs({
             dialogState: {
                 open: false,
@@ -232,11 +232,11 @@ describe('supplierDialogs', () => {
                 credit: null
             }
         }, {
-            type: actionTypes.ADD_SUPPLIER
+            type: actionTypes.FAIL_ADD_SUPPLIER
         });
         assertAddAndSaveSupplier(returnValue);
     });
-    it('should return all empty required fields with error state and dialogState of error when receiving ADD_SUPPLIER action', () => {
+    it('should return all empty required fields with error state and dialogState of error when receiving FAIL_ADD_SUPPLIER action', () => {
         const returnValue = supplierDialogs({
             dialogState: {
                 open: false,
@@ -257,11 +257,11 @@ describe('supplierDialogs', () => {
                 }
             }
         }, {
-            type: actionTypes.ADD_SUPPLIER
+            type: actionTypes.FAIL_ADD_SUPPLIER
         });
         assertAddAndSaveSupplier(returnValue);
     });
-    it('should return all null required fields with error state and dialogState of error when receiving SAVE_SUPPLIER action', () => {
+    it('should return all null required fields with error state and dialogState of error when receiving FAIL_SAVE_SUPPLIER action', () => {
         const returnValue = supplierDialogs({
             dialogState: {
                 open: false,
@@ -271,7 +271,7 @@ describe('supplierDialogs', () => {
                 editable: false
             },
             supplierInDialog: {
-                id: null,
+                id: 1,
                 name: {
                     value: null,
                     state: null
@@ -282,11 +282,12 @@ describe('supplierDialogs', () => {
                 }
             }
         }, {
-            type: actionTypes.SAVE_SUPPLIER
+            type: actionTypes.FAIL_SAVE_SUPPLIER
         });
         assertAddAndSaveSupplier(returnValue);
+        expect(returnValue.supplierInDialog.id).toEqual(1);
     });
-    it('should return all empty required fields with error state and dialogState of error when receiving SAVE_SUPPLIER action', () => {
+    it('should return all empty required fields with error state and dialogState of error when receiving FAIL_SAVE_SUPPLIER action', () => {
         const returnValue = supplierDialogs({
             dialogState: {
                 open: false,
@@ -296,7 +297,7 @@ describe('supplierDialogs', () => {
                 editable: false
             },
             supplierInDialog: {
-                id: null,
+                id: 1,
                 name: {
                     value: "",
                     state: null
@@ -307,11 +308,12 @@ describe('supplierDialogs', () => {
                 }
             }
         }, {
-            type: actionTypes.SAVE_SUPPLIER
+            type: actionTypes.FAIL_SAVE_SUPPLIER
         });
         assertAddAndSaveSupplier(returnValue);
+        expect(returnValue.supplierInDialog.id).toEqual(1);
     });
-    it('should return the state of all fields that are success and dialogState of error when receiving ADD_SUPPLIER action with an empty firstName', () => {
+    it('should return the state of all fields that are success and dialogState of error when receiving FAIL_ADD_SUPPLIER action with an empty firstName', () => {
         const returnValue = supplierDialogs({
             dialogState: {
                 open: false,
@@ -332,12 +334,12 @@ describe('supplierDialogs', () => {
                 }
             }
         }, {
-            type: actionTypes.ADD_SUPPLIER
+            type: actionTypes.FAIL_ADD_SUPPLIER
         });
         expect(returnValue.supplierInDialog.name.state).toBe("error");
         expect(returnValue.dialogState.error).toBe(true);
     });
-    it('should return the state of all fields that are success and dialogState of error when receiving SAVE_SUPPLIER action with an empty firstName', () => {
+    it('should return the state of all fields that are success and dialogState of error when receiving FAIL_SAVE_SUPPLIER action with an empty firstName', () => {
         const returnValue = supplierDialogs({
             dialogState: {
                 open: false,
@@ -347,7 +349,7 @@ describe('supplierDialogs', () => {
                 editable: false
             },
             supplierInDialog: {
-                id: null,
+                id: 1,
                 name: {
                     value: "",
                     state: null
@@ -358,8 +360,9 @@ describe('supplierDialogs', () => {
                 }
             }
         }, {
-            type: actionTypes.SAVE_SUPPLIER
+            type: actionTypes.FAIL_SAVE_SUPPLIER
         });
+        expect(returnValue.supplierInDialog.id).toEqual(1);
         expect(returnValue.supplierInDialog.name.state).toBe("error");
         expect(returnValue.dialogState.error).toBe(true);
     });
@@ -385,7 +388,8 @@ describe('supplierDialogs', () => {
             }
         };
         const action = {
-            type: actionTypes.SAVE_SUPPLIER
+            type: actionTypes.SAVE_SUPPLIER,
+            supplier: {}
         }
         assertInitialDialogState(state, action);
         assertInitialState(state, action);
@@ -412,7 +416,8 @@ describe('supplierDialogs', () => {
             }
         };
         const action = {
-            type: actionTypes.ADD_SUPPLIER
+            type: actionTypes.ADD_SUPPLIER,
+            supplier: {}
         }
         assertInitialDialogState(state, action);
         assertInitialState(state, action);

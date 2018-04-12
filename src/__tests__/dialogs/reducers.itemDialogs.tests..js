@@ -68,8 +68,13 @@ const assertOpenEditItemDialog = (state) => {
     expect(state.dialogState.editable).toEqual(false);
 }
 
-const assertAddAndSaveBrand = (returnValue) => {
+const assertAddItem = (returnValue) => {
     expect(returnValue.itemInDialog.barcode.state).toBe("error");
+    expect(returnValue.itemInDialog.name.state).toBe("error");
+    expect(returnValue.itemInDialog.price.state).toBe("error");
+}
+
+const assertSaveItem = (returnValue) => {
     expect(returnValue.itemInDialog.name.state).toBe("error");
     expect(returnValue.itemInDialog.price.state).toBe("error");
 }
@@ -358,7 +363,7 @@ describe('itemDialogs', () => {
         expect(returnValue.itemInDialog
             .brandId).toEqual(dummyBrandId);
     });
-    it('should return all null required fields with error state and dialogState of error when receiving ADD_ITEM action', () => {
+    it('should return all null required fields with error state and dialogState of error when receiving FAIL_ADD_ITEM action', () => {
         const returnValue = itemDialogs({
             dialogState: {
                 open: false,
@@ -382,11 +387,11 @@ describe('itemDialogs', () => {
                 }
             }
         }, {
-            type: actionTypes.ADD_ITEM
+            type: actionTypes.FAIL_ADD_ITEM
         });
-        assertAddAndSaveBrand(returnValue);
+        assertAddItem(returnValue);
     });
-    it('should return all empty required fields with error state and dialogState of error when receiving ADD_ITEM action', () => {
+    it('should return all empty required fields with error state and dialogState of error when receiving FAIL_ADD_ITEM action', () => {
         const returnValue = itemDialogs({
             dialogState: {
                 open: false,
@@ -410,11 +415,11 @@ describe('itemDialogs', () => {
                 }
             }
         }, {
-            type: actionTypes.ADD_ITEM
+            type: actionTypes.FAIL_ADD_ITEM
         });
-        assertAddAndSaveBrand(returnValue);
+        assertAddItem(returnValue);
     });
-    it('should return all null required fields with error state and dialogState of error when receiving SAVE_ITEM action', () => {
+    it('should return all null required fields with error state and dialogState of error when receiving FAIL_SAVE_ITEM action', () => {
         const returnValue = itemDialogs({
             dialogState: {
                 open: false,
@@ -425,8 +430,8 @@ describe('itemDialogs', () => {
             },
             itemInDialog: {
                 barcode: {
-                    value: null,
-                    state: null
+                    value: "12345678",
+                    state: "success"
                 },
                 name: {
                     value: null,
@@ -438,11 +443,12 @@ describe('itemDialogs', () => {
                 }
             }
         }, {
-            type: actionTypes.SAVE_ITEM
+            type: actionTypes.FAIL_SAVE_ITEM
         });
-        assertAddAndSaveBrand(returnValue);
+        assertSaveItem(returnValue);
+        expect(returnValue.itemInDialog.barcode.value).toEqual("12345678");
     });
-    it('should return all empty required fields with error state and dialogState of error when receiving SAVE_ITEM action', () => {
+    it('should return all empty required fields with error state and dialogState of error when receiving FAIL_SAVE_ITEM action', () => {
         const returnValue = itemDialogs({
             dialogState: {
                 open: false,
@@ -453,8 +459,8 @@ describe('itemDialogs', () => {
             },
             itemInDialog: {
                 barcode: {
-                    value: "",
-                    state: null
+                    value: "12345678",
+                    state: "success"
                 },
                 name: {
                     value: "",
@@ -466,11 +472,12 @@ describe('itemDialogs', () => {
                 }
             }
         }, {
-            type: actionTypes.SAVE_ITEM
+            type: actionTypes.FAIL_SAVE_ITEM
         });
-        assertAddAndSaveBrand(returnValue);
+        assertSaveItem(returnValue);
+        expect(returnValue.itemInDialog.barcode.value).toEqual("12345678");
     });
-    it('should return the state of all fields that are success and dialogState of error when receiving ADD_ITEM action with an empty firstName', () => {
+    it('should return the state of all fields that are success and dialogState of error when receiving FAIL_ADD_ITEM action with an empty firstName', () => {
         const returnValue = itemDialogs({
             dialogState: {
                 open: false,
@@ -494,14 +501,14 @@ describe('itemDialogs', () => {
                 }
             }
         }, {
-            type: actionTypes.ADD_ITEM
+            type: actionTypes.FAIL_ADD_ITEM
         });
         expect(returnValue.itemInDialog.barcode.state).toBe("success");
         expect(returnValue.itemInDialog.name.state).toBe("error");
         expect(returnValue.itemInDialog.price.state).toBe("error");
         expect(returnValue.dialogState.error).toBe(true);
     });
-    it('should return the state of all fields that are success and dialogState of error when receiving SAVE_ITEM action with an empty firstName', () => {
+    it('should return the state of all fields that are success and dialogState of error when receiving FAIL_SAVE_ITEM action with an empty firstName', () => {
         const returnValue = itemDialogs({
             dialogState: {
                 open: false,
@@ -525,8 +532,9 @@ describe('itemDialogs', () => {
                 }
             }
         }, {
-            type: actionTypes.SAVE_ITEM
+            type: actionTypes.FAIL_SAVE_ITEM
         });
+        expect(returnValue.itemInDialog.barcode.value).toEqual("153156");
         expect(returnValue.itemInDialog.barcode.state).toBe("success");
         expect(returnValue.itemInDialog.name.state).toBe("error");
         expect(returnValue.itemInDialog.price.state).toBe("error");
@@ -559,7 +567,8 @@ describe('itemDialogs', () => {
             }
         };
         const action = {
-            type: actionTypes.SAVE_ITEM
+            type: actionTypes.SAVE_ITEM,
+            item: {}
         }
         assertInitialDialogState(state, action);
         assertInitialState(state, action);
@@ -591,7 +600,8 @@ describe('itemDialogs', () => {
             }
         };
         const action = {
-            type: actionTypes.ADD_ITEM
+            type: actionTypes.ADD_ITEM,
+            item: {}
         }
         assertInitialDialogState(state, action);
         assertInitialState(state, action);

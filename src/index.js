@@ -15,6 +15,9 @@ import WebFontLoader from 'webfontloader';
 import { loginHub } from './middlewares/loginHub';
 import { userHub } from './middlewares/userHub';
 import { customerHub } from './middlewares/customerHub';
+import { supplierHub } from './middlewares/supplierHub';
+import { brandHub } from './middlewares/brandHub';
+import { itemHub } from './middlewares/itemHub';
 
 WebFontLoader.load({
     google: {
@@ -25,7 +28,7 @@ WebFontLoader.load({
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 let store = createStore(salesInventoryApp, composeEnhancers(
-    applyMiddleware(loginHub, userHub, customerHub,
+    applyMiddleware(loginHub, userHub, customerHub, supplierHub, brandHub, itemHub,
         logger, crashReporter, 
         adminTimer)
 ));

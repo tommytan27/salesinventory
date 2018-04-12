@@ -287,17 +287,57 @@ describe ('SupplierRecords Actions', () => {
     });
 
     it('should create an action to add supplier', () => {
+        const expectedSupplier = {
+            id: 1,
+            name: "Supplier",
+            contact: "contact"
+        };
         const expectedAction = {
-            type: actionTypes.ADD_SUPPLIER
+            type: actionTypes.ADD_SUPPLIER,
+            supplier: expectedSupplier
         }
-        expect(actions.addSupplier()).toEqual(expectedAction);
+        expect(actions.addSupplier(expectedSupplier)).toEqual(expectedAction);
     });
 
     it('should create an action to save supplier', () => {
+        const expectedSupplier = {
+            id: 1,
+            name: "Supplier",
+            contact: "contact"
+        };
         const expectedAction = {
-            type: actionTypes.SAVE_SUPPLIER
+            type: actionTypes.SAVE_SUPPLIER,
+            supplier: expectedSupplier
         }
-        expect(actions.saveSupplier()).toEqual(expectedAction);
+        expect(actions.saveSupplier(expectedSupplier)).toEqual(expectedAction);
+    });
+
+    it('should create an action to add supplier via signalR', () => {
+        const expectedAction = {
+            type: actionTypes.SIGNAL_R_ADD_SUPPLIER
+        }
+        expect(actions.signalRAddSupplier()).toEqual(expectedAction);
+    });
+
+    it('should create an action to save supplier via signalR', () => {
+        const expectedAction = {
+            type: actionTypes.SIGNAL_R_SAVE_SUPPLIER
+        }
+        expect(actions.signalRSaveSupplier()).toEqual(expectedAction);
+    });
+    
+    it ('should create an action to notify user about failing adding supplier', () => {
+        const expectedAction = {
+            type: actionTypes.FAIL_ADD_SUPPLIER
+        }
+        expect(actions.failAddSupplier()).toEqual(expectedAction);
+    });
+    
+    it ('should create an action to notify user about failing saving supplier', () => {
+        const expectedAction = {
+            type: actionTypes.FAIL_SAVE_SUPPLIER
+        }
+        expect(actions.failSaveSupplier()).toEqual(expectedAction);
     });
 
     it('should create an action to change tab to supplier record', () => {
@@ -345,19 +385,57 @@ describe ('BrandRecords Actions', () => {
     });
 
     it('should create an action to add brand', () => {
+        const expectedBrand = {
+            id: 1,
+            name: "Brand"
+        };
         const expectedAction = {
-            type: actionTypes.ADD_BRAND
+            type: actionTypes.ADD_BRAND,
+            brand: expectedBrand
         }
-        expect(actions.addBrand()).toEqual(expectedAction);
+        expect(actions.addBrand(expectedBrand)).toEqual(expectedAction);
     });
 
     it('should create an action to save brand', () => {
+        const expectedBrand = {
+            id: 1,
+            name: "Brand"
+        };
         const expectedAction = {
-            type: actionTypes.SAVE_BRAND
+            type: actionTypes.SAVE_BRAND,
+            brand: expectedBrand
         }
-        expect(actions.saveBrand()).toEqual(expectedAction);
+        expect(actions.saveBrand(expectedBrand)).toEqual(expectedAction);
     });
 
+    it('should create an action to add brand via signalR', () => {
+        const expectedAction = {
+            type: actionTypes.SIGNAL_R_ADD_BRAND
+        }
+        expect(actions.signalRAddBrand()).toEqual(expectedAction);
+    });
+
+    it('should create an action to save brand via signalR', () => {
+        const expectedAction = {
+            type: actionTypes.SIGNAL_R_SAVE_BRAND
+        }
+        expect(actions.signalRSaveBrand()).toEqual(expectedAction);
+    });
+    
+    it ('should create an action to notify user about failing adding brand', () => {
+        const expectedAction = {
+            type: actionTypes.FAIL_ADD_BRAND
+        }
+        expect(actions.failAddBrand()).toEqual(expectedAction);
+    });
+    
+    it ('should create an action to notify user about failing saving brand', () => {
+        const expectedAction = {
+            type: actionTypes.FAIL_SAVE_BRAND
+        }
+        expect(actions.failSaveBrand()).toEqual(expectedAction);
+    });
+    
     it('should create an action to change tab to brand record', () => {
         const expectedAction = {
             type: actionTypes.CHANGE_TAB_BRAND_RECORD
@@ -484,17 +562,55 @@ describe ('ItemRecords Actions', () => {
     });
 
     it('should create an action to add item', () => {
+        const expectedItem = {
+            barcode: "12345678", name: "Item", supplierId: 1, 
+            brandId: 1, price: 9.00, costPrice: 8.50, vegan: true, qty: 2
+        };
         const expectedAction = {
-            type: actionTypes.ADD_ITEM
+            type: actionTypes.ADD_ITEM,
+            item: expectedItem
         }
-        expect(actions.addItem()).toEqual(expectedAction);
+        expect(actions.addItem(expectedItem)).toEqual(expectedAction);
     });
 
     it('should create an action to save item', () => {
+        const expectedItem = {
+            barcode: "12345678", name: "Item", supplierId: 1, 
+            brandId: 1, price: 9.00, costPrice: 8.50, vegan: true, qty: 2
+        };
         const expectedAction = {
-            type: actionTypes.SAVE_ITEM
+            type: actionTypes.SAVE_ITEM,
+            item: expectedItem
         }
-        expect(actions.saveItem()).toEqual(expectedAction);
+        expect(actions.saveItem(expectedItem)).toEqual(expectedAction);
+    });
+
+    it('should create an action to add item via signalR', () => {
+        const expectedAction = {
+            type: actionTypes.SIGNAL_R_ADD_ITEM
+        }
+        expect(actions.signalRAddItem()).toEqual(expectedAction);
+    });
+
+    it('should create an action to save item via signalR', () => {
+        const expectedAction = {
+            type: actionTypes.SIGNAL_R_SAVE_ITEM
+        }
+        expect(actions.signalRSaveItem()).toEqual(expectedAction);
+    });
+    
+    it ('should create an action to notify user about failing adding item', () => {
+        const expectedAction = {
+            type: actionTypes.FAIL_ADD_ITEM
+        }
+        expect(actions.failAddItem()).toEqual(expectedAction);
+    });
+    
+    it ('should create an action to notify user about failing saving item', () => {
+        const expectedAction = {
+            type: actionTypes.FAIL_SAVE_ITEM
+        }
+        expect(actions.failSaveItem()).toEqual(expectedAction);
     });
 
     it('should create an action to change tab to item record', () => {

@@ -1,20 +1,34 @@
-const testItems = [
-    {
-        barcode: "1153135151", name: "Salted Chicken", supplierId: 1, 
-        brandId: 1, price: 9.00, costPrice: 8.50, vegan: true, qty: 2
-    },
-    {
-        barcode: "1531831812", name: "Soy Nugget", supplierId: 2, 
-        brandId: 2, price: 8.50, costPrice: 7.50, vegan: true, qty: 5
-    },
-    {
-        barcode: "3531312151", name: "ItemX", supplierId: 3, 
-        brandId: 3, price: 13.00, costPrice: 11.50, vegan: false, qty: 8
-    }
-];
+import actionTypes from './../../constants/actionTypes';
 
 const items = (state = [], action) => {
-    return testItems;
+    let currentLength = state.length;
+    switch (action.type) {
+        case actionTypes.ADD_ITEM:
+            return [...state, {
+                barcode: action.item.barcode,
+                name: action.item.name,
+                supplierId: action.item.supplierId,
+                brandId: action.item.brandId,
+                price: action.item.price,
+                costPrice: 0.00,
+                vegan: action.item.vegan,
+                qty: action.item.qty
+            }];
+        case actionTypes.SAVE_ITEM:
+            return state.map((item) => (
+                item.barcode === action.item.barcode ? {
+                    ...item,
+                    name: action.item.name,
+                    supplierId: action.item.supplierId,
+                    brandId: action.item.brandId,
+                    price: action.item.price,
+                    vegan: action.item.vegan,
+                    qty: action.item.qty
+                } : item
+            ));
+        default:
+            return state;
+    }
 }
 
 export default items;
