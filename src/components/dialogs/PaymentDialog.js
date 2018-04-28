@@ -109,7 +109,10 @@ class PaymentDialog extends React.Component {
     handleChangeTaken = () => {
         this.setState({
             confirmationDialogOpen: true,
-            confirmationAction: this.props.onChangeTakenClick,
+            confirmationAction: () => {
+                this.props.onChangeTakenClick();
+                this.resetConfirmationDialog();
+            },
             confirmationText: "Are you sure you have taken your change?"
         });
     }
@@ -117,7 +120,10 @@ class PaymentDialog extends React.Component {
     handleSaveAsCredit = () => {
         this.setState({
             confirmationDialogOpen: true,
-            confirmationAction: this.props.onSaveAsCreditClick,
+            confirmationAction: () => {
+                this.props.onSaveAsCreditClick(this.props.paymentDialogs.change);
+                this.resetConfirmationDialog();
+            },
             confirmationText: "Are you sure to save the change as your credit?"
         });
     }
@@ -125,7 +131,10 @@ class PaymentDialog extends React.Component {
     handlePayLater = () => {
         this.setState({
             confirmationDialogOpen: true,
-            confirmationAction: this.props.onPayLaterButtonClick,
+            confirmationAction: () => {
+                this.props.onPayLaterButtonClick();
+                this.resetConfirmationDialog();
+            },
             confirmationText: "Are you sure you want to pay later?"
         });
     }
@@ -202,7 +211,10 @@ PaymentDialog.propTypes = {
     onDialogClose: PropTypes.func.isRequired,
     onPayNowButtonClick: PropTypes.func.isRequired,
     onCashFieldChange: PropTypes.func.isRequired,
-    onPayCashButtonClick: PropTypes.func.isRequired
+    onPayCashButtonClick: PropTypes.func.isRequired,
+    onChangeTakenClick: PropTypes.func.isRequired,
+    onPayLaterButtonClick: PropTypes.func.isRequired,
+    onSaveAsCreditClick: PropTypes.func.isRequired
 }
 
 export default PaymentDialog;

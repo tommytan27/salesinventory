@@ -53,6 +53,11 @@ const supplierDialogs = (state = initialState, action) => {
                 }
             };
         case actionTypes.CLOSE_SUPPLIER_DIALOG:
+        case actionTypes.ADD_SUPPLIER:
+        case actionTypes.SAVE_SUPPLIER:
+        case actionTypes.CHANGE_MODE_USER:
+        case actionTypes.CHANGE_MODE_USER_DUE_TIMEOUT:
+        case actionTypes.CHANGE_PAGE_ADMIN_MAIN_MENU:
             return initialState;
         case actionTypes.ENABLE_EDITABLE:
             return {...state, dialogState: {
@@ -83,8 +88,6 @@ const supplierDialogs = (state = initialState, action) => {
                         state: state.supplierInDialog.name.state !== "success" ? "error" : "success"}
                 }
             };
-        case actionTypes.ADD_SUPPLIER:
-            return initialState;
         case actionTypes.FAIL_SAVE_SUPPLIER:
             return {
                 dialogState: {
@@ -96,8 +99,6 @@ const supplierDialogs = (state = initialState, action) => {
                         state: state.supplierInDialog.name.state !== "success" ? "error" : "success"}
                 }
             };
-        case actionTypes.SAVE_SUPPLIER:
-            return initialState;
         default:
             return state;
     }

@@ -39,6 +39,27 @@ const items = (state = [], action) => {
                 ));
             });
             return state;
+        case actionTypes.ADD_SALES:
+            action.sales.details.forEach((detail) => {
+                state = state.map((item) => (
+                    item.barcode === detail.barcode ? {
+                        ...item,
+                        qty: item.qty - detail.qty
+                    }                    
+                    : item
+                ));
+            });
+            return state;
+        case actionTypes.ADD_CREDIT:
+            action.credit.details.forEach((detail) => {
+                state = state.map((item) => (
+                    item.barcode === detail.barcode ? {
+                        ...item,
+                        qty: item.qty - detail.qty
+                    }                    
+                    : item
+                ));
+            });
         default:
             return state;
     }

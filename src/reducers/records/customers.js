@@ -9,7 +9,7 @@ const customers = (state = testCustomers, action) => {
     switch (action.type) {
         case actionTypes.ADD_CUSTOMER:
             return [...state, {
-                id: currentLength + 1,
+                id: currentLength,
                 firstName: action.customer.firstName,
                 lastName: action.customer.lastName,
                 contact: action.customer.contact,
@@ -23,6 +23,14 @@ const customers = (state = testCustomers, action) => {
                     lastName: action.customer.lastName,
                     contact: action.customer.contact
                 } : customer
+            ));
+        case actionTypes.ADD_SALES:
+            return state.map((customer) => (
+                customer.id === action.sales.customerId ? {
+                    ...customer,
+                    credit: action.customerCredit
+                } :
+                customer
             ));
         default:
             return state;

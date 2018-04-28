@@ -642,9 +642,17 @@ describe ('SalesRecords Actions', () => {
         ]};
         const expectedAction = {
             type: actionTypes.ADD_SALES,
-            sales: expectedSales
+            sales: expectedSales,
+            customerCredit: 5.00
         };
-        expect(actions.addSales(expectedSales)).toEqual(expectedAction);
+        expect(actions.addSales(expectedSales, 5.00)).toEqual(expectedAction);
+    });
+    it('should create an action to save change as customer credit via signal R', () => {
+        const expectedAction = {
+            type: actionTypes.SIGNAL_R_SAVE_CHANGE_AS_CUSTOMER_CREDIT,
+            customerCredit: 5.00
+        };
+        expect(actions.signalRSaveChangeAsCustomerCredit(5)).toEqual(expectedAction);
     });
 });
 

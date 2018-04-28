@@ -63,6 +63,11 @@ const customerDialogs = (state = initialState, action) => {
                 }
             };
         case actionTypes.CLOSE_CUSTOMER_DIALOG:
+        case actionTypes.ADD_CUSTOMER:
+        case actionTypes.SAVE_CUSTOMER:
+        case actionTypes.CHANGE_MODE_USER:
+        case actionTypes.CHANGE_MODE_USER_DUE_TIMEOUT:
+        case actionTypes.CHANGE_PAGE_ADMIN_MAIN_MENU:
             return initialState;
         case actionTypes.ENABLE_EDITABLE:
             return {...state, dialogState: {
@@ -104,8 +109,6 @@ const customerDialogs = (state = initialState, action) => {
                             state.customerInDialog.lastName.state}
                 }
             };
-        case actionTypes.ADD_CUSTOMER:
-            return initialState;
         case actionTypes.FAIL_SAVE_CUSTOMER:
             return {
                 dialogState: {
@@ -119,8 +122,6 @@ const customerDialogs = (state = initialState, action) => {
                         state: state.customerInDialog.lastName.state !== "success" ? "error" : "success"}
                 }
             };
-        case actionTypes.SAVE_CUSTOMER:
-            return initialState;
         default:
             return state;
     }

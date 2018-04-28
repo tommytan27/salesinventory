@@ -422,4 +422,88 @@ describe('supplierDialogs', () => {
         assertInitialDialogState(state, action);
         assertInitialState(state, action);
     });
+    it('should return the initial state when receiving CHANGE_PAGE_ADMIN_MAIN_MENU', () => {
+        const state = {
+            dialogState: {
+                open: false,
+                title: dialogTitles.ADD_SUPPLIER,
+                mode: dialogModes.ADD_MODE,
+                error: false,
+                editable: false
+            },
+            supplierInDialog: {
+                id: null,
+                name: {
+                    value: "First",
+                    state: "success"
+                },
+                contact: {
+                    value: null,
+                    state: null
+                }
+            }
+        };
+        const action = {
+            type: actionTypes.CHANGE_PAGE_ADMIN_MAIN_MENU,
+            supplier: {}
+        }
+        assertInitialDialogState(state, action);
+        assertInitialState(state, action);
+    });
+    it('should return the initial state when receiving CHANGE_MODE_USER_DUE_TIMEOUT', () => {
+        const state = {
+            dialogState: {
+                open: false,
+                title: dialogTitles.ADD_SUPPLIER,
+                mode: dialogModes.ADD_MODE,
+                error: false,
+                editable: false
+            },
+            supplierInDialog: {
+                id: null,
+                name: {
+                    value: "First",
+                    state: "success"
+                },
+                contact: {
+                    value: null,
+                    state: null
+                }
+            }
+        };
+        const action = {
+            type: actionTypes.CHANGE_MODE_USER_DUE_TIMEOUT,
+            supplier: {}
+        }
+        assertInitialDialogState(state, action);
+        assertInitialState(state, action);
+    });
+    it('should return the initial state when receiving CHANGE_MODE_USER', () => {
+        const state = {
+            dialogState: {
+                open: false,
+                title: dialogTitles.ADD_SUPPLIER,
+                mode: dialogModes.ADD_MODE,
+                error: false,
+                editable: false
+            },
+            supplierInDialog: {
+                id: null,
+                name: {
+                    value: "First",
+                    state: "success"
+                },
+                contact: {
+                    value: null,
+                    state: null
+                }
+            }
+        };
+        const action = {
+            type: actionTypes.CHANGE_MODE_USER,
+            supplier: {}
+        }
+        assertInitialDialogState(state, action);
+        assertInitialState(state, action);
+    });
 });

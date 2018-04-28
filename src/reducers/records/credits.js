@@ -1,5 +1,12 @@
+import actionTypes from './../../constants/actionTypes';
+
 const credits = (state = [], action) => {
-    return state;
+    switch (action.type) {
+        case actionTypes.ADD_CREDIT:
+            return [...state, action.credit];
+        default:
+            return state;
+    }
 }
 
 export default credits;

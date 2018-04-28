@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import PaymentDialog from "../../components/dialogs/PaymentDialog";
-import { closePaymentDialog, payNow, updateCashField, payCash } from './../../actions';
+import { closePaymentDialog, payNow, updateCashField, payCash, signalRAddSales, signalRAddCredit, signalRSaveChangeAsCustomerCredit } from './../../actions';
 
 const mapStateToProps = (state) => {
     return {
@@ -14,7 +14,10 @@ const mapDispatchToProps = (dispatch) => {
         onDialogClose: () => { dispatch(closePaymentDialog()); },
         onPayNowButtonClick: () => { dispatch(payNow()); },
         onCashFieldChange: (cash) => { dispatch(updateCashField(cash)); },
-        onPayCashButtonClick: () => { dispatch(payCash()); }
+        onPayCashButtonClick: () => { dispatch(payCash()); },
+        onChangeTakenClick: () => { dispatch(signalRAddSales()); },
+        onPayLaterButtonClick: () => { dispatch(signalRAddCredit()); },
+        onSaveAsCreditClick: (customerCredit) => { dispatch(signalRSaveChangeAsCustomerCredit(customerCredit)); }
     };
 }
 

@@ -502,4 +502,100 @@ describe('CustomerDialogs', () => {
         assertInitialDialogState(state, action);
         assertInitialState(state, action);
     });
+    it('should return the initial state when receiving CHANGE_PAGE_ADMIN_MAIN_MENU', () => {
+        const state = {
+            dialogState: {
+                open: false,
+                title: dialogTitles.ADD_CUSTOMER,
+                mode: dialogModes.ADD_MODE,
+                error: false,
+                editable: false
+            },
+            customerInDialog: {
+                id: null,
+                firstName: {
+                    value: "First",
+                    state: "success"
+                },
+                lastName: {
+                    value: "Last",
+                    state: "success"
+                },
+                contact: {
+                    value: null,
+                    state: null
+                },
+                credit: null
+            }
+        };
+        const action = {
+            type: actionTypes.CHANGE_PAGE_ADMIN_MAIN_MENU
+        }
+        assertInitialDialogState(state, action);
+        assertInitialState(state, action);
+    });
+    it('should return the initial state when receiving CHANGE_MODE_USER', () => {
+        const state = {
+            dialogState: {
+                open: false,
+                title: dialogTitles.ADD_CUSTOMER,
+                mode: dialogModes.ADD_MODE,
+                error: false,
+                editable: false
+            },
+            customerInDialog: {
+                id: null,
+                firstName: {
+                    value: "First",
+                    state: "success"
+                },
+                lastName: {
+                    value: "Last",
+                    state: "success"
+                },
+                contact: {
+                    value: null,
+                    state: null
+                },
+                credit: null
+            }
+        };
+        const action = {
+            type: actionTypes.CHANGE_MODE_USER
+        }
+        assertInitialDialogState(state, action);
+        assertInitialState(state, action);
+    });
+    it('should return the initial state when receiving CHANGE_MODE_USER_DUE_TIMEOUT', () => {
+        const state = {
+            dialogState: {
+                open: false,
+                title: dialogTitles.ADD_CUSTOMER,
+                mode: dialogModes.ADD_MODE,
+                error: false,
+                editable: false
+            },
+            customerInDialog: {
+                id: null,
+                firstName: {
+                    value: "First",
+                    state: "success"
+                },
+                lastName: {
+                    value: "Last",
+                    state: "success"
+                },
+                contact: {
+                    value: null,
+                    state: null
+                },
+                credit: null
+            }
+        };
+        const action = {
+            type: actionTypes.CHANGE_MODE_USER_DUE_TIMEOUT
+        }
+        assertInitialDialogState(state, action);
+        assertInitialState(state, action);
+    });
 });

@@ -79,6 +79,8 @@ const itemDialogs = (state = initialState, action) => {
                 }
             };
         case actionTypes.CLOSE_ITEM_DIALOG:
+        case actionTypes.ADD_ITEM:
+        case actionTypes.SAVE_ITEM:
             return initialState;
         case actionTypes.ENABLE_EDITABLE:
             return {...state, dialogState: {
@@ -140,8 +142,6 @@ const itemDialogs = (state = initialState, action) => {
                         state: state.itemInDialog.price.state !== "success" ? "error" : "success"}
                 }
             };
-        case actionTypes.ADD_ITEM:
-            return initialState;
         case actionTypes.FAIL_SAVE_ITEM:
             return {
                 dialogState: {
@@ -157,8 +157,6 @@ const itemDialogs = (state = initialState, action) => {
                         state: state.itemInDialog.price.state !== "success" ? "error" : "success"}
                 }
             };
-        case actionTypes.SAVE_ITEM:
-            return initialState;
         default:
             return state;
     }

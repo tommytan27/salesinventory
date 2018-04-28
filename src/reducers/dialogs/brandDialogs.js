@@ -45,6 +45,8 @@ const brandDialogs = (state = initialState, action) => {
                 }
             };
         case actionTypes.CLOSE_BRAND_DIALOG:
+        case actionTypes.ADD_BRAND:
+        case actionTypes.SAVE_BRAND:
             return initialState;
         case actionTypes.ENABLE_EDITABLE:
             return {...state, dialogState: {
@@ -68,8 +70,6 @@ const brandDialogs = (state = initialState, action) => {
                         state: state.brandInDialog.name.state !== "success" ? "error" : "success"}
                 }
             };
-        case actionTypes.ADD_BRAND:
-            return initialState;
         case actionTypes.FAIL_SAVE_BRAND:
             return {
                 dialogState: {
@@ -81,8 +81,6 @@ const brandDialogs = (state = initialState, action) => {
                         state: state.brandInDialog.name.state !== "success" ? "error" : "success"}
                 }
             };
-        case actionTypes.SAVE_BRAND:
-            return initialState;
         default:
             return state;
     }

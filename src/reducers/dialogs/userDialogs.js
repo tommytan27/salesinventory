@@ -63,6 +63,8 @@ const userDialogs = (state = initialState, action) => {
             };
         case actionTypes.CHANGE_MODE_ADMIN:
         case actionTypes.CLOSE_USER_DIALOG:
+        case actionTypes.ADD_USER:
+        case actionTypes.SAVE_USER:
             return initialState;
         case actionTypes.ENABLE_EDITABLE:
             return {...state, dialogState: {
@@ -126,8 +128,6 @@ const userDialogs = (state = initialState, action) => {
                         state: state.userInDialog.timeout.state !== "success" ? "error" : "success"},
                 }
             };
-        case actionTypes.ADD_USER:
-            return initialState;
         case actionTypes.FAIL_SAVE_USER:
             return {
                 dialogState: {
@@ -147,8 +147,6 @@ const userDialogs = (state = initialState, action) => {
                         state: state.userInDialog.timeout.state !== "success" ? "error" : "success"},
                 }
             }
-        case actionTypes.SAVE_USER:
-            return initialState;
         default:
             return state;
     }

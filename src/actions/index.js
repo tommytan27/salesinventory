@@ -576,10 +576,11 @@ export const addStock = (stock) => {
     };
 }
 
-export const addSales = (sales) => {
+export const addSales = (sales, customerCredit) => {
     return {
         type: actionTypes.ADD_SALES,
-        sales: sales
+        sales: sales,
+        customerCredit: customerCredit
     };
 }
 
@@ -739,5 +740,12 @@ export const signalRAddSales = () => {
 export const signalRAddCredit = () => {
     return {
         type: actionTypes.SIGNAL_R_ADD_CREDIT
+    };
+}
+
+export const signalRSaveChangeAsCustomerCredit = (customerCredit) => {
+    return {
+        type: actionTypes.SIGNAL_R_SAVE_CHANGE_AS_CUSTOMER_CREDIT,
+        customerCredit: customerCredit
     };
 }

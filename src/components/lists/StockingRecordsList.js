@@ -124,7 +124,8 @@ ShoppingRecordsList.propTypes = {
             qty: PropTypes.number.isRequired
         }).isRequired
     ).isRequired,
-    onRemoveClick: PropTypes.func.isRequired
+    onRemoveClick: PropTypes.func.isRequired,
+    onDoneButtonClick: PropTypes.func.isRequired
 };
 
 export default ShoppingRecordsList;
