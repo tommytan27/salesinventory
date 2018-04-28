@@ -569,6 +569,27 @@ export const closePriceCheckDialog = () => {
     };
 }
 
+export const addStock = (stock) => {
+    return {
+        type: actionTypes.ADD_STOCK,
+        stock: stock
+    };
+}
+
+export const addSales = (sales) => {
+    return {
+        type: actionTypes.ADD_SALES,
+        sales: sales
+    };
+}
+
+export const addCredit = (credit) => {
+    return {
+        type: actionTypes.ADD_CREDIT,
+        credit: credit
+    };
+}
+
 export const failLoginUser = () => {
     return {
         type: actionTypes.FAIL_LOGIN_USER
@@ -700,5 +721,23 @@ export const signalRAddItem = () => {
 export const signalRSaveItem = () => {
     return {
         type: actionTypes.SIGNAL_R_SAVE_ITEM
+    };
+}
+
+export const signalRAddStock = () => {
+    return {
+        type: actionTypes.SIGNAL_R_ADD_STOCK
+    };
+}
+
+export const signalRAddSales = () => {
+    return {
+        type: actionTypes.SIGNAL_R_ADD_SALES
+    };
+}
+
+export const signalRAddCredit = () => {
+    return {
+        type: actionTypes.SIGNAL_R_ADD_CREDIT
     };
 }

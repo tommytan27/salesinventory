@@ -55,7 +55,7 @@ const getAutoAdd = (barcode, actionType) => {
     return (barcode && actionType === actionTypes.SELECT_ITEM_AND_ADD);
 }
 
-const itemSelectionFor = (state = initialState, action) => {
+const itemSelectionForm = (state = initialState, action) => {
     var temp;
     switch(action.type) {
         case actionTypes.SELECT_SUPPLIER:
@@ -118,18 +118,20 @@ const itemSelectionFor = (state = initialState, action) => {
                     state: action.price ? (validateDecimal(action.price) ? "success" : state.selectedItem.costPrice.state) : null
                 }
             }};
-            return {...temp, addableItem: getAddableItem(temp)};
+            return {...temp, autoAdd: false, addableItem: getAddableItem(temp)};
         case actionTypes.ADD_STOCKING_RECORD_TO_LIST:
             return initialState;
         case actionTypes.INITIATE_BARCODE_SCANNING:
             return {...state, barcodeField: null};
         case actionTypes.SHOW_SHOPPING_FORM:
             return {...state, shoppingFormVisible: true};
-        case actionTypes.CHANGE_PAGE_USER_MAIN_MENU:
+        case actionTypes.CHANGE_MODE_USER_DUE_TIMEOUT:
+        case actionTypes.CHANGE_MODE_USER:
+        case actionTypes.CHANGE_PAGE_ADMIN_MAIN_MENU:
             return initialState;
         default:
             return state;
     }
 }
 
-export default itemSelectionFor;
+export default itemSelectionForm;

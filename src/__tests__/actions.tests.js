@@ -628,23 +628,77 @@ describe ('SalesRecords Actions', () => {
         }
         expect(actions.changeTabSalesRecord()).toEqual(expectedAction);
     });
+    it('should create an action to add sales via signal R', () => {
+        const expectedAction = {
+            type: actionTypes.SIGNAL_R_ADD_SALES
+        };
+        expect(actions.signalRAddSales()).toEqual(expectedAction);
+    });
+    it('should create an action to add sales', () => {
+        const expectedSales = {
+            id: "20180114102520", date: "2018/01/14", customerId: 0, details: [
+                {barcode: "3531312151", qty: 4},
+                {barcode: "1153135151", qty: 5}
+        ]};
+        const expectedAction = {
+            type: actionTypes.ADD_SALES,
+            sales: expectedSales
+        };
+        expect(actions.addSales(expectedSales)).toEqual(expectedAction);
+    });
 });
 
 describe ('CreditRecords Actions', () => {
-    it('should create an action to change tab to sales record', () => {
+    it('should create an action to change tab to credit record', () => {
         const expectedAction = {
             type: actionTypes.CHANGE_TAB_CREDIT_RECORD
         }
         expect(actions.changeTabCreditRecord()).toEqual(expectedAction);
     });
+    it('should create an action to add credit via signal R', () => {
+        const expectedAction = {
+            type: actionTypes.SIGNAL_R_ADD_CREDIT
+        };
+        expect(actions.signalRAddCredit()).toEqual(expectedAction);
+    });
+    it('should create an action to add credit', () => {
+        const expectedCredit = {
+            id: "20180224144820", date: "2018/02/24", customerId: 0, details: [
+                {barcode: "1153135151", qty: 3},
+                {barcode: "1531831812", qty: 5}
+        ]};
+        const expectedAction = {
+            type: actionTypes.ADD_CREDIT,
+            credit: expectedCredit
+        };
+        expect(actions.addCredit(expectedCredit)).toEqual(expectedAction);
+    });
 });
 
 describe ('StockRecords Actions', () => {
-    it('should create an action to change tab to sales record', () => {
+    it('should create an action to change tab to stock record', () => {
         const expectedAction = {
             type: actionTypes.CHANGE_TAB_STOCK_RECORD
         }
         expect(actions.changeTabStockRecord()).toEqual(expectedAction);
+    });
+    it('should create an action to add stock via signal R', () => {
+        const expectedAction = {
+            type: actionTypes.SIGNAL_R_ADD_STOCK
+        };
+        expect(actions.signalRAddStock()).toEqual(expectedAction);
+    });
+    it('should create an action to add stock', () => {
+        const expectedStock = {
+            id: "20180224144820", date: "2018/02/24", details: [
+                {barcode: "1153135151", qty: 1, sellPrice: 9.50, costPrice: 8.75},
+                {barcode: "1531831812", qty: 1, sellPrice: 8.50, costPrice: 7.50}
+        ]};
+        const expectedAction = {
+            type: actionTypes.ADD_STOCK,
+            stock: expectedStock
+        };
+        expect(actions.addStock(expectedStock)).toEqual(expectedAction);
     });
 });
 

@@ -26,6 +26,19 @@ const items = (state = [], action) => {
                     qty: action.item.qty
                 } : item
             ));
+        case actionTypes.ADD_STOCK:
+            action.stock.details.forEach((detail) => {
+                state = state.map((item) => (
+                    item.barcode === detail.barcode ? {
+                        ...item,
+                        price: detail.sellPrice,
+                        costPrice: detail.costPrice,
+                        qty: item.qty + detail.qty
+                    }                    
+                    : item
+                ));
+            });
+            return state;
         default:
             return state;
     }

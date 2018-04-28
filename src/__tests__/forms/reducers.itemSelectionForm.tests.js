@@ -49,10 +49,22 @@ describe('ItemSelectionForm Store', () => {
         const returnValue = itemSelectionForm(undefined, {});
         assertInitialState(returnValue);
     });
-    it('should return initial state when receiving CHANGE_PAGE_USER_MAIN_MENU', () => {
+    it('should return initial state when receiving CHANGE_MODE_USER', () => {
         const returnValue = itemSelectionForm({
             showShoppingForm: true
-        }, {type: actionTypes.CHANGE_PAGE_USER_MAIN_MENU});
+        }, {type: actionTypes.CHANGE_MODE_USER});
+        assertInitialState(returnValue);
+    });
+    it('should return initial state when receiving CHANGE_MODE_USER_DUE_TIMEOUT', () => {
+        const returnValue = itemSelectionForm({
+            showShoppingForm: true
+        }, {type: actionTypes.CHANGE_MODE_USER_DUE_TIMEOUT});
+        assertInitialState(returnValue);
+    });
+    it('should return initial state when receiving CHANGE_PAGE_ADMIN_MAIN_MENU', () => {
+        const returnValue = itemSelectionForm({
+            showShoppingForm: true
+        }, {type: actionTypes.CHANGE_PAGE_ADMIN_MAIN_MENU});
         assertInitialState(returnValue);
     });
     it('should return the modified supplier field when receiving SELECT_SUPPLIER action', () => {
@@ -129,6 +141,13 @@ describe('ItemSelectionForm Store', () => {
             items: dummyItems
         });
         expect(returnValue.autoAdd).toBeTruthy();
+    });
+    it('should return the autoAdd false when receiving UPDATE_COST_PRICE_FIELD action', () => {
+        const returnValue = itemSelectionForm({autoAdd: true}, {
+            type: actionTypes.UPDATE_COST_PRICE_FIELD,
+            price: "20."
+        });
+        expect(returnValue.autoAdd).toBeFalsy();
     });
     it('should return the modified price field with success state when receiving UPDATE_SELL_PRICE_FIELD action', () => {
         const returnValue = itemSelectionForm(undefined, {
@@ -295,7 +314,7 @@ describe('ItemSelectionForm Store', () => {
         });
         expect(returnValue.barcodeField).toEqual("");
     });
-    it('should reset to initial state when receiving ', () => {
+    it('should reset to initial state when receiving ADD_STOCKING_RECORD_TO_LIST action', () => {
         const returnValue = itemSelectionForm({
             selectedItem: {
                 costPrice: {

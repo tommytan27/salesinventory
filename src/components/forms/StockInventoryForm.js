@@ -14,7 +14,7 @@ class StockInventoryForm extends React.Component {
     }
 
     componentDidUpdate(){
-        if (this.props.itemSelectionForm.autoAdd) {
+        if (this.props.itemSelectionForm.autoAdd && this.props.itemSelectionForm.selectedItem.costPrice.state === "success") {
             this.props.onAddToListClick(this.props.itemSelectionForm.selectedItem);
         }
     }

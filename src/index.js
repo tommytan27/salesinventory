@@ -18,6 +18,7 @@ import { customerHub } from './middlewares/customerHub';
 import { supplierHub } from './middlewares/supplierHub';
 import { brandHub } from './middlewares/brandHub';
 import { itemHub } from './middlewares/itemHub';
+import { stockHub } from './middlewares/stockHub';
 
 WebFontLoader.load({
     google: {
@@ -29,6 +30,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 let store = createStore(salesInventoryApp, composeEnhancers(
     applyMiddleware(loginHub, userHub, customerHub, supplierHub, brandHub, itemHub,
+        stockHub,
         logger, crashReporter, 
         adminTimer)
 ));

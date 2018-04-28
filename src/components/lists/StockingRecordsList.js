@@ -68,7 +68,10 @@ class ShoppingRecordsList extends React.Component {
     handleDone = () => {
         this.setState({
             confirmationDialogOpen: true,
-            confirmationAction: this.props.onDoneButtonClick,
+            confirmationAction: () => {
+                this.props.onDoneButtonClick();
+                this.resetConfirmationDialog();
+            },
             confirmationText: "Are you sure you want to finalize this stocking records?"
         });
     }
