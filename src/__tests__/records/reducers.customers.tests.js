@@ -40,6 +40,16 @@ describe('Customers Store', () => {
         expect(returnValues[0].contact).toEqual(expectedCustomer.contact);
         expect(returnValues[0].credit).toEqual(0);
     });
+    it('should return the list of customers without the deleted customer when receiving DELETE_CUSTOMER action', () => {
+        var returnValues = customers([
+            {id: 0, firstName: "Anonymous", lastName: "Anonymous", contact: "", credit: 0.00},
+            {id: 1, firstName: "Tommy", lastName: "Tanzil", contact: "0425927766", credit: 2.0}
+        ], {
+            type: actionTypes.DELETE_CUSTOMER,
+            customerId: 1
+        });
+        expect(returnValues).toHaveLength(initialLength);
+    });
     it('should return the updated credit of customer when receiving ADD_SALES action', () => {
         var returnValues = customers([
             {id: 0, firstName: "Anonymous", lastName: "Anonymous", contact: "", credit: 0.00},

@@ -20,6 +20,10 @@ const users = (state = testUsers, action) => {
                     timeout: action.user.timeout
                 } : user
             ));
+        case actionTypes.DELETE_USER:
+            return state.filter((user) => {
+                return user.id !== action.userId;
+            });
         default:
             return state;
     }

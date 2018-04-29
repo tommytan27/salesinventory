@@ -7,6 +7,14 @@ import { PropTypes } from 'prop-types';
 
 class Dialog extends React.Component {    
     getDialogActions = () => {
+        let deleteButtonDisabled = this.props.users && this.props.userInDialog && this.props.activeAdmin ?
+            this.props.users.length <= 1 || this.props.userInDialog.id === this.props.activeAdmin.username :
+            this.props.items && this.props.supplierInDialog ?
+                this.props.items.filter((item) => { return item.supplierId === this.props.supplierInDialog.id; }).length > 0 :
+                this.props.items && this.props.brandInDialog ?
+                    this.props.items.filter((item) => { return item.brandId === this.props.brandInDialog.id; }).length > 0 :
+                    false;
+
         let actions = [
             <Button flat iconChildren="clear" onClick={this.props.onDialogClose} id="cancelButton">CANCEL</Button>,
         ];
@@ -27,7 +35,8 @@ class Dialog extends React.Component {
                 );
             }
             actions.push(
-                <Button flat iconChildren="delete" style={styles.flatButton.delete}>DELETE</Button>
+                <Button flat iconChildren="delete" style={deleteButtonDisabled ? styles.flatButton.deleteDisabled : styles.flatButton.delete}
+                    disabled={deleteButtonDisabled} onClick={this.props.onDeleteButtonClick}>DELETE</Button>
             );  
         }
         return actions;

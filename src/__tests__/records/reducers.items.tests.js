@@ -57,6 +57,16 @@ describe('Items Store', () => {
         expect(returnValues[0].vegan).toEqual(expectedItem.vegan);
         expect(returnValues[0].qty).toEqual(expectedItem.qty);
     });
+    it('should return the list of items with the modified item when receiving DELETE_ITEM action', () => {
+        var returnValues = items([{
+            barcode: "12345678", name: "Dummy", supplierId: 3, 
+            brandId: 3, price: 10.00, costPrice: 9.50, vegan: true, qty: 0
+        }], {
+            type: actionTypes.DELETE_ITEM,
+            barcode: "12345678"
+        });
+        expect(returnValues).toHaveLength(0);
+    });
     it('should update all the cost price and qty of the items when receiving ADD_STOCK action', () => {
         var returnValues = items([{
             barcode: "1153135151",

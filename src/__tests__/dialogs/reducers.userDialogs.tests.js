@@ -633,6 +633,42 @@ describe('UserDialogs', () => {
         assertInitialDialogState(state, action);
         assertInitialState(state, action);
     });
+    it('should return the initial state when receiving SAVE_USER action with valid inputs', () => {
+        const state = {
+            dialogState: {
+                open: false,
+                title: dialogTitles.EDIT_USER,
+                mode: dialogModes.EDIT_MODE,
+                error: false,
+                editable: false
+            },
+            userInDialog: {
+                id: 2,
+                username: {
+                    value: "admin2",
+                    state: "success"
+                },
+                timeout: {
+                    value: "10",
+                    state: "success"
+                },
+                password: {
+                    value: null,
+                    state: null
+                },
+                confirmPassword: {
+                    value: null,
+                    state: null
+                }
+            }
+        };
+        const action = {
+            type: actionTypes.DELETE_USER,
+            userId: 2
+        };
+        assertInitialDialogState(state, action);
+        assertInitialState(state, action);
+    });
     it('should return the initial state when receiving CHANGE_MODE_ADMIN action', () => {
         const state = {
             dialogState: {

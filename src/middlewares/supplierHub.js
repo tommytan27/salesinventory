@@ -1,5 +1,5 @@
 import actionTypes from '../constants/actionTypes';
-import { addSupplier, failAddSupplier, saveSupplier, failSaveSupplier } from '../actions';
+import { addSupplier, failAddSupplier, saveSupplier, failSaveSupplier, deleteSupplier } from '../actions';
 
 const isSupplierValid = (supplier) => {
     return (supplier.name.state === "success") ? true : false;
@@ -30,6 +30,9 @@ export const supplierHub = store => next => action => {
                 return next(saveSupplier(supplierToBeSaved));
             }
             return next(failSaveSupplier());
+        case actionTypes.SIGNAL_R_DELETE_SUPPLIER:
+            //TODO: hub call to delete supplier
+            return next(deleteSupplier(currentSupplier.id));
     }
 
     return next(action);

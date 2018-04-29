@@ -2,10 +2,11 @@ import { connect } from "react-redux";
 import UserDialog from "../../components/dialogs/UserDialog";
 import { closeUserDialog, enableEditable, updateUsernameField, 
     signalRAddUser, signalRSaveUser,
-    updateTimeoutField, updatePasswordField, updateConfirmPasswordField } from "../../actions/index";
+    updateTimeoutField, updatePasswordField, updateConfirmPasswordField, signalRDeleteUser } from "../../actions/index";
 
 const mapStateToProps = (state) => {
     return {
+        activeAdmin: state.activeAdmin,
         users: state.users,
         dialogState: state.userDialogs.dialogState,
         userInDialog: state.userDialogs.userInDialog
@@ -21,7 +22,8 @@ const mapDispatchToProps = (dispatch) => {
         onPasswordFieldChange: (password) => { dispatch(updatePasswordField(password)) },
         onConfirmPasswordFieldChange: (confirmPassword) => { dispatch(updateConfirmPasswordField(confirmPassword)) },
         onAddButtonClick: () => { dispatch(signalRAddUser()) },
-        onSaveButtonClick: () => { dispatch(signalRSaveUser()) }
+        onSaveButtonClick: () => { dispatch(signalRSaveUser()) },
+        onDeleteButtonClick: () => { dispatch(signalRDeleteUser()); }
     };
 }
 

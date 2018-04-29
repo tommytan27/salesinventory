@@ -316,6 +316,30 @@ describe('brandDialogs', () => {
         assertInitialDialogState(state, action);
         assertInitialState(state, action);
     });
+    it('should return the initial state when receiving DELETE_BRAND action with an valid input', () => {
+        const state = {
+            dialogState: {
+                open: false,
+                title: dialogTitles.EDIT_BRAND,
+                mode: dialogModes.EDIT_MODE,
+                error: false,
+                editable: false
+            },
+            brandInDialog: {
+                id: 1,
+                name: {
+                    value: "First",
+                    state: "success"
+                }
+            }
+        };
+        const action = {
+            type: actionTypes.DELETE_BRAND,
+            brandId: 1
+        }
+        assertInitialDialogState(state, action);
+        assertInitialState(state, action);
+    });
     it('should return the initial state when receiving ADD_BRAND action with an valid input', () => {
         const state = {
             dialogState: {

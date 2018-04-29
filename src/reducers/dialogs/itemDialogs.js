@@ -81,6 +81,11 @@ const itemDialogs = (state = initialState, action) => {
         case actionTypes.CLOSE_ITEM_DIALOG:
         case actionTypes.ADD_ITEM:
         case actionTypes.SAVE_ITEM:
+        case actionTypes.DELETE_ITEM:
+        case actionTypes.CHANGE_MODE_USER:
+        case actionTypes.CHANGE_MODE_USER_DUE_TIMEOUT:
+        case actionTypes.CHANGE_PAGE_ADMIN_MAIN_MENU:
+        case actionTypes.CHANGE_PAGE_USER_MAIN_MENU:
             return initialState;
         case actionTypes.ENABLE_EDITABLE:
             return {...state, dialogState: {

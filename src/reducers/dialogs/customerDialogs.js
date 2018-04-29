@@ -65,6 +65,7 @@ const customerDialogs = (state = initialState, action) => {
         case actionTypes.CLOSE_CUSTOMER_DIALOG:
         case actionTypes.ADD_CUSTOMER:
         case actionTypes.SAVE_CUSTOMER:
+        case actionTypes.DELETE_CUSTOMER:
         case actionTypes.CHANGE_MODE_USER:
         case actionTypes.CHANGE_MODE_USER_DUE_TIMEOUT:
         case actionTypes.CHANGE_PAGE_ADMIN_MAIN_MENU:

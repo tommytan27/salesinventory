@@ -1,5 +1,5 @@
 import actionTypes from '../constants/actionTypes';
-import { addBrand, saveBrand, failAddBrand, failSaveBrand } from '../actions';
+import { addBrand, saveBrand, failAddBrand, failSaveBrand, deleteBrand } from '../actions';
 
 
 const isBrandValid = (brand) => {
@@ -30,6 +30,9 @@ export const brandHub = store => next => action => {
                 return next(saveBrand(brandToBeSaved));
             }
             return next(failSaveBrand());
+        case actionTypes.SIGNAL_R_DELETE_BRAND:
+            //TODO: hub call to delete brand
+            return next(deleteBrand(currentBrand.id));
     }
 
     return next(action);

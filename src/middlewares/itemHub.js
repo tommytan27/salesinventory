@@ -1,5 +1,5 @@
 import actionTypes from '../constants/actionTypes';
-import { failSaveItem, failAddItem, addItem, saveItem } from '../actions';
+import { failSaveItem, failAddItem, addItem, saveItem, deleteItem } from '../actions';
 
 const getDialogErrorState = (currentState) => {
 }
@@ -39,6 +39,9 @@ export const itemHub = store => next => action => {
                 return next(saveItem(itemToBeSaved));
             }
             return next(failSaveItem());
+        case actionTypes.SIGNAL_R_DELETE_ITEM:
+            //TODO: hub call to delete item
+            return next(deleteItem(currentItem.barcode.value));
     }
 
     return next(action);

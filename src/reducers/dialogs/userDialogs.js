@@ -65,6 +65,7 @@ const userDialogs = (state = initialState, action) => {
         case actionTypes.CLOSE_USER_DIALOG:
         case actionTypes.ADD_USER:
         case actionTypes.SAVE_USER:
+        case actionTypes.DELETE_USER:
             return initialState;
         case actionTypes.ENABLE_EDITABLE:
             return {...state, dialogState: {

@@ -55,6 +55,7 @@ const supplierDialogs = (state = initialState, action) => {
         case actionTypes.CLOSE_SUPPLIER_DIALOG:
         case actionTypes.ADD_SUPPLIER:
         case actionTypes.SAVE_SUPPLIER:
+        case actionTypes.DELETE_SUPPLIER:
         case actionTypes.CHANGE_MODE_USER:
         case actionTypes.CHANGE_MODE_USER_DUE_TIMEOUT:
         case actionTypes.CHANGE_PAGE_ADMIN_MAIN_MENU:

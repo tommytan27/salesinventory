@@ -59,7 +59,7 @@ class UserDialog extends Dialog {
         return;
     }
 
-    render() { 
+    render() {
         const user = this.props.userInDialog;
         const usernameFieldDisabled = this.props.dialogState.mode === dialogModes.ADD_MODE ? false : true;
         return (
@@ -92,6 +92,10 @@ class UserDialog extends Dialog {
 }
 
 UserDialog.propTypes = {
+    activeAdmin: PropTypes.shape({
+        username: PropTypes.string.isRequired,
+        timeout: PropTypes.number.isRequired
+    }).isRequired,
     users: PropTypes.arrayOf(
         PropTypes.shape({
             id: PropTypes.number.isRequired,
@@ -132,7 +136,8 @@ UserDialog.propTypes = {
     onPasswordFieldChange: PropTypes.func.isRequired,
     onConfirmPasswordFieldChange: PropTypes.func.isRequired,
     onAddButtonClick: PropTypes.func.isRequired,
-    onSaveButtonClick: PropTypes.func.isRequired
+    onSaveButtonClick: PropTypes.func.isRequired,
+    onDeleteButtonClick: PropTypes.func.isRequired
 }
 
 export default UserDialog;

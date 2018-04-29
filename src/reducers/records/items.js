@@ -60,6 +60,10 @@ const items = (state = [], action) => {
                     : item
                 ));
             });
+        case actionTypes.DELETE_ITEM:
+            return state.filter((item) => {
+                return item.barcode !== action.barcode;
+            });
         default:
             return state;
     }

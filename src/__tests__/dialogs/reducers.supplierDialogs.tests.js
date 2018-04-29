@@ -422,6 +422,34 @@ describe('supplierDialogs', () => {
         assertInitialDialogState(state, action);
         assertInitialState(state, action);
     });
+    it('should return the initial state when receiving DELETE_SUPPLIER action with an valid input', () => {
+        const state = {
+            dialogState: {
+                open: false,
+                title: dialogTitles.EDIT_SUPPLIER,
+                mode: dialogModes.EDIT_MODE,
+                error: false,
+                editable: false
+            },
+            supplierInDialog: {
+                id: 1,
+                name: {
+                    value: "First",
+                    state: "success"
+                },
+                contact: {
+                    value: null,
+                    state: null
+                }
+            }
+        };
+        const action = {
+            type: actionTypes.DELETE_SUPPLIER,
+            supplierId: 1
+        }
+        assertInitialDialogState(state, action);
+        assertInitialState(state, action);
+    });
     it('should return the initial state when receiving CHANGE_PAGE_ADMIN_MAIN_MENU', () => {
         const state = {
             dialogState: {

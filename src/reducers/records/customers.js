@@ -24,6 +24,10 @@ const customers = (state = testCustomers, action) => {
                     contact: action.customer.contact
                 } : customer
             ));
+        case actionTypes.DELETE_CUSTOMER:
+            return state.filter((customer) => {
+                return customer.id !== action.customerId;
+            });
         case actionTypes.ADD_SALES:
             return state.map((customer) => (
                 customer.id === action.sales.customerId ? {

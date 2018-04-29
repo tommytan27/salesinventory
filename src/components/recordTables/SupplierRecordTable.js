@@ -35,7 +35,7 @@ SupplierRecordTable.propTypes = {
         PropTypes.shape({
             id: PropTypes.number.isRequired,
             name: PropTypes.string.isRequired,
-            contact: PropTypes.string.isRequired
+            contact: PropTypes.string
         }).isRequired
     ).isRequired,
     onSupplierRecordClick: PropTypes.func.isRequired

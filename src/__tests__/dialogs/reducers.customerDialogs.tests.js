@@ -469,6 +469,39 @@ describe('CustomerDialogs', () => {
         assertInitialDialogState(state, action);
         assertInitialState(state, action);
     });
+    it('should return the initial state when receiving DELETE_CUSTOMER action with an valid input', () => {
+        const state = {
+            dialogState: {
+                open: false,
+                title: dialogTitles.EDIT_CUSTOMER,
+                mode: dialogModes.EDIT_MODE,
+                error: false,
+                editable: false
+            },
+            customerInDialog: {
+                id: 1,
+                firstName: {
+                    value: "First",
+                    state: "success"
+                },
+                lastName: {
+                    value: "Last",
+                    state: "success"
+                },
+                contact: {
+                    value: null,
+                    state: null
+                },
+                credit: null
+            }
+        };
+        const action = {
+            type: actionTypes.DELETE_CUSTOMER,
+            customerId: 1
+        }
+        assertInitialDialogState(state, action);
+        assertInitialState(state, action);
+    });
     it('should return the initial state when receiving ADD_CUSTOMER action with an valid input', () => {
         const state = {
             dialogState: {

@@ -8,7 +8,7 @@ const getFilteredItems = (state) => {
     let supplierId = state.itemSelectionForm.selectedItem.supplierId;
     let brandId = state.itemSelectionForm.selectedItem.brandId;
     return state.items.filter((item) => {
-        return item.supplierId === supplierId && item.brandId === brandId;
+        return item.supplierId === supplierId && item.brandId === brandId && item.qty > 0;
     })
 }
 

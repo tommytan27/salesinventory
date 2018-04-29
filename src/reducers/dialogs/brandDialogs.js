@@ -47,6 +47,7 @@ const brandDialogs = (state = initialState, action) => {
         case actionTypes.CLOSE_BRAND_DIALOG:
         case actionTypes.ADD_BRAND:
         case actionTypes.SAVE_BRAND:
+        case actionTypes.DELETE_BRAND:
             return initialState;
         case actionTypes.ENABLE_EDITABLE:
             return {...state, dialogState: {

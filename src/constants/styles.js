@@ -139,6 +139,9 @@ const styles = {
         delete: {
             color: 'red'
         },
+        deleteDisabled: {
+            color: 'rgb(171,171,171)'
+        },
         save: {
             color: 'green'
         }

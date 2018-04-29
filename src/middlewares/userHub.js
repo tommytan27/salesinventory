@@ -1,5 +1,5 @@
 import actionTypes from '../constants/actionTypes';
-import { addUser, saveUser, failSaveUser, failAddUser } from '../actions';
+import { addUser, saveUser, failSaveUser, failAddUser, deleteUser } from '../actions';
 
 const isNewUserValid = (user) => {
     return (user.username.state === "success" &&
@@ -39,6 +39,9 @@ export const userHub = store => next => action => {
                 return next(saveUser(userToBeSaved));
             }
             return next(failSaveUser());
+        case actionTypes.SIGNAL_R_DELETE_USER:
+            //TODO: hub call to delete user
+            return next(deleteUser(currentUser.id));
     }
 
     return next(action);

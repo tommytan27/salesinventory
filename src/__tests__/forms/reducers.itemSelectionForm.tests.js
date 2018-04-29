@@ -67,6 +67,12 @@ describe('ItemSelectionForm Store', () => {
         }, {type: actionTypes.CHANGE_PAGE_ADMIN_MAIN_MENU});
         assertInitialState(returnValue);
     });
+    it('should return initial state when receiving CHANGE_PAGE_USER_MAIN_MENU', () => {
+        const returnValue = itemSelectionForm({
+            showShoppingForm: true
+        }, {type: actionTypes.CHANGE_PAGE_USER_MAIN_MENU});
+        assertInitialState(returnValue);
+    });
     it('should return the modified supplier field when receiving SELECT_SUPPLIER action', () => {
         const returnValue = itemSelectionForm(undefined, {
             type: actionTypes.SELECT_SUPPLIER,

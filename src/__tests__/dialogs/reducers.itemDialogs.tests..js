@@ -572,7 +572,39 @@ describe('itemDialogs', () => {
         }
         assertInitialDialogState(state, action);
         assertInitialState(state, action);
-    });
+    });it('should return the initial state when receiving DELETE_ITEM action with an valid input', () => {
+        const state = {
+            dialogState: {
+                open: false,
+                title: dialogTitles.EDIT_ITEM,
+                mode: dialogModes.EDIT_MODE,
+                error: false,
+                editable: false
+            },            
+            itemInDialog: {
+                barcode: {
+                    value: "1351351",
+                    state: "success"
+                },
+                name: {
+                    value: "testName",
+                    state: "success"
+                },
+                price: {
+                    value: "5.30",
+                    state: "success"
+                },
+                supplierId: 1,
+                brandId: 2
+            }
+        };
+        const action = {
+            type: actionTypes.DELETE_ITEM,
+            barcode: "1351351"
+        }
+        assertInitialDialogState(state, action);
+        assertInitialState(state, action);
+    });    
     it('should return the initial state when receiving ADD_ITEM action with an valid input', () => {
         const state = {
             dialogState: {
@@ -602,6 +634,134 @@ describe('itemDialogs', () => {
         const action = {
             type: actionTypes.ADD_ITEM,
             item: {}
+        }
+        assertInitialDialogState(state, action);
+        assertInitialState(state, action);
+    });
+    it('should return the initial state when receiving CHANGE_MODE_USER_DUE_TIMEOUT', () => {
+        const state = {
+            dialogState: {
+                open: false,
+                title: dialogTitles.ADD_ITEM,
+                mode: dialogModes.ADD_MODE,
+                error: false,
+                editable: false
+            },
+            itemInDialog: {
+                barcode: {
+                    value: "1351351",
+                    state: "success"
+                },
+                name: {
+                    value: "testName",
+                    state: "success"
+                },
+                price: {
+                    value: "5.30",
+                    state: "success"
+                },
+                supplierId: 1,
+                brandId: 2
+            }
+        };
+        const action = {
+            type: actionTypes.CHANGE_MODE_USER_DUE_TIMEOUT
+        }
+        assertInitialDialogState(state, action);
+        assertInitialState(state, action);
+    });
+    it('should return the initial state when receiving CHANGE_MODE_USER', () => {
+        const state = {
+            dialogState: {
+                open: false,
+                title: dialogTitles.ADD_ITEM,
+                mode: dialogModes.ADD_MODE,
+                error: false,
+                editable: false
+            },
+            itemInDialog: {
+                barcode: {
+                    value: "1351351",
+                    state: "success"
+                },
+                name: {
+                    value: "testName",
+                    state: "success"
+                },
+                price: {
+                    value: "5.30",
+                    state: "success"
+                },
+                supplierId: 1,
+                brandId: 2
+            }
+        };
+        const action = {
+            type: actionTypes.CHANGE_MODE_USER
+        }
+        assertInitialDialogState(state, action);
+        assertInitialState(state, action);
+    });    
+    it('should return the initial state when receiving CHANGE_PAGE_ADMIN_MAIN_MENU', () => {
+        const state = {
+            dialogState: {
+                open: false,
+                title: dialogTitles.ADD_ITEM,
+                mode: dialogModes.ADD_MODE,
+                error: false,
+                editable: false
+            },
+            itemInDialog: {
+                barcode: {
+                    value: "1351351",
+                    state: "success"
+                },
+                name: {
+                    value: "testName",
+                    state: "success"
+                },
+                price: {
+                    value: "5.30",
+                    state: "success"
+                },
+                supplierId: 1,
+                brandId: 2
+            }
+        };
+        const action = {
+            type: actionTypes.CHANGE_PAGE_ADMIN_MAIN_MENU
+        }
+        assertInitialDialogState(state, action);
+        assertInitialState(state, action);
+    });
+    it('should return the initial state when receiving CHANGE_PAGE_USER_MAIN_MENU', () => {
+        const state = {
+            dialogState: {
+                open: false,
+                title: dialogTitles.ADD_ITEM,
+                mode: dialogModes.ADD_MODE,
+                error: false,
+                editable: false
+            },
+            itemInDialog: {
+                barcode: {
+                    value: "1351351",
+                    state: "success"
+                },
+                name: {
+                    value: "testName",
+                    state: "success"
+                },
+                price: {
+                    value: "5.30",
+                    state: "success"
+                },
+                supplierId: 1,
+                brandId: 2
+            }
+        };
+        const action = {
+            type: actionTypes.CHANGE_PAGE_USER_MAIN_MENU
         }
         assertInitialDialogState(state, action);
         assertInitialState(state, action);

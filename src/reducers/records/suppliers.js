@@ -17,6 +17,10 @@ const suppliers = (state = [], action) => {
                     contact: action.supplier.contact
                 } : supplier
             ));
+        case actionTypes.DELETE_SUPPLIER:
+            return state.filter((supplier) => {
+                return supplier.id !== action.supplierId;
+            });
         default:
             return state;
     }

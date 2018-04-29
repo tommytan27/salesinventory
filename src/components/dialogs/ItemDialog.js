@@ -157,7 +157,7 @@ ItemDialog.propTypes = {
         PropTypes.shape({
             id: PropTypes.number.isRequired,
             name: PropTypes.string.isRequired,
-            contact: PropTypes.string.isRequired
+            contact: PropTypes.string
         }).isRequired
     ).isRequired,
     onDialogClose: PropTypes.func.isRequired,
@@ -170,7 +170,8 @@ ItemDialog.propTypes = {
     onSupplierComboChanged: PropTypes.func.isRequired,
     onBrandComboChanged: PropTypes.func.isRequired,
     onAddButtonClick: PropTypes.func.isRequired,
-    onSaveButtonClick: PropTypes.func.isRequired
+    onSaveButtonClick: PropTypes.func.isRequired,
+    onDeleteButtonClick: PropTypes.func.isRequired
 }
 
 export default ItemDialog;

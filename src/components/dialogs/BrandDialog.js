@@ -47,7 +47,8 @@ BrandDialog.propTypes = {
     onEditButtonClick: PropTypes.func.isRequired,
     onBrandNameFieldChange: PropTypes.func.isRequired,
     onAddButtonClick: PropTypes.func.isRequired,
-    onSaveButtonClick: PropTypes.func.isRequired
+    onSaveButtonClick: PropTypes.func.isRequired,
+    onDeleteButtonClick: PropTypes.func.isRequired
 }
 
 export default BrandDialog;

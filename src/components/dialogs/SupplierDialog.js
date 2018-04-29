@@ -60,7 +60,8 @@ SupplierDialog.propTypes = {
     onSupplierNameFieldChange: PropTypes.func.isRequired,
     onContactFieldChange: PropTypes.func.isRequired,
     onAddButtonClick: PropTypes.func.isRequired,
-    onSaveButtonClick: PropTypes.func.isRequired
+    onSaveButtonClick: PropTypes.func.isRequired,
+    onDeleteButtonClick: PropTypes.func.isRequired
 }
 
 export default SupplierDialog;

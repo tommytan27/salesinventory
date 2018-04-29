@@ -31,4 +31,18 @@ describe('Brands Store', () => {
         expect(returnValues).toHaveLength(1);
         expect(returnValues[0].name).toEqual(expectedBrand.name);
     });
+    it('should return the list of brands with the modified brand when receiving DELETE_BRAND action', () => {
+        const expectedBrand = {
+            id: 1,
+            name: "Brand",
+        };
+        var returnValues = brands([{
+            id: 1,
+            name: "Dummy"
+        }], {
+            type: actionTypes.DELETE_BRAND,
+            brandId: 1
+        });
+        expect(returnValues).toHaveLength(0);
+    });
 });

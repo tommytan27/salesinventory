@@ -103,6 +103,14 @@ describe('UserRecords Actions', () => {
         }
         expect(actions.saveUser(expectedUser)).toEqual(expectedAction);
     });
+
+    it('should create an action to delete user', () => {
+        const expectedAction = {
+            type: actionTypes.DELETE_USER,
+            userId: 1
+        }
+        expect(actions.deleteUser(1)).toEqual(expectedAction);
+    });
     
     it('should create an action to add user via signalR', () => {
         const expectedAction = {
@@ -116,6 +124,13 @@ describe('UserRecords Actions', () => {
             type: actionTypes.SIGNAL_R_SAVE_USER
         }
         expect(actions.signalRSaveUser()).toEqual(expectedAction);
+    });
+
+    it('should create an action to delete user via signalR', () => {
+        const expectedAction = {
+            type: actionTypes.SIGNAL_R_DELETE_USER
+        }
+        expect(actions.signalRDeleteUser()).toEqual(expectedAction);
     });
     
     it ('should create an action to notify user about failing adding user', () => {
@@ -220,6 +235,14 @@ describe('CustomerRecords Actions', () => {
         expect(actions.saveCustomer(expectedCustomer)).toEqual(expectedAction);
     });
 
+    it('should create an action to delete customer', () => {
+        const expectedAction = {
+            type: actionTypes.DELETE_CUSTOMER,
+            customerId: 1
+        }
+        expect(actions.deleteCustomer(1)).toEqual(expectedAction);
+    });
+
     it('should create an action to add customer via signalR', () => {
         const expectedAction = {
             type: actionTypes.SIGNAL_R_ADD_CUSTOMER
@@ -234,6 +257,13 @@ describe('CustomerRecords Actions', () => {
         expect(actions.signalRSaveCustomer()).toEqual(expectedAction);
     });
     
+    it('should create an action to delete customer via signalR', () => {
+        const expectedAction = {
+            type: actionTypes.SIGNAL_R_DELETE_CUSTOMER
+        }
+        expect(actions.signalRDeleteCustomer()).toEqual(expectedAction);
+    });
+
     it ('should create an action to notify user about failing adding customer', () => {
         const expectedAction = {
             type: actionTypes.FAIL_ADD_CUSTOMER
@@ -312,6 +342,14 @@ describe ('SupplierRecords Actions', () => {
         expect(actions.saveSupplier(expectedSupplier)).toEqual(expectedAction);
     });
 
+    it('should create an action to delete supplier', () => {
+        const expectedAction = {
+            type: actionTypes.DELETE_SUPPLIER,
+            supplierId: 1
+        }
+        expect(actions.deleteSupplier(1)).toEqual(expectedAction);
+    });
+
     it('should create an action to add supplier via signalR', () => {
         const expectedAction = {
             type: actionTypes.SIGNAL_R_ADD_SUPPLIER
@@ -324,6 +362,13 @@ describe ('SupplierRecords Actions', () => {
             type: actionTypes.SIGNAL_R_SAVE_SUPPLIER
         }
         expect(actions.signalRSaveSupplier()).toEqual(expectedAction);
+    });
+    
+    it('should create an action to delete supplier via signalR', () => {
+        const expectedAction = {
+            type: actionTypes.SIGNAL_R_DELETE_SUPPLIER
+        }
+        expect(actions.signalRDeleteSupplier()).toEqual(expectedAction);
     });
     
     it ('should create an action to notify user about failing adding supplier', () => {
@@ -408,6 +453,14 @@ describe ('BrandRecords Actions', () => {
         expect(actions.saveBrand(expectedBrand)).toEqual(expectedAction);
     });
 
+    it('should create an action to delete brand', () => {
+        const expectedAction = {
+            type: actionTypes.DELETE_BRAND,
+            brandId: 1
+        }
+        expect(actions.deleteBrand(1)).toEqual(expectedAction);
+    });
+
     it('should create an action to add brand via signalR', () => {
         const expectedAction = {
             type: actionTypes.SIGNAL_R_ADD_BRAND
@@ -420,6 +473,13 @@ describe ('BrandRecords Actions', () => {
             type: actionTypes.SIGNAL_R_SAVE_BRAND
         }
         expect(actions.signalRSaveBrand()).toEqual(expectedAction);
+    });
+    
+    it('should create an action to delete brand via signalR', () => {
+        const expectedAction = {
+            type: actionTypes.SIGNAL_R_DELETE_BRAND
+        }
+        expect(actions.signalRDeleteBrand()).toEqual(expectedAction);
     });
     
     it ('should create an action to notify user about failing adding brand', () => {
@@ -585,6 +645,14 @@ describe ('ItemRecords Actions', () => {
         expect(actions.saveItem(expectedItem)).toEqual(expectedAction);
     });
 
+    it('should create an action to delete item', () => {
+        const expectedAction = {
+            type: actionTypes.DELETE_ITEM,
+            barcode: "1234567"
+        }
+        expect(actions.deleteItem("1234567")).toEqual(expectedAction);
+    });
+
     it('should create an action to add item via signalR', () => {
         const expectedAction = {
             type: actionTypes.SIGNAL_R_ADD_ITEM
@@ -597,6 +665,13 @@ describe ('ItemRecords Actions', () => {
             type: actionTypes.SIGNAL_R_SAVE_ITEM
         }
         expect(actions.signalRSaveItem()).toEqual(expectedAction);
+    });
+    
+    it('should create an action to delete item via signalR', () => {
+        const expectedAction = {
+            type: actionTypes.SIGNAL_R_DELETE_ITEM
+        }
+        expect(actions.signalRDeleteItem()).toEqual(expectedAction);
     });
     
     it ('should create an action to notify user about failing adding item', () => {

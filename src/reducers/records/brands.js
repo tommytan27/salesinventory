@@ -15,6 +15,10 @@ const brands = (state = [], action) => {
                     name: action.brand.name
                 } : brand
             ));
+        case actionTypes.DELETE_BRAND:
+            return state.filter((brand) => {
+                return brand.id !== action.brandId;
+            });
         default:
             return state;
     }

@@ -62,6 +62,13 @@ export const saveUser = (user) => {
     };
 }
 
+export const deleteUser = (userId) => {
+    return {
+        type: actionTypes.DELETE_USER,
+        userId: userId
+    };
+}
+
 export const openAddCustomerDialog = () => {
     return {
         type: actionTypes.OPEN_ADD_CUSTOMER_DIALOG
@@ -109,6 +116,13 @@ export const saveCustomer = (customer) => {
     };
 }
 
+export const deleteCustomer = (customerId) => {
+    return {
+        type: actionTypes.DELETE_CUSTOMER,
+        customerId: customerId
+    };
+}
+
 export const openAddSupplierDialog = () => {
     return {
         type: actionTypes.OPEN_ADD_SUPPLIER_DIALOG
@@ -149,6 +163,13 @@ export const saveSupplier = (supplier) => {
     };
 }
 
+export const deleteSupplier = (supplierId) => {
+    return {
+        type: actionTypes.DELETE_SUPPLIER,
+        supplierId: supplierId
+    };
+}
+
 export const openAddBrandDialog = () => {
     return {
         type: actionTypes.OPEN_ADD_BRAND_DIALOG
@@ -186,6 +207,13 @@ export const saveBrand = (brand) => {
     return {
         type: actionTypes.SAVE_BRAND,
         brand: brand
+    };
+}
+
+export const deleteBrand = (brandId) => {
+    return {
+        type: actionTypes.DELETE_BRAND,
+        brandId: brandId
     };
 }
 
@@ -290,6 +318,13 @@ export const saveItem = (item) => {
     return {
         type: actionTypes.SAVE_ITEM,
         item: item
+    };
+}
+
+export const deleteItem = (barcode) => {
+    return {
+        type: actionTypes.DELETE_ITEM,
+        barcode: barcode
     };
 }
 
@@ -677,6 +712,12 @@ export const signalRSaveUser = () => {
     };
 }
 
+export const signalRDeleteUser = () => {
+    return {
+        type: actionTypes.SIGNAL_R_DELETE_USER
+    };
+}
+
 export const signalRAddCustomer = () => {
     return {
         type: actionTypes.SIGNAL_R_ADD_CUSTOMER
@@ -686,6 +727,12 @@ export const signalRAddCustomer = () => {
 export const signalRSaveCustomer = () => {
     return {
         type: actionTypes.SIGNAL_R_SAVE_CUSTOMER
+    };
+}
+
+export const signalRDeleteCustomer = () => {
+    return {
+        type: actionTypes.SIGNAL_R_DELETE_CUSTOMER
     };
 }
 
@@ -701,6 +748,12 @@ export const signalRSaveSupplier = () => {
     };
 }
 
+export const signalRDeleteSupplier = () => {
+    return {
+        type: actionTypes.SIGNAL_R_DELETE_SUPPLIER
+    };
+}
+
 export const signalRAddBrand = () => {
     return {
         type: actionTypes.SIGNAL_R_ADD_BRAND
@@ -713,6 +766,12 @@ export const signalRSaveBrand = () => {
     };
 }
 
+export const signalRDeleteBrand = () => {
+    return {
+        type: actionTypes.SIGNAL_R_DELETE_BRAND
+    };
+}
+
 export const signalRAddItem = () => {
     return {
         type: actionTypes.SIGNAL_R_ADD_ITEM
@@ -722,6 +781,12 @@ export const signalRAddItem = () => {
 export const signalRSaveItem = () => {
     return {
         type: actionTypes.SIGNAL_R_SAVE_ITEM
+    };
+}
+
+export const signalRDeleteItem = () => {
+    return {
+        type: actionTypes.SIGNAL_R_DELETE_ITEM
     };
 }
 

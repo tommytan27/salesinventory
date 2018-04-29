@@ -33,4 +33,25 @@ describe('Users Store', () => {
         expect(returnValues).toHaveLength(initialLength);
         expect(returnValues[0].timeout).toEqual(expectedUser.timeout);
     });
+    it('should return the list of users without the deleted user when receiving DELETE_USER action', () => {
+        var returnValues = users([
+            {
+                id: 1,
+                username: "admin",
+                password: null,
+                timeout: 15
+            },
+            {
+                id: 2,
+                username: "ttanzil",
+                password: null,
+                timeout: 10
+            }
+        ], {
+            type: actionTypes.DELETE_USER,
+            userId: 2
+        });
+        expect(returnValues).toHaveLength(initialLength);
+        expect(returnValues[0].id).toEqual(1);
+    });
 });
