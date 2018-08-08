@@ -21,7 +21,7 @@
   "scripts": {
     "build-css": "node-sass-chokidar --include-path ./node_modules src/ -o src/",
     "watch-css": "npm run build-css && npm run build-css -- --watch --recursive",
-    "start": "concurrently \"npm run watch-css\" \"react-scripts start\" \"dotnet run --project signalRConnection\\signalRConnection.csproj\" --kill-others",
+    "start": "concurrently \"npm run watch-css\" \"react-scripts start\" --kill-others",
     "build": "npm run build-css && react-scripts build",
     "test": "jest",
     "eject": "react-scripts eject"

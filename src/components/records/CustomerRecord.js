@@ -20,7 +20,7 @@ CustomerRecord.propTypes = {
     id: PropTypes.number.isRequired,
     firstName: PropTypes.string.isRequired,
     lastName: PropTypes.string.isRequired,
-    contact: PropTypes.string.isRequired,
+    contact: PropTypes.string,
     onClick: PropTypes.func.isRequired
 };
 

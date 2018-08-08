@@ -19,7 +19,7 @@ class SelectCustomerDialog extends React.Component {
             <DialogContainer id="SelectCustomerDialog" title="Select Customer"
                 visible={this.props.suppliers.length > 0 && this.props.brands.length > 0 && 
                     this.props.selectCustomerDialogs.open} 
-                dialogStyle={{width: "30%", height: "60%"}} contentStyle={{height:"80%"}} stackedActions
+                dialogStyle={{width: "30%", height: "70%"}} contentStyle={{height:"80%"}} stackedActions
                 actions={actions} modal={false} initialFocus="#anonymousButton"
                 onHide={this.props.onDialogClose}>
                 <Select name="CustomerSelect" value={this.props.activeCustomer.id}
@@ -53,7 +53,7 @@ SelectCustomerDialog.propTypes = {
             id: PropTypes.number.isRequired,
             firstName: PropTypes.string.isRequired,
             lastName: PropTypes.string.isRequired,
-            contact: PropTypes.string.isRequired,
+            contact: PropTypes.string,
             credit: PropTypes.number.isRequired
         }).isRequired
     ).isRequired,
@@ -61,7 +61,7 @@ SelectCustomerDialog.propTypes = {
         PropTypes.shape({
             id: PropTypes.number.isRequired,
             name: PropTypes.string.isRequired,
-            contact: PropTypes.string.isRequired
+            contact: PropTypes.string
         }).isRequired
     ).isRequired,
     brands: PropTypes.arrayOf(

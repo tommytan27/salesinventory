@@ -32,14 +32,14 @@ describe('StockShopRecords Store', () => {
     it ('should return initial state when receiving ADD_CREDIT', () => {
         expect(stockShopRecords(undefined, {type: actionTypes.ADD_CREDIT})).toHaveLength(0);
     });
-    it ('should return initial state when receiving SIGNAL_R_ADD_STOCK', () => {
-        expect(stockShopRecords(undefined, {type: actionTypes.SIGNAL_R_ADD_STOCK})).toHaveLength(0);
+    it ('should return initial state when receiving SERVER_ADD_STOCK', () => {
+        expect(stockShopRecords(undefined, {type: actionTypes.SERVER_ADD_STOCK})).toHaveLength(0);
     });
-    it ('should return initial state when receiving SIGNAL_R_ADD_SALES', () => {
-        expect(stockShopRecords(undefined, {type: actionTypes.SIGNAL_R_ADD_SALES})).toHaveLength(0);
+    it ('should return initial state when receiving SERVER_ADD_SALES', () => {
+        expect(stockShopRecords(undefined, {type: actionTypes.SERVER_ADD_SALES})).toHaveLength(0);
     });
-    it ('should return initial state when receiving SIGNAL_R_ADD_CREDIT', () => {
-        expect(stockShopRecords(undefined, {type: actionTypes.SIGNAL_R_ADD_CREDIT})).toHaveLength(0);
+    it ('should return initial state when receiving SERVER_ADD_CREDIT', () => {
+        expect(stockShopRecords(undefined, {type: actionTypes.SERVER_ADD_CREDIT})).toHaveLength(0);
     });
     it ('should return updated stocking records list when receiving action REMOVE_STOCKING_RECORD_FROM_LIST', () => {
         const returnValue = stockShopRecords(fakeStockingRecords, {

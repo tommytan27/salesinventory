@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import SupplierDialog from "../../components/dialogs/SupplierDialog";
 import { closeSupplierDialog, enableEditable, updateSupplierNameField,
-    updateContactField, signalRAddSupplier, signalRSaveSupplier, signalRDeleteSupplier } from "../../actions/index";
+    updateContactField, serverAddSupplier, serverSaveSupplier, serverDeleteSupplier } from "../../actions/index";
 
 const mapStateToProps = (state) => {
     return {
@@ -17,9 +17,9 @@ const mapDispatchToProps = (dispatch) => {
         onEditButtonClick: () => { dispatch(enableEditable()) },
         onSupplierNameFieldChange: (name) => { dispatch(updateSupplierNameField(name)) },   
         onContactFieldChange: (contact) => { dispatch(updateContactField(contact)) },
-        onAddButtonClick: () => { dispatch(signalRAddSupplier()) },
-        onSaveButtonClick: () => { dispatch(signalRSaveSupplier()) },
-        onDeleteButtonClick: () => { dispatch(signalRDeleteSupplier()); }
+        onAddButtonClick: () => { dispatch(serverAddSupplier()) },
+        onSaveButtonClick: () => { dispatch(serverSaveSupplier()) },
+        onDeleteButtonClick: () => { dispatch(serverDeleteSupplier()); }
     };
 }
 

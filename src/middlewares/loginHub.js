@@ -3,7 +3,7 @@ import { failLoginUser, changeModeAdmin } from '../actions';
 
 export const loginHub = store => next => action => {
     switch (action.type) {
-        case actionTypes.SIGNAL_R_LOGIN_USER:
+        case actionTypes.SERVER_LOGIN_USER:
             //TODO: CHANGE THE METHOD WITH SERVER SIDE AUTHENTICATION
             let users = store.getState().users;
             let foundUser = users.find((user) => {

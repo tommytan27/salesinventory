@@ -112,25 +112,25 @@ describe('UserRecords Actions', () => {
         expect(actions.deleteUser(1)).toEqual(expectedAction);
     });
     
-    it('should create an action to add user via signalR', () => {
+    it('should create an action to add user via server', () => {
         const expectedAction = {
-            type: actionTypes.SIGNAL_R_ADD_USER
+            type: actionTypes.SERVER_ADD_USER
         }
-        expect(actions.signalRAddUser()).toEqual(expectedAction);
+        expect(actions.serverAddUser()).toEqual(expectedAction);
     });
 
-    it('should create an action to save user via signalR', () => {
+    it('should create an action to save user via server', () => {
         const expectedAction = {
-            type: actionTypes.SIGNAL_R_SAVE_USER
+            type: actionTypes.SERVER_SAVE_USER
         }
-        expect(actions.signalRSaveUser()).toEqual(expectedAction);
+        expect(actions.serverSaveUser()).toEqual(expectedAction);
     });
 
-    it('should create an action to delete user via signalR', () => {
+    it('should create an action to delete user via server', () => {
         const expectedAction = {
-            type: actionTypes.SIGNAL_R_DELETE_USER
+            type: actionTypes.SERVER_DELETE_USER
         }
-        expect(actions.signalRDeleteUser()).toEqual(expectedAction);
+        expect(actions.serverDeleteUser()).toEqual(expectedAction);
     });
     
     it ('should create an action to notify user about failing adding user', () => {
@@ -243,25 +243,25 @@ describe('CustomerRecords Actions', () => {
         expect(actions.deleteCustomer(1)).toEqual(expectedAction);
     });
 
-    it('should create an action to add customer via signalR', () => {
+    it('should create an action to add customer via server', () => {
         const expectedAction = {
-            type: actionTypes.SIGNAL_R_ADD_CUSTOMER
+            type: actionTypes.SERVER_ADD_CUSTOMER
         }
-        expect(actions.signalRAddCustomer()).toEqual(expectedAction);
+        expect(actions.serverAddCustomer()).toEqual(expectedAction);
     });
 
-    it('should create an action to save customer via signalR', () => {
+    it('should create an action to save customer via server', () => {
         const expectedAction = {
-            type: actionTypes.SIGNAL_R_SAVE_CUSTOMER
+            type: actionTypes.SERVER_SAVE_CUSTOMER
         }
-        expect(actions.signalRSaveCustomer()).toEqual(expectedAction);
+        expect(actions.serverSaveCustomer()).toEqual(expectedAction);
     });
     
-    it('should create an action to delete customer via signalR', () => {
+    it('should create an action to delete customer via server', () => {
         const expectedAction = {
-            type: actionTypes.SIGNAL_R_DELETE_CUSTOMER
+            type: actionTypes.SERVER_DELETE_CUSTOMER
         }
-        expect(actions.signalRDeleteCustomer()).toEqual(expectedAction);
+        expect(actions.serverDeleteCustomer()).toEqual(expectedAction);
     });
 
     it ('should create an action to notify user about failing adding customer', () => {
@@ -350,25 +350,25 @@ describe ('SupplierRecords Actions', () => {
         expect(actions.deleteSupplier(1)).toEqual(expectedAction);
     });
 
-    it('should create an action to add supplier via signalR', () => {
+    it('should create an action to add supplier via server', () => {
         const expectedAction = {
-            type: actionTypes.SIGNAL_R_ADD_SUPPLIER
+            type: actionTypes.SERVER_ADD_SUPPLIER
         }
-        expect(actions.signalRAddSupplier()).toEqual(expectedAction);
+        expect(actions.serverAddSupplier()).toEqual(expectedAction);
     });
 
-    it('should create an action to save supplier via signalR', () => {
+    it('should create an action to save supplier via server', () => {
         const expectedAction = {
-            type: actionTypes.SIGNAL_R_SAVE_SUPPLIER
+            type: actionTypes.SERVER_SAVE_SUPPLIER
         }
-        expect(actions.signalRSaveSupplier()).toEqual(expectedAction);
+        expect(actions.serverSaveSupplier()).toEqual(expectedAction);
     });
     
-    it('should create an action to delete supplier via signalR', () => {
+    it('should create an action to delete supplier via server', () => {
         const expectedAction = {
-            type: actionTypes.SIGNAL_R_DELETE_SUPPLIER
+            type: actionTypes.SERVER_DELETE_SUPPLIER
         }
-        expect(actions.signalRDeleteSupplier()).toEqual(expectedAction);
+        expect(actions.serverDeleteSupplier()).toEqual(expectedAction);
     });
     
     it ('should create an action to notify user about failing adding supplier', () => {
@@ -461,25 +461,25 @@ describe ('BrandRecords Actions', () => {
         expect(actions.deleteBrand(1)).toEqual(expectedAction);
     });
 
-    it('should create an action to add brand via signalR', () => {
+    it('should create an action to add brand via server', () => {
         const expectedAction = {
-            type: actionTypes.SIGNAL_R_ADD_BRAND
+            type: actionTypes.SERVER_ADD_BRAND
         }
-        expect(actions.signalRAddBrand()).toEqual(expectedAction);
+        expect(actions.serverAddBrand()).toEqual(expectedAction);
     });
 
-    it('should create an action to save brand via signalR', () => {
+    it('should create an action to save brand via server', () => {
         const expectedAction = {
-            type: actionTypes.SIGNAL_R_SAVE_BRAND
+            type: actionTypes.SERVER_SAVE_BRAND
         }
-        expect(actions.signalRSaveBrand()).toEqual(expectedAction);
+        expect(actions.serverSaveBrand()).toEqual(expectedAction);
     });
     
-    it('should create an action to delete brand via signalR', () => {
+    it('should create an action to delete brand via server', () => {
         const expectedAction = {
-            type: actionTypes.SIGNAL_R_DELETE_BRAND
+            type: actionTypes.SERVER_DELETE_BRAND
         }
-        expect(actions.signalRDeleteBrand()).toEqual(expectedAction);
+        expect(actions.serverDeleteBrand()).toEqual(expectedAction);
     });
     
     it ('should create an action to notify user about failing adding brand', () => {
@@ -653,25 +653,25 @@ describe ('ItemRecords Actions', () => {
         expect(actions.deleteItem("1234567")).toEqual(expectedAction);
     });
 
-    it('should create an action to add item via signalR', () => {
+    it('should create an action to add item via server', () => {
         const expectedAction = {
-            type: actionTypes.SIGNAL_R_ADD_ITEM
+            type: actionTypes.SERVER_ADD_ITEM
         }
-        expect(actions.signalRAddItem()).toEqual(expectedAction);
+        expect(actions.serverAddItem()).toEqual(expectedAction);
     });
 
-    it('should create an action to save item via signalR', () => {
+    it('should create an action to save item via server', () => {
         const expectedAction = {
-            type: actionTypes.SIGNAL_R_SAVE_ITEM
+            type: actionTypes.SERVER_SAVE_ITEM
         }
-        expect(actions.signalRSaveItem()).toEqual(expectedAction);
+        expect(actions.serverSaveItem()).toEqual(expectedAction);
     });
     
-    it('should create an action to delete item via signalR', () => {
+    it('should create an action to delete item via server', () => {
         const expectedAction = {
-            type: actionTypes.SIGNAL_R_DELETE_ITEM
+            type: actionTypes.SERVER_DELETE_ITEM
         }
-        expect(actions.signalRDeleteItem()).toEqual(expectedAction);
+        expect(actions.serverDeleteItem()).toEqual(expectedAction);
     });
     
     it ('should create an action to notify user about failing adding item', () => {
@@ -705,9 +705,9 @@ describe ('SalesRecords Actions', () => {
     });
     it('should create an action to add sales via signal R', () => {
         const expectedAction = {
-            type: actionTypes.SIGNAL_R_ADD_SALES
+            type: actionTypes.SERVER_ADD_SALES
         };
-        expect(actions.signalRAddSales()).toEqual(expectedAction);
+        expect(actions.serverAddSales()).toEqual(expectedAction);
     });
     it('should create an action to add sales', () => {
         const expectedSales = {
@@ -724,10 +724,10 @@ describe ('SalesRecords Actions', () => {
     });
     it('should create an action to save change as customer credit via signal R', () => {
         const expectedAction = {
-            type: actionTypes.SIGNAL_R_SAVE_CHANGE_AS_CUSTOMER_CREDIT,
+            type: actionTypes.SERVER_SAVE_CHANGE_AS_CUSTOMER_CREDIT,
             customerCredit: 5.00
         };
-        expect(actions.signalRSaveChangeAsCustomerCredit(5)).toEqual(expectedAction);
+        expect(actions.serverSaveChangeAsCustomerCredit(5)).toEqual(expectedAction);
     });
 });
 
@@ -740,9 +740,9 @@ describe ('CreditRecords Actions', () => {
     });
     it('should create an action to add credit via signal R', () => {
         const expectedAction = {
-            type: actionTypes.SIGNAL_R_ADD_CREDIT
+            type: actionTypes.SERVER_ADD_CREDIT
         };
-        expect(actions.signalRAddCredit()).toEqual(expectedAction);
+        expect(actions.serverAddCredit()).toEqual(expectedAction);
     });
     it('should create an action to add credit', () => {
         const expectedCredit = {
@@ -767,9 +767,9 @@ describe ('StockRecords Actions', () => {
     });
     it('should create an action to add stock via signal R', () => {
         const expectedAction = {
-            type: actionTypes.SIGNAL_R_ADD_STOCK
+            type: actionTypes.SERVER_ADD_STOCK
         };
-        expect(actions.signalRAddStock()).toEqual(expectedAction);
+        expect(actions.serverAddStock()).toEqual(expectedAction);
     });
     it('should create an action to add stock', () => {
         const expectedStock = {
@@ -862,13 +862,13 @@ describe ('LoginDialogs Actions', () => {
         expect(actions.closeLoginDialog()).toEqual(expectedAction);
     });
 
-    it ('should create an action to login user via signalR', () => {
+    it ('should create an action to login user via server', () => {
         const expectedAction = {
-            type: actionTypes.SIGNAL_R_LOGIN_USER,
+            type: actionTypes.SERVER_LOGIN_USER,
             username: "admin",
             password: "12345"
         }
-        expect(actions.signalRLoginUser("admin", "12345")).toEqual(expectedAction);
+        expect(actions.serverLoginUser("admin", "12345")).toEqual(expectedAction);
     });
 
     it ('should create an action to notify user about failing login', () => {

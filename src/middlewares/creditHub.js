@@ -4,7 +4,7 @@ import { addCredit } from '../actions';
 export const creditHub = store => next => action => {
     var currentTime = new Date().toLocaleString("en-ZA");
     switch (action.type) {
-        case actionTypes.SIGNAL_R_ADD_CREDIT:
+        case actionTypes.SERVER_ADD_CREDIT:
             var newCredit = {
                 id: currentTime.replace(new RegExp("/",'g'),"").replace(new RegExp(":",'g'),"")
                             .replace(new RegExp(",",'g'),"").replace(new RegExp(" ",'g'),""),

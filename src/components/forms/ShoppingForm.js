@@ -214,7 +214,7 @@ ShoppingForm.propTypes = {
         PropTypes.shape({
             id: PropTypes.number.isRequired,
             name: PropTypes.string.isRequired,
-            contact: PropTypes.string.isRequired
+            contact: PropTypes.string
         }).isRequired
     ).isRequired,
     brands: PropTypes.arrayOf(
@@ -271,7 +271,7 @@ ShoppingForm.propTypes = {
         id: PropTypes.number.isRequired,
         firstName: PropTypes.string.isRequired,
         lastName: PropTypes.string.isRequired,
-        contact: PropTypes.string.isRequired,
+        contact: PropTypes.string,
         credit: PropTypes.number.isRequired
     }).isRequired,
     onSupplierComboChanged: PropTypes.func.isRequired,

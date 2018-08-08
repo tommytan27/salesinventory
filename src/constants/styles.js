@@ -1,6 +1,6 @@
 const styles = {
     mainPage: {
-        height: '100%'
+        height: '99%'
     },
     pageTable: {
         paddingLeft: '1%',
@@ -11,19 +11,19 @@ const styles = {
             position: 'relative',
             paddingTop: '4%',
             width: '60%',
-            height: '100%',
+            height: '99%',
             backgroundColor: 'white',
             float: 'left'
         },
         right: {
             width: '40%',
-            height: '100%',
+            height: '99%',
             float: 'left',
             backgroundColor: '#d6e2f0'
         },
         rightShopping: {
             width: '40%',
-            height: '100%',
+            height: '99%',
             float: 'left',
             backgroundColor: 'rgb(213,249,249)'
         },
@@ -31,14 +31,14 @@ const styles = {
             position: 'relative',
             paddingTop: '4%',
             width: '100%',
-            height: '100%',
+            height: '99%',
             backgroundColor: 'white',
             float: 'left'
         },
         mainNoLogo: {
             position: 'relative',
             width: '100%',
-            height: '100%',
+            height: '99%',
             backgroundColor: 'white',
             float: 'left'
         }
@@ -318,7 +318,7 @@ const styles = {
     },
     newCustomerButton: {
         padding: "8%",
-        margin: "18%",
+        margin: "8%",
         backgroundColor: 'rgba(0,217,87,0.75)',
         color: "white"
     },

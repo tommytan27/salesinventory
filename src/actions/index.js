@@ -692,125 +692,125 @@ export const failSaveItem = () => {
     }
 }
 
-export const signalRLoginUser = (username, password) => {
+export const serverLoginUser = (username, password) => {
     return {
-        type: actionTypes.SIGNAL_R_LOGIN_USER,
+        type: actionTypes.SERVER_LOGIN_USER,
         username: username,
         password: password
     }
 }
 
-export const signalRAddUser = () => {
+export const serverAddUser = () => {
     return {
-        type: actionTypes.SIGNAL_R_ADD_USER
+        type: actionTypes.SERVER_ADD_USER
     };
 }
 
-export const signalRSaveUser = () => {
+export const serverSaveUser = () => {
     return {
-        type: actionTypes.SIGNAL_R_SAVE_USER
+        type: actionTypes.SERVER_SAVE_USER
     };
 }
 
-export const signalRDeleteUser = () => {
+export const serverDeleteUser = () => {
     return {
-        type: actionTypes.SIGNAL_R_DELETE_USER
+        type: actionTypes.SERVER_DELETE_USER
     };
 }
 
-export const signalRAddCustomer = () => {
+export const serverAddCustomer = () => {
     return {
-        type: actionTypes.SIGNAL_R_ADD_CUSTOMER
+        type: actionTypes.SERVER_ADD_CUSTOMER
     };
 }
 
-export const signalRSaveCustomer = () => {
+export const serverSaveCustomer = () => {
     return {
-        type: actionTypes.SIGNAL_R_SAVE_CUSTOMER
+        type: actionTypes.SERVER_SAVE_CUSTOMER
     };
 }
 
-export const signalRDeleteCustomer = () => {
+export const serverDeleteCustomer = () => {
     return {
-        type: actionTypes.SIGNAL_R_DELETE_CUSTOMER
+        type: actionTypes.SERVER_DELETE_CUSTOMER
     };
 }
 
-export const signalRAddSupplier = () => {
+export const serverAddSupplier = () => {
     return {
-        type: actionTypes.SIGNAL_R_ADD_SUPPLIER
+        type: actionTypes.SERVER_ADD_SUPPLIER
     };
 }
 
-export const signalRSaveSupplier = () => {
+export const serverSaveSupplier = () => {
     return {
-        type: actionTypes.SIGNAL_R_SAVE_SUPPLIER
+        type: actionTypes.SERVER_SAVE_SUPPLIER
     };
 }
 
-export const signalRDeleteSupplier = () => {
+export const serverDeleteSupplier = () => {
     return {
-        type: actionTypes.SIGNAL_R_DELETE_SUPPLIER
+        type: actionTypes.SERVER_DELETE_SUPPLIER
     };
 }
 
-export const signalRAddBrand = () => {
+export const serverAddBrand = () => {
     return {
-        type: actionTypes.SIGNAL_R_ADD_BRAND
+        type: actionTypes.SERVER_ADD_BRAND
     };
 }
 
-export const signalRSaveBrand = () => {
+export const serverSaveBrand = () => {
     return {
-        type: actionTypes.SIGNAL_R_SAVE_BRAND
+        type: actionTypes.SERVER_SAVE_BRAND
     };
 }
 
-export const signalRDeleteBrand = () => {
+export const serverDeleteBrand = () => {
     return {
-        type: actionTypes.SIGNAL_R_DELETE_BRAND
+        type: actionTypes.SERVER_DELETE_BRAND
     };
 }
 
-export const signalRAddItem = () => {
+export const serverAddItem = () => {
     return {
-        type: actionTypes.SIGNAL_R_ADD_ITEM
+        type: actionTypes.SERVER_ADD_ITEM
     };
 }
 
-export const signalRSaveItem = () => {
+export const serverSaveItem = () => {
     return {
-        type: actionTypes.SIGNAL_R_SAVE_ITEM
+        type: actionTypes.SERVER_SAVE_ITEM
     };
 }
 
-export const signalRDeleteItem = () => {
+export const serverDeleteItem = () => {
     return {
-        type: actionTypes.SIGNAL_R_DELETE_ITEM
+        type: actionTypes.SERVER_DELETE_ITEM
     };
 }
 
-export const signalRAddStock = () => {
+export const serverAddStock = () => {
     return {
-        type: actionTypes.SIGNAL_R_ADD_STOCK
+        type: actionTypes.SERVER_ADD_STOCK
     };
 }
 
-export const signalRAddSales = () => {
+export const serverAddSales = () => {
     return {
-        type: actionTypes.SIGNAL_R_ADD_SALES
+        type: actionTypes.SERVER_ADD_SALES
     };
 }
 
-export const signalRAddCredit = () => {
+export const serverAddCredit = () => {
     return {
-        type: actionTypes.SIGNAL_R_ADD_CREDIT
+        type: actionTypes.SERVER_ADD_CREDIT
     };
 }
 
-export const signalRSaveChangeAsCustomerCredit = (customerCredit) => {
+export const serverSaveChangeAsCustomerCredit = (customerCredit) => {
     return {
-        type: actionTypes.SIGNAL_R_SAVE_CHANGE_AS_CUSTOMER_CREDIT,
+        type: actionTypes.SERVER_SAVE_CHANGE_AS_CUSTOMER_CREDIT,
         customerCredit: customerCredit
     };
 }

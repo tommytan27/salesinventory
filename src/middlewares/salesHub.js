@@ -4,9 +4,9 @@ import { addSales } from '../actions';
 export const salesHub = store => next => action => {
     var currentTime = new Date().toLocaleString("en-ZA");
     switch (action.type) {
-        case actionTypes.SIGNAL_R_SAVE_CHANGE_AS_CUSTOMER_CREDIT:
-        case actionTypes.SIGNAL_R_ADD_SALES:
-            var customerCredit = action.type === actionTypes.SIGNAL_R_ADD_SALES ? 0 : action.customerCredit;
+        case actionTypes.SERVER_SAVE_CHANGE_AS_CUSTOMER_CREDIT:
+        case actionTypes.SERVER_ADD_SALES:
+            var customerCredit = action.type === actionTypes.SERVER_ADD_SALES ? 0 : action.customerCredit;
             var newSales = {
                 id: currentTime.replace(new RegExp("/",'g'),"").replace(new RegExp(":",'g'),"")
                             .replace(new RegExp(",",'g'),"").replace(new RegExp(" ",'g'),""),

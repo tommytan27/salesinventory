@@ -84,7 +84,7 @@ SearchDialog.propTypes = {
             id: PropTypes.number.isRequired,
             firstName: PropTypes.string.isRequired,
             lastName: PropTypes.string.isRequired,
-            contact: PropTypes.string.isRequired,
+            contact: PropTypes.string,
             credit: PropTypes.number.isRequired
         }).isRequired
     ).isRequired,

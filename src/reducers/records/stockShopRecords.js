@@ -21,9 +21,9 @@ const stockShopRecords = (state = [], action) => {
         case actionTypes.ADD_STOCK:
         case actionTypes.ADD_CREDIT:
         case actionTypes.ADD_SALES:
-        case actionTypes.SIGNAL_R_ADD_CREDIT:
-        case actionTypes.SIGNAL_R_ADD_SALES:
-        case actionTypes.SIGNAL_R_ADD_STOCK:
+        case actionTypes.SERVER_ADD_CREDIT:
+        case actionTypes.SERVER_ADD_SALES:
+        case actionTypes.SERVER_ADD_STOCK:
             return [];
         default:
             return state;

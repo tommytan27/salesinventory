@@ -4,7 +4,7 @@ import { addStock } from '../actions';
 export const stockHub = store => next => action => {
     var currentTime = new Date().toLocaleString("en-ZA");
     switch (action.type) {
-        case actionTypes.SIGNAL_R_ADD_STOCK:
+        case actionTypes.SERVER_ADD_STOCK:
             var newStock = {
                 id: currentTime.replace(new RegExp("/",'g'),"").replace(new RegExp(":",'g'),"")
                             .replace(new RegExp(",",'g'),"").replace(new RegExp(" ",'g'),""),

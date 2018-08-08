@@ -19,21 +19,21 @@ const mapCustomerInDialogToCustomer = (customerInDialog) => {
 export const customerHub = store => next => action => {
     var currentCustomer = store.getState().customerDialogs.customerInDialog;
     switch (action.type) {
-        case actionTypes.SIGNAL_R_ADD_CUSTOMER:
+        case actionTypes.SERVER_ADD_CUSTOMER:
             if (isCustomerValid(currentCustomer)) {
                 var customerToBeAdded = mapCustomerInDialogToCustomer(currentCustomer);
                 //TODO: hub call to add customer
                 return next(addCustomer(customerToBeAdded));
             }
             return next(failAddCustomer());
-        case actionTypes.SIGNAL_R_SAVE_CUSTOMER:
+        case actionTypes.SERVER_SAVE_CUSTOMER:
             if (isCustomerValid(currentCustomer)) {
                 var customerToBeSaved = mapCustomerInDialogToCustomer(currentCustomer);
                 //TODO: hub call to save customer
                 return next(saveCustomer(customerToBeSaved));
             }
             return next(failSaveCustomer());
-        case actionTypes.SIGNAL_R_DELETE_CUSTOMER:
+        case actionTypes.SERVER_DELETE_CUSTOMER:
             //TODO: hub call to delete customer
             return next(deleteCustomer(currentCustomer.id));
     }

@@ -25,21 +25,21 @@ const mapUserInDialogToUser = (userInDialog) => {
 export const userHub = store => next => action => {
     var currentUser = store.getState().userDialogs.userInDialog;
     switch (action.type) {
-        case actionTypes.SIGNAL_R_ADD_USER:
+        case actionTypes.SERVER_ADD_USER:
             if (isNewUserValid(currentUser)) {
                 var userToBeAdded = mapUserInDialogToUser(currentUser);
                 //TODO: hub call to add user
                 return next(addUser(userToBeAdded));
             }
             return next(failAddUser());
-        case actionTypes.SIGNAL_R_SAVE_USER:
+        case actionTypes.SERVER_SAVE_USER:
             if (isEditedUserValid(currentUser)) {
                 var userToBeSaved = mapUserInDialogToUser(currentUser);
                 //TODO: hub call to save user
                 return next(saveUser(userToBeSaved));
             }
             return next(failSaveUser());
-        case actionTypes.SIGNAL_R_DELETE_USER:
+        case actionTypes.SERVER_DELETE_USER:
             //TODO: hub call to delete user
             return next(deleteUser(currentUser.id));
     }

@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { removeStockingRecordFromList, signalRAddStock } from '../../actions';
+import { removeStockingRecordFromList, serverAddStock } from '../../actions';
 import StockingRecordsList from "../../components/lists/StockingRecordsList";
 
 const mapStateToProps = (state) => {
@@ -12,7 +12,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         onRemoveClick: (recordId) => { dispatch(removeStockingRecordFromList(recordId)); },
-        onDoneButtonClick: () => { dispatch(signalRAddStock()); }
+        onDoneButtonClick: () => { dispatch(serverAddStock()); }
     };
 }
 

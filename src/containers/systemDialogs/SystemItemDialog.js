@@ -3,7 +3,7 @@ import ItemDialog from "../../components/dialogs/ItemDialog";
 import { closeItemDialog, enableEditable, updateItemNameField, 
     updateBarcodeField, updateQtyField, updateSellPriceField, 
     toggleVeganFlag, selectSupplier, selectBrand,
-    signalRAddItem, signalRSaveItem, signalRDeleteItem} from "../../actions/index";
+    serverAddItem, serverSaveItem, serverDeleteItem} from "../../actions/index";
 
 const mapStateToProps = (state) => {
     return {
@@ -25,9 +25,9 @@ const mapDispatchToProps = (dispatch) => {
         onVeganFlagToggled: () => { dispatch(toggleVeganFlag()) },
         onSupplierComboChanged: (supplierId) => { dispatch(selectSupplier(supplierId)) },
         onBrandComboChanged: (brandId) => { dispatch(selectBrand(brandId)) },
-        onAddButtonClick: () => { dispatch(signalRAddItem()) },
-        onSaveButtonClick: () => { dispatch(signalRSaveItem()) },
-        onDeleteButtonClick: () => { dispatch(signalRDeleteItem()); }
+        onAddButtonClick: () => { dispatch(serverAddItem()) },
+        onSaveButtonClick: () => { dispatch(serverSaveItem()) },
+        onDeleteButtonClick: () => { dispatch(serverDeleteItem()); }
     };
 }
 
