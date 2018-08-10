@@ -845,6 +845,32 @@ describe ('SearchDialogs Actions', () => {
         }
         expect(actions.closeRecordsDetailsDialog()).toEqual(expectedAction);
     });
+    
+    it ('should create an action to update records', () => {
+        const expectedRecords = {
+            sales: [],
+            credits: [],
+            stocks: []
+        };
+        const expectedAction = {
+            type: actionTypes.UPDATE_RECORDS,
+            records: expectedRecords
+        }
+        expect(actions.updateRecords(expectedRecords)).toEqual(expectedAction);
+    });
+
+    it ('should create a server action to search for records', () => {
+        const expectedSearchCriteria = {
+            customerId: 1,
+            fromDate: "2018/01/01",
+            toDate: "2018/01/31"
+        };
+        const expectedAction = {
+            type: actionTypes.SERVER_SEARCH_RECORDS,
+            searchCriteria: expectedSearchCriteria
+        }
+        expect(actions.serverSearchRecords(expectedSearchCriteria)).toEqual(expectedAction);
+    });
 });
 
 describe ('LoginDialogs Actions', () => {    

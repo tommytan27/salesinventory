@@ -411,6 +411,13 @@ export const closeRecordsDetailsDialog = () => {
     }
 }
 
+export const updateRecords = (records) => {
+    return {
+        type: actionTypes.UPDATE_RECORDS,
+        records: records
+    }
+}
+
 export const changeTabSupplierRecord = () => {
     return {
         type: actionTypes.CHANGE_TAB_SUPPLIER_RECORD
@@ -813,4 +820,11 @@ export const serverSaveChangeAsCustomerCredit = (customerCredit) => {
         type: actionTypes.SERVER_SAVE_CHANGE_AS_CUSTOMER_CREDIT,
         customerCredit: customerCredit
     };
+}
+
+export const serverSearchRecords = (searchCriteria) => {
+    return {
+        type: actionTypes.SERVER_SEARCH_RECORDS,
+        searchCriteria: searchCriteria
+    }
 }

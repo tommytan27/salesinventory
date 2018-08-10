@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import SearchDialog from "../../components/dialogs/SearchDialog";
 import { closeSearchDialog, updateCustomerCombo, 
-    updateFromDateField, updateToDateField } from "../../actions";
+    updateFromDateField, updateToDateField, serverSearchRecords } from "../../actions";
 
 const mapStateToProps = (state) => {
     return {
@@ -16,8 +16,8 @@ const mapDispatchToProps = (dispatch) => {
         onDialogClose: () => { dispatch(closeSearchDialog()) },
         onCustomerComboChanged: (customerId) => { dispatch(updateCustomerCombo(customerId)) },
         onFromDateFieldChanged: (fromDate) => { dispatch(updateFromDateField(fromDate)) },
-        onToDateFieldChanged: (toDate) => { dispatch(updateToDateField(toDate)) }
-        // onSearchButtonClick: () => { dispatch(searchRecords()) }
+        onToDateFieldChanged: (toDate) => { dispatch(updateToDateField(toDate)) },
+        onSearchButtonClick: (searchCriteria) => { dispatch(serverSearchRecords(searchCriteria)) }
     };
 }
 
