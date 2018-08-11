@@ -2,8 +2,10 @@ import actionTypes from './../../constants/actionTypes';
     
 const stocks = (state = [], action) => {
     switch (action.type) {
-        case actionTypes.ADD_STOCK:
-            return [...state, action.stock];
+        case actionTypes.UPDATE_RECORDS:
+            return [...action.records.stocks];
+        case actionTypes.CHANGE_PAGE_ADMIN_RECORDS_HISTORY:
+            return [];
         default:
             return state;
     }

@@ -8,11 +8,20 @@ const dummyStock = {
 ]};
 
 describe('Stock Store', () => {
-    it('should return the list of stocks with added stock when receiving ADD_STOCK action', () => {
+    it('should return the list of stocks with updated stocks when receiving UPDATE_RECORDS action', () => {
         var returnValues = stocks(undefined, {
-            type: actionTypes.ADD_STOCK,
-            stock: dummyStock
+            type: actionTypes.UPDATE_RECORDS,
+            records: {
+                stocks: [ dummyStock ]
+            } 
         });
         expect(returnValues).toHaveLength(1);
+    });
+
+    it('should return empty stock when receiving action CHANGE_PAGE_ADMIN_RECORDS_HISTORY', () => {
+        var returnValues = stocks([ dummyStock ], {
+            type: actionTypes.CHANGE_PAGE_ADMIN_RECORDS_HISTORY
+        });
+        expect(returnValues).toHaveLength(0);
     });
 });

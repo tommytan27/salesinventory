@@ -1,5 +1,4 @@
 import actionTypes from '../constants/actionTypes';
-import { addCredit } from '../actions';
 
 export const creditHub = store => next => action => {
     var currentTime = new Date().toLocaleString("en-ZA");
@@ -17,7 +16,7 @@ export const creditHub = store => next => action => {
             };
             //TODO: hub call to add credit
             //TODO: should return next(action);
-            return next(addCredit(newCredit));
+            // return next(addCredit(newCredit));
     }
 
     return next(action);

@@ -20,10 +20,11 @@ describe('SearchDialogs', () => {
     });
     it ('should return the dialog with fromDate and toDate set to today when receiving OPEN_SEARCH_DIALOG action', () => {
         var today = new Date();
+        var year = today.getFullYear(), month = today.getMonth();
         var returnValues = searchDialogs(undefined, {
             type: actionTypes.OPEN_SEARCH_DIALOG
         });
-        expect(returnValues.fromDate).toEqual(today.toLocaleDateString("en-ZA"));
+        expect(returnValues.fromDate).toEqual(new Date(year, month, 1).toLocaleDateString("en-ZA"));
         expect(returnValues.toDate).toEqual(today.toLocaleDateString("en-ZA"));
     });
     it ('should return the dialog with customer set to -1 when receiving OPEN_SEARCH_DIALOG action', () => {
@@ -43,6 +44,13 @@ describe('SearchDialogs', () => {
             open: true
         }, {
             type: actionTypes.CLOSE_SEARCH_DIALOG
+        })
+    });
+    it ('should return initial state after opening dialog when receiving UPDATE_RECORDS action', () => {
+        assertInitialState({
+            open: true
+        }, {
+            type: actionTypes.UPDATE_RECORDS
         })
     });
     it ('should return updated customerId when receiving UPDATE_CUSTOMER_COMBO action with valid customer Id', () => {

@@ -12,13 +12,15 @@ const searchDialogs = (state = initialState, action) => {
         case actionTypes.CHANGE_PAGE_ADMIN_RECORDS_HISTORY:
         case actionTypes.OPEN_SEARCH_DIALOG:
             var today = new Date();
+            var year = today.getFullYear(), month = today.getMonth();
             return { ...state,
                 open: true,
-                fromDate: today.toLocaleDateString("en-ZA"),
+                fromDate: new Date(year, month, 1).toLocaleDateString("en-ZA"),
                 toDate: today.toLocaleDateString("en-ZA"),
                 customerId: -1
             };
         case actionTypes.CLOSE_SEARCH_DIALOG:
+        case actionTypes.UPDATE_RECORDS:
             return initialState;
         case actionTypes.UPDATE_CUSTOMER_COMBO:
             return { ...state,

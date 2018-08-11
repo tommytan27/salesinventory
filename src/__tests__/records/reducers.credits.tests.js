@@ -8,11 +8,20 @@ const dummyCredit = {
 ]};
 
 describe('Credits Store', () => {
-    it('should return the list of credits with added credit when receiving ADD_SALES action', () => {
+    it('should return the list of credits with updated credits when receiving UPDATE_RECORDS action', () => {
         var returnValues = credits(undefined, {
-            type: actionTypes.ADD_CREDIT,
-            credit: dummyCredit
+            type: actionTypes.UPDATE_RECORDS,
+            records: {
+                credits: [ dummyCredit ]
+            } 
         });
         expect(returnValues).toHaveLength(1);
+    });
+
+    it('should return empty credit when receiving action CHANGE_PAGE_ADMIN_RECORDS_HISTORY', () => {
+        var returnValues = credits([ dummyCredit ], {
+            type: actionTypes.CHANGE_PAGE_ADMIN_RECORDS_HISTORY
+        });
+        expect(returnValues).toHaveLength(0);
     });
 });
