@@ -46,7 +46,8 @@ const styles = {
     paper: {
         left: {
             padding: '3%',
-            paddingBottom: '0.75%',
+            paddingTop: '2%',
+            paddingBottom: '0%',
             margin: '3%'
         },
         leftGuide: {
@@ -57,7 +58,7 @@ const styles = {
         main: {
             padding: '3%',
             margin: '1.5%',
-            height: '83%',
+            height: '88%',
             backgroundColor: 'rgba(169,244,240,0.3)',
         },
         mainTextLarge: {

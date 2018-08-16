@@ -57,6 +57,13 @@ class RecordsDetailsDialog extends React.Component {
             <Button flat iconChildren="clear" onClick={this.props.onDialogClose} id="cancelButton">CLOSE</Button>,
             <Button primary flat iconChildren="print" onClick={this.props.onPrintButtonClick}>EXPORT</Button>
         ];
+
+        if(this.props.activeTab === tabOptions.CREDIT_RECORD) {
+            actions.push(
+                <Button primary flat iconChildren="attach_money" onClick={this.props.onPayButtonClick}>PAY</Button>
+            );
+        }
+
         return (
             <DialogContainer id="RecordsDetailsDialog"
                 title={this.props.recordsDetailsDialogs.title ? this.props.recordsDetailsDialogs.title : "Records Details"}
