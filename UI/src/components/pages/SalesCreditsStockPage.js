@@ -6,6 +6,7 @@ import SystemCreditsRecordTable from '../../containers/systemRecordTables/System
 import SystemStocksRecordTable from '../../containers/systemRecordTables/SystemStocksRecordTable';
 import SystemSeachDialog from '../../containers/systemDialogs/SystemSearchDialog';
 import SystemRecordsDetailsDialog from '../../containers/systemDialogs/SystemRecordsDetailsDialog';
+import SystemPaymentDialog from './../../containers/systemDialogs/SystemPaymentDialog';
 import styles from '../../constants/styles';
 
 class SalesCreditStockPage extends React.Component {
@@ -14,6 +15,7 @@ class SalesCreditStockPage extends React.Component {
             <div style={styles.page.mainNoLogo}>
                 <SystemSeachDialog />
                 <SystemRecordsDetailsDialog />
+                <SystemPaymentDialog />
 
                 <TabsContainer colored fixed slideHeightProp="minHeight">
                 <Tabs tabId="Sales_Credit_Stock_Page">

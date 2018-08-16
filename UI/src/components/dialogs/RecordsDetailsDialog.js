@@ -52,21 +52,41 @@ class RecordsDetailsDialog extends React.Component {
         );
     }
 
+    getCostPriceColumn = () => {
+        if (this.props.activeTab !== tabOptions.SALES_RECORD &&
+            this.props.activeTab !== tabOptions.CREDIT_RECORD) {
+                return (<TableColumn>Cost Price</TableColumn>);
+            }
+        return;
+    }
+
+    getPlaceholderColumn = () => {
+        if (this.props.activeTab !== tabOptions.SALES_RECORD &&
+            this.props.activeTab !== tabOptions.CREDIT_RECORD) {
+                return (<TableColumn></TableColumn>);
+            }
+        return;
+    }
+
     render() { 
+        let total = this.getTotal(this.props.recordsDetailsDialogs.recordsDetails).toFixed(2);
+
         let actions = [
             <Button flat iconChildren="clear" onClick={this.props.onDialogClose} id="cancelButton">CLOSE</Button>,
-            <Button primary flat iconChildren="print" onClick={this.props.onPrintButtonClick}>EXPORT</Button>
+            <Button primary flat iconChildren="print" onClick={this.props.onPrintButtonClick} style={styles.flatButton.export}>EXPORT</Button>
         ];
 
         if(this.props.activeTab === tabOptions.CREDIT_RECORD) {
             actions.push(
-                <Button primary flat iconChildren="attach_money" onClick={this.props.onPayButtonClick}>PAY</Button>
+                <Button primary flat iconChildren="attach_money" onClick={() => {this.props.onPayButtonClick(total)}}>
+                    PAY
+                </Button>
             );
         }
 
         return (
             <DialogContainer id="RecordsDetailsDialog"
-                title={this.props.recordsDetailsDialogs.title ? this.props.recordsDetailsDialogs.title : "Records Details"}
+                title={"Records Details"}
                 visible={this.props.recordsDetailsDialogs.open} dialogStyle={{width: '80%'}}
                 actions={actions} modal={false} initialFocus="#cancelButton"
                 onHide={this.props.onDialogClose}>
@@ -77,10 +97,7 @@ class RecordsDetailsDialog extends React.Component {
                             <TableColumn>Name</TableColumn>      
                             <TableColumn>Qty</TableColumn>   
                             <TableColumn>Unit Price</TableColumn>
-                            {(this.props.activeTab === tabOptions.SALES_RECORD ||
-                            this.props.activeTab === tabOptions.CREDIT_RECORD)
-                            ? (<div></div>)
-                            : (<TableColumn>Cost Price</TableColumn>)}
+                            {this.getCostPriceColumn()}
                             <TableColumn>Sub Total</TableColumn>                     
                         </TableRow>
                     </TableHeader>
@@ -95,12 +112,9 @@ class RecordsDetailsDialog extends React.Component {
                             <TableColumn></TableColumn>      
                             <TableColumn></TableColumn>   
                             <TableColumn></TableColumn>
-                            {(this.props.activeTab === tabOptions.SALES_RECORD ||
-                            this.props.activeTab === tabOptions.CREDIT_RECORD)
-                            ? (<div></div>)
-                            : (<TableColumn></TableColumn>)}
+                            {this.getPlaceholderColumn()}
                             <TableColumn>
-                                ${this.getTotal(this.props.recordsDetailsDialogs.recordsDetails).toFixed(2)}
+                                ${total}
                             </TableColumn>                     
                         </TableRow>
                     </TableFooter>
@@ -114,8 +128,6 @@ RecordsDetailsDialog.propTypes = {
     activeTab: PropTypes.string.isRequired,
     recordsDetailsDialogs: PropTypes.shape({
         open: PropTypes.bool.isRequired,
-        title: PropTypes.string,
-        sales: PropTypes.number,        
         recordsDetails: PropTypes.arrayOf(
             PropTypes.shape({
                 barcode: PropTypes.string.isRequired,
@@ -136,7 +148,8 @@ RecordsDetailsDialog.propTypes = {
         }).isRequired
     ).isRequired,
     onDialogClose: PropTypes.func.isRequired,
-    // onPrintButtonClick: PropTypes.func.isRequired
+    // onPrintButtonClick: PropTypes.func.isRequired,
+    onPayButtonClick: PropTypes.func.isRequired
 }
 
 export default RecordsDetailsDialog;

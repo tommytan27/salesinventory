@@ -3,6 +3,20 @@ import { PropTypes } from 'prop-types';
 import { TableRow, TableColumn } from 'react-md';
 
 class DetailsRecord extends React.Component {
+    getCostColumn = (props) => {
+        if(props.costPrice) {
+            return (<TableColumn>${props.costPrice.toFixed(2)}</TableColumn>);
+        }
+        return;
+    }
+
+    getSubTotalColumn = (props) => {
+        if(props.costPrice) {
+            return (<TableColumn>${(props.qty * props.costPrice).toFixed(2)}</TableColumn>);
+        }
+        return (<TableColumn>${(props.qty * props.price).toFixed(2)}</TableColumn>);
+    }
+
     render() {
         return (
             <TableRow>
@@ -10,12 +24,8 @@ class DetailsRecord extends React.Component {
                 <TableColumn>{this.props.itemName}</TableColumn>
                 <TableColumn>{this.props.qty}</TableColumn>
                 <TableColumn>${this.props.price.toFixed(2)}</TableColumn>
-                {this.props.costPrice
-                ? (<TableColumn>${this.props.costPrice.toFixed(2)}</TableColumn>)
-                : (<div></div>)}
-                {this.props.costPrice
-                ? (<TableColumn>${(this.props.qty * this.props.costPrice).toFixed(2)}</TableColumn>)
-                : (<TableColumn>${(this.props.qty * this.props.price).toFixed(2)}</TableColumn>)}
+                {this.getCostColumn(this.props)}
+                {this.getSubTotalColumn(this.props)}
             </TableRow>
         );
     }
@@ -26,7 +36,7 @@ DetailsRecord.propTypes = {
     itemName: PropTypes.string.isRequired,
     qty: PropTypes.number.isRequired,
     price: PropTypes.number.isRequired,
-    costPrice: PropTypes.number.isRequired
+    costPrice: PropTypes.number
 };
 
 export default DetailsRecord;

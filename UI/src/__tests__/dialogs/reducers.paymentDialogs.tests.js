@@ -110,6 +110,36 @@ describe('PaymentDialog', () => {
             cash: "20.2"
         });
         expect(returnValue.cash).toEqual("20.2");
+    });    
+    it ('should return the payable true when receiving UPDATE_CASH_FIELD action with equal cash to total', () => {
+        const returnValue = paymentDialogs({
+            total: "20.55",
+            cash: "20.5"
+        }, {
+            type: actionTypes.UPDATE_CASH_FIELD,
+            cash: "20.55"
+        });
+        expect(returnValue.payable).toBeTruthy();
+    });    
+    it ('should return the payable true when receiving UPDATE_CASH_FIELD action with higher cash than total', () => {
+        const returnValue = paymentDialogs({
+            total: "20.50",
+            cash: "3"
+        }, {
+            type: actionTypes.UPDATE_CASH_FIELD,
+            cash: "30"
+        });
+        expect(returnValue.payable).toBeTruthy();
+    });    
+    it ('should return the payable false when receiving UPDATE_CASH_FIELD action with lower cash than total', () => {
+        const returnValue = paymentDialogs({
+            total: "50.50",
+            cash: ""
+        }, {
+            type: actionTypes.UPDATE_CASH_FIELD,
+            cash: "9"
+        });
+        expect(returnValue.payable).toBeFalsy();
     });
     it ('should return the change when receiving PAY_CASH action', () => {
         const returnValue = paymentDialogs({

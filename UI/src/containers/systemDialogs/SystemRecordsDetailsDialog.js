@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import RecordsDetailsDialog from "../../components/dialogs/RecordsDetailsDialog";
-import { closeRecordsDetailsDialog, payNow } from "../../actions";
+import { closeRecordsDetailsDialog, openPaymentDialog, payNow } from "../../actions";
 
 const mapStateToProps = (state) => {
     return {
@@ -14,7 +14,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         onDialogClose: () => { dispatch(closeRecordsDetailsDialog()) },
         // onPrintButtonClick: () => { dispatch(exportRecordsDetails()) },
-        onPayButtonClick: () => { dispatch(payNow()) }
+        onPayButtonClick: (total) => { dispatch(openPaymentDialog(total)); dispatch(payNow()); }
     };
 }
 

@@ -11,7 +11,7 @@ const initialState = {
 }
 
 const getPayable = (state) => {
-    return (state.total <= state.cash);
+    return (parseFloat(state.total) <= parseFloat(state.cash));
 }
 
 const paymentDialogs = (state = initialState, action) => {

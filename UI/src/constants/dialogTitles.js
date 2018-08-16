@@ -9,7 +9,6 @@ const dialogTitles = {
     EDIT_BRAND: "Edit Brand",
     ADD_ITEM: "Add Item",
     EDIT_ITEM: "Edit Item",
-    SALES_DETAILS: "Sales Details",
     LOGIN: "Login",
     TIMEOUT: "Timeout"
 }
