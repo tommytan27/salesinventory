@@ -12,7 +12,10 @@ exports.loginVerifier = (res, pool, username, password) => {
                 }
                 else {
                     if(table.rows.length === 1) {
-                        res.status(200).send("User is valid. Login was successfull.");
+                        res.status(200).send({
+                            username: table.rows[0].username,
+                            timeout: table.rows[0].timeout
+                        });
                     }
                     else {
                         res.status(401).send("User is invalid. Incorrect credentials.");

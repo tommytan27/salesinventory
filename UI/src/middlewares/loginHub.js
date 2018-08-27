@@ -1,26 +1,34 @@
 import actionTypes from '../constants/actionTypes';
 import { failLoginUser, changeModeAdmin } from '../actions';
 
+const verifyUser = (next, username, password) => {
+    let requestData = {
+        username: username,
+        password: password
+    };
+    let request = new Request("http://localhost:3000/api/login", {
+        method: "POST",
+        headers: new Headers({ "Content-Type": "application/json" }),
+        body: JSON.stringify(requestData)
+    });
+
+    fetch(request).then((response) => {
+        if(response.status === 200) {
+            response.json().then((data) => {
+                return next(changeModeAdmin(data.username, data.timeout));
+            });
+        }
+        else{
+            return next(failLoginUser());
+        }
+    });
+};
+
 export const loginHub = store => next => action => {
     switch (action.type) {
         case actionTypes.SERVER_LOGIN_USER:
-            //TODO: CHANGE THE METHOD WITH SERVER SIDE AUTHENTICATION
-            let users = store.getState().users;
-            let foundUser = users.find((user) => {
-                return user.username === action.username;
-            });
-
-            if (foundUser) {
-                return next(changeModeAdmin(foundUser.username, foundUser.timeout));
-            }
-            else {
-                return next(failLoginUser());
-            }
+            verifyUser(next, action.username, action.password);
     }
 
     return next(action);
-}
-
-export const loginHubConnector = (store, callBack) => {
-
 }
