@@ -146,6 +146,33 @@ describe('UserRecords Actions', () => {
         }
         expect(actions.failSaveUser()).toEqual(expectedAction);
     });
+    
+    it ('should create an action to get users from server', () => {
+        const expectedAction = {
+            type: actionTypes.SERVER_GET_USERS
+        }
+        expect(actions.serverGetUsers()).toEqual(expectedAction);
+    });
+    
+    it ('should create an action to update users', () => {
+        const expectedUsers = [
+            {
+                id: 1,
+                username: "admin",
+                timeout: 10
+            },
+            {
+                id: 2,
+                username: "ttanzil",
+                timeout: 5
+            }
+        ];
+        const expectedAction = {
+            type: actionTypes.UPDATE_USERS,
+            users: expectedUsers
+        }
+        expect(actions.updateUsers(expectedUsers)).toEqual(expectedAction);
+    });
 });
 
 describe('CustomerRecords Actions', () => {

@@ -7,6 +7,10 @@ import SystemUserDialog from '../../containers/systemDialogs/SystemUserDialog';
 import styles from './../../constants/styles';
 
 class UserRecordTable extends React.Component {
+    componentDidMount() {
+        this.props.onUpdatePage();
+    }
+
     render() {
         return (
             <div style={styles.pageTable}>

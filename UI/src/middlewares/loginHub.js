@@ -15,7 +15,7 @@ const verifyUser = (next, username, password) => {
     fetch(request).then((response) => {
         if(response.status === 200) {
             response.json().then((data) => {
-                return next(changeModeAdmin(data.username, data.timeout));
+                return next(changeModeAdmin(data.username, parseInt(data.timeout)));
             });
         }
         else{

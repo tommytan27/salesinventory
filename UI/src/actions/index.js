@@ -699,6 +699,19 @@ export const failSaveItem = () => {
     }
 }
 
+export const updateUsers = (users) => {
+    return {
+        type: actionTypes.UPDATE_USERS,
+        users: users
+    }
+}
+
+export const serverGetUsers = () => {
+    return {
+        type: actionTypes.SERVER_GET_USERS
+    }
+}
+
 export const serverLoginUser = (username, password) => {
     return {
         type: actionTypes.SERVER_LOGIN_USER,

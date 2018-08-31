@@ -1,12 +1,10 @@
 import actionTypes from './../../constants/actionTypes';
 
-const testUsers = [
-    {id: 1, username: "admin", timeout: 10}
-];
-
-const users = (state = testUsers, action) => {
+const users = (state = [], action) => {
     let currentLength = state.length;
     switch (action.type) {
+        case actionTypes.UPDATE_USERS:
+            return action.users;
         case actionTypes.ADD_USER:
             return [...state, {
                 id: currentLength + 1,

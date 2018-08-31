@@ -23,7 +23,6 @@ describe('Users Store', () => {
         const expectedUser = {
             id: 1,
             username: "admin",
-            password: null,
             timeout: 15
         };
         var returnValues = users(undefined, {
@@ -38,13 +37,11 @@ describe('Users Store', () => {
             {
                 id: 1,
                 username: "admin",
-                password: null,
                 timeout: 15
             },
             {
                 id: 2,
                 username: "ttanzil",
-                password: null,
                 timeout: 10
             }
         ], {
@@ -53,5 +50,31 @@ describe('Users Store', () => {
         });
         expect(returnValues).toHaveLength(initialLength);
         expect(returnValues[0].id).toEqual(1);
+    });
+    it('should return the updated users list when receiving UPDATE_USERS action', () => {
+        var updatedUsers = [
+            {
+                id: 1,
+                username: "admin",
+                timeout: 15
+            },
+            {
+                id: 2,
+                username: "ttanzil",
+                timeout: 10
+            }
+        ]
+        var returnValues = users([
+            {
+                id: 1,
+                username: "admin",
+                timeout: 15
+            }], {
+            type: actionTypes.UPDATE_USERS,
+            users: updatedUsers
+        });
+        expect(returnValues).toHaveLength(2);
+        expect(returnValues[0].id).toEqual(1);
+        expect(returnValues[1].id).toEqual(2);
     });
 });
