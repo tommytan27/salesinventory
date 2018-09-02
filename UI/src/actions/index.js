@@ -706,9 +706,61 @@ export const updateUsers = (users) => {
     }
 }
 
+export const updateCustomers = (customers) => {
+    return {
+        type: actionTypes.UPDATE_CUSTOMERS,
+        customers: customers
+    }
+}
+
+export const updateSuppliers = (suppliers) => {
+    return {
+        type: actionTypes.UPDATE_SUPPLIERS,
+        suppliers: suppliers
+    }
+}
+
+export const updateBrands = (brands) => {
+    return {
+        type: actionTypes.UPDATE_BRANDS,
+        brands: brands
+    }
+}
+
+export const updateItems = (items) => {
+    return {
+        type: actionTypes.UPDATE_ITEMS,
+        items: items
+    }
+}
+
 export const serverGetUsers = () => {
     return {
         type: actionTypes.SERVER_GET_USERS
+    }
+}
+
+export const serverGetCustomers = () => {
+    return {
+        type: actionTypes.SERVER_GET_CUSTOMERS
+    }
+}
+
+export const serverGetSuppliers = () => {
+    return {
+        type: actionTypes.SERVER_GET_SUPPLIERS
+    }
+}
+
+export const serverGetBrands = () => {
+    return {
+        type: actionTypes.SERVER_GET_BRANDS
+    }
+}
+
+export const serverGetItems = () => {
+    return {
+        type: actionTypes.SERVER_GET_ITEMS
     }
 }
 

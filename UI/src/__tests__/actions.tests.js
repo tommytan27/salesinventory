@@ -238,7 +238,7 @@ describe('CustomerRecords Actions', () => {
             firstName: "Tommy",
             lastName: "Tanzil",
             contact: "0425927766",
-            crdit: 0.0
+            credit: 0.0
         }
         const expectedAction = {
             type: actionTypes.ADD_CUSTOMER,
@@ -253,7 +253,7 @@ describe('CustomerRecords Actions', () => {
             firstName: "Tommy",
             lastName: "Tanzil",
             contact: "0425927766",
-            crdit: 0.0
+            credit: 0.0
         }
         const expectedAction = {
             type: actionTypes.SAVE_CUSTOMER,
@@ -303,6 +303,37 @@ describe('CustomerRecords Actions', () => {
             type: actionTypes.FAIL_SAVE_CUSTOMER
         }
         expect(actions.failSaveCustomer()).toEqual(expectedAction);
+    });
+    
+    it ('should create an action to get customers from server', () => {
+        const expectedAction = {
+            type: actionTypes.SERVER_GET_CUSTOMERS
+        }
+        expect(actions.serverGetCustomers()).toEqual(expectedAction);
+    });
+    
+    it ('should create an action to update customers', () => {
+        const expectedCustomers = [
+            {
+                id: 1,
+                firstName: "Tommy",
+                lastName: "Tanzil",
+                contact: "0425927766",
+                credit: 0.0
+            },
+            {
+                id: 2,
+                firstName: "Shella",
+                lastName: "Tan",
+                contact: "03403430434",
+                credit: 0.0
+            }
+        ];
+        const expectedAction = {
+            type: actionTypes.UPDATE_CUSTOMERS,
+            customers: expectedCustomers
+        }
+        expect(actions.updateCustomers(expectedCustomers)).toEqual(expectedAction);
     });
 });
 
@@ -418,6 +449,33 @@ describe ('SupplierRecords Actions', () => {
         }
         expect(actions.changeTabSupplierRecord()).toEqual(expectedAction);
     });
+
+    it ('should create an action to get suppliers from server', () => {
+        const expectedAction = {
+            type: actionTypes.SERVER_GET_SUPPLIERS
+        }
+        expect(actions.serverGetSuppliers()).toEqual(expectedAction);
+    });
+    
+    it ('should create an action to update suppliers', () => {
+        const expectedSuppliers = [
+            {
+                id: 1,
+                name: "Supplier",
+                contact: "contact"
+            },
+            {
+                id: 2,
+                name: "Supplier2",
+                contact: "contact"
+            }
+        ];
+        const expectedAction = {
+            type: actionTypes.UPDATE_SUPPLIERS,
+            suppliers: expectedSuppliers
+        }
+        expect(actions.updateSuppliers(expectedSuppliers)).toEqual(expectedAction);
+    });
 });
 
 describe ('BrandRecords Actions', () => {
@@ -528,6 +586,31 @@ describe ('BrandRecords Actions', () => {
             type: actionTypes.CHANGE_TAB_BRAND_RECORD
         }
         expect(actions.changeTabBrandRecord()).toEqual(expectedAction);
+    });
+
+    it ('should create an action to get brands from server', () => {
+        const expectedAction = {
+            type: actionTypes.SERVER_GET_BRANDS
+        }
+        expect(actions.serverGetBrands()).toEqual(expectedAction);
+    });
+    
+    it ('should create an action to update brands', () => {
+        const expectedBrands = [
+            {
+                id: 1,
+                name: "Brand1"
+            },
+            {
+                id: 2,
+                name: "Brand2"
+            }
+        ];
+        const expectedAction = {
+            type: actionTypes.UPDATE_BRANDS,
+            brands: expectedBrands
+        }
+        expect(actions.updateBrands(expectedBrands)).toEqual(expectedAction);
     });
 });
 
@@ -720,6 +803,33 @@ describe ('ItemRecords Actions', () => {
             type: actionTypes.CHANGE_TAB_ITEM_RECORD
         }
         expect(actions.changeTabItemRecord()).toEqual(expectedAction);
+    });
+
+    it ('should create an action to get items from server', () => {
+        const expectedAction = {
+            type: actionTypes.SERVER_GET_ITEMS
+        }
+        expect(actions.serverGetItems()).toEqual(expectedAction);
+    });
+    
+    it ('should create an action to update items', () => {
+        const expectedItems = [
+            {
+                barcode: "12345678", name: "Item", supplierId: 1, 
+                brandId: 1, price: 9.00, costPrice: 8.50, vegan: true, qty: 2
+            }
+            ,
+            {
+                barcode: "132434", name: "Item2", supplierId: 1, 
+                brandId: 2, price: 8.00, costPrice: 7.50, vegan: false, qty: 3
+            }
+            
+        ];
+        const expectedAction = {
+            type: actionTypes.UPDATE_ITEMS,
+            items: expectedItems
+        }
+        expect(actions.updateItems(expectedItems)).toEqual(expectedAction);
     });
 });
 
