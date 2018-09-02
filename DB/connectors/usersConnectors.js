@@ -1,14 +1,14 @@
-exports.loginVerifier = (res, pool, username, password) => {
+exports.loginVerifier = (res, pool, next, username, password) => {
     pool.connect((err, db, done) => {
         if(err) {
-            res.status(400).send(err);
+            next(err);
         }
         else {
             db.query('SELECT * FROM users WHERE username = $1 AND password = $2', 
             [username, password],
             (err, table) => {
                 if(err) {
-                    res.status(400).send(err);
+                    next(err);
                 }
                 else {
                     if(table.rows.length === 1) {
@@ -26,16 +26,16 @@ exports.loginVerifier = (res, pool, username, password) => {
     });
 };
 
-exports.getUsers = (res, pool) => {
+exports.getUsers = (res, pool, next) => {
     pool.connect((err, db, done) => {
         if(err) {
-            res.status(400).send(err);
+            next(err);
         }
         else {
             db.query('SELECT * FROM users',
             (err, table) => {
                 if(err) {
-                    res.status(400).send(err);
+                    next(err);
                 }
                 else {
                     if(table.rows.length > 0) {
@@ -49,16 +49,21 @@ exports.getUsers = (res, pool) => {
                             })
                         });
                     }
+                    else{
+                        res.status(200).send({
+                            users: []
+                        });
+                    }
                 }   
             });
         }
     });
 };
 
-exports.addUser = (res, pool, newUser) => {
+exports.addUser = (res, pool, next, newUser) => {
     pool.connect((err, db, done) => {
         if(err) {
-            res.status(400).send(err);
+            next(err);
         }
         else {
             db.query('INSERT INTO users(username, password, timeout) VALUES($1, $2, $3)',
@@ -66,28 +71,35 @@ exports.addUser = (res, pool, newUser) => {
             (err, table) => {
                 done();
                 if(err) {
-                    res.status(400).send(err);
+                    next(err);
                 }
-            });
-            db.query('SELECT id FROM users WHERE username = $1',
-            [newUser.username],
-            (err, table) => {
-                done();
-                if(err) {
-                    res.status(400).send(err);
+                else{
+                    next();
                 }
-                res.status(200).send({
-                    userId: table.rows[0].id
-                })
             });
         }
     });
 };
 
-exports.editUser = (res, pool, editedUser) => {
+exports.respondAddUser = (res, pool, next) => {
+    pool.connect((err, db, done) => {
+        db.query('SELECT id FROM users ORDER BY id DESC',
+        (err, table) => {
+            done();
+            if(err) {
+                next(err);
+            }
+            res.status(200).send({
+                userId: table.rows[0].id
+            });
+        });
+    });
+};
+
+exports.editUser = (res, pool, next, editedUser) => {
     pool.connect((err, db, done) => {
         if(err) {
-            res.status(400).send(err);
+            next(err);
         }
         else {
             db.query('UPDATE users SET timeout = $2 WHERE id = $1',
@@ -95,7 +107,7 @@ exports.editUser = (res, pool, editedUser) => {
             (err, table) => {
                 done();
                 if(err) {
-                    res.status(400).send(err);
+                    next(err);
                 }
                 res.status(200).send("User has been edited successfully.");
             });
@@ -103,10 +115,10 @@ exports.editUser = (res, pool, editedUser) => {
     });
 };
 
-exports.deleteUser = (res, pool, deletedUser) => {
+exports.deleteUser = (res, pool, next, deletedUser) => {
     pool.connect((err, db, done) => {
         if(err) {
-            res.status(400).send(err);
+            next(err);
         }
         else {
             db.query('DELETE FROM users WHERE id = $1',
@@ -114,7 +126,7 @@ exports.deleteUser = (res, pool, deletedUser) => {
             (err, table) => {
                 done();
                 if(err) {
-                    res.status(400).send(err);
+                    next(err);
                 }
                 res.status(200).send("User has been deleted successfully.");
             });
