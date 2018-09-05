@@ -4,7 +4,7 @@ exports.getCustomers = (res, pool, next) => {
             next(err);
         }
         else {
-            db.query('SELECT * FROM customers',
+            db.query('SELECT * FROM customers ORDER BY id',
             (err, table) => {
                 if(err) {
                     next(err);

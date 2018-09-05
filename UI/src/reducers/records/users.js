@@ -7,7 +7,7 @@ const users = (state = [], action) => {
             return action.users;
         case actionTypes.ADD_USER:
             return [...state, {
-                id: currentLength + 1,
+                id: action.user.id,
                 username: action.user.username,
                 timeout: action.user.timeout
             }];

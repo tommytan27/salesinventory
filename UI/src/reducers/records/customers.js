@@ -1,15 +1,13 @@
 import actionTypes from './../../constants/actionTypes';
 
-const testCustomers = [
-    {id: 0, firstName: "Anonymous", lastName: "Anonymous", contact: "", credit: 0.00}
-];
-
-const customers = (state = testCustomers, action) => {
+const customers = (state = [], action) => {
     let currentLength = state.length;
     switch (action.type) {
+        case actionTypes.UPDATE_CUSTOMERS:
+            return action.customers;
         case actionTypes.ADD_CUSTOMER:
             return [...state, {
-                id: currentLength,
+                id: action.customer.id,
                 firstName: action.customer.firstName,
                 lastName: action.customer.lastName,
                 contact: action.customer.contact,

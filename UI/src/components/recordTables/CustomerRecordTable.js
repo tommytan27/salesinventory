@@ -7,6 +7,10 @@ import SystemCustomerDialog from '../../containers/systemDialogs/SystemCustomerD
 import styles from './../../constants/styles';
 
 class CustomerRecordTable extends React.Component {
+    componentDidMount() {
+        this.props.onUpdatePage();
+    }
+
     render() {
         return (
             <div style={styles.pageTable}>
@@ -51,7 +55,8 @@ CustomerRecordTable.propTypes = {
     ).isRequired,
     onAddCustomerClick: PropTypes.func.isRequired,
     onCustomerRecordClick: PropTypes.func.isRequired,
-    onBackButtonClick: PropTypes.func.isRequired
+    onBackButtonClick: PropTypes.func.isRequired,
+    onUpdatePage: PropTypes.func.isRequired
 };
 
 export default CustomerRecordTable;

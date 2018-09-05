@@ -6,7 +6,7 @@ const initialLength = 0;
 describe('Users Store', () => {
     it('should return the list of users with the added user when receiving ADD_USER action', () => {
         const expectedUser = {
-            id: null,
+            id: 21,
             username: "dummy",
             password: "Admin123",
             timeout: 10
@@ -16,6 +16,7 @@ describe('Users Store', () => {
             user: expectedUser
         });
         expect(returnValues).toHaveLength(initialLength + 1);
+        expect(returnValues[initialLength].id).toEqual(expectedUser.id);
         expect(returnValues[initialLength].username).toEqual(expectedUser.username);
         expect(returnValues[initialLength].timeout).toEqual(expectedUser.timeout);
     });

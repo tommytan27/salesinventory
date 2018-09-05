@@ -52,7 +52,8 @@ UserRecordTable.propTypes = {
     ).isRequired,
     onAddUserClick: PropTypes.func.isRequired,
     onUserRecordClick: PropTypes.func.isRequired,
-    onBackButtonClick: PropTypes.func.isRequired
+    onBackButtonClick: PropTypes.func.isRequired,
+    onUpdatePage: PropTypes.func.isRequired
 };
 
 export default UserRecordTable;

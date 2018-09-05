@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import CustomerRecordTable from './../../components/recordTables/CustomerRecordTable';
-import { openAddCustomerDialog, openEditCustomerDialog, changePageAdminMainMenu } from '../../actions';
+import { openAddCustomerDialog, openEditCustomerDialog, changePageAdminMainMenu, serverGetCustomers } from '../../actions';
 
 const mapStateToProps = (state) => {
     return {
@@ -12,7 +12,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         onAddCustomerClick: () => { dispatch(openAddCustomerDialog()) },
         onCustomerRecordClick: (customer) => { dispatch(openEditCustomerDialog(customer)) },
-        onBackButtonClick: () => { dispatch(changePageAdminMainMenu()) }
+        onBackButtonClick: () => { dispatch(changePageAdminMainMenu()) },
+        onUpdatePage: () => { dispatch(serverGetCustomers()) }
     };
 }
 
