@@ -3,9 +3,14 @@ import actionTypes from "../../constants/actionTypes";
 const suppliers = (state = [], action) => {
     let currentLength = state.length;
     switch (action.type) {
+        case actionTypes.UPDATE_SUPPLIERS:
+            return action.suppliers.map((supplier) => ({
+                ...supplier,
+                id: parseInt(supplier.id)
+            }));
         case actionTypes.ADD_SUPPLIER:
             return [...state, {
-                id: currentLength + 1,
+                id: parseInt(action.supplier.id),
                 name: action.supplier.name,
                 contact: action.supplier.contact
             }];

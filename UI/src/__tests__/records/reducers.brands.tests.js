@@ -45,4 +45,23 @@ describe('Brands Store', () => {
         });
         expect(returnValues).toHaveLength(0);
     });
+    it('should return the updated list of brands when receiving UPDATE_BRANDS action', () => {
+        const updatedBrands = [
+            {
+                id: 1,
+                name: "Brand",
+            },
+            {
+                id: 2,
+                name: "Brand2",
+            }
+        ];
+        var returnValues = brands(undefined, {
+            type: actionTypes.UPDATE_BRANDS,
+            brands: updatedBrands
+        });
+        expect(returnValues).toHaveLength(2);
+        expect(returnValues[0].name).toEqual(updatedBrands[0].name);
+        expect(returnValues[1].name).toEqual(updatedBrands[1].name);
+    });
 });

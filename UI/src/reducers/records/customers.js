@@ -4,10 +4,14 @@ const customers = (state = [], action) => {
     let currentLength = state.length;
     switch (action.type) {
         case actionTypes.UPDATE_CUSTOMERS:
-            return action.customers;
+            return action.customers.map((customer) => ({
+                ...customer,
+                id: parseInt(customer.id),
+                credit: parseFloat(customer.credit)
+            }));
         case actionTypes.ADD_CUSTOMER:
             return [...state, {
-                id: action.customer.id,
+                id: parseInt(action.customer.id),
                 firstName: action.customer.firstName,
                 lastName: action.customer.lastName,
                 contact: action.customer.contact,

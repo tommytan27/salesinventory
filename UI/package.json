@@ -24,6 +24,7 @@
     "start": "concurrently \"npm run watch-css\" \"react-scripts start\" --kill-others",
     "build": "npm run build-css && react-scripts build",
     "test": "jest",
+    "watch-test": "nodemon -w .\\src --exec \"npm run test\"",
     "eject": "react-scripts eject"
   },
   "devDependencies": {

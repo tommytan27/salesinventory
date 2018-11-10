@@ -115,7 +115,3 @@ export const userHub = store => next => action => {
 
     return next(action);
 }
-
-export const userHubConnector = (store, callBack) => {
-
-}

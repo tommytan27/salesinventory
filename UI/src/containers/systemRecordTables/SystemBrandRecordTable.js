@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import BrandRecordTable from './../../components/recordTables/BrandRecordTable';
-import { openEditBrandDialog } from './../../actions';
+import { openEditBrandDialog, serverGetBrands } from './../../actions';
 
 const mapStateToProps = (state) => {
     return {
@@ -10,7 +10,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onBrandRecordClick: (brand) => { dispatch(openEditBrandDialog(brand)) }
+        onBrandRecordClick: (brand) => { dispatch(openEditBrandDialog(brand)) },
+        onUpdatePage: () => { dispatch(serverGetBrands()) }
     };
 }
 

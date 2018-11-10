@@ -6,6 +6,10 @@ import SupplierRecord from '../records/SupplierRecord';
 import styles from './../../constants/styles';
 
 class SupplierRecordTable extends React.Component {
+    componentDidMount() {
+        this.props.onUpdatePage();
+    }
+
     render() {
         return (
             <div style={styles.pageTable}>
@@ -38,7 +42,8 @@ SupplierRecordTable.propTypes = {
             contact: PropTypes.string
         }).isRequired
     ).isRequired,
-    onSupplierRecordClick: PropTypes.func.isRequired
+    onSupplierRecordClick: PropTypes.func.isRequired,
+    onUpdatePage: PropTypes.func.isRequired
 };
 
 export default SupplierRecordTable;

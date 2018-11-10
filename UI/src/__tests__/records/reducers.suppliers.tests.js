@@ -47,4 +47,25 @@ describe('Suppliers Store', () => {
         });
         expect(returnValues).toHaveLength(0);
     });
+    it('should return the updated list of suppliers when receiving UPDATE_SUPPLIERS action', () => {
+        const updatedSuppliers = [{
+            id: 1,
+            name: "Supplier",
+            contact: "contact"
+        },
+        {
+            id: 2,
+            name: "Supplier2",
+            contact: "contact2"
+        }];
+        var returnValues = suppliers(undefined, {
+            type: actionTypes.UPDATE_SUPPLIERS,
+            suppliers: updatedSuppliers
+        });
+        expect(returnValues).toHaveLength(2);
+        expect(returnValues[0].name).toEqual(updatedSuppliers[0].name);
+        expect(returnValues[0].contact).toEqual(updatedSuppliers[0].contact);
+        expect(returnValues[1].name).toEqual(updatedSuppliers[1].name);
+        expect(returnValues[1].contact).toEqual(updatedSuppliers[1].contact);
+    });
 });

@@ -3,9 +3,14 @@ import actionTypes from './../../constants/actionTypes';
 const brands = (state = [], action) => {
     let currentLength = state.length;
     switch (action.type) {
+        case actionTypes.UPDATE_BRANDS:
+            return action.brands.map((brand) => ({
+                ...brand,
+                id: parseInt(brand.id)
+            }));
         case actionTypes.ADD_BRAND:
             return [...state, {
-                id: currentLength + 1,
+                id: parseInt(action.brand.id),
                 name: action.brand.name
             }];
         case actionTypes.SAVE_BRAND:

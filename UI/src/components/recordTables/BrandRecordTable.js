@@ -6,6 +6,10 @@ import BrandRecord from '../records/BrandRecord';
 import styles from './../../constants/styles';
 
 class BrandRecordTable extends React.Component {
+    componentDidMount() {
+        this.props.onUpdatePage();
+    }
+
     render() {
         return (
             <div style={styles.pageTable}>
@@ -36,7 +40,8 @@ BrandRecordTable.propTypes = {
             name: PropTypes.string.isRequired
         }).isRequired
     ).isRequired,
-    onBrandRecordClick: PropTypes.func.isRequired
+    onBrandRecordClick: PropTypes.func.isRequired,
+    onUpdatePage: PropTypes.func.isRequired
 };
 
 export default BrandRecordTable;

@@ -4,10 +4,14 @@ const users = (state = [], action) => {
     let currentLength = state.length;
     switch (action.type) {
         case actionTypes.UPDATE_USERS:
-            return action.users;
+            return action.users.map((user) => ({
+                ...user,
+                id: parseInt(user.id),
+                timeout: parseInt(user.timeout)
+            }));
         case actionTypes.ADD_USER:
             return [...state, {
-                id: action.user.id,
+                id: parseInt(action.user.id),
                 username: action.user.username,
                 timeout: action.user.timeout
             }];

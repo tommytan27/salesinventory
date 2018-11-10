@@ -112,7 +112,3 @@ export const customerHub = store => next => action => {
 
     return next(action);
 }
-
-export const customerHubConnector = (store, callBack) => {
-
-}
