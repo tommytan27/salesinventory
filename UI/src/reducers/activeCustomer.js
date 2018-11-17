@@ -9,6 +9,7 @@ const activeCustomer = (state = initialState, action) => {
         case actionTypes.SELECT_CUSTOMER:
             return {...state, id: action.customerId};
         case actionTypes.CHANGE_PAGE_USER_MAIN_MENU:
+        case actionTypes.UPDATE_ITEMS_AND_CUSTOMER:
         case actionTypes.SELECT_ANONYMOUS:
             return initialState;
         default:

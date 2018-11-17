@@ -7,7 +7,7 @@ const dummyStock = {
         {barcode: "1531831812", qty: 1, sellPrice: 8.50, costPrice: 7.50}
 ]};
 
-describe('Stock Store', () => {
+fdescribe('Stock Store', () => {
     it('should return the list of stocks with updated stocks when receiving UPDATE_RECORDS action', () => {
         var returnValues = stocks(undefined, {
             type: actionTypes.UPDATE_RECORDS,

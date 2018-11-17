@@ -611,28 +611,6 @@ export const closePriceCheckDialog = () => {
     };
 }
 
-export const addStock = (stock) => {
-    return {
-        type: actionTypes.ADD_STOCK,
-        stock: stock
-    };
-}
-
-export const addSales = (sales, customerCredit) => {
-    return {
-        type: actionTypes.ADD_SALES,
-        sales: sales,
-        customerCredit: customerCredit
-    };
-}
-
-export const addCredit = (credit) => {
-    return {
-        type: actionTypes.ADD_CREDIT,
-        credit: credit
-    };
-}
-
 export const failLoginUser = () => {
     return {
         type: actionTypes.FAIL_LOGIN_USER
@@ -731,6 +709,14 @@ export const updateItems = (items) => {
     return {
         type: actionTypes.UPDATE_ITEMS,
         items: items
+    }
+}
+
+export const updateItemsAndCustomer = (items, customer) => {
+    return {
+        type: actionTypes.UPDATE_ITEMS_AND_CUSTOMER,
+        items: items,
+        customer: customer
     }
 }
 

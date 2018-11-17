@@ -1,5 +1,13 @@
 import actionTypes from '../constants/actionTypes';
 
+const addStockRequest = (next, newStock) => {
+    let request = new Request("http://localhost:3000/api/stocks/add", {
+        method: "POST",
+        headers: new Headers({ "Content-Type": "application/json" }),
+        body: JSON.stringify(newStock)
+    });
+};
+
 export const stockHub = store => next => action => {
     var currentTime = new Date().toLocaleString("en-ZA");
     switch (action.type) {
@@ -15,14 +23,9 @@ export const stockHub = store => next => action => {
                     costPrice: record.costPrice
                 }))
             };
-            //TODO: hub call to add stock
-            //TODO: should return next(action);
-            //return next(addStock(newStock));
+            addStockRequest(next, newStock);
+            break;
     }
 
     return next(action);
-}
-
-export const stockHubConnector = (store, callBack) => {
-
 }

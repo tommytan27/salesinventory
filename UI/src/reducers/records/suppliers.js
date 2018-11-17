@@ -1,7 +1,6 @@
 import actionTypes from "../../constants/actionTypes";
 
 const suppliers = (state = [], action) => {
-    let currentLength = state.length;
     switch (action.type) {
         case actionTypes.UPDATE_SUPPLIERS:
             return action.suppliers.map((supplier) => ({

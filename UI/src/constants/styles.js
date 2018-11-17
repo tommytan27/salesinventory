@@ -47,7 +47,7 @@ const styles = {
         left: {
             padding: '3%',
             paddingTop: '2%',
-            paddingBottom: '0%',
+            paddingBottom: '2%',
             margin: '3%'
         },
         leftGuide: {

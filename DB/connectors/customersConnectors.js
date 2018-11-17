@@ -107,3 +107,24 @@ exports.deleteCustomer = (res, pool, next, deletedCustomer) => {
         }
     });
 };
+
+exports.updateCustomerCredit = (res, pool, next, updatedCustomer) => {
+    pool.connect((err, db, done) => {
+        if(err) {
+            next(err);
+        }
+        else {
+            db.query('UPDATE customers SET credit = $2 WHERE id = $1',
+            [updatedCustomer.id, updatedCustomer.credit],
+            (err, table) => {
+                done();
+                if(err) {
+                    next(err);
+                }
+                else {
+                    next();
+                }
+            });
+        }
+    });
+};

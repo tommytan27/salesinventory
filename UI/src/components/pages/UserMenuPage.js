@@ -6,7 +6,11 @@ import styles from '../../constants/styles';
 import SystemLoginDialog from '../../containers/systemDialogs/SystemLoginDialog';
 import SystemPriceCheckDialog from './../../containers/systemDialogs/SystemPriceCheckDialog';
 
-class UserMenuPage extends React.Component {
+class UserMenuPage extends React.Component {    
+    componentDidMount() {
+        this.props.onUpdatePage();
+    }
+
     render() {
         return (
             <div style={styles.page.main}>
@@ -41,7 +45,8 @@ class UserMenuPage extends React.Component {
 UserMenuPage.propTypes = {    
     onAdminButtonClick: PropTypes.func.isRequired,
     onShoppingButtonClick: PropTypes.func.isRequired,
-    onPriceCheckButtonClick: PropTypes.func.isRequired
+    onPriceCheckButtonClick: PropTypes.func.isRequired,
+    onUpdatePage: PropTypes.func.isRequired
 }
 
 export default UserMenuPage;

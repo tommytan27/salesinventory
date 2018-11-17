@@ -6,6 +6,10 @@ import ItemRecord from '../records/ItemRecord';
 import styles from './../../constants/styles';
 
 class ItemRecordTable extends React.Component {
+    componentDidMount() {
+        this.props.onUpdatePage();
+    }
+
     render() {
         return (
             <div style={styles.pageTable}>
@@ -44,7 +48,8 @@ ItemRecordTable.propTypes = {
             qty: PropTypes.number.isRequired
         }).isRequired
     ).isRequired,
-    onItemRecordClick: PropTypes.func.isRequired
+    onItemRecordClick: PropTypes.func.isRequired,
+    onUpdatePage: PropTypes.func.isRequired
 };
 
 export default ItemRecordTable;

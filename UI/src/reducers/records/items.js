@@ -1,8 +1,17 @@
 import actionTypes from './../../constants/actionTypes';
 
 const items = (state = [], action) => {
-    let currentLength = state.length;
     switch (action.type) {
+        case actionTypes.UPDATE_ITEMS_AND_CUSTOMER:
+        case actionTypes.UPDATE_ITEMS:
+            return action.items.map((item) => ({
+                ...item,
+                supplierId: parseInt(item.supplierId),
+                brandId: parseInt(item.brandId),
+                price: parseFloat(item.price),
+                costPrice: parseFloat(item.costPrice),
+                qty: parseInt(item.qty)
+            }));
         case actionTypes.ADD_ITEM:
             return [...state, {
                 barcode: action.item.barcode,
@@ -26,40 +35,6 @@ const items = (state = [], action) => {
                     qty: action.item.qty
                 } : item
             ));
-        case actionTypes.ADD_STOCK:
-            action.stock.details.forEach((detail) => {
-                state = state.map((item) => (
-                    item.barcode === detail.barcode ? {
-                        ...item,
-                        price: detail.sellPrice,
-                        costPrice: detail.costPrice,
-                        qty: item.qty + detail.qty
-                    }                    
-                    : item
-                ));
-            });
-            return state;
-        case actionTypes.ADD_SALES:
-            action.sales.details.forEach((detail) => {
-                state = state.map((item) => (
-                    item.barcode === detail.barcode ? {
-                        ...item,
-                        qty: item.qty - detail.qty
-                    }                    
-                    : item
-                ));
-            });
-            return state;
-        case actionTypes.ADD_CREDIT:
-            action.credit.details.forEach((detail) => {
-                state = state.map((item) => (
-                    item.barcode === detail.barcode ? {
-                        ...item,
-                        qty: item.qty - detail.qty
-                    }                    
-                    : item
-                ));
-            });
         case actionTypes.DELETE_ITEM:
             return state.filter((item) => {
                 return item.barcode !== action.barcode;

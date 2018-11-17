@@ -831,6 +831,31 @@ describe ('ItemRecords Actions', () => {
         }
         expect(actions.updateItems(expectedItems)).toEqual(expectedAction);
     });
+    
+    it ('should create an action to update items and customer', () => {
+        const expectedItems = [
+            {
+                barcode: "12345678", name: "Item", supplierId: 1, 
+                brandId: 1, price: 9.00, costPrice: 8.50, vegan: true, qty: 2
+            }
+            ,
+            {
+                barcode: "132434", name: "Item2", supplierId: 1, 
+                brandId: 2, price: 8.00, costPrice: 7.50, vegan: false, qty: 3
+            }            
+        ];
+        const expectedCustomer = {
+            id: 1,
+            credit: 1.50
+        }
+        const expectedAction = {
+            type: actionTypes.UPDATE_ITEMS_AND_CUSTOMER,
+            items: expectedItems,
+            customer: expectedCustomer
+        }
+        expect(actions.updateItemsAndCustomer(expectedItems, expectedCustomer)).toEqual(expectedAction);
+        expect(actions.updateItemsAndCustomer(expectedItems, expectedCustomer)).toEqual(expectedAction);
+    });
 });
 
 describe ('SalesRecords Actions', () => {
@@ -845,19 +870,6 @@ describe ('SalesRecords Actions', () => {
             type: actionTypes.SERVER_ADD_SALES
         };
         expect(actions.serverAddSales()).toEqual(expectedAction);
-    });
-    it('should create an action to add sales', () => {
-        const expectedSales = {
-            id: "20180114102520", date: "2018/01/14", customerId: 0, details: [
-                {barcode: "3531312151", qty: 4},
-                {barcode: "1153135151", qty: 5}
-        ]};
-        const expectedAction = {
-            type: actionTypes.ADD_SALES,
-            sales: expectedSales,
-            customerCredit: 5.00
-        };
-        expect(actions.addSales(expectedSales, 5.00)).toEqual(expectedAction);
     });
     it('should create an action to save change as customer credit via signal R', () => {
         const expectedAction = {
@@ -881,18 +893,6 @@ describe ('CreditRecords Actions', () => {
         };
         expect(actions.serverAddCredit()).toEqual(expectedAction);
     });
-    it('should create an action to add credit', () => {
-        const expectedCredit = {
-            id: "20180224144820", date: "2018/02/24", customerId: 0, details: [
-                {barcode: "1153135151", qty: 3},
-                {barcode: "1531831812", qty: 5}
-        ]};
-        const expectedAction = {
-            type: actionTypes.ADD_CREDIT,
-            credit: expectedCredit
-        };
-        expect(actions.addCredit(expectedCredit)).toEqual(expectedAction);
-    });
 });
 
 describe ('StockRecords Actions', () => {
@@ -907,18 +907,6 @@ describe ('StockRecords Actions', () => {
             type: actionTypes.SERVER_ADD_STOCK
         };
         expect(actions.serverAddStock()).toEqual(expectedAction);
-    });
-    it('should create an action to add stock', () => {
-        const expectedStock = {
-            id: "20180224144820", date: "2018/02/24", details: [
-                {barcode: "1153135151", qty: 1, sellPrice: 9.50, costPrice: 8.75},
-                {barcode: "1531831812", qty: 1, sellPrice: 8.50, costPrice: 7.50}
-        ]};
-        const expectedAction = {
-            type: actionTypes.ADD_STOCK,
-            stock: expectedStock
-        };
-        expect(actions.addStock(expectedStock)).toEqual(expectedAction);
     });
 });
 

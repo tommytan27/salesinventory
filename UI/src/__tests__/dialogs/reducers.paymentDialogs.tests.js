@@ -35,16 +35,10 @@ describe('PaymentDialog', () => {
             type: actionTypes.CLOSE_PAYMENT_DIALOG
         })
     });
-    it ('should return initial state when receiving ADD_SALES action', () => {
+    it ('should return initial state when receiving UPDATE_ITEMS_AND_CUSTOMER action', () => {
         assertInitialState(undefined, {
-            type: actionTypes.ADD_SALES,
-            sales: {}
-        })
-    });
-    it ('should return initial state when receiving ADD_CREDIT action', () => {
-        assertInitialState(undefined, {
-            type: actionTypes.ADD_CREDIT,
-            credit: {}
+            type: actionTypes.UPDATE_ITEMS_AND_CUSTOMER,
+            items: {}
         })
     });
     it ('should return initial state after opening dialog when receiving CLOSE_PAYMENT_DIALOG action', () => {

@@ -1,4 +1,24 @@
 import actionTypes from '../constants/actionTypes';
+import { updateItemsAndCustomer } from '../actions';
+
+const addCreditRequest = (next, newCredit) => {
+    let request = new Request("http://localhost:3000/api/credits/add", {
+        method: "POST",
+        headers: new Headers({ "Content-Type": "application/json" }),
+        body: JSON.stringify(newCredit)
+    });
+
+    fetch(request).then((response) => {
+        if(response.status === 200) {
+            response.json().then((data) => {
+                return next(updateItemsAndCustomer(data.items, {
+                    id: newCredit.customerId,
+                    credit: 0.00
+                }));
+            });
+        }
+    });
+};
 
 export const creditHub = store => next => action => {
     var currentTime = new Date().toLocaleString("en-ZA");
@@ -14,14 +34,9 @@ export const creditHub = store => next => action => {
                     qty: record.qty
                 }))
             };
-            //TODO: hub call to add credit
-            //TODO: should return next(action);
-            // return next(addCredit(newCredit));
+            addCreditRequest(next, newCredit);
+            break;
     }
 
     return next(action);
-}
-
-export const creditHubConnector = (store, callBack) => {
-
 }

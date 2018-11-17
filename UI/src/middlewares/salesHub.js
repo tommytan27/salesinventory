@@ -1,4 +1,24 @@
 import actionTypes from '../constants/actionTypes';
+import { updateItemsAndCustomer } from '../actions';
+
+const addSalesRequest = (next, newSales) => {
+    let request = new Request("http://localhost:3000/api/sales/add", {
+        method: "POST",
+        headers: new Headers({ "Content-Type": "application/json" }),
+        body: JSON.stringify(newSales)
+    });
+
+    fetch(request).then((response) => {
+        if(response.status === 200) {
+            response.json().then((data) => {
+                return next(updateItemsAndCustomer(data.items, {
+                    id: newSales.customerId,
+                    credit: newSales.customerCredit
+                }));
+            });
+        }
+    });
+};
 
 export const salesHub = store => next => action => {
     var currentTime = new Date().toLocaleString("en-ZA");
@@ -14,16 +34,12 @@ export const salesHub = store => next => action => {
                 details: store.getState().stockShopRecords.map((record) => ({
                     barcode: record.barcode,
                     qty: record.qty
-                }))
+                })),
+                customerCredit: customerCredit
             };
-            //TODO: hub call to add sales
-            //TODO: should return next(action);
-            //return next(addSales(newSales, customerCredit));
+            addSalesRequest(next, newSales);
+            break;
     }
 
     return next(action);
-}
-
-export const salesHubConnector = (store, callBack) => {
-
 }

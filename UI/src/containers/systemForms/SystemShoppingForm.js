@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { selectSupplier, selectBrand, selectItem, updateQtyField, updateBarcodeField, 
     addStockingRecordToList, initiateBarcodeScanning, selectItemAndAdd, 
-    changePageUserMainMenu, showShoppingForm, openSelectCustomerDialog } from "../../actions";
+    changePageUserMainMenu, showShoppingForm, openSelectCustomerDialog, serverAddSupplier, serverGetBrands } from "../../actions";
 import ShoppingForm from "../../components/forms/ShoppingForm";
 
 const getFilteredItems = (state) => {
@@ -35,7 +35,7 @@ const mapDispatchToProps = (dispatch) => {
         onBarcodeButtonClick: () => { dispatch(initiateBarcodeScanning()) },
         onBackButtonClick: () => { dispatch(changePageUserMainMenu()) },
         onShoppingSearchButtonClick: () => { dispatch(showShoppingForm()); },
-        onChangeCustomerButtonClick: () => { dispatch(openSelectCustomerDialog()) }
+        onChangeCustomerButtonClick: () => { dispatch(openSelectCustomerDialog()); }
     };
 }
 

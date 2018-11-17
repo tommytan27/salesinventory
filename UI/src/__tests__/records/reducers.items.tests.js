@@ -67,86 +67,65 @@ describe('Items Store', () => {
         });
         expect(returnValues).toHaveLength(0);
     });
-    it('should update all the cost price and qty of the items when receiving ADD_STOCK action', () => {
-        var returnValues = items([{
-            barcode: "1153135151",
-            name: "Item1",
-            supplierId: 1,
-            brandId: 1,
-            price: 9.00,
-            costPrice: 0.00,
-            vegan: true,
-            qty: 1
+    it('should return the updated list of items when receiving UPDATE_ITEMS action', () => {
+        const updatedItems = [{
+            barcode: "12345678", name: "Item", supplierId: 1, 
+            brandId: 1, price: 9.00, costPrice: 8.50, vegan: true, qty: 2
         },{
-            barcode: "1531831812",
-            name: "Item2",
-            supplierId: 1,
-            brandId: 1,
-            price: 8.00,
-            costPrice: 7.00,
-            vegan: true,
-            qty: 1
-        }], {
-            type: actionTypes.ADD_STOCK,
-            stock: dummyStock
+            barcode: "98765432", name: "Item", supplierId: 2, 
+            brandId: 1, price: 10.00, costPrice: 9.50, vegan: false, qty: 5
+        }];
+        var returnValues = items(undefined, {
+            type: actionTypes.UPDATE_ITEMS,
+            items: updatedItems
         });
-        expect(returnValues[0].price).toEqual(9.50);
-        expect(returnValues[0].costPrice).toEqual(8.75);
-        expect(returnValues[0].qty).toEqual(5);
-        expect(returnValues[1].price).toEqual(8.50);
-        expect(returnValues[1].costPrice).toEqual(7.50);
-        expect(returnValues[1].qty).toEqual(2);
+        expect(returnValues).toHaveLength(2);
+        expect(returnValues[0].barcode).toEqual(updatedItems[0].barcode);
+        expect(returnValues[0].name).toEqual(updatedItems[0].name);
+        expect(returnValues[0].supplierId).toEqual(updatedItems[0].supplierId);
+        expect(returnValues[0].brandId).toEqual(updatedItems[0].brandId);
+        expect(returnValues[0].price).toEqual(updatedItems[0].price);
+        expect(returnValues[0].costPrice).toEqual(updatedItems[0].costPrice);
+        expect(returnValues[0].vegan).toEqual(updatedItems[0].vegan);
+        expect(returnValues[0].qty).toEqual(updatedItems[0].qty);
+        expect(returnValues[0].barcode).toEqual(updatedItems[0].barcode);
+        expect(returnValues[1].name).toEqual(updatedItems[1].name);
+        expect(returnValues[1].supplierId).toEqual(updatedItems[1].supplierId);
+        expect(returnValues[1].brandId).toEqual(updatedItems[1].brandId);
+        expect(returnValues[1].price).toEqual(updatedItems[1].price);
+        expect(returnValues[1].costPrice).toEqual(updatedItems[1].costPrice);
+        expect(returnValues[1].vegan).toEqual(updatedItems[1].vegan);
+        expect(returnValues[1].qty).toEqual(updatedItems[1].qty);
     });
-    it('should update all the qty of the items when receiving ADD_SALES action', () => {
-        var returnValues = items([{
-            barcode: "1153135151",
-            name: "Item1",
-            supplierId: 1,
-            brandId: 1,
-            price: 9.50,
-            costPrice: 8.75,
-            vegan: true,
-            qty: 10
+    it('should return the updated list of items when receiving UPDATE_ITEMS_AND_CUSTOMER action', () => {
+        const updatedItems = [{
+            barcode: "12345678", name: "Item", supplierId: 1, 
+            brandId: 1, price: 9.00, costPrice: 8.50, vegan: true, qty: 2
         },{
-            barcode: "1531831812",
-            name: "Item2",
-            supplierId: 1,
-            brandId: 1,
-            price: 8.50,
-            costPrice: 7.50,
-            vegan: true,
-            qty: 20
-        }], {
-            type: actionTypes.ADD_SALES,
-            sales: dummySalesCredit
+            barcode: "98765432", name: "Item", supplierId: 2, 
+            brandId: 1, price: 10.00, costPrice: 9.50, vegan: false, qty: 5
+        }];
+        var returnValues = items(undefined, {
+            type: actionTypes.UPDATE_ITEMS_AND_CUSTOMER,
+            items: updatedItems,
+            customer: null
         });
-        expect(returnValues[0].qty).toEqual(6);
-        expect(returnValues[1].qty).toEqual(19);
-    });
-    it('should update all the qty of the items when receiving ADD_CREDIT action', () => {
-        var returnValues = items([{
-            barcode: "1153135151",
-            name: "Item1",
-            supplierId: 1,
-            brandId: 1,
-            price: 9.50,
-            costPrice: 8.75,
-            vegan: true,
-            qty: 10
-        },{
-            barcode: "1531831812",
-            name: "Item2",
-            supplierId: 1,
-            brandId: 1,
-            price: 8.50,
-            costPrice: 7.50,
-            vegan: true,
-            qty: 20
-        }], {
-            type: actionTypes.ADD_CREDIT,
-            credit: dummySalesCredit
-        });
-        expect(returnValues[0].qty).toEqual(6);
-        expect(returnValues[1].qty).toEqual(19);
+        expect(returnValues).toHaveLength(2);
+        expect(returnValues[0].barcode).toEqual(updatedItems[0].barcode);
+        expect(returnValues[0].name).toEqual(updatedItems[0].name);
+        expect(returnValues[0].supplierId).toEqual(updatedItems[0].supplierId);
+        expect(returnValues[0].brandId).toEqual(updatedItems[0].brandId);
+        expect(returnValues[0].price).toEqual(updatedItems[0].price);
+        expect(returnValues[0].costPrice).toEqual(updatedItems[0].costPrice);
+        expect(returnValues[0].vegan).toEqual(updatedItems[0].vegan);
+        expect(returnValues[0].qty).toEqual(updatedItems[0].qty);
+        expect(returnValues[0].barcode).toEqual(updatedItems[0].barcode);
+        expect(returnValues[1].name).toEqual(updatedItems[1].name);
+        expect(returnValues[1].supplierId).toEqual(updatedItems[1].supplierId);
+        expect(returnValues[1].brandId).toEqual(updatedItems[1].brandId);
+        expect(returnValues[1].price).toEqual(updatedItems[1].price);
+        expect(returnValues[1].costPrice).toEqual(updatedItems[1].costPrice);
+        expect(returnValues[1].vegan).toEqual(updatedItems[1].vegan);
+        expect(returnValues[1].qty).toEqual(updatedItems[1].qty);
     });
 });

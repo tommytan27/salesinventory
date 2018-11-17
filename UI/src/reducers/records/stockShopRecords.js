@@ -18,12 +18,8 @@ const stockShopRecords = (state = [], action) => {
         case actionTypes.CHANGE_MODE_USER_DUE_TIMEOUT:
         case actionTypes.CHANGE_MODE_USER:
         case actionTypes.CHANGE_PAGE_ADMIN_MAIN_MENU:
-        case actionTypes.ADD_STOCK:
-        case actionTypes.ADD_CREDIT:
-        case actionTypes.ADD_SALES:
-        case actionTypes.SERVER_ADD_CREDIT:
-        case actionTypes.SERVER_ADD_SALES:
-        case actionTypes.SERVER_ADD_STOCK:
+        case actionTypes.CHANGE_PAGE_USER_MAIN_MENU:
+        case actionTypes.UPDATE_ITEMS_AND_CUSTOMER:
             return [];
         default:
             return state;

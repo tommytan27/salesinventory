@@ -11,6 +11,12 @@ describe('activeCustomer', () => {
         });
         expect(returnValues.id).toEqual(0);
     });
+    it('should return the anonymous when receiving UPDATE_ITEMS_AND_CUSTOMER action', () => {
+        var returnValues = activeCustomer({id: 1}, {
+            type: actionTypes.UPDATE_ITEMS_AND_CUSTOMER
+        });
+        expect(returnValues.id).toEqual(0);
+    });
     it('should return the anonymous when receiving SELECT_ANONYMOUS action', () => {
         var returnValues = activeCustomer({id: 1}, {
             type: actionTypes.SELECT_ANONYMOUS

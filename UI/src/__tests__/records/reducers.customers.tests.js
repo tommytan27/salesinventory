@@ -82,4 +82,28 @@ describe('Customers Store', () => {
         expect(returnValues[0].id).toEqual(0);
         expect(returnValues[1].id).toEqual(1);
     });
+    it('should return the list of customers with the modified customer when receiving UPDATE_ITEMS_AND_CUSTOMER action', () => {
+        const expectedCustomer = {
+            id: 0,
+            firstName: "Tommy",
+            lastName: "Tanzil",
+            contact: "0425927766",
+            credit: 3.0
+        }
+        var returnValues = customers([{
+            id: 0,
+            firstName: "Tommy",
+            lastName: "Tanzil",
+            contact: "0425927766",
+            credit: 2.0
+        }], {
+            type: actionTypes.UPDATE_ITEMS_AND_CUSTOMER,
+            customer: expectedCustomer
+        });
+        expect(returnValues).toHaveLength(1);
+        expect(returnValues[0].firstName).toEqual(expectedCustomer.firstName);
+        expect(returnValues[0].lastName).toEqual(expectedCustomer.lastName);
+        expect(returnValues[0].contact).toEqual(expectedCustomer.contact);
+        expect(returnValues[0].credit).toEqual(3.0);
+    });
 })

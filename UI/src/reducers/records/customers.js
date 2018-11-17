@@ -3,6 +3,13 @@ import actionTypes from './../../constants/actionTypes';
 const customers = (state = [], action) => {
     let currentLength = state.length;
     switch (action.type) {
+        case actionTypes.UPDATE_ITEMS_AND_CUSTOMER:
+        return state.map((customer) => (
+            customer.id === action.customer.id ? {
+                ...customer,
+                credit: action.customer.credit
+            } : customer
+        ));
         case actionTypes.UPDATE_CUSTOMERS:
             return action.customers.map((customer) => ({
                 ...customer,

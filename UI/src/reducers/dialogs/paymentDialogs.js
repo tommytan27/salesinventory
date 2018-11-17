@@ -20,8 +20,7 @@ const paymentDialogs = (state = initialState, action) => {
             return { ...state, open: true, total: action.total };
         case actionTypes.CHANGE_PAGE_USER_MAIN_MENU:
         case actionTypes.CLOSE_PAYMENT_DIALOG:
-        case actionTypes.ADD_SALES:
-        case actionTypes.ADD_CREDIT:
+        case actionTypes.UPDATE_ITEMS_AND_CUSTOMER:
             return initialState;
         case actionTypes.PAY_NOW:
             return {...state, payNow: true};

@@ -23,23 +23,11 @@ describe('StockShopRecords Store', () => {
     it ('should return initial state when receiving CHANGE_MODE_USER_DUE_TIMEOUT', () => {
         expect(stockShopRecords(undefined, {type: actionTypes.CHANGE_MODE_USER_DUE_TIMEOUT})).toHaveLength(0);
     });
-    it ('should return initial state when receiving ADD_STOCK', () => {
-        expect(stockShopRecords(undefined, {type: actionTypes.ADD_STOCK})).toHaveLength(0);
+    it ('should return initial state when receiving CHANGE_PAGE_USER_MAIN_MENU', () => {
+        expect(stockShopRecords(undefined, {type: actionTypes.CHANGE_PAGE_USER_MAIN_MENU})).toHaveLength(0);
     });
-    it ('should return initial state when receiving ADD_SALES', () => {
-        expect(stockShopRecords(undefined, {type: actionTypes.ADD_SALES})).toHaveLength(0);
-    });
-    it ('should return initial state when receiving ADD_CREDIT', () => {
-        expect(stockShopRecords(undefined, {type: actionTypes.ADD_CREDIT})).toHaveLength(0);
-    });
-    it ('should return initial state when receiving SERVER_ADD_STOCK', () => {
-        expect(stockShopRecords(undefined, {type: actionTypes.SERVER_ADD_STOCK})).toHaveLength(0);
-    });
-    it ('should return initial state when receiving SERVER_ADD_SALES', () => {
-        expect(stockShopRecords(undefined, {type: actionTypes.SERVER_ADD_SALES})).toHaveLength(0);
-    });
-    it ('should return initial state when receiving SERVER_ADD_CREDIT', () => {
-        expect(stockShopRecords(undefined, {type: actionTypes.SERVER_ADD_CREDIT})).toHaveLength(0);
+    it ('should return initial state when receiving UPDATE_ITEMS_AND_CUSTOMER', () => {
+        expect(stockShopRecords(undefined, {type: actionTypes.UPDATE_ITEMS_AND_CUSTOMER})).toHaveLength(0);
     });
     it ('should return updated stocking records list when receiving action REMOVE_STOCKING_RECORD_FROM_LIST', () => {
         const returnValue = stockShopRecords(fakeStockingRecords, {

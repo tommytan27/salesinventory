@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import ItemRecordTable from '../../components/recordTables/ItemRecordTable';
-import { openEditItemDialog } from './../../actions';
+import { openEditItemDialog, serverGetItems } from './../../actions';
 
 const mapStateToProps = (state) => {
     return {
@@ -10,7 +10,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onItemRecordClick: (item) => { dispatch(openEditItemDialog(item)) }
+        onItemRecordClick: (item) => { dispatch(openEditItemDialog(item)) },
+        onUpdatePage: () => { dispatch(serverGetItems()) }
     };
 }
 

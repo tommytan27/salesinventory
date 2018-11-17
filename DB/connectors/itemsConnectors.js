@@ -4,7 +4,7 @@ exports.getItems = (res, pool, next) => {
             next(err);
         }
         else {
-            db.query('SELECT * FROM items',
+            db.query('SELECT * FROM items ORDER BY name',
             (err, table) => {
                 if(err) {
                     next(err);

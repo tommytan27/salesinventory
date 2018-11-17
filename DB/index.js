@@ -8,23 +8,26 @@ const customersConnectors = require("./connectors/customersConnectors");
 const suppliersConnectors = require("./connectors/suppliersConnectors");
 const brandsConnectors = require("./connectors/brandsConnectors");
 const itemsConnectors = require("./connectors/itemsConnectors");
+const stocksConnectors = require("./connectors/stocksConnectors");
+const salesConnectors = require("./connectors/salesConnectors");
+const creditsConnectors = require("./connectors/creditsConnectors");
 
 const PORT = 3000;
 
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
 
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
     console.error(err.stack);
     next(err);
 });
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
     res.status(500);
     res.render("error", { error: err });
 });
@@ -222,6 +225,104 @@ app.post('/api/items/edit', (req, res, next) => {
         costPrice: req.body.costPrice,
         vegan: req.body.vegan
     });
+});
+
+//STOCKS API
+app.post('/api/stocks/add', (req, res, next) => {
+    console.log("Add-Stock request accepted");
+    stocksConnectors.addStock(res, pool, next, {
+        id: req.body.id,
+        date: req.body.date,
+        details: req.body.details
+    });
+}, (req, res, next) => {
+    console.log("Add-Stock - all record details are being processed");
+    stocksConnectors.addStockRecords(res, pool, next, {
+        id: req.body.id,
+        date: req.body.date,
+        details: req.body.details
+    });
+}, (req, res, next) => {
+    console.log("Add-Stock - item qty is being updated");
+    stocksConnectors.updateItemRecords(res, pool, next, {
+        id: req.body.id,
+        date: req.body.date,
+        details: req.body.details
+    });
+}, (req, res, next) => {
+    console.log("Add-Stock request is being responded");
+    stocksConnectors.respondAddStock(res);
+});
+
+//SALES API
+app.post('/api/sales/add', (req, res, next) => {
+    console.log("Add-Sales request accepted");
+    salesConnectors.addSales(res, pool, next, {
+        id: req.body.id,
+        date: req.body.date,
+        customerId: req.body.customerId,
+        details: req.body.details
+    });
+}, (req, res, next) => {
+    console.log("Add-Sales - all record details are being processed");
+    salesConnectors.addSalesRecords(res, pool, next, {
+        id: req.body.id,
+        date: req.body.date,
+        customerId: req.body.customerId,
+        details: req.body.details
+    });
+}, (req, res, next) => {
+    console.log("Add-Sales - item qty is being updated");
+    salesConnectors.updateItemQty(res, pool, next, {
+        id: req.body.id,
+        date: req.body.date,
+        customerId: req.body.customerId,
+        details: req.body.details
+    });
+}, (req, res, next) => {
+    console.log("Add-Sales - update customer credit");
+    if (req.body.customerId !== "0") {
+        customersConnectors.updateCustomerCredit(res, pool, next, {
+            id: req.body.customerId,
+            credit: req.body.customerCredit
+        });
+    }
+    else {
+        next();
+    }
+}, (req, res, next) => {
+    console.log("Add-Sales request is being responded");
+    itemsConnectors.getItems(res, pool, next);
+});
+
+//CREDITS API
+app.post('/api/credits/add', (req, res, next) => {
+    console.log("Add-Credit request accepted");
+    creditsConnectors.addCredit(res, pool, next, {
+        id: req.body.id,
+        date: req.body.date,
+        customerId: req.body.customerId,
+        details: req.body.details
+    });
+}, (req, res, next) => {
+    console.log("Add-Credit - all record details are being processed");
+    creditsConnectors.addCreditRecords(res, pool, next, {
+        id: req.body.id,
+        date: req.body.date,
+        customerId: req.body.customerId,
+        details: req.body.details
+    });
+}, (req, res, next) => {
+    console.log("Add-Credit - item qty is being updated");
+    creditsConnectors.updateItemQty(res, pool, next, {
+        id: req.body.id,
+        date: req.body.date,
+        customerId: req.body.customerId,
+        details: req.body.details
+    });
+}, (req, res, next) => {
+    console.log("Add-Credit request is being responded");
+    itemsConnectors.getItems(res, pool, next);
 });
 
 app.listen(PORT, () => console.log('Sales Inventory DB is running on port: ' + PORT));
